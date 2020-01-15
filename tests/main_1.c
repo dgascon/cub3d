@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:55:32 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 14:52:11 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/16 00:14:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ int main(int ac, char **av)
         return (EXIT_FAILURE);
 	if (!(init_world(&world)))
 		return (EXIT_FAILURE);
-	if (FALSE && !(show_2d_world(&world)))
+	if (TRUE && !(show_2d_world(&world)))
 		return (EXIT_FAILURE);
 	world.player = (t_player){.fov = M_PI / 3, .pov = M_PI_2, .height = 32,
 								.coord.x = 64 * 2 + 32, .coord.y = 64 * 2 + 32};
@@ -41,9 +41,12 @@ int main(int ac, char **av)
 	int x = data.width;
 	while (x--)
 	{
-		raycast.dist = shortest_dist(linear_intersec_h(&world, raycast.alpha), linear_intersec_v(&world, raycast.alpha));
+		raycast.dist = shortest_dist(linear_intersec_h(&world, &raycast), linear_intersec_v(&world, &raycast));
+		printf("Calc : %5f\n", world.player.fov / data.width);
 		raycast.alpha += (world.player.fov / data.width);
-		put_column(x, &data, &raycast);
+		printf("Alpha : %5f\n", raycast.alpha);
+		if (raycast.alpha > 2 * M_PI)
+			raycast.alpha = 0;
 	}
     mlx_loop(data.mlx_ptr);
     return (EXIT_SUCCESS);

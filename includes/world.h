@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:30:10 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/15 12:26:09 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/15 23:39:37 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,8 +17,6 @@
 
 typedef struct	s_world
 {
-	int			width;
-	int			height;
 	char		data[320][200];
 	t_player 	player;
 }				t_world;

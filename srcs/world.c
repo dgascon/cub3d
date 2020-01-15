@@ -21,12 +21,12 @@ void	*init_world(t_world *world)
 	pY = 0;
 	if (!world)
 		return (NULL);
-	while (pY < world->height)
+	while (pY < 5)
 	{
 		pX = 0;
-		while (pX < world->width)
+		while (pX < 5)
 		{
-			if ((pX == 0 || pX == world->width - 1 || pY == 0 || pY == world->height - 1))
+			if ((pX == 0 || pX == 5 - 1 || pY == 0 || pY == 5 - 1))
 			{
 				world->data[pX][pY] = '1';
 			}
@@ -55,17 +55,17 @@ void	*show_2d_world(t_world *world)
 	if (!world)
 		return (NULL);
 	ft_printf("   ");
-	while (pX < world->width)
+	while (pX < 5)
 	{
 		ft_printf(WHITE"[%d]"RESET, pX);
 		pX++;
 	}
 	ft_printf("\n");
-	while (pY < world->height)
+	while (pY < 5)
 	{
 		ft_printf(WHITE"[%d]"RESET, pY);
 		pX = 0;
-		while (pX < world->width)
+		while (pX < 5)
 		{
 			if (world->data[pX][pY] == '1')
 			{

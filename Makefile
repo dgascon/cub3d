@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/13 14:52:56 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/16 00:05:06 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -73,6 +73,6 @@ fclean: clean
 	@ echo "-----------------------------------------"
 
 comp:
-	@ $(CC) $(CFLAGS) -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit tests/main_1.c
+	@ $(CC) $(CFLAGS) -g3 -fsanitize=address -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit tests/main_1.c
 
 re: fclean all

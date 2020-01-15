@@ -10,6 +10,12 @@
         "libftenum.h": "c",
         "__locale": "c",
         "world.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "istream": "c",
+        "locale": "c",
+        "*.tcc": "c",
+        "iomanip": "c",
+        "ios": "c",
+        "ostream": "c"
     }
 }

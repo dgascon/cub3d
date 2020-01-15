@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/15 12:25:46 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/15 23:43:53 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ typedef struct	s_data
 }				t_data;
 # include "world.h"
 
-double	linear_intersec_h(t_world *world, double alpha);
-double	linear_intersec_v(t_world *world, double alpha);
+double	linear_intersec_h(t_world *world, t_raycast *raycast);
+double	linear_intersec_v(t_world *world, t_raycast *raycast);
 
 # endif
