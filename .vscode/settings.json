@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "cube3d.h": "c",
+        "libft.h": "c",
+        "mlx.h": "c",
+        "ft_printf.h": "c",
+        "libftgnl.h": "c",
+        "unistd.h": "c",
+        "stddef.h": "c",
+        "libftenum.h": "c",
+        "__locale": "c",
+        "world.h": "c",
+        "math.h": "c"
+    }
+}
