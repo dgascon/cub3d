@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/16 00:05:06 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/16 21:01:58 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,9 +19,9 @@ PATH_INC		=	includes
 
 PATH_SRC		=	srcs
 PATH_OBJ		=	objs
-SRC_LIST		= 	player.c world.c engine/linear_intersec.c engine/render.c
+SRC_LIST		= 	world.c engine/linear_intersec.c engine/render.c
 
-INCS_LIST		=	cube3d.h player.h world.h raycast.h
+INCS_LIST		=	cube3d.h player.h world.h raycast.h window.h
 
 OBJS			=	$(addprefix $(PATH_OBJ)/, $(SRC_LIST:.c=.o))
 OBJS_BONUS		=	$(addprefix $(PATH_OBJ)/, $(BONUS_LIST:.c=.o))
@@ -73,6 +73,6 @@ fclean: clean
 	@ echo "-----------------------------------------"
 
 comp:
-	@ $(CC) $(CFLAGS) -g3 -fsanitize=address -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit tests/main_1.c
+	@ $(CC) $(CFLAGS) -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit tests/main_1.c
 
 re: fclean all

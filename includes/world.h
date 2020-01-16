@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:30:10 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/15 23:39:37 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/16 22:21:25 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,15 +14,16 @@
 #ifndef WORLD_H
 # define WORLD_H
 # include "cube3d.h"
+# include "player.h"
 
 typedef struct	s_world
 {
-	char		data[320][200];
+	char		**map;
+	int			width;
+	int			height;
 	t_player 	player;
 }				t_world;
 
-void	*init_world(t_world *world);
-void	*show_2d_world(t_world *world);
-double	shortest_dist(double horizontal, double vertical);
-void    put_column(int column, t_data *win, t_raycast *raycast);
+void	init_world(t_data *data);
+
 #endif

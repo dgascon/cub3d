@@ -16,6 +16,13 @@
         "*.tcc": "c",
         "iomanip": "c",
         "ios": "c",
-        "ostream": "c"
+        "ostream": "c",
+        "array": "c",
+        "string_view": "c",
+        "string": "c",
+        "vector": "c",
+        "raycast.h": "c",
+        "player.h": "c",
+        "window.h": "c"
     }
 }
