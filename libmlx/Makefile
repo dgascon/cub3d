@@ -14,11 +14,29 @@ CFLAGS+= -DSTRINGPUTX11
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	ar -r $(NOM) $(OBJ)
-	ranlib $(NOM)
+	@ ar -rc $(NOM) $(OBJ)
+	@ ranlib $(NOM)
+
+%.o: %.m
+	@ cc $(CFLAGS) -c $< -o $@
+
+%.o: %.c
+	@ printf "\033[0;38;5;198mCompilation de \033[1m$< ..."
+	@ cc $(CFLAGS) -c $< -o $@
+	@ printf "\r                                                                                          \r"
 
 clean:
-	rm -f $(NOM) $(OBJ) *~
-	rm -f mlx_app
+	@ rm -f $(NOM) $(OBJ) *~
+	@ rm -f mlx_app
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NOM) ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                          \r"
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(OBJ) ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                                                                                       \r"
+	@ printf "\033[0;38;5;160mSuppression de \033[1m*~ ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                                                                                                                 \r"
+	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour la \033[1mlibmlx.\n"
 
 re: clean all

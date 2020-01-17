@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/09 22:16:49 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/17 16:21:31 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -48,20 +48,30 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c				\
 				lists/ft_lstmap.c										\
 				gnl/get_next_line.c		gnl/get_next_line_utils.c		\
 				maths/ft_power.c		maths/ft_sqrt.c	maths/ft_abs.c	\
-				numbers/ft_digit.c		numbers/ft_digit_base.c	numbers/ft_digit_ul_base.c numbers/ft_itoa.c	numbers/ft_itoa_base.c	numbers/ft_digit_format_base.c	\
+				numbers/ft_digit.c		numbers/ft_digit_base.c			\
+				numbers/ft_digit_ul_base.c numbers/ft_itoa.c			\
+				numbers/ft_itoa_base.c	numbers/ft_digit_format_base.c	\
 				utils/ft_base.c											\
-				ftprintf/ft_printf.c	ftprintf/pf_conv.c	ftprintf/pf_utils.c	ftprintf/lists/pf_initlst.c	\
-				ftprintf/display/pf_disp_char.c	ftprintf/display/pf_disp_int.c ftprintf/display/pf_disp_perc.c ftprintf/display/pf_disp_ptr.c ftprintf/display/pf_disp_string.c ftprintf/display/pf_disp.c
+				ftprintf/ft_printf.c	ftprintf/pf_conv.c				\
+				ftprintf/pf_utils.c		ftprintf/lists/pf_initlst.c		\
+				ftprintf/display/pf_disp_char.c							\
+				ftprintf/display/pf_disp_int.c 							\
+				ftprintf/display/pf_disp_perc.c 						\
+				ftprintf/display/pf_disp_ptr.c 							\
+				ftprintf/display/pf_disp_string.c 						\
+				ftprintf/display/pf_disp.c
 
 INCS_LIST	=	libft.h libftenum.h libftgnl.h libftlst.h libftmaths.h libftmem.h libftnumbers.h libftprintf.h libftput.h libftstring.h
 
 OBJS		=	$(addprefix $(PATH_OBJ)/, $(SRC_LIST:.c=.o))
 INCS		=	$(addprefix $(PATH_INC)/, $(INCS_LIST))
 
-CC				=	gcc
-INCLUDES		=	-I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra -Werror
-C-O				=	$(CC) $(CFLAGS) $(PF_LIB) $(INCLUDES) -c $< -o $@
+CC			=	gcc
+INCLUDES	=	-I$(PATH_INC)
+CFLAGS		=	-Wall -Wextra -Werror
+C-O			=	$(CC) $(CFLAGS) $(PF_LIB) $(INCLUDES) -c $< -o $@
+
+DIRS_LIST	= mem put lists string utils gnl maths numbers ftprintf ftprintf/display ftprintf/lists
 
 all:	$(PF_NAME) $(NAME)
 
@@ -69,18 +79,22 @@ $(NAME): $(OBJS) $(INCS)
 	@ ar rc $(NAME) $(OBJS)
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c $(INCS)
-	@ $(shell mkdir -p $(PATH_OBJ) $(PATH_OBJ)/mem $(PATH_OBJ)/put)
-	@ $(shell mkdir -p $(PATH_OBJ)/lists $(PATH_OBJ)/string $(PATH_OBJ)/utils)
-	@ $(shell mkdir -p $(PATH_OBJ)/gnl $(PATH_OBJ)/maths $(PATH_OBJ)/numbers)
-	@ $(shell mkdir -p $(PATH_OBJ)/ftprintf $(PATH_OBJ)/ftprintf/display $(PATH_OBJ)/ftprintf/lists)
-	 $(C-O)
+	@ $(shell mkdir -p $(PATH_OBJ) $(addprefix $(PATH_OBJ)/, $(DIRS_LIST)))
+	@ printf "\033[0;38;5;198mCompilation de \033[1m$< ..."
+	@ $(C-O)
+	@ printf "\r                                                                                          \r"
 
 clean:
 	@ /bin/rm -rf $(PATH_OBJ)
 	
 fclean: clean
-	@ /bin/rm -f $(NAME)
-	@ echo "\033[31m > \033[1m$(NAME)/$(PATH_OBJ)/*\033[0;31m delete.\033[0m"
-	@ echo "\033[31m > \033[1m$(NAME)/$(NAME)\033[0;31m delete.\033[0m"
+	@ /bin/rm -f $(NAME) ./a.out
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                          \r"
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(NAME) ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                          \r"
+	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour la \033[1mlibft.\n"
 
 re: fclean all

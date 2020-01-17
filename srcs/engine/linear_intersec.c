@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 14:42:43 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 23:02:34 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 17:07:02 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,10 @@ static double	intersec_check(t_data *data, t_coord intersec, t_coord offset)
 		(grid.x < 0) ? grid.x = 0 : 0;
 		(grid.y < 0) ? grid.y = 0 : 0;
 		if (data->world.map[(int)grid.x][(int)grid.y] == '1')
-			return (ft_abs(data->world.player.pos.x - intersec.x) / cos(data->world.player.ray.alpha));
+		{
+			printf("Dist : [%f]\t[%f]\n",data->world.player.pos.x - intersec.x, cos(data->world.player.ray.alpha));
+			return (ft_abs_d(data->world.player.pos.x - intersec.x) / cos(data->world.player.ray.alpha));
+		}
 		intersec.x += offset.x;
 		intersec.y += offset.y;
 	}

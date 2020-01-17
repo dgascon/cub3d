@@ -23,6 +23,16 @@
         "vector": "c",
         "raycast.h": "c",
         "player.h": "c",
-        "window.h": "c"
+        "window.h": "c",
+        "chrono": "c",
+        "cmath": "c",
+        "libftnumbers.h": "c",
+        "stdlib.h": "c",
+        "libftprintf.h": "c",
+        "libftlst.h": "c",
+        "libftmaths.h": "c",
+        "libftput.h": "c",
+        "libftmem.h": "c",
+        "libftstring.h": "c"
     }
 }

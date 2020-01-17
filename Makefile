@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/16 21:01:58 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/17 16:48:27 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -42,23 +42,27 @@ INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
+DIRS_LIST	= engine
+
 all:	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
+
 
 $(NAME): $(OBJS) $(INCS) comp	
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c $(INCS)
-	@ $(shell mkdir -p $(PATH_OBJ) $(PATH_OBJ)/engine)
+	@ $(shell mkdir -p $(PATH_OBJ) $(addprefix $(PATH_OBJ)/, $(DIRS_LIST)))
+	@ printf "\033[0;38;5;198mCompilation de $< ..."
 	@ $(C-O)
-	@ echo "\033[32m V \033[1m$<\033[0;32m\t| \033[1m$@ create !\033[0m"
-	@ echo " \033[36m--CMD-- \033[32m$(C-O) create !\033[0m"
+	@ printf "\r                                                                                          \r\033[0m"
 
 $(LIBFT_NAME):
 	@ make -C $(LIBFT_PATH)
-	@ echo "\033[33;1m-- -- -- Compilation de la libft réussis. -- -- --\033[0m"
+	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
 
 $(MINILIBX_NAME):
+	@ printf "\033[0m"
 	@ make -C $(MINILIBX_PATH)
-	@ echo "\033[33;1m-- -- -- Compilation de la minilibx réussis. -- -- --\033[0m"
+	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
 
 clean:
 	@ /bin/rm -rf $(PATH_OBJ)
@@ -66,11 +70,15 @@ clean:
 	@ make -C $(MINILIBX_PATH) clean
 
 fclean: clean
-	@ /bin/rm -rf $(NAME) ./a.out*
-	@ echo "\033[31m > \033[1m$(NAME)/$(PATH_OBJ)/*\033[0;31m delete.\033[0m"
-	@ echo "\033[31m > \033[1m$(NAME)/$(NAME)\033[0;31m delete.\033[0m"
 	@ make -C $(LIBFT_PATH) fclean
-	@ echo "-----------------------------------------"
+	@ /bin/rm -rf $(NAME) ./a.out*
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
+	@ sleep 0.5
+	@ printf "\r                                                                                          \r\033[0m"
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(NAME) ..."
+	@ sleep 0.5
+	@ printf "\r                                                                                          \r\033[0m"
+	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
 	@ $(CC) $(CFLAGS) -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit tests/main_1.c

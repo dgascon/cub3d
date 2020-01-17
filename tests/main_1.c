@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:55:32 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/16 23:02:38 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 16:54:06 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,6 @@ int main(int ac, char **av)
 	}
 	data.world.player = (t_player){.fov = M_PI / 3, .pov = M_PI_2, .height = 32, .pos.x = 64 * 2 + 32, .pos.y = 64 * 3 + 32};
 	data.world.player.ray = (t_raycast) {.alpha = M_PI / 3, .column = data.window.width};
-	
 	while (data.world.player.ray.column--)
 	{
 		data.world.player.ray.dist = shortest_dist(&data, linear_intersec_h(&data), linear_intersec_v(&data));
@@ -55,6 +54,6 @@ int main(int ac, char **av)
 			data.world.player.ray.alpha -= 2 * M_PI;
 		put_column(&data);
 	}
-    mlx_loop(data.mlx.ptr);
+    // mlx_loop(data.mlx.ptr);
     return (EXIT_SUCCESS);
 }

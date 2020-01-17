@@ -6,14 +6,14 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 22:14:09 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 22:14:58 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/17 16:53:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_abs(int val)
+double	ft_abs_d(double val)
 {
 	return (val < 0) ? -val : val;
 }
