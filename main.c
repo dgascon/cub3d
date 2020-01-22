@@ -59,8 +59,12 @@ int main(int ac, char **av)
 	data.raycast = (t_raycast) {.alpha = M_PI / 3};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
-	data.tex = (t_image) {.bpp = 32,
-	.size_line = data.tex.bpp * 64, .endian = 0};
+	
+	data.Wtex = (t_image) {.bpp = 32,
+	.size_line = data.Wtex.bpp * 64, .endian = 0};
+
+	data.Ftex = (t_image) {.bpp = 32,
+	.size_line = data.Ftex.bpp * 64, .endian = 0};
 	scan(&data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_loop(data.mlx.ptr);

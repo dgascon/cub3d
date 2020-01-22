@@ -47,7 +47,8 @@ typedef	struct 	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		tex;
+	t_image		Wtex;
+	t_image		Ftex;
 }				t_data;
 
 int scan(t_data *data);

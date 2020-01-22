@@ -84,7 +84,6 @@ double linear_intersec_h(t_data *data)
 		(grid.x < 0) ? grid.x = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
 		(grid.x > data->world.size.y - 1) ? grid.x = data->world.size.y - 1 : 0;
-		printf("x %d et y %d\n", grid.x, grid.y);
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.interH.x = intersec.x;
