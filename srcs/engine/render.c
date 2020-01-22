@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:11:52 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/22 14:30:13 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,12 @@ static int	rgb_int(int red, int green, int blue)
 	rgb = (rgb << 8) + green;
 	rgb = (rgb << 8) + blue;
 	return (rgb);
+}
+
+int	select_sprite_color(t_data *data)
+{
+	mlx_xpm_file_to_image(data->mlx.ptr, "bricks64.xpm", );
+	return (val);
 }
 
 int fill_column(t_data *data)
@@ -39,7 +45,7 @@ int fill_column(t_data *data)
 		data->image.colors = rgb_int(80, 26, 62);
 	while (row < (data->screen.size.y / 2) + (height_proj_plane / 2)) //REVIEW Optimisation
 	{
-		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = data->image.colors; //RGB
+		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data); //RGB
 		row++;
 	}
 	return (0);
