@@ -65,12 +65,12 @@ double linear_intersec_h(t_data *data)
 	offset.x = BLOCK_SIZE / tan(data->raycast.alpha); // REVIEW optimisation
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
-		intersec.y = floor((data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001);
+		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
 		offset.y = -(BLOCK_SIZE);
 	}
 	else
 	{
-		intersec.y = floor((data->player.pos.y / BLOCK_SIZE) * BLOCK_SIZE) + BLOCK_SIZE;
+		intersec.y = (data->player.pos.y / BLOCK_SIZE) * BLOCK_SIZE + BLOCK_SIZE;
 		offset.y = BLOCK_SIZE;
 		offset.x *= -1;
 	}
