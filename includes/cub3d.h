@@ -35,6 +35,7 @@ typedef	struct 	s_image
 	int		size_line;
 	int 	endian;
 	int 	colors;
+	int		size;
 }				t_image;
 
 
@@ -46,6 +47,7 @@ typedef	struct 	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
+	t_image		tex;
 }				t_data;
 
 int scan(t_data *data);

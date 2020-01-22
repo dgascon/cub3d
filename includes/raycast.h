@@ -19,10 +19,13 @@ typedef struct s_data t_data;
 
 typedef struct  s_raycast
 {
-	int		column;
-	double	alpha;
-	double	dist;
-	char	face_detect;
+	int			column;
+	double		alpha;
+	double		dist;
+	char		face_detect;
+	t_d_coord	inter;
+	t_d_coord	interH;
+	t_d_coord	interV;
 }               t_raycast;
 
 double	short_dist(t_data *data);

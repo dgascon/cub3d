@@ -25,11 +25,15 @@ double short_dist(t_data *data)
     {
         correct_dist = dist_h;
         data->raycast.face_detect = 'H';
+        data->raycast.inter.x = data->raycast.interH.x;
+        data->raycast.inter.y = data->raycast.interH.y;
     }
     else
     {
         correct_dist = dist_v;
         data->raycast.face_detect = 'V';
+        data->raycast.inter.x = data->raycast.interV.x;
+        data->raycast.inter.y = data->raycast.interV.y;
     }
     if (data->raycast.alpha > data->player.pov)
         correct_dist *= ft_abs_d(cos(data->player.pov - data->raycast.alpha));
