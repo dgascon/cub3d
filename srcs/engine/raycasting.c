@@ -36,9 +36,10 @@ double short_dist(t_data *data)
         data->raycast.inter.y = data->raycast.interV.y;
     }
     if (data->raycast.alpha > data->player.pov)
-        correct_dist *= ft_abs_d(cos(data->player.pov - data->raycast.alpha));
+        data->raycast.beta = data->player.pov - data->raycast.alpha;
 	else
-        correct_dist *= ft_abs_d(cos(data->raycast.alpha - data->player.pov));
+        data->raycast.beta = data->raycast.alpha - data->player.pov;
+    correct_dist *= ft_abs_d(cos(data->raycast.beta));
     return(correct_dist);
 }
 

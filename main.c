@@ -55,7 +55,7 @@ int main(int ac, char **av)
 						data.screen.size.y, "Hello world")) == NULL)
 		return (EXIT_FAILURE);
 	data.player = (t_player){.fov = M_PI / 3, .pov = M_PI_2, .height_cam = 32,
-	.pos.x = 64 * 2.5, .pos.y = 64 * 3.5, .speed = 10};
+	.pos.x = 64 * 1.5, .pos.y = 64 * 2.5, .speed = 10};
 	data.raycast = (t_raycast) {.alpha = M_PI / 3};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};

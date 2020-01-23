@@ -47,8 +47,9 @@ int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 int floor_color(t_data *data, int row, double dist_proj_plane)
 {
 	int val;
+	t_d_coord sol;
 	t_d_coord ratio;
-
+	int dist_mur_sol;
 	if (!(data->Ftex.img))
 	{
 		if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "images/floor.xpm", &data->Ftex.size, &data->Ftex.size)))
@@ -56,9 +57,15 @@ int floor_color(t_data *data, int row, double dist_proj_plane)
 		if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
 			return (printf("erreur2"));
 	}
-	ratio.x = ((int)data->raycast.inter.x % 64);
-	ratio.y = data->raycast.inter.y - (dist_proj_plane / ((row - data->screen.size.y / 2) / data->player.height_cam));
-	val = *(int*)(data->Ftex.add_image + (int)((double)data->Wtex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
+	//sol.y = data->raycast.inter.y + (data->raycast.dist - (dist_proj_plane / (row - ())));
+	dist_mur_sol = (data->raycast.dist - (dist_proj_plane / ((row - data->screen.size.y / 2) / data->player.height_cam)));
+	dist_mur_sol = 1 / (data->raycast.dist - dist_mur_sol);
+	sol.x = data->raycast.inter.x + (data->raycast.inter.x - (tan(data->raycast.alpha) * dist_mur_sol));
+	sol.y = data->raycast.inter.y + dist_mur_sol;
+	ratio.x = (int)sol.x %64;
+	ratio.y = (int)sol.y % 64;
+	val = *(int*)(data->Ftex.add_image + (int)((double)data->Ftex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
+	printf("col = %d\tpos.x = %d pos.y = %d\t sol.x = %f sol.y = %f\n", data->raycast.column, data->player.pos.x, data->player.pos.y, sol.x, sol.y);
 	return (val);
 }
 
@@ -84,10 +91,10 @@ int fill_column(t_data *data)
 		row++;
 		wall_row++;
 	}
-/*	while (row < data->screen.size.y)
+	while (row < data->screen.size.y)
 	{
 		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, row, dist_proj_plane);
 		row++;
-	}*/
+	}
 	return (0);
 }

@@ -21,6 +21,7 @@ typedef struct  s_raycast
 {
 	int			column;
 	double		alpha;
+	double		beta;
 	double		dist;
 	char		face_detect;
 	t_d_coord	inter;
