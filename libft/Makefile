@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/21 12:48:53 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/23 16:37:34 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -51,7 +51,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c				\
 				numbers/ft_digit.c		numbers/ft_digit_base.c			\
 				numbers/ft_digit_ul_base.c numbers/ft_itoa.c			\
 				numbers/ft_itoa_base.c	numbers/ft_digit_format_base.c	\
-				utils/ft_base.c											\
+				utils/ft_base.c			utils/colors.c					\
 				ftprintf/ft_printf.c	ftprintf/pf_conv.c				\
 				ftprintf/pf_utils.c		ftprintf/lists/pf_initlst.c		\
 				ftprintf/display/pf_disp_char.c							\

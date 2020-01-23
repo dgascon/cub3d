@@ -6,33 +6,22 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 14:30:13 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/23 17:19:41 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-//A bouger
-static int	rgb_int(int red, int green, int blue)
-{
-	int	rgb;
-	rgb = red;
-	rgb = (rgb << 8) + green;
-	rgb = (rgb << 8) + blue;
-	return (rgb);
-}
-
 int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 {
 	int val;
-	
 	t_d_coord ratio;
+	
 	val = 0;
-
 	if (!(data->Wtex.img))
 	{
-		if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "images/bricks64.xpm", &data->Wtex.size, &data->Wtex.size)))
+		if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/bricks64.xpm", &data->Wtex.size, &data->Wtex.size)))
 			return (printf("erreur1"));
 		if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 			return (printf("erreur2"));
@@ -42,9 +31,8 @@ int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 	//printf("height = %d\tratio.y = %f\tratio.x = %d\nx = %f, y = %f\n", height_proj_plane, ratio.y, (int)ratio.x, data->raycast.inter.x, data->raycast.inter.y);
 	val = *(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(wall_row * ratio.y)) + ((int)ratio.x * sizeof(int)));
 	return (val);
-
 }
-int floor_color(t_data *data, int row, double dist_proj_plane)
+int floor_color(t_data *data, int row, double dist_proj_plane, int height_proj_plane)
 {
 	int val;
 	t_d_coord sol;
@@ -52,20 +40,20 @@ int floor_color(t_data *data, int row, double dist_proj_plane)
 	int dist_mur_sol;
 	if (!(data->Ftex.img))
 	{
-		if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "images/floor.xpm", &data->Ftex.size, &data->Ftex.size)))
+		if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/floor.xpm", &data->Ftex.size, &data->Ftex.size)))
 			return (printf("erreur1"));
 		if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
 			return (printf("erreur2"));
 	}
 	//sol.y = data->raycast.inter.y + (data->raycast.dist - (dist_proj_plane / (row - ())));
-	dist_mur_sol = (data->raycast.dist - (dist_proj_plane / ((row - data->screen.size.y / 2) / data->player.height_cam)));
-	dist_mur_sol = 1 / (data->raycast.dist - dist_mur_sol);
-	sol.x = data->raycast.inter.x + (data->raycast.inter.x - (tan(data->raycast.alpha) * dist_mur_sol));
+	dist_mur_sol = (data->raycast.dist - (dist_proj_plane / (((double)height_proj_plane / 2) / (double)data->player.height_cam)));
+	//dist_mur_sol = 1 / (data->raycast.dist - dist_mur_sol);
+	sol.x = data->raycast.inter.x + (data->player.pos.x - (tan(data->raycast.beta) * (data->raycast.dist - dist_mur_sol)));
 	sol.y = data->raycast.inter.y + dist_mur_sol;
 	ratio.x = (int)sol.x %64;
 	ratio.y = (int)sol.y % 64;
 	val = *(int*)(data->Ftex.add_image + (int)((double)data->Ftex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
-	printf("col = %d\tpos.x = %d pos.y = %d\t sol.x = %f sol.y = %f\n", data->raycast.column, data->player.pos.x, data->player.pos.y, sol.x, sol.y);
+	 printf("col = %d\tpos.x = %d pos.y = %d\t sol.x = %f sol.y = %f\talpha = %f\n", data->raycast.column, data->player.pos.x, data->player.pos.y, sol.x, sol.y, data->raycast.alpha);
 	return (val);
 }
 
@@ -93,7 +81,7 @@ int fill_column(t_data *data)
 	}
 	while (row < data->screen.size.y)
 	{
-		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, row, dist_proj_plane);
+		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, row, dist_proj_plane, height_proj_plane);
 		row++;
 	}
 	return (0);
