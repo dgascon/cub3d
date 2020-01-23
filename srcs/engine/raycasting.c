@@ -35,7 +35,7 @@ double short_dist(t_data *data)
         data->raycast.inter.x = data->raycast.interV.x;
         data->raycast.inter.y = data->raycast.interV.y;
     }
-    if (data->raycast.alpha > data->player.pov)
+    if ((data->raycast.alpha > data->player.pov))
         data->raycast.beta = data->player.pov - data->raycast.alpha;
 	else
         data->raycast.beta = data->raycast.alpha - data->player.pov;

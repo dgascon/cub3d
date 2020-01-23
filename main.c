@@ -33,6 +33,8 @@ int    key_press(int key, t_data *data)
 		(data->player.speed < 20) ? data->player.speed += 1 : 0;
 	else if (key == Z)
 		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
+	else if (key == W)
+		data->player.pos.x +=5;
 	scan(data);
 	return (0);
 }

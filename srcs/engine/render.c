@@ -37,7 +37,7 @@ int floor_color(t_data *data, int row, double dist_proj_plane, int height_proj_p
 	int val;
 	t_d_coord sol;
 	t_d_coord ratio;
-	int dist_mur_sol;
+	double dist_mur_sol;
 	if (!(data->Ftex.img))
 	{
 		if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/floor.xpm", &data->Ftex.size, &data->Ftex.size)))
@@ -46,14 +46,15 @@ int floor_color(t_data *data, int row, double dist_proj_plane, int height_proj_p
 			return (printf("erreur2"));
 	}
 	//sol.y = data->raycast.inter.y + (data->raycast.dist - (dist_proj_plane / (row - ())));
-	dist_mur_sol = (data->raycast.dist - (dist_proj_plane / (((double)height_proj_plane / 2) / (double)data->player.height_cam)));
-	//dist_mur_sol = 1 / (data->raycast.dist - dist_mur_sol);
-	sol.x = data->raycast.inter.x + (data->player.pos.x - (tan(data->raycast.beta) * (data->raycast.dist - dist_mur_sol)));
+	(data->raycast.alpha < data->player.pov && data->raycast.beta < 0) ? (data->raycast.beta *= -1) : 0;
+	dist_mur_sol = (data->raycast.dist - ((dist_proj_plane / (((double)height_proj_plane) / (double)data->player.height_cam))));
+	sol.x = /*data->raycast.inter.x */ (data->player.pos.x + (tan(data->raycast.beta) * (data->raycast.dist - dist_mur_sol)));
 	sol.y = data->raycast.inter.y + dist_mur_sol;
-	ratio.x = (int)sol.x %64;
+	ratio.x = (int)sol.x % 64;
 	ratio.y = (int)sol.y % 64;
 	val = *(int*)(data->Ftex.add_image + (int)((double)data->Ftex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
-	 printf("col = %d\tpos.x = %d pos.y = %d\t sol.x = %f sol.y = %f\talpha = %f\n", data->raycast.column, data->player.pos.x, data->player.pos.y, sol.x, sol.y, data->raycast.alpha);
+	//printf("col = %d\tpos.x = %d pos.y = %d\t sol.x = %f sol.y = %f\talpha = %f\tdist_mur = %f\n", data->raycast.column, data->player.pos.x, data->player.pos.y, sol.x, sol.y, data->raycast.alpha, dist_mur_sol);
+	//printf("sol.x = %f sol.y = %f\talpha = %f\tdist_mur = %f\ttan(beta) = %f\t beta = %f\n", sol.x, sol.y, data->raycast.alpha, dist_mur_sol, tan(data->raycast.beta), data->raycast.beta);
 	return (val);
 }
 
@@ -66,6 +67,7 @@ int fill_column(t_data *data)
 	//printf("%f\n", data->raycast.dist);
 	dist_proj_plane = (data->screen.size.x / 2) / tan(data->player.fov);
 	height_proj_plane = floor((BLOCK_SIZE * dist_proj_plane) / data->raycast.dist); //REVIEW Optimisation
+	height_proj_plane *= 2;
 	(height_proj_plane > data->screen.size.y) ? height_proj_plane = data->screen.size.y : 0;
 	row = (data->screen.size.y / 2 ) - (height_proj_plane / 2);//REVIEW Optimisation
 	if (data->raycast.face_detect == 'V')
@@ -79,9 +81,11 @@ int fill_column(t_data *data)
 		row++;
 		wall_row++;
 	}
+	height_proj_plane /=2;
 	while (row < data->screen.size.y)
 	{
 		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, row, dist_proj_plane, height_proj_plane);
+		height_proj_plane++;
 		row++;
 	}
 	return (0);
