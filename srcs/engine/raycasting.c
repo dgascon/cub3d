@@ -39,12 +39,13 @@ double short_dist(t_data *data)
         data->raycast.beta = data->player.pov - data->raycast.alpha;
 	else
         data->raycast.beta = data->raycast.alpha - data->player.pov;
-    correct_dist *= ft_abs_d(cos(data->raycast.beta));
+    correct_dist *= (cos(data->raycast.beta));
     return(correct_dist);
 }
 
 int scan(t_data *data)
 {
+    double delta_ang;
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
     if(data->image.img)
@@ -52,9 +53,10 @@ int scan(t_data *data)
 	if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x, data->screen.size.y)))
 		return (-1);
 	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian); // explication
+    delta_ang = (data->player.fov / data->screen.size.x);
     while (data->raycast.column >= 0)
 	{
-		data->raycast.alpha += (data->player.fov / data->screen.size.x); // REVIEW optimiser
+		data->raycast.alpha += delta_ang; // REVIEW optimiser
 		if (data->raycast.alpha >= 2 * M_PI) // REVIEW optimiser
 			data->raycast.alpha -= 2 * M_PI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)

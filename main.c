@@ -21,9 +21,9 @@ int    key_press(int key, t_data *data)
 		mlx_destroy_image(data->mlx.ptr, data->mlx.win);
 		exit(1);
 	}
-	if (key == ARROW_LEFT || key == A) 
+	if (key == ARROW_LEFT) 
 		data->player.pov += 0.1;
-	else if (key == ARROW_RIGHT || key == D)
+	else if (key == ARROW_RIGHT)
 		data->player.pov -= 0.1;
 	else if (key == ARROW_UP)
 		move_up(data);
@@ -33,8 +33,14 @@ int    key_press(int key, t_data *data)
 		(data->player.speed < 20) ? data->player.speed += 1 : 0;
 	else if (key == Z)
 		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
-	else if (key == W)
+	else if (key == D)
 		data->player.pos.x +=5;
+	else if (key == A)
+		data->player.pos.x -= 5;
+	else if (key == W)
+		data->player.pos.y -= 5;
+	else if (key == S)
+		data->player.pos.y +=5; 
 	scan(data);
 	return (0);
 }
@@ -56,8 +62,8 @@ int main(int ac, char **av)
 	if ((data.mlx.win = mlx_new_window(data.mlx.ptr, data.screen.size.x,
 						data.screen.size.y, "Hello world")) == NULL)
 		return (EXIT_FAILURE);
-	data.player = (t_player){.fov = M_PI / 3, .pov = M_PI_2, .height_cam = 32,
-	.pos.x = 64 * 1.5, .pos.y = 64 * 2.5, .speed = 10};
+	data.player = (t_player){.fov = M_PI /3 , .pov = M_PI_2, .height_cam = 32,
+	.pos.x = 64 * 1.5, .pos.y = 64 * 4.5, .speed = 10};
 	data.raycast = (t_raycast) {.alpha = M_PI / 3};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
