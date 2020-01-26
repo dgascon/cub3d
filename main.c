@@ -60,14 +60,14 @@ int main(int ac, char **av)
 	if (!(data.mlx.ptr = mlx_init()))
 		return (EXIT_FAILURE);
 	if ((data.mlx.win = mlx_new_window(data.mlx.ptr, data.screen.size.x,
-						data.screen.size.y, "Hello world")) == NULL)
+						data.screen.size.y, "Dgascon && Nlecaill")) == NULL)
 		return (EXIT_FAILURE);
 	data.player = (t_player){.fov = M_PI /3 , .pov = M_PI_2, .height_cam = 32,
-	.pos.x = 64 * 1.5, .pos.y = 64 * 4.5, .speed = 10};
-	data.raycast = (t_raycast) {.alpha = M_PI / 3};
+	.pos.x = 64 * 1.5, .pos.y = 64 * 4.5, .speed = 15};
+	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
-	
+	data.player.dist_proj_plane = (data.screen.size.x / 2) / tan(data.player.fov);
 	data.Wtex = (t_image) {.bpp = 32,
 	.size_line = data.Wtex.bpp * 64, .endian = 0};
 
@@ -76,6 +76,7 @@ int main(int ac, char **av)
 	data.Rtex = (t_image) {.bpp = 32,
 	.size_line = data.Rtex.bpp * 64, .endian = 0};
 	scan(&data);
+	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_loop(data.mlx.ptr);
 	return (EXIT_SUCCESS);

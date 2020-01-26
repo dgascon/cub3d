@@ -46,8 +46,8 @@ double linear_intersec_v(t_data *data)
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 		  // printf("V un mur en map[%d][%d] (x, y)\ndetecté en y = %f et x = %f\n", grid.x, grid.y, intersec.y, intersec.x);	
-			data->raycast.interV.x = intersec.x;
-			data->raycast.interV.y = intersec.y;
+			data->raycast.inter.x = intersec.x;
+			data->raycast.inter.y = intersec.y;
 			return (sqrt(pow(data->player.pos.x - intersec.x, 2) +
 						 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
 		}

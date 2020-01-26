@@ -85,21 +85,14 @@ int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int
 		}
 		deltaY = dist_mur_sol * sin(data->raycast.gamma);
 	}
-	sol.x = data->raycast.inter.x + deltaX - data->player.pos.x/2;
-	sol.y =(data->raycast.inter.y + deltaY) - data->player.pos.y/2; // ca vient de data->player.pos.X
-		ratio.x = (int)sol.x % 64;
-		ratio.y = (int)sol.y % 64;
+	sol.x = (data->raycast.inter.x + deltaX) - (double)data->player.pos.x/2;
+	sol.y = (data->raycast.inter.y + deltaY) - (double)data->player.pos.y/2; // ca vient de data->player.pos.X
+	ratio.x = (int)floor(sol.x) % 64;
+	ratio.y = (int)floor(sol.y) % 64;
 
 	
 	val = *(int*)(data->Ftex.add_image + (int)((double)data->Ftex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
 	*val2 = *(int*)(data->Rtex.add_image + (int)((double)data->Rtex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
-	static int once = 0;
-	if (data->raycast.column == (data->screen.size.x / 2) && once < 2)
-	{
-		val = 0xFF0000;
-		printf("\nsol.x = %f\t sol.y = %f\t pos.x = %d\t pos.y = %d\tdist_mur_sol=%f\tdist = %f\tdeltaY = %f\n", sol.x, sol.y, data->player.pos.x, data->player.pos.y, dist_mur_sol, data->raycast.dist, deltaY);
-		once++;
-	}
 	return (val);
 }
 
@@ -107,28 +100,25 @@ int fill_column(t_data *data)
 {
 	int height_proj_plane;
 	int row;
-	double dist_proj_plane;
-
 	
-	dist_proj_plane = (data->screen.size.x / 2) / tan(data->player.fov);
-	height_proj_plane = floor((BLOCK_SIZE * dist_proj_plane) / data->raycast.dist); //REVIEW Optimisation
+	height_proj_plane = floor((BLOCK_SIZE * data->player.dist_proj_plane) / data->raycast.dist); //REVIEW Optimisation
+	row = (data->screen.size.y / 2 ) - (height_proj_plane);//REVIEW Optimisation
 	height_proj_plane *= 2;
-	row = (data->screen.size.y / 2 ) - (height_proj_plane / 2);//REVIEW Optimisation
 	int wall_row = 0;
 	while (row < (data->screen.size.y / 2) + (height_proj_plane / 2)) //REVIEW Optimisation
 	{
 		if (row >= 0 && row < data->screen.size.y)
-		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
+			*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
 		row++;
 		wall_row++;
 	}
-	wall_row =height_proj_plane / 2;
+	height_proj_plane/=2;
 	int val2;
 	while (row < data->screen.size.y)
 	{
-		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, dist_proj_plane, wall_row, &val2);
+		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, data->player.dist_proj_plane, height_proj_plane, &val2);
 		*(int*)(data->image.add_image + (data->image.size_line * (data->screen.size.y/2 - (row - data->screen.size.y/2))) + data->raycast.column * sizeof(int)) = val2;
-		wall_row++;
+		height_proj_plane++;
 		row++;
 	}
 	return (0);

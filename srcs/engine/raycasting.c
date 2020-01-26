@@ -32,8 +32,6 @@ double short_dist(t_data *data)
     {
         correct_dist = dist_v;
         data->raycast.face_detect = 'V';
-        data->raycast.inter.x = data->raycast.interV.x;
-        data->raycast.inter.y = data->raycast.interV.y;
     }
     if ((data->raycast.alpha > data->player.pov))
         data->raycast.beta = data->player.pov - data->raycast.alpha;
@@ -45,7 +43,6 @@ double short_dist(t_data *data)
 
 int scan(t_data *data)
 {
-    double delta_ang;
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
     if(data->image.img)
@@ -53,10 +50,9 @@ int scan(t_data *data)
 	if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x, data->screen.size.y)))
 		return (-1);
 	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian); // explication
-    delta_ang = (data->player.fov / data->screen.size.x);
     while (data->raycast.column >= 0)
 	{
-		data->raycast.alpha += delta_ang; // REVIEW optimiser
+		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
 		if (data->raycast.alpha >= 2 * M_PI) // REVIEW optimiser
 			data->raycast.alpha -= 2 * M_PI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)

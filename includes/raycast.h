@@ -27,7 +27,7 @@ typedef struct  s_raycast
 	char		face_detect;
 	t_d_coord	inter;
 	t_d_coord	interH;
-	t_d_coord	interV;
+	double		delta_ang;
 }               t_raycast;
 
 double	short_dist(t_data *data);

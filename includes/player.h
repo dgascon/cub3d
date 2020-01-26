@@ -23,6 +23,7 @@ typedef struct	s_player
 	int		height_cam;
 	t_coord	pos;
 	int		speed;
+	double dist_proj_plane;
 }				t_player;
 
 #endif
