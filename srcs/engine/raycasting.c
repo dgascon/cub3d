@@ -40,9 +40,30 @@ double short_dist(t_data *data)
     correct_dist *= (cos(data->raycast.beta));
     return(correct_dist);
 }
+int add_params(t_data *data)
+{
+    if (data->key.arrow_left == TRUE)
+    {
+        data->player.pov += 0.1;
+    }
+    if (data->key.arrow_right == TRUE)
+    {
+        data->player.pov -= 0.1;
+    }
+    if (data->key.arrow_up == TRUE)
+    {
+		move_up(data);
+    }
+    if (data->key.arrow_down == TRUE)
+    {
+		move_down(data);
+    }
+    return (0);
+}
 
 int scan(t_data *data)
 {
+    add_params(data);
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
     if(data->image.img)

@@ -38,6 +38,14 @@ typedef	struct 	s_image
 	int		size;
 }				t_image;
 
+typedef	struct 	s_key
+{
+	enum e_boolean arrow_left;
+	enum e_boolean arrow_right;
+	enum e_boolean arrow_up;
+	enum e_boolean arrow_down;
+	
+}				t_key;
 
 typedef	struct 	s_data
 {
@@ -50,6 +58,7 @@ typedef	struct 	s_data
 	t_image		Wtex;
 	t_image		Ftex;
 	t_image		Rtex;
+	t_key		key;
 }				t_data;
 
 int scan(t_data *data);

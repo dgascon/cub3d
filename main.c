@@ -21,14 +21,23 @@ int    key_press(int key, t_data *data)
 		mlx_destroy_image(data->mlx.ptr, data->mlx.win);
 		exit(1);
 	}
-	if (key == ARROW_LEFT) 
-		data->player.pov += 0.1;
+	if (key == ARROW_LEFT)
+	{
+		data->key.arrow_left = TRUE;
+	}
 	else if (key == ARROW_RIGHT)
-		data->player.pov -= 0.1;
+	{
+		data->key.arrow_right = TRUE;
+	}	
 	else if (key == ARROW_UP)
-		move_up(data);
+	{
+		data->key.arrow_up = TRUE;
+	}
 	else if (key == ARROW_DOWN)
+	{
+		data->key.arrow_down = TRUE;
 		move_down(data);
+	}
 	else if (key == Q)
 		(data->player.speed < 20) ? data->player.speed += 1 : 0;
 	else if (key == Z)
@@ -45,6 +54,24 @@ int    key_press(int key, t_data *data)
 	return (0);
 }
 
+int    key_release(int key, t_data *data)
+{
+	if (key == ARROW_LEFT)
+	{
+		data->key.arrow_left = FALSE;
+	}
+	if (key == ARROW_RIGHT)
+	{
+		data->key.arrow_right = FALSE;
+	}if (key == ARROW_UP)
+	{
+		data->key.arrow_up = FALSE;
+	}if (key == ARROW_DOWN)
+	{
+		data->key.arrow_down = FALSE;
+	}
+	return (0);
+}
 
 int main(int ac, char **av)
 {
@@ -75,9 +102,9 @@ int main(int ac, char **av)
 	.size_line = data.Ftex.bpp * 64, .endian = 0};
 	data.Rtex = (t_image) {.bpp = 32,
 	.size_line = data.Rtex.bpp * 64, .endian = 0};
-	scan(&data);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
+	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
 	mlx_loop(data.mlx.ptr);
 	return (EXIT_SUCCESS);
 }
