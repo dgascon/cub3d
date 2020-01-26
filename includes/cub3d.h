@@ -49,6 +49,7 @@ typedef	struct 	s_data
 	t_image		image;
 	t_image		Wtex;
 	t_image		Ftex;
+	t_image		Rtex;
 }				t_data;
 
 int scan(t_data *data);

@@ -73,6 +73,8 @@ int main(int ac, char **av)
 
 	data.Ftex = (t_image) {.bpp = 32,
 	.size_line = data.Ftex.bpp * 64, .endian = 0};
+	data.Rtex = (t_image) {.bpp = 32,
+	.size_line = data.Rtex.bpp * 64, .endian = 0};
 	scan(&data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_loop(data.mlx.ptr);
