@@ -58,6 +58,7 @@ typedef	struct 	s_data
 	t_image		Wtex;
 	t_image		Ftex;
 	t_image		Rtex;
+	t_image		Vtex;
 	t_key		key;
 }				t_data;
 

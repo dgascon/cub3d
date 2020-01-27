@@ -4,20 +4,8 @@ int move_up(t_data *data)
 {
     t_coord val_default;
 
-    val_default.x = data->player.pos.x;
-    val_default.y = data->player.pos.y;
-    data->player.pos.x += cos(data->player.pov) * data->player.speed; 
-	data->player.pos.y -= sin(data->player.pov) * data->player.speed; //deplacement 
-    if (data->world.map[data->player.pos.y / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] == '1' 
-    || (data->player.pos.y) > (data->world.size.y * BLOCK_SIZE) - 1
-    || (data->player.pos.x) > (data->world.size.x * BLOCK_SIZE) - 1
-    || (data->player.pos.y) < 1
-    || (data->player.pos.x) < 1)
-    {
-        data->player.pos.x = val_default.x; 
-        data->player.pos.y = val_default.y; //deplacement 
-        return (0);
-    }
+    move_x(data, cos(data->player.pov) * data->player.speed); 
+	move_y(data, sin(data->player.pov) * -data->player.speed); //deplacement 
     return (1);
 }
 
@@ -25,19 +13,30 @@ int move_down(t_data *data)
 {
     t_coord val_default;
 
-    val_default.x = data->player.pos.x;
-    val_default.y = data->player.pos.y;
-    data->player.pos.x -= cos(data->player.pov) * data->player.speed; 
-	data->player.pos.y += sin(data->player.pov) * data->player.speed; //deplacement 
-    if (data->world.map[data->player.pos.y / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] == '1'
-    || (data->player.pos.y) > (data->world.size.y * BLOCK_SIZE) - 1 
-    || (data->player.pos.x) > (data->world.size.x * BLOCK_SIZE) - 1
-    || (data->player.pos.y) < 1
-    || (data->player.pos.x) < 1)
-    {
-        data->player.pos.x = val_default.x; 
-        data->player.pos.y = val_default.y;
-        return (0);
-    }
+    move_x(data, cos(data->player.pov) * -data->player.speed); 
+	move_y(data, sin(data->player.pov) * data->player.speed); //deplacement 
     return (1);
+}
+
+int move_x(t_data *data, double value)
+{
+    double tmp;
+
+    tmp = data->player.pos.x + value;
+    if (tmp < (data->world.size.x * BLOCK_SIZE) && tmp > BLOCK_SIZE && data->world.map[data->player.pos.y / 64][(int)tmp / 64] != '1')
+    {
+        data->player.pos.x = tmp;
+    }
+    return (0);
+}
+int move_y(t_data *data, double value)
+{
+    double tmp;
+
+    tmp = data->player.pos.y + value;
+    if (tmp < (data->world.size.y * BLOCK_SIZE) && tmp > BLOCK_SIZE && data->world.map[(int)tmp / 64][data->player.pos.x / 64] != '1')
+    {
+        data->player.pos.y = tmp;
+    }
+    return (0);
 }

@@ -36,7 +36,6 @@ int    key_press(int key, t_data *data)
 	else if (key == ARROW_DOWN)
 	{
 		data->key.arrow_down = TRUE;
-		move_down(data);
 	}
 	else if (key == Q)
 		(data->player.speed < 20) ? data->player.speed += 1 : 0;
@@ -49,8 +48,7 @@ int    key_press(int key, t_data *data)
 	else if (key == W)
 		data->player.pos.y -= 5;
 	else if (key == S)
-		data->player.pos.y +=5; 
-	scan(data);
+		data->player.pos.y +=5;
 	return (0);
 }
 
@@ -73,6 +71,33 @@ int    key_release(int key, t_data *data)
 	return (0);
 }
 
+int init_texture(t_data* data)
+{
+	data->Wtex = (t_image) {.bpp = 32,
+	.size_line = data->Wtex.bpp * BLOCK_SIZE, .endian = 0};
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/bricks64.xpm", &data->Wtex.size, &data->Wtex.size)))
+		return (printf("erreur1"));
+	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
+		return (printf("erreur2"));
+	data->Ftex = (t_image) {.bpp = 32,
+	.size_line = data->Ftex.bpp * BLOCK_SIZE, .endian = 0};
+	if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Ftex.size, &data->Ftex.size)))
+		return (printf("erreur1"));
+	if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
+		return (printf("erreur2"));
+	data->Rtex = (t_image) {.bpp = 32,
+	.size_line = data->Rtex.bpp * BLOCK_SIZE, .endian = 0};
+	if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Rtex.size, &data->Rtex.size)))
+		return (printf("erreur1"));
+	if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
+		return (printf("erreur2"));
+	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.size, &data->Vtex.size)))
+		return (printf("erreur1"));
+	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
+		return (printf("erreur2"));
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	t_data data;
@@ -89,19 +114,16 @@ int main(int ac, char **av)
 	if ((data.mlx.win = mlx_new_window(data.mlx.ptr, data.screen.size.x,
 						data.screen.size.y, "Dgascon && Nlecaill")) == NULL)
 		return (EXIT_FAILURE);
-	data.player = (t_player){.fov = M_PI /3 , .pov = M_PI_2, .height_cam = 32,
-	.pos.x = 64 * 1.5, .pos.y = 64 * 4.5, .speed = 15};
+	data.player = (t_player){.fov = M_PI /3 , .pov = 2*M_PI, .height_cam = 32,
+	.pos.x = 64 * 2.5, .pos.y = 64 * 3.5, .speed = 10};
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
-	data.player.dist_proj_plane = (data.screen.size.x / 2) / tan(data.player.fov);
-	data.Wtex = (t_image) {.bpp = 32,
-	.size_line = data.Wtex.bpp * 64, .endian = 0};
-
-	data.Ftex = (t_image) {.bpp = 32,
-	.size_line = data.Ftex.bpp * 64, .endian = 0};
-	data.Rtex = (t_image) {.bpp = 32,
-	.size_line = data.Rtex.bpp * 64, .endian = 0};
+	data.player.dist_proj_plane = ((double)(data.screen.size.x) / 2) / tan(data.player.fov / 2);
+	if (init_texture(&data) != 0)
+		return (EXIT_FAILURE);
+	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))
+		return (EXIT_FAILURE);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);

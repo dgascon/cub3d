@@ -45,10 +45,18 @@ int add_params(t_data *data)
     if (data->key.arrow_left == TRUE)
     {
         data->player.pov += 0.1;
+		if (data->player.pov > 2 * M_PI)
+        {
+            data->player.pov -= 2 * M_PI;
+        }
     }
     if (data->key.arrow_right == TRUE)
     {
         data->player.pov -= 0.1;
+        if (data->player.pov < 0)
+        {
+            data->player.pov += 2 * M_PI;
+        }
     }
     if (data->key.arrow_up == TRUE)
     {
@@ -64,12 +72,9 @@ int add_params(t_data *data)
 int scan(t_data *data)
 {
     add_params(data);
+    mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
-    if(data->image.img)
-		mlx_destroy_image(data->mlx.ptr, data->image.img);
-	if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x, data->screen.size.y)))
-		return (-1);
 	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian); // explication
     while (data->raycast.column >= 0)
 	{
@@ -83,5 +88,6 @@ int scan(t_data *data)
         data->raycast.column--;
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
+    mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->Vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
     return (1);
 }

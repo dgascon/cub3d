@@ -19,17 +19,14 @@ int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 	t_d_coord ratio;
 	
 	val = 0;
-	if (!(data->Wtex.img))
-	{
-		if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/bricks64.xpm", &data->Wtex.size, &data->Wtex.size)))
-			return (printf("erreur1"));
-		if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
-			return (printf("erreur2"));
-	}
-	ratio.y = ((double)data->Wtex.size / (double)height_proj_plane);
+	ratio.y = (int)(((double)data->Wtex.size / (double)height_proj_plane) * wall_row) % 64;
 	ratio.x = (data->raycast.face_detect == 'V') ? ((int)(data->raycast.inter.y) % 64) : ((int)(data->raycast.inter.x) % 64);
 	//printf("height = %d\tratio.y = %f\tratio.x = %d\nx = %f, y = %f\n", height_proj_plane, ratio.y, (int)ratio.x, data->raycast.inter.x, data->raycast.inter.y);
-	val = *(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(wall_row * ratio.y)) + ((int)ratio.x * sizeof(int)));
+	val = *(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(ratio.y)) + ((int)ratio.x * sizeof(int)));
+	if (ratio.x == 0)
+	{
+		val = 0;
+	}
 	return (val);
 }
 int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int *val2)
@@ -40,20 +37,7 @@ int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int
 	double dist_mur_sol;
 	double deltaY;
 	double deltaX;
-	if (!(data->Ftex.img))
-	{
-		if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Ftex.size, &data->Ftex.size)))
-			return (printf("erreur1"));
-		if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
-			return (printf("erreur2"));
-	}
-	if (!(data->Rtex.img))
-	{
-		if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Rtex.size, &data->Rtex.size)))
-			return (printf("erreur1"));
-		if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
-			return (printf("erreur2"));
-	}
+	
 	dist_mur_sol = ((data->raycast.dist / (cos(data->raycast.beta))) - (((dist_proj_plane / cos(data->raycast.beta))/ (((double)height_proj_plane) / (double)data->player.height_cam))));
 	if (data->raycast.face_detect == 'H')
 	{
@@ -67,7 +51,6 @@ int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int
 			data->raycast.gamma = (3* M_PI / 2) - data->raycast.alpha;
 			deltaY = dist_mur_sol * cos(data->raycast.gamma) * -1;
 		}
-		
 		deltaX = dist_mur_sol * sin(data->raycast.gamma);
 	}
 	else
@@ -85,8 +68,8 @@ int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int
 		}
 		deltaY = dist_mur_sol * sin(data->raycast.gamma);
 	}
-	sol.x = (data->raycast.inter.x + deltaX) - (double)data->player.pos.x/2;
-	sol.y = (data->raycast.inter.y + deltaY) - (double)data->player.pos.y/2; // ca vient de data->player.pos.X
+	sol.x = (data->raycast.inter.x + deltaX); //- (double)data->player.pos.x/2  + BLOCK_SIZE;
+	sol.y = (data->raycast.inter.y + deltaY); //- (double)data->player.pos.y/2; // ca vient de data->player.pos.X
 	ratio.x = (int)floor(sol.x) % 64;
 	ratio.y = (int)floor(sol.y) % 64;
 
@@ -103,7 +86,7 @@ int fill_column(t_data *data)
 	
 	height_proj_plane = floor((BLOCK_SIZE * data->player.dist_proj_plane) / data->raycast.dist); //REVIEW Optimisation
 	row = (data->screen.size.y / 2 ) - (height_proj_plane);//REVIEW Optimisation
-	height_proj_plane *= 2;
+	//printf("dist = %f\theight = %d\tpox = %d pos y = %d\t dist_proj_plane = %f\n",data->raycast.dist, height_proj_plane, data->player.pos.x, data->player.pos.y, data->player.dist_proj_plane);
 	int wall_row = 0;
 	while (row < (data->screen.size.y / 2) + (height_proj_plane / 2)) //REVIEW Optimisation
 	{
