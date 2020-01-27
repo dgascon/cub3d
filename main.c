@@ -91,6 +91,8 @@ int init_texture(t_data* data)
 		return (printf("erreur1"));
 	if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
 		return (printf("erreur2"));
+	data->Vtex = (t_image) {.bpp = 32,
+	.size_line = data->Vtex.bpp * 24, .endian = 0};
 	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.size, &data->Vtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
