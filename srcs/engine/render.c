@@ -68,14 +68,15 @@ int floor_color(t_data *data, double dist_proj_plane, int height_proj_plane, int
 		}
 		deltaY = dist_mur_sol * sin(data->raycast.gamma);
 	}
-	sol.x = (data->raycast.inter.x + deltaX); //- (double)data->player.pos.x/2  + BLOCK_SIZE;
-	sol.y = (data->raycast.inter.y + deltaY); //- (double)data->player.pos.y/2; // ca vient de data->player.pos.X
+	sol.x = (data->raycast.inter.x + deltaX);
+	sol.y = (data->raycast.inter.y + deltaY);
 	ratio.x = (int)floor(sol.x) % 64;
 	ratio.y = (int)floor(sol.y) % 64;
 
 	
 	val = *(int*)(data->Ftex.add_image + (int)((double)data->Ftex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
 	*val2 = *(int*)(data->Rtex.add_image + (int)((double)data->Rtex.size_line * ratio.y) + ((int)ratio.x * sizeof(int)));
+	
 	return (val);
 }
 
@@ -83,21 +84,27 @@ int fill_column(t_data *data)
 {
 	int height_proj_plane;
 	int row;
-	
-	height_proj_plane = floor((BLOCK_SIZE * data->player.dist_proj_plane) / data->raycast.dist); //REVIEW Optimisation
+	int val2;
+
+	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
 	row = (data->screen.size.y / 2 ) - (height_proj_plane);//REVIEW Optimisation
-	//printf("dist = %f\theight = %d\tpox = %d pos y = %d\t dist_proj_plane = %f\n",data->raycast.dist, height_proj_plane, data->player.pos.x, data->player.pos.y, data->player.dist_proj_plane);
 	int wall_row = 0;
-	while (row < (data->screen.size.y / 2) + (height_proj_plane / 2)) //REVIEW Optimisation
+	if (row < 0)
 	{
-		if (row >= 0 && row < data->screen.size.y)
-			*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
+		wall_row = 0 - row;
+		row = 0;
+	}
+	int h_max = (data->screen.size.y / 2) + (height_proj_plane / 2);
+	if (h_max > data->screen.size.y)
+		h_max = data->screen.size.y;
+	while (row < h_max) //REVIEW Optimisation
+	{
+		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
 		row++;
 		wall_row++;
 	}
 	height_proj_plane/=2;
-	int val2;
-	while (row < data->screen.size.y)
+	while (row <= data->screen.size.y)
 	{
 		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, data->player.dist_proj_plane, height_proj_plane, &val2);
 		*(int*)(data->image.add_image + (data->image.size_line * (data->screen.size.y/2 - (row - data->screen.size.y/2))) + data->raycast.column * sizeof(int)) = val2;

@@ -24,6 +24,7 @@ typedef struct	s_player
 	t_coord	pos;
 	int		speed;
 	double dist_proj_plane;
+	int		CST;
 }				t_player;
 
 #endif

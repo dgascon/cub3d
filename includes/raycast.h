@@ -29,9 +29,8 @@ typedef struct  s_raycast
 	t_d_coord	interH;
 	double		delta_ang;
 }               t_raycast;
-
 double	short_dist(t_data *data);
 int		fill_column(t_data *data);
-double	linear_intersec_h(t_data *data);
-double	linear_intersec_v(t_data *data);
+double linear_intersec_h(t_data *data);
+double linear_intersec_v(t_data *data);
 #endif

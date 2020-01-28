@@ -16,6 +16,7 @@
 # include "../libft/includes/libft.h"
 # include "../libmlx/mlx.h"
 # include <math.h>
+#include <pthread.h>
 # include "screen.h"
 # include "world.h"
 # include "player.h"
@@ -44,7 +45,8 @@ typedef	struct 	s_key
 	enum e_boolean arrow_right;
 	enum e_boolean arrow_up;
 	enum e_boolean arrow_down;
-	
+	enum e_boolean incspeed;
+	enum e_boolean decspeed;
 }				t_key;
 
 typedef	struct 	s_data
@@ -65,5 +67,4 @@ typedef	struct 	s_data
 int scan(t_data *data);
 int move_up(t_data *data);
 int move_down(t_data *data);
-
 # endif

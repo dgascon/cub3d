@@ -18,29 +18,21 @@ int    key_press(int key, t_data *data)
 {
 	if (key == ESC)
 	{
-		mlx_destroy_image(data->mlx.ptr, data->mlx.win);
+		mlx_destroy_image(data->mlx.ptr, data->mlx.win); //TODO destroy toute les textures
 		exit(1);
 	}
 	if (key == ARROW_LEFT)
-	{
 		data->key.arrow_left = TRUE;
-	}
 	else if (key == ARROW_RIGHT)
-	{
 		data->key.arrow_right = TRUE;
-	}	
 	else if (key == ARROW_UP)
-	{
 		data->key.arrow_up = TRUE;
-	}
 	else if (key == ARROW_DOWN)
-	{
 		data->key.arrow_down = TRUE;
-	}
 	else if (key == Q)
-		(data->player.speed < 20) ? data->player.speed += 1 : 0;
+		data->key.incspeed = TRUE;
 	else if (key == Z)
-		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
+		data->key.decspeed = TRUE;
 	else if (key == D)
 		data->player.pos.x +=5;
 	else if (key == A)
@@ -55,19 +47,17 @@ int    key_press(int key, t_data *data)
 int    key_release(int key, t_data *data)
 {
 	if (key == ARROW_LEFT)
-	{
 		data->key.arrow_left = FALSE;
-	}
-	if (key == ARROW_RIGHT)
-	{
+	else if (key == ARROW_RIGHT)
 		data->key.arrow_right = FALSE;
-	}if (key == ARROW_UP)
-	{
+	else if (key == ARROW_UP)
 		data->key.arrow_up = FALSE;
-	}if (key == ARROW_DOWN)
-	{
+	else if (key == ARROW_DOWN)
 		data->key.arrow_down = FALSE;
-	}
+	else if (key == Q)
+		data->key.incspeed = FALSE;
+	else if (key == Z)
+		data->key.decspeed = FALSE;
 	return (0);
 }
 
@@ -122,6 +112,7 @@ int main(int ac, char **av)
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
 	data.player.dist_proj_plane = ((double)(data.screen.size.x) / 2) / tan(data.player.fov / 2);
+	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane) ;
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
 	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))

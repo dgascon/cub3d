@@ -18,7 +18,7 @@ double linear_intersec_v(t_data *data)
 	t_coord grid;
 	t_d_coord intersec;
 	t_d_coord offset;
-	
+
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
 		offset.x = -(BLOCK_SIZE);
@@ -45,10 +45,9 @@ double linear_intersec_v(t_data *data)
 			grid.x = data->world.size.y - 1;
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
-		  // printf("V un mur en map[%d][%d] (x, y)\ndetecté en y = %f et x = %f\n", grid.x, grid.y, intersec.y, intersec.x);	
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
-			return (sqrt(pow(data->player.pos.x - intersec.x, 2) +
+			return(sqrt(pow(data->player.pos.x - intersec.x, 2) +
 						 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
 		}
 		intersec.x += offset.x;
@@ -62,7 +61,7 @@ double linear_intersec_h(t_data *data)
 	t_d_coord	intersec;
 	t_d_coord	offset;
 	t_coord		grid;
-	
+
 	offset.x = BLOCK_SIZE / tan(data->raycast.alpha); // REVIEW optimisation
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
@@ -94,5 +93,5 @@ double linear_intersec_h(t_data *data)
 		intersec.x += offset.x;
 		intersec.y += offset.y;
 	}
-	return (0);   
+	return (0);
 }

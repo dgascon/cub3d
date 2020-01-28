@@ -18,10 +18,10 @@ double short_dist(t_data *data)
     double  dist_h;
     double  dist_v;
     double  correct_dist;
-
+    
+    dist_v = linear_intersec_v(data);
     dist_h = linear_intersec_h(data);
-	dist_v = linear_intersec_v(data);
-	if (ft_abs_d(dist_h) < ft_abs_d(dist_v))
+	if (dist_h < dist_v)
     {
         correct_dist = dist_h;
         data->raycast.face_detect = 'H';
@@ -66,6 +66,10 @@ int add_params(t_data *data)
     {
 		move_down(data);
     }
+    if (data->key.incspeed)
+    	(data->player.speed < 20) ? data->player.speed += 1 : 0;
+    if (data->key.decspeed)
+		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
     return (0);
 }
 
@@ -75,7 +79,7 @@ int scan(t_data *data)
     mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
-	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian); // explication
+	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian);
     while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
