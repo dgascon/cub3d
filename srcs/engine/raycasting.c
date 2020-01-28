@@ -60,11 +60,27 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_up == TRUE)
     {
-		move_up(data);
+        data->player.hdv -= 3;
+    }
+    if (data->key.W == TRUE)
+    {
+		move_up(data, data->player.pov);
     }
     if (data->key.arrow_down == TRUE)
     {
-		move_down(data);
+        data->player.hdv += 3;
+    }
+    if (data->key.S == TRUE)
+    {
+		move_down(data, data->player.pov);
+    }
+    if (data->key.A == TRUE)
+    {
+        move_up(data, data->player.pov + M_PI_2);
+    }
+    if (data->key.D == TRUE)
+    {
+        move_up(data, data->player.pov - M_PI_2);
     }
     if (data->key.incspeed)
     	(data->player.speed < 20) ? data->player.speed += 1 : 0;

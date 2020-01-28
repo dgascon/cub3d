@@ -87,14 +87,14 @@ int fill_column(t_data *data)
 	int val2;
 
 	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
-	row = (data->screen.size.y / 2 ) - (height_proj_plane);//REVIEW Optimisation
+	row =data->player.hdv - (height_proj_plane/2);//REVIEW Optimisation
 	int wall_row = 0;
 	if (row < 0)
 	{
 		wall_row = 0 - row;
 		row = 0;
 	}
-	int h_max = (data->screen.size.y / 2) + (height_proj_plane / 2);
+	int h_max = data->player.hdv + (height_proj_plane / 2);
 	if (h_max > data->screen.size.y)
 		h_max = data->screen.size.y;
 	while (row < h_max) //REVIEW Optimisation
@@ -103,11 +103,20 @@ int fill_column(t_data *data)
 		row++;
 		wall_row++;
 	}
-	height_proj_plane/=2;
+	height_proj_plane /= 2;
+
 	while (row <= data->screen.size.y)
 	{
-		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, data->player.dist_proj_plane, height_proj_plane, &val2);
-		*(int*)(data->image.add_image + (data->image.size_line * (data->screen.size.y/2 - (row - data->screen.size.y/2))) + data->raycast.column * sizeof(int)) = val2;
+		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = floor_color(data, data->player.dist_proj_plane, height_proj_plane, &val2); 
+		height_proj_plane++;
+		row++;
+	}
+	height_proj_plane = floor(data->player.CST / data->raycast.dist) / 2;
+	row = h_max - (data->player.hdv - data->screen.size.y / 2)*2;
+	while (row <= data->screen.size.y)
+	{
+		floor_color(data, data->player.dist_proj_plane, height_proj_plane, &val2);
+		*(int*)(data->image.add_image + (data->image.size_line * (data->screen.size.y / 2 - (row - data->screen.size.y/2))) + data->raycast.column * sizeof(int)) = val2;
 		height_proj_plane++;
 		row++;
 	}

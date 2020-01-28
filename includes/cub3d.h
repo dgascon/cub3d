@@ -47,6 +47,11 @@ typedef	struct 	s_key
 	enum e_boolean arrow_down;
 	enum e_boolean incspeed;
 	enum e_boolean decspeed;
+	enum e_boolean D;
+	enum e_boolean A;
+	enum e_boolean S;
+	enum e_boolean W;
+
 }				t_key;
 
 typedef	struct 	s_data
@@ -65,6 +70,6 @@ typedef	struct 	s_data
 }				t_data;
 
 int scan(t_data *data);
-int move_up(t_data *data);
-int move_down(t_data *data);
+int move_up(t_data *data, double dir);
+int move_down(t_data *data, double dir);
 # endif

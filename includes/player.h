@@ -25,6 +25,7 @@ typedef struct	s_player
 	int		speed;
 	double dist_proj_plane;
 	int		CST;
+	int		hdv;
 }				t_player;
 
 #endif

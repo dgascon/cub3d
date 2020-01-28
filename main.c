@@ -34,13 +34,13 @@ int    key_press(int key, t_data *data)
 	else if (key == Z)
 		data->key.decspeed = TRUE;
 	else if (key == D)
-		data->player.pos.x +=5;
+		data->key.D = TRUE;
 	else if (key == A)
-		data->player.pos.x -= 5;
+		data->key.A = TRUE;
 	else if (key == W)
-		data->player.pos.y -= 5;
+		data->key.W = TRUE;
 	else if (key == S)
-		data->player.pos.y +=5;
+		data->key.S = TRUE;
 	return (0);
 }
 
@@ -58,6 +58,14 @@ int    key_release(int key, t_data *data)
 		data->key.incspeed = FALSE;
 	else if (key == Z)
 		data->key.decspeed = FALSE;
+	else if (key == D)
+		data->key.D = FALSE;
+	else if (key == A)
+		data->key.A = FALSE;
+	else if (key == W)
+		data->key.W = FALSE;
+	else if (key == S)
+		data->key.S = FALSE;
 	return (0);
 }
 
@@ -113,6 +121,9 @@ int main(int ac, char **av)
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
 	data.player.dist_proj_plane = ((double)(data.screen.size.x) / 2) / tan(data.player.fov / 2);
 	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane) ;
+	data.player.hdv = data.screen.size.y / 2;
+	data.key = (t_key){.arrow_left = FALSE, .arrow_right = FALSE, .arrow_up = FALSE, .arrow_down = FALSE,
+	 .incspeed = FALSE, .decspeed = FALSE, .D = FALSE, .A = FALSE, .S = FALSE, .W = FALSE};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
 	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))

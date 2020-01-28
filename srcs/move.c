@@ -24,16 +24,16 @@ int move_y(t_data *data, int value)
     return (0);
 }
 
-int move_up(t_data *data)
+int move_up(t_data *data, double dir)
 {
-    move_x(data, cos(data->player.pov) * data->player.speed); 
-	move_y(data, sin(data->player.pov) * -data->player.speed); //deplacement 
+    move_x(data, cos(dir) * data->player.speed); 
+	move_y(data, sin(dir) * -data->player.speed); //deplacement 
     return (1);
 }
 
-int move_down(t_data *data)
+int move_down(t_data *data, double dir)
 {
-    move_x(data, cos(data->player.pov) * -data->player.speed); 
-	move_y(data, sin(data->player.pov) * data->player.speed); //deplacement 
+    move_x(data, cos(dir) * -data->player.speed); 
+	move_y(data, sin(dir) * data->player.speed); //deplacement 
     return (1);
 }
