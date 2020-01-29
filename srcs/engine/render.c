@@ -95,8 +95,8 @@ int fill_column(t_data *data)
 		row = 0;
 	}
 	int h_max = data->player.hdv + (height_proj_plane / 2);
-	if (h_max > data->screen.size.y)
-		h_max = data->screen.size.y;
+	// if (h_max > data->screen.size.y)
+		// h_max = data->screen.size.y;
 	while (row < h_max) //REVIEW Optimisation
 	{
 		*(int*)(data->image.add_image + (row * data->image.size_line) + (data->raycast.column * sizeof(int))) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
