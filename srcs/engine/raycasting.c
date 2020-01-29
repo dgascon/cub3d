@@ -60,7 +60,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_up == TRUE)
     {
-        data->player.hdv -= 5;
+        data->player.hdv -= 10;
     }
     if (data->key.W == TRUE)
     {
@@ -68,7 +68,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_down == TRUE)
     {
-        data->player.hdv += 5;
+        data->player.hdv += 10;
     }
     if (data->key.S == TRUE)
     {
