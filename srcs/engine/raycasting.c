@@ -91,6 +91,8 @@ int add_params(t_data *data)
 
 int scan(t_data *data)
 {
+    if (data->player.hdv != data->screen.size.y / 2)
+		printf("modir\n");
     add_params(data);
     mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;

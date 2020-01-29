@@ -87,6 +87,8 @@ int fill_column(t_data *data)
 	int crow;
 	int val2;
 
+	if (data->player.hdv != data->screen.size.y / 2)
+		printf("modir\n");
 	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
 	row =data->player.hdv - (height_proj_plane/2);//REVIEW Optimisation
 	
