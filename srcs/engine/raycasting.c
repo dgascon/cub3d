@@ -45,9 +45,9 @@ int add_params(t_data *data)
     if (data->key.arrow_left == TRUE)
     {
         data->player.pov += 0.1;
-		if (data->player.pov > 2 * M_PI)
+		if (data->player.pov > data->pi.dPI)
         {
-            data->player.pov -= 2 * M_PI;
+            data->player.pov -= data->pi.dPI;
         }
     }
     if (data->key.arrow_right == TRUE)
@@ -55,7 +55,7 @@ int add_params(t_data *data)
         data->player.pov -= 0.1;
         if (data->player.pov < 0)
         {
-            data->player.pov += 2 * M_PI;
+            data->player.pov += data->pi.dPI;
         }
     }
     if (data->key.arrow_up == TRUE)
@@ -91,8 +91,6 @@ int add_params(t_data *data)
 
 int scan(t_data *data)
 {
-    if (data->player.hdv != data->screen.size.y / 2)
-		printf("modir\n");
     add_params(data);
     mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;
@@ -101,10 +99,10 @@ int scan(t_data *data)
     while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
-		if (data->raycast.alpha >= 2 * M_PI) // REVIEW optimiser
-			data->raycast.alpha -= 2 * M_PI; // REVIEW optimiser
+		if (data->raycast.alpha >= data->pi.dPI) // REVIEW optimiser
+			data->raycast.alpha -= data->pi.dPI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)
-			data->raycast.alpha += 2 * M_PI; // REVIEW optimiser
+			data->raycast.alpha += data->pi.dPI; // REVIEW optimiser
 		data->raycast.dist = short_dist(data);
 		fill_column(data);
         data->raycast.column--;

@@ -28,6 +28,12 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
+typedef struct s_pi
+{
+	double dPI;
+	double tPId;
+}				t_pi;
+
 typedef	struct 	s_image
 {
 	void	*img;
@@ -67,6 +73,7 @@ typedef	struct 	s_data
 	t_image		Rtex;
 	t_image		Vtex;
 	t_key		key;
+	t_pi		pi;
 }				t_data;
 
 int scan(t_data *data);

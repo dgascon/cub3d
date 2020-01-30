@@ -124,6 +124,7 @@ int main(int ac, char **av)
 	data.player.hdv = data.screen.size.y / 2;
 	data.key = (t_key){.arrow_left = FALSE, .arrow_right = FALSE, .arrow_up = FALSE, .arrow_down = FALSE,
 	 .incspeed = FALSE, .decspeed = FALSE, .D = FALSE, .A = FALSE, .S = FALSE, .W = FALSE};
+	data.pi = (t_pi){.dPI = 2 * M_PI, .tPId = 3*M_PI/2};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
 	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))
