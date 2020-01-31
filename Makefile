@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/31 05:22:44 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/31 07:01:31 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -74,7 +74,7 @@ clean:
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean
-	@ /bin/rm -rf $(NAME) ./a.out*
+	@ /bin/rm -rf $(NAME) ./$(NAME)*
 	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
 	@ sleep 0.5
 	@ printf "\r                                                                                          \r\033[0m"
