@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:27:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 05:23:34 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 06:49:54 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,11 @@
 # define PLAYER_H
 # include "cub3d.h"
 # include "raycast.h"
+
+# define POV_NORTH M_PI / 2
+# define POV_EAST 2 * M_PI
+# define POV_SOUTH 3 * M_PI_2
+# define POV_WEST M_PI
 
 typedef struct s_data t_data;
 

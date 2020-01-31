@@ -6,14 +6,36 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 06:09:40 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 07:00:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char **parse_map(t_data *data, char *line)
+int		parse_player(t_data *data, char direction, t_coord position)
+{
+	if (data->player.pos.x != 0 && data->player.pos.y != 0)
+	{
+		ft_printf("Deux joueurs de placé sur la carte !\n");
+		freemap(data, 0);
+		free(data->world.map);
+		return (-1);
+	}
+	if (direction == 'N')
+		data->player.pov = POV_NORTH;
+	else if (direction == 'E')
+		data->player.pov = POV_EAST;
+	else if (direction == 'S')
+		data->player.pov = POV_SOUTH;
+	else
+		data->player.pov = POV_WEST;
+	data->player.pos.x = (BLOCK_SIZE * position.x) + 32;
+	data->player.pos.y = (BLOCK_SIZE * position.y) - 32;
+	return (1);
+}
+
+char	**parse_map(t_data *data, char *line)
 {
 	char		**tmp_map;
 	int			i;
@@ -46,6 +68,17 @@ char **parse_map(t_data *data, char *line)
 		freemap(data, 1);
 		free(data->world.map);
 		return (NULL);
+	}
+	i = 0;
+	while (line[i])
+	{
+		if (ft_charstr(line[i], "NSWE"))
+		{
+			if (parse_player(data, line[i],
+				(t_coord) {.x = i, .y = data->world.size.y}) <= 0)
+				return (NULL);
+		}
+		i++;
 	}
 	return (data->world.map);
 }
@@ -90,13 +123,21 @@ int	parsefile(t_data *data, char *file)
 				return (-1);
 
         }
-
 		free(gnl.line);
+		
+		
 		if (gnl.ret <= 0)
 			break ;
 	}
-	// show_map(data);
 	close(gnl.fd);
+	if (data->player.pos.x == 0 && data->player.pos.y == 0)
+	{
+		ft_printf("Aucune joueur sur la carte\n");
+		freemap(data, 0);
+		free(data->world.map);
+		return (-1);
+	}
+	
 	return (1);
 }
 
