@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 15:28:45 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 18:58:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 02:33:55 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,11 @@
 # define BUFFER_SIZE 64
 #endif
 
-static t_gnl	*gnl_new(int fd, char *buffer)
+static t_gnl_lc	*gnl_new(int fd, char *buffer)
 {
-	t_gnl *current;
+	t_gnl_lc *current;
 
-	if (!(current = malloc(sizeof(t_gnl))))
+	if (!(current = malloc(sizeof(t_gnl_lc))))
 		return (NULL);
 	if (!buffer)
 	{
@@ -38,9 +38,9 @@ static t_gnl	*gnl_new(int fd, char *buffer)
 	return (current);
 }
 
-static t_gnl	*gnl_fct(t_gnl **lsts, int fd)
+static t_gnl_lc	*gnl_fct(t_gnl_lc **lsts, int fd)
 {
-	t_gnl *current;
+	t_gnl_lc *current;
 
 	if (!(current = (*lsts)))
 		return (((*lsts) = gnl_new(fd, NULL)));
@@ -86,10 +86,10 @@ static int		gnl_check(int fd, char **buffer)
 	return (state);
 }
 
-static int		gnl_free_mail(t_gnl **buffer, t_gnl *current, int ret)
+static int		gnl_free_mail(t_gnl_lc **buffer, t_gnl_lc *current, int ret)
 {
-	t_gnl *tmp;
-	t_gnl *tmp_prev;
+	t_gnl_lc *tmp;
+	t_gnl_lc *tmp_prev;
 
 	tmp_prev = NULL;
 	if ((tmp = (*buffer)) == current)
@@ -114,8 +114,8 @@ static int		gnl_free_mail(t_gnl **buffer, t_gnl *current, int ret)
 
 int				get_next_line(int fd, char **line)
 {
-	static t_gnl	*buffer;
-	t_gnl			*current;
+	static t_gnl_lc	*buffer;
+	t_gnl_lc		*current;
 	char			*n_buff;
 	int				i;
 	int				state_gnlcheck;
