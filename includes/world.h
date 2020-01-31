@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:30:10 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 18:45:20 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 05:08:27 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,5 +25,7 @@ typedef struct	s_world
 	t_coord		size;
 }				t_world;
 
-char    **parsefile(t_data *data, char *file);
+int				parsefile(t_data *data, char *file);
+void			freemap(t_data *data, int offset);
+
 #endif
