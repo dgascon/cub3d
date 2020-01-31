@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/23 16:37:34 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/30 18:45:15 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -32,6 +32,8 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c				\
 				string/ft_split.c		string/ft_strmapi.c				\
 				string/ft_strcat.c		string/ft_strichr.c				\
 				string/ft_chartostr.c	string/ft_charstr.c				\
+				string/ft_strcmp.c										\
+				string/ft_delcharstr.c									\
 				mem/ft_memset.c			mem/ft_bzero.c					\
 				mem/ft_memcpy.c			mem/ft_memccpy.c				\
 				mem/ft_memmove.c		mem/ft_memchr.c					\
