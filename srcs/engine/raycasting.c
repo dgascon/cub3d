@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 13:54:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 19:47:32 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_up == TRUE)
     {
-        data->player.hdv -= (double)data->screen.size.y / 100;
+        data->player.hdv += (double)data->screen.size.y / 100;
     }
     if (data->key.W == TRUE)
     {
@@ -68,7 +68,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_down == TRUE)
     {
-        data->player.hdv += (double)data->screen.size.y / 100;
+        data->player.hdv -= (double)data->screen.size.y / 100;
     }
     if (data->key.S == TRUE)
     {
