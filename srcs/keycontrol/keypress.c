@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 05:11:01 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 20:20:11 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,18 +20,16 @@ int    key_press(int key, t_data *data)
 		mlx_destroy_image(data->mlx.ptr, data->mlx.win); //TODO destroy toute les textures
 		exit(1);
 	}
-	if (key == ARROW_LEFT)
+	if (key == ARROW_LEFT || key == Q)
 		data->key.arrow_left = TRUE;
-	else if (key == ARROW_RIGHT)
+	else if (key == ARROW_RIGHT || key == E)
 		data->key.arrow_right = TRUE;
 	else if (key == ARROW_UP)
 		data->key.arrow_up = TRUE;
 	else if (key == ARROW_DOWN)
 		data->key.arrow_down = TRUE;
-	else if (key == Q)
+	else if (key == LSHIFT)
 		data->key.incspeed = TRUE;
-	else if (key == Z)
-		data->key.decspeed = TRUE;
 	else if (key == D)
 		data->key.D = TRUE;
 	else if (key == A)
