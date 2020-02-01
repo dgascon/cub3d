@@ -105,7 +105,7 @@ int fill_column(t_data *data)
 
 	cosB = cos(data->raycast.beta);
 	val_cst[0] = (data->raycast.dist / cosB);
-	val_cst[1] = (data->player.dist_proj_plane / cosB) * data->player.height_cam;
+	val_cst[1] = (data->player.dist_proj_plane / cosB) * (data->player.height_cam);
 	if (row < crow)
 	{
 		while (row <= data->screen.size.y)

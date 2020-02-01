@@ -18,7 +18,12 @@ int    key_press(int key, t_data *data)
 {
 	if (key == ESC)
 	{
-		mlx_destroy_image(data->mlx.ptr, data->mlx.win); //TODO destroy toute les textures
+		if (data->Ftex.img) mlx_destroy_image(data->mlx.ptr, data->Ftex.img);
+		if (data->Rtex.img) mlx_destroy_image(data->mlx.ptr, data->Rtex.img);
+		if (data->Vtex.img) mlx_destroy_image(data->mlx.ptr, data->Vtex.img);
+		if (data->Wtex.img) mlx_destroy_image(data->mlx.ptr, data->Wtex.img);
+		if (data->image.img) mlx_destroy_image(data->mlx.ptr, data->image.img); //TODO destroy toute les textures
+		mlx_destroy_window(data->mlx.ptr, data->mlx.win);
 		exit(1);
 	}
 	if (key == ARROW_LEFT)

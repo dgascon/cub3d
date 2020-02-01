@@ -38,6 +38,9 @@ double short_dist(t_data *data)
 	else
         data->raycast.beta = data->raycast.alpha - data->player.pov;
     correct_dist *= (cos(data->raycast.beta));
+    
+    double x = atan((BLOCK_SIZE / 2 - data->player.height_cam) / correct_dist);
+    correct_dist = correct_dist / cos(x);
     return(correct_dist);
 }
 int add_params(t_data *data)
@@ -60,7 +63,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_up == TRUE)
     {
-        data->player.hdv -= (double)data->screen.size.y / 100;
+        data->player.hdv -= 25;//(double)data->screen.size.y / 100;
     }
     if (data->key.W == TRUE)
     {
@@ -68,7 +71,7 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_down == TRUE)
     {
-        data->player.hdv += (double)data->screen.size.y / 100;
+        data->player.hdv += 25;//(double)data->screen.size.y / 100;
     }
     if (data->key.S == TRUE)
     {
@@ -76,10 +79,20 @@ int add_params(t_data *data)
     }
     if (data->key.A == TRUE)
     {
-        move_up(data, data->player.pov + M_PI_2);
+       if (data->player.height_cam < BLOCK_SIZE - 5)
+        {
+          //  data->player.height_cam += 5;
+         //   data->player.hdv += 25;
+        }
+       move_up(data, data->player.pov + M_PI_2);
     }
     if (data->key.D == TRUE)
     {
+        if (data->player.height_cam > 5)
+        {
+            //data->player.height_cam -= 5;
+           // data->player.hdv -= 25;
+        }
         move_up(data, data->player.pov - M_PI_2);
     }
     if (data->key.incspeed)
