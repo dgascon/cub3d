@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:56:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:36:59 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 20:34:53 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,17 +30,23 @@ enum	e_base
 
 enum	e_keycode
 {
-	ARROW_DOWN 	= 125,
-	ARROW_UP	= 126,
-	ARROW_RIGHT	= 124,
-	ARROW_LEFT	= 123,
-	S			= 1,
-	W			= 13,
-	D			= 2,
-	A			= 0,
-	Q			= 12,
-	Z			= 6,
-	ESC			= 53
+	ARROW_DOWN = 125,
+	ARROW_UP = 126,
+	ARROW_RIGHT = 124,
+	ARROW_LEFT = 123,
+	S = 1,
+	W = 13,
+	D = 2,
+	A = 0,
+	Q = 12,
+	Z = 6,
+	E = 14,
+	LSHIFT = 257,
+	RSHIFT = 60,
+	ESC = 53,
+	F1 = 122,
+	ALT_D = 262,
+	SHIFT_D = 258
 };
 
 char	*ft_sbase(enum e_base b);

@@ -57,7 +57,8 @@ typedef	struct 	s_key
 	enum e_boolean A;
 	enum e_boolean S;
 	enum e_boolean W;
-
+	enum e_boolean SQUAT;
+	enum e_boolean JUMP;
 }				t_key;
 
 typedef	struct 	s_data
@@ -74,6 +75,7 @@ typedef	struct 	s_data
 	t_image		Vtex;
 	t_key		key;
 	t_pi		pi;
+	int test;
 }				t_data;
 
 int scan(t_data *data);

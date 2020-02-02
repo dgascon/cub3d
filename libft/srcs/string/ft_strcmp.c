@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   colors.c                                         .::    .:/ .      .::   */
+/*   ft_strcmp.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/23 16:33:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:33:33 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/27 15:50:52 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/27 16:00:10 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	rgb_int(int red, int green, int blue)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int	rgb;
+	unsigned char	*st1;
+	unsigned char	*st2;
+	int				i;
+	int				i2;
 
-	rgb = red;
-	rgb = (rgb << 8) + green;
-	rgb = (rgb << 8) + blue;
-	return (rgb);
+	i = 0;
+	i2 = 0;
+	st1 = (unsigned char *)s1;
+	st2 = (unsigned char *)s2;
+	while (s1[i] && s2[i2])
+	{
+		if (s1[i] != s2[i2])
+		{
+			return (st1[i] - st2[i2]);
+		}
+		s2++;
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 13:54:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 20:24:16 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,8 +39,10 @@ double short_dist(t_data *data)
         data->raycast.beta = data->raycast.alpha - data->player.pov;
     correct_dist *= (cos(data->raycast.beta));
     
-    double x = atan((BLOCK_SIZE / 2 - data->player.height_cam) / correct_dist);
-    correct_dist = correct_dist / cos(x);
+ /*   double x = atan((BLOCK_SIZE / 2 - data->player.height_cam) / correct_dist);
+    data->raycast.dist_h = correct_dist / cos(x);
+    x = atan((data->player.height_cam) / correct_dist);
+    correct_dist = correct_dist / cos(x);*/
     return(correct_dist);
 }
 int add_params(t_data *data)
@@ -57,13 +59,12 @@ int add_params(t_data *data)
     {
         data->player.pov -= 0.1;
         if (data->player.pov < 0)
-        {
             data->player.pov += data->pi.dPI;
-        }
     }
     if (data->key.arrow_up == TRUE)
     {
         data->player.hdv -= 25;//(double)data->screen.size.y / 100;
+
     }
     if (data->key.W == TRUE)
     {
@@ -79,9 +80,7 @@ int add_params(t_data *data)
     }
     if (data->key.A == TRUE)
     {
-       if (data->player.height_cam < BLOCK_SIZE - 5)
         {
-          //  data->player.height_cam += 5;
          //   data->player.hdv += 25;
         }
        move_up(data, data->player.pov + M_PI_2);
@@ -90,7 +89,6 @@ int add_params(t_data *data)
     {
         if (data->player.height_cam > 5)
         {
-            //data->player.height_cam -= 5;
            // data->player.hdv -= 25;
         }
         move_up(data, data->player.pov - M_PI_2);
@@ -99,6 +97,16 @@ int add_params(t_data *data)
     	(data->player.speed < 20) ? data->player.speed += 1 : 0;
     if (data->key.decspeed)
 		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
+    if (data->key.JUMP)
+    {
+        if (data->player.height_cam < BLOCK_SIZE - 10)
+            data->player.height_cam += 5;
+    }
+    if (data->key.SQUAT)
+    {
+        if (data->player.height_cam > 10)
+            data->player.height_cam -= 5;
+    }
     return (0);
 }
 

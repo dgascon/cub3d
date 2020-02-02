@@ -24,6 +24,7 @@ typedef struct  s_raycast
 	double		beta;
 	double		gamma;
 	double		dist;
+	double		dist_h;
 	char		face_detect;
 	t_d_coord	inter;
 	t_d_coord	interH;

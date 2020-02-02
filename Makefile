@@ -6,7 +6,7 @@
 #    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/21 14:12:11 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/31 07:01:31 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,8 +19,10 @@ PATH_INC		=	includes
 
 PATH_SRC		=	srcs
 PATH_OBJ		=	objs
-SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c \
-					parsing/parse.c move.c
+SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
+					parsing/parse.c 												\
+					move.c keycontrol/keypress.c keycontrol/keyreleased.c			\
+					garbage.c
 
 INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
 
@@ -43,7 +45,7 @@ INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
-DIRS_LIST	= engine parsing
+DIRS_LIST	= engine parsing keycontrol
 
 all:	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"
@@ -72,7 +74,7 @@ clean:
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean
-	@ /bin/rm -rf $(NAME) ./a.out*
+	@ /bin/rm -rf $(NAME) ./$(NAME)*
 	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
 	@ sleep 0.5
 	@ printf "\r                                                                                          \r\033[0m"

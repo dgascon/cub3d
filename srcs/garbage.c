@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   colors.c                                         .::    .:/ .      .::   */
+/*   garbage.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/23 16:33:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:33:33 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/31 05:09:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	rgb_int(int red, int green, int blue)
+void freemap(t_data *data, int offset)
 {
-	int	rgb;
+	int i;
 
-	rgb = red;
-	rgb = (rgb << 8) + green;
-	rgb = (rgb << 8) + blue;
-	return (rgb);
+	i = 0;
+	while (i < data->world.size.y - offset)
+	{
+		free(data->world.map[i]);
+		i++;
+	}
 }

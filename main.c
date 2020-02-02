@@ -6,73 +6,13 @@
 /*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:14:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/31 20:10:47 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 #include <Tk/X11/x.h>
-
-int    key_press(int key, t_data *data)
-{
-	if (key == ESC)
-	{
-		if (data->Ftex.img) mlx_destroy_image(data->mlx.ptr, data->Ftex.img);
-		if (data->Rtex.img) mlx_destroy_image(data->mlx.ptr, data->Rtex.img);
-		if (data->Vtex.img) mlx_destroy_image(data->mlx.ptr, data->Vtex.img);
-		if (data->Wtex.img) mlx_destroy_image(data->mlx.ptr, data->Wtex.img);
-		if (data->image.img) mlx_destroy_image(data->mlx.ptr, data->image.img); //TODO destroy toute les textures
-		mlx_destroy_window(data->mlx.ptr, data->mlx.win);
-		exit(1);
-	}
-	if (key == ARROW_LEFT)
-		data->key.arrow_left = TRUE;
-	else if (key == ARROW_RIGHT)
-		data->key.arrow_right = TRUE;
-	else if (key == ARROW_UP)
-		data->key.arrow_up = TRUE;
-	else if (key == ARROW_DOWN)
-		data->key.arrow_down = TRUE;
-	else if (key == Q)
-		data->key.incspeed = TRUE;
-	else if (key == Z)
-		data->key.decspeed = TRUE;
-	else if (key == D)
-		data->key.D = TRUE;
-	else if (key == A)
-		data->key.A = TRUE;
-	else if (key == W)
-		data->key.W = TRUE;
-	else if (key == S)
-		data->key.S = TRUE;
-	return (0);
-}
-
-int    key_release(int key, t_data *data)
-{
-	if (key == ARROW_LEFT)
-		data->key.arrow_left = FALSE;
-	else if (key == ARROW_RIGHT)
-		data->key.arrow_right = FALSE;
-	else if (key == ARROW_UP)
-		data->key.arrow_up = FALSE;
-	else if (key == ARROW_DOWN)
-		data->key.arrow_down = FALSE;
-	else if (key == Q)
-		data->key.incspeed = FALSE;
-	else if (key == Z)
-		data->key.decspeed = FALSE;
-	else if (key == D)
-		data->key.D = FALSE;
-	else if (key == A)
-		data->key.A = FALSE;
-	else if (key == W)
-		data->key.W = FALSE;
-	else if (key == S)
-		data->key.S = FALSE;
-	return (0);
-}
 
 int init_texture(t_data* data)
 {
@@ -113,14 +53,15 @@ int main(int ac, char **av)
 		printf("Map manquante !");
 		return (EXIT_FAILURE);
 	} 
-	data.world.map = parsefile(&data, av[1]);
+	data.player = (t_player){.fov = M_PI /3, .height_cam = 32, .speed = 10};
+	if (parsefile(&data, av[1]) <= 0)
+		return (EXIT_FAILURE);
 	if (!(data.mlx.ptr = mlx_init()))
 		return (EXIT_FAILURE);
 	if ((data.mlx.win = mlx_new_window(data.mlx.ptr, data.screen.size.x,
 						data.screen.size.y, "Dgascon && Nlecaill")) == NULL)
 		return (EXIT_FAILURE);
-	data.player = (t_player){.fov = M_PI /3 , .pov = 2*M_PI, .height_cam = 32,
-	.pos.x = 64 * 2.5, .pos.y = 64 * 3.5, .speed = 10};
+	
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
