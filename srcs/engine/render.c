@@ -25,14 +25,14 @@ int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 int floor_color(t_data *data, double calc_const[2], int height_proj_plane, int *val2)
 {
 	t_coord sol;
-	double dist_mur_sol;
-	double dist_mur_plafond;
-	double deltaY[2];
-	double deltaX[2];
+	t_coord ceil;
+	float dist_mur_sol;
+	float dist_mur_plafond;
+	float deltaY[2];
+	float deltaX[2];
 
-	dist_mur_plafond = (calc_const[2] / (double)height_proj_plane);
-	dist_mur_plafond = calc_const[0] - dist_mur_plafond;
-	dist_mur_sol = calc_const[0] - (calc_const[3] / (double)height_proj_plane);
+	dist_mur_plafond = calc_const[0] - (calc_const[2] / height_proj_plane);
+	dist_mur_sol = calc_const[0] - (calc_const[3] / calc_const[1]);
 
 	if (data->raycast.face_detect == 'H')
 	{
@@ -71,9 +71,9 @@ int floor_color(t_data *data, double calc_const[2], int height_proj_plane, int *
 	}
 	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % 64;
 	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % 64;
-	
-	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ((int)(data->raycast.inter.y + deltaY[1]) % 64))
-	+ (((int)(data->raycast.inter.x + deltaX[1]) % 64) * sizeof(int)));	
+	ceil.x = (int)(data->raycast.inter.x + deltaX[1]) % 64;
+	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % 64;
+	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));	
 	return (*(int*)(data->Ftex.add_image + (data->Ftex.size_line * sol.y) + (sol.x * sizeof(int))));
 }
 
@@ -83,19 +83,22 @@ int fill_column(t_data *data)
 	int row;
 	int crow;
 	int val2;
-
-	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
-	
-	row = data->player.hdv - (height_proj_plane/2) - (data->player.height_cam - BLOCK_SIZE / 2);//REVIEW Optimisation
-	char *add_opp;
-		add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	int wall_row = 0;
+	char *add_opp;
+	int gnagna;
+
+	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
+	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
+	double coef = (double)BLOCK_SIZE / (double)data->player.height_cam ; // coef de heigh-proj_plane
+	gnagna = (double)height_proj_plane/coef;
+	row = data->player.hdv - (height_proj_plane - gnagna);//REVIEW Optimisation
+	crow = data->screen.size.y - row;
 	if (row < 0)
 	{
 		wall_row = 0 - row;
 		row = 0;
 	}
-	int h_max = data->player.hdv + (height_proj_plane / 2) - (data->player.height_cam - BLOCK_SIZE / 2);
+	int h_max = data->player.hdv + gnagna;
 	if (h_max > data->screen.size.y)
 		h_max = data->screen.size.y;
 	while (row < h_max) //REVIEW Optimisation
@@ -104,21 +107,17 @@ int fill_column(t_data *data)
 		row++;
 		wall_row++;
 	}
-	height_proj_plane /= 2;
-	row = h_max; // - (data->player.height_cam - BLOCK_SIZE / 2);
-	//h_max = data->player.hdv + (height_proj_plane) + (data->player.height_cam - BLOCK_SIZE / 2);
-	crow = height_proj_plane - data->player.hdv + data->screen.size.y + (data->player.height_cam - BLOCK_SIZE / 2);
-//	crow = h_max - (data->player.hdv - data->screen.size.y / 2) * 2;
-	int midscreen;
-	midscreen = data->screen.size.y;
-	
+	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
+
 	double val_cst[4];
 	double cosB;
-	cosB = cos(data->raycast.beta);
+	cosB = cos(data->raycast.beta); 
 	val_cst[0] = (data->raycast.dist / cosB);
-	val_cst[1] = (data->raycast.dist_h / cosB);
-	val_cst[2] = (data->player.dist_proj_plane / cosB) * (BLOCK_SIZE  - data->player.height_cam);
-	val_cst[3] = (data->player.dist_proj_plane / cosB) * ( BLOCK_SIZE - data->player.height_cam);
+	val_cst[1] = gnagna;
+	val_cst[2] = (data->player.dist_proj_plane / cosB) * (BLOCK_SIZE - data->player.height_cam);
+	val_cst[3] = (data->player.dist_proj_plane / cosB) * (data->player.height_cam);
+	height_proj_plane = height_proj_plane - gnagna; //h_max - data->screen.size.y / 2;
+
 	if (row < crow)
 	{
 		while (row <= data->screen.size.y)
@@ -128,9 +127,10 @@ int fill_column(t_data *data)
 			row++;
 			if (crow <= data->screen.size.y)
 			{
-				*(int*)(add_opp + (data->image.size_line * (midscreen - crow ))) = val2;
+				*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 				crow++;
 			}
+			val_cst[1]++;
 			height_proj_plane++;
 		}
 	}
@@ -141,13 +141,14 @@ int fill_column(t_data *data)
 		{
 			val1 = floor_color(data, val_cst, height_proj_plane, &val2);
 			if (crow > 0)
-				*(int*)(add_opp + (data->image.size_line * (midscreen - crow))) = val2;
+				*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 			crow++;
 			if (row <= data->screen.size.y)
 			{
 				*(int*)(add_opp + (row * data->image.size_line)) = val1; 
 				row++;
 			}
+			val_cst[1]++;
 			height_proj_plane++;
 		}
 	}

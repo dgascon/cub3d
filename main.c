@@ -75,6 +75,9 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))
 		return (EXIT_FAILURE);
+
+	if (!(data.image.add_image = mlx_get_data_addr(data.image.img, &data.image.bpp, &data.image.size_line, &data.image.endian)))
+		return (EXIT_FAILURE);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);

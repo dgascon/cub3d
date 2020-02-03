@@ -33,16 +33,11 @@ double short_dist(t_data *data)
         correct_dist = dist_v;
         data->raycast.face_detect = 'V';
     }
-    if ((data->raycast.alpha > data->player.pov))
+    if ((data->raycast.alpha < data->player.pov))
         data->raycast.beta = data->player.pov - data->raycast.alpha;
 	else
         data->raycast.beta = data->raycast.alpha - data->player.pov;
     correct_dist *= (cos(data->raycast.beta));
-    
- /*   double x = atan((BLOCK_SIZE / 2 - data->player.height_cam) / correct_dist);
-    data->raycast.dist_h = correct_dist / cos(x);
-    x = atan((data->player.height_cam) / correct_dist);
-    correct_dist = correct_dist / cos(x);*/
     return(correct_dist);
 }
 int add_params(t_data *data)
@@ -99,13 +94,20 @@ int add_params(t_data *data)
 		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
     if (data->key.JUMP)
     {
-        if (data->player.height_cam < BLOCK_SIZE - 10)
+        if (data->player.height_cam < 48)
             data->player.height_cam += 5;
     }
-    if (data->key.SQUAT)
+    else if (data->key.SQUAT)
     {
-        if (data->player.height_cam > 10)
+        if (data->player.height_cam > 16)
             data->player.height_cam -= 5;
+    }
+    else
+    {
+        if (data->player.height_cam > 32)
+            data->player.height_cam -= 5;
+        else if (data->player.height_cam < 32)
+            data->player.height_cam +=5;
     }
     return (0);
 }
@@ -116,7 +118,6 @@ int scan(t_data *data)
     mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
-	data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian);
     while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser

@@ -15,7 +15,6 @@
 
 int    key_press(int key, t_data *data)
 {
-	printf("key = %d\n", key);
 	if (key == ESC)
 	{
 		mlx_destroy_image(data->mlx.ptr, data->mlx.win); //TODO destroy toute les textures
