@@ -58,7 +58,8 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_up == TRUE)
     {
-        data->player.hdv -= 25;//(double)data->screen.size.y / 100;
+      //  if (data->player.hdv > 0)
+            data->player.hdv -= 25;//(double)data->screen.size.y / 100;
 
     }
     if (data->key.W == TRUE)
@@ -67,27 +68,15 @@ int add_params(t_data *data)
     }
     if (data->key.arrow_down == TRUE)
     {
-        data->player.hdv += 25;//(double)data->screen.size.y / 100;
+       // if (data->player.hdv < data->screen.size.y)
+            data->player.hdv += 25;//(double)data->screen.size.y / 100;
     }
     if (data->key.S == TRUE)
-    {
-		move_down(data, data->player.pov);
-    }
+	    move_down(data, data->player.pov);
     if (data->key.A == TRUE)
-    {
-        {
-         //   data->player.hdv += 25;
-        }
-       move_up(data, data->player.pov + M_PI_2);
-    }
+        move_up(data, data->player.pov + M_PI_2);
     if (data->key.D == TRUE)
-    {
-        if (data->player.height_cam > 5)
-        {
-           // data->player.hdv -= 25;
-        }
         move_up(data, data->player.pov - M_PI_2);
-    }
     if (data->key.incspeed)
     	(data->player.speed < 20) ? data->player.speed += 1 : 0;
     if (data->key.decspeed)

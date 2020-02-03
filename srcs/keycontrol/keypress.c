@@ -13,13 +13,21 @@
 
 #include "cub3d.h"
 
+void destroy(t_data *data)
+{
+	mlx_destroy_image(data->mlx.ptr, data->Ftex.img);
+	mlx_destroy_image(data->mlx.ptr, data->Vtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->Wtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->Rtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->image.img); //TODO destroy toute les textures
+	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
+	exit(1);
+}
+
 int    key_press(int key, t_data *data)
 {
 	if (key == ESC)
-	{
-		mlx_destroy_image(data->mlx.ptr, data->mlx.win); //TODO destroy toute les textures
-		exit(1);
-	}
+		destroy(data);
 	if (key == ARROW_LEFT || key == Q)
 		data->key.arrow_left = TRUE;
 	else if (key == ARROW_RIGHT || key == E)

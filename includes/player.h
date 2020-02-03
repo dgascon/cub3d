@@ -37,5 +37,6 @@ typedef struct	s_player
 
 int				key_press(int key, t_data *data);
 int				key_release(int key, t_data *data);
+void			destroy(t_data *data);
 
 #endif

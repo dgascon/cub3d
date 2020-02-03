@@ -81,6 +81,7 @@ int main(int ac, char **av)
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
+	mlx_hook(data.mlx.win, DestroyNotify, NoEventMask, destroy, &data);
 	mlx_loop(data.mlx.ptr);
 	return (EXIT_SUCCESS);
 }
