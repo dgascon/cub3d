@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   keypress.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 20:20:11 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:46:46 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,5 +50,7 @@ int    key_press(int key, t_data *data)
 		data->key.JUMP = TRUE;
 	else if (key == ALT_D)
 		data->key.SQUAT = TRUE;
+	else if (key == Z)
+		data->player.show_minimap = !data->player.show_minimap;
 	return (0);
 }
