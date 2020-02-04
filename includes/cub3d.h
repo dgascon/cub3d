@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 14:12:49 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:40:31 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,11 @@ typedef	struct 	s_data
 	int test;
 }				t_data;
 
-int scan(t_data *data);
-int move_up(t_data *data, float dir);
-int move_down(t_data *data, float dir);
+int 	scan(t_data *data);
+int 	move_up(t_data *data, float dir);
+int 	move_down(t_data *data, float dir);
+void	mlx_rect(t_data *data, t_coord pos, t_coord size, int colors);
+void    mlx_line(t_data *data, t_coord start, t_coord end, int colors);
+void	minimap(t_data *data, int width, int height);
+
 # endif
