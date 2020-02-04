@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   keyreleased.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:11:12 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 20:35:39 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:30:57 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ int    key_release(int key, t_data *data)
 	else if (key == LSHIFT)
 	{
 		data->key.incspeed = FALSE;
-		data->player.speed = 2;
+		data->player.speed = 10;
 	}
 	else if (key == D)
 		data->key.D = FALSE;

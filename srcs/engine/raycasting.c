@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 20:24:16 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:30:12 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ int add_params(t_data *data)
     if (data->key.incspeed)
     	(data->player.speed < 20) ? data->player.speed += 1 : 0;
     if (data->key.decspeed)
-		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
+		(data->player.speed > 10) ? data->player.speed -= 1 : 0;
     if (data->key.JUMP)
     {
         if (H == 0)
