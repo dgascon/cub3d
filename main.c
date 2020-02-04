@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 20:10:47 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:28:43 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,26 +16,18 @@
 
 int init_texture(t_data* data)
 {
-	data->Wtex = (t_image) {.bpp = 32,
-	.size_line = data->Wtex.bpp * BLOCK_SIZE, .endian = 0};
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.size, &data->Wtex.size)))
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/banana.xpm", &data->Wtex.size, &data->Wtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 		return (printf("erreur2"));
-	data->Ftex = (t_image) {.bpp = 32,
-	.size_line = data->Ftex.bpp * BLOCK_SIZE, .endian = 0};
 	if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Ftex.size, &data->Ftex.size)))
 		return (printf("erreur1"));
 	if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
 		return (printf("erreur2"));
-	data->Rtex = (t_image) {.bpp = 32,
-	.size_line = data->Rtex.bpp * BLOCK_SIZE, .endian = 0};
 	if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Rtex.size, &data->Rtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
 		return (printf("erreur2"));
-	data->Vtex = (t_image) {.bpp = 32,
-	.size_line = data->Vtex.bpp * 24, .endian = 0};
 	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.size, &data->Vtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
