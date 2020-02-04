@@ -20,18 +20,18 @@ typedef struct s_data t_data;
 typedef struct  s_raycast
 {
 	int			column;
-	double		alpha;
-	double		beta;
-	double		gamma;
-	double		dist;
-	double		dist_h;
+	float		alpha;
+	float		beta;
+	float		gamma;
+	float		dist;
+	float		dist_h;
 	char		face_detect;
-	t_d_coord	inter;
-	t_d_coord	interH;
-	double		delta_ang;
+	t_f_coord	inter;
+	t_f_coord	interH;
+	float		delta_ang;
 }               t_raycast;
-double	short_dist(t_data *data);
+float	short_dist(t_data *data);
 int		fill_column(t_data *data);
-double linear_intersec_h(t_data *data);
-double linear_intersec_v(t_data *data);
+float linear_intersec_h(t_data *data);
+float linear_intersec_v(t_data *data);
 #endif

@@ -15,7 +15,7 @@
 
 int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
 {
-	t_d_coord ratio;
+	t_f_coord ratio;
 	
 	ratio.y = ((data->Wtex.size  * wall_row) / height_proj_plane) % 64;
 	ratio.x = (data->raycast.face_detect == 'V') ? ((int)(data->raycast.inter.y) % 64) : ((int)(data->raycast.inter.x) % 64);
@@ -39,17 +39,17 @@ int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *v
 		if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 		{
 			data->raycast.gamma = data->raycast.alpha - (M_PI_2);
-			deltaY[0] = dist_mur_sol * cos(data->raycast.gamma);
-			deltaY[1] = dist_mur_plafond * cos(data->raycast.gamma);
+			deltaY[0] = dist_mur_sol * cosf(data->raycast.gamma);
+			deltaY[1] = dist_mur_plafond * cosf(data->raycast.gamma);
 		}
 		else
 		{
 			data->raycast.gamma = (data->pi.tPId) - data->raycast.alpha;
-			deltaY[0] = dist_mur_sol * cos(data->raycast.gamma) * -1;
-			deltaY[1] = dist_mur_plafond * cos(data->raycast.gamma) * -1;
+			deltaY[0] = dist_mur_sol * cosf(data->raycast.gamma) * -1;
+			deltaY[1] = dist_mur_plafond * cosf(data->raycast.gamma) * -1;
 		}
-		deltaX[0] = dist_mur_sol * sin(data->raycast.gamma);
-		deltaX[1] = dist_mur_plafond * sin(data->raycast.gamma);
+		deltaX[0] = dist_mur_sol * sinf(data->raycast.gamma);
+		deltaX[1] = dist_mur_plafond * sinf(data->raycast.gamma);
 	}
 	else
 	{
@@ -57,17 +57,17 @@ int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *v
 		{
 
 			data->raycast.gamma = M_PI - data->raycast.alpha ;
-			deltaX[0] = dist_mur_sol * cos(data->raycast.gamma);
-			deltaX[1] = dist_mur_plafond * cos(data->raycast.gamma);
+			deltaX[0] = dist_mur_sol * cosf(data->raycast.gamma);
+			deltaX[1] = dist_mur_plafond * cosf(data->raycast.gamma);
 		}
 		else
 		{
 			data->raycast.gamma = data->raycast.alpha - data->pi.dPI;
-			deltaX[0] = dist_mur_sol * cos(data->raycast.gamma) * -1;
-			deltaX[1] = dist_mur_plafond * cos(data->raycast.gamma) * -1;
+			deltaX[0] = dist_mur_sol * cosf(data->raycast.gamma) * -1;
+			deltaX[1] = dist_mur_plafond * cosf(data->raycast.gamma) * -1;
 		}
-		deltaY[0] = dist_mur_sol * sin(data->raycast.gamma);
-		deltaY[1] = dist_mur_plafond * sin(data->raycast.gamma);
+		deltaY[0] = dist_mur_sol * sinf(data->raycast.gamma);
+		deltaY[1] = dist_mur_plafond * sinf(data->raycast.gamma);
 	}
 	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % 64;
 	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % 64;
@@ -93,7 +93,7 @@ int fill_column(t_data *data)
 	int		toto;
 
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
-	height_proj_plane = floor(data->player.CST / data->raycast.dist); //REVIEW Optimisation
+	height_proj_plane = floorf(data->player.CST / data->raycast.dist); //REVIEW Optimisation
 	coef = (float)BLOCK_SIZE / data->player.height_cam; // coef de heigh-proj_plane
 	gnagna = (float)height_proj_plane/coef;
 	toto = height_proj_plane - gnagna;
@@ -122,6 +122,8 @@ int fill_column(t_data *data)
 	val_cst[3] = (data->player.dist_proj_plane / cosB) * (data->player.height_cam);
 	row = h_max;//permet d'avoir le sol correct quand il n'y a plus de mur 
 
+	int val1;
+	//TODO faire du cas par cas avec ceil only, floor only
 	if (row < crow)
 	{
 		// quand il y a plus de de sol que de plafond
@@ -130,7 +132,7 @@ int fill_column(t_data *data)
 		{
 			toto -= row;
 			val_cst[1] -= row;
-			row -= row;
+			row = 0;
 			crow = data->screen.size.y + 1;
 		}
 		while (row < data->screen.size.y)
@@ -148,20 +150,32 @@ int fill_column(t_data *data)
 	}
 	else
 	{
-		int val1;
+		if (crow < 0)
+		{
+			row = data->screen.size.y + 1;
+			toto-= crow;
+			val_cst[1] -= crow;
+			crow = 0;
+		}
+		if (row > data->screen.size.y)
+			printf("hellloooo");
 		while (crow < data->screen.size.y)
 		{
 			val1 = floor_color(data, val_cst, toto, &val2);
-			if (crow > 0)
-				*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
+			*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 			if (row <= data->screen.size.y)
 			{
 				*(int*)(add_opp + (row * data->image.size_line)) = val1; 
-				row++;
+			}
+			else if (data->raycast.column == 10)
+			{
+				// printf("row > scree size .y \n");
+				// printf("row = %d, crow = %d h_max = %d\n", row, crow, h_max);
 			}
 			crow++;
 			val_cst[1]++;
 			toto++;
+			row++;
 		}
 	}
 	return (0);

@@ -13,11 +13,11 @@
 
 #include "cub3d.h"
 
-double short_dist(t_data *data)
+float short_dist(t_data *data)
 {
-    double  dist_h;
-    double  dist_v;
-    double  correct_dist;
+    float  dist_h;
+    float  dist_v;
+    float  correct_dist;
     
     dist_v = linear_intersec_v(data);
     dist_h = linear_intersec_h(data);
@@ -37,7 +37,7 @@ double short_dist(t_data *data)
         data->raycast.beta = data->player.pov - data->raycast.alpha;
 	else
         data->raycast.beta = data->raycast.alpha - data->player.pov;
-    correct_dist *= (cos(data->raycast.beta));
+    correct_dist *= (cosf(data->raycast.beta));
     return(correct_dist);
 }
 int add_params(t_data *data)
@@ -84,12 +84,12 @@ int add_params(t_data *data)
     if (data->key.JUMP)
     {
         if (data->player.height_cam < 48)
-            data->player.height_cam += 5;
+            data->player.height_cam += 10;
     }
     else if (data->key.SQUAT)
     {
         if (data->player.height_cam > 16)
-            data->player.height_cam -= 5;
+            data->player.height_cam -= 10;
     }
     else
     {

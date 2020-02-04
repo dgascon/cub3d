@@ -26,6 +26,12 @@ typedef struct	s_d_coord
 	double	y;
 }				t_d_coord;
 
+typedef struct	s_f_coord
+{
+	float	x;
+	float	y;
+}				t_f_coord;
+
 int				ft_power(int nb, int power);
 int				ft_sqrt(int nb);
 double			ft_abs_d(double val);
