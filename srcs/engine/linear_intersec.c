@@ -48,6 +48,10 @@ float linear_intersec_v(t_data *data)
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
+		else if (data->world.map[grid.x][grid.y] == '2')
+		{
+			isin_lst(data->lst, grid);
+		}
 		intersec.x += offset.x;
 		intersec.y -= offset.y;
 	}

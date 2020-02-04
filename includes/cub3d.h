@@ -33,7 +33,11 @@ typedef struct s_pi
 	float dPI;
 	float tPId;
 }				t_pi;
-
+typedef struct s_lsprite
+{
+	t_coord pos;
+	void *next;
+}				t_lsprite;
 typedef	struct 	s_image
 {
 	void	*img;
@@ -75,6 +79,8 @@ typedef	struct 	s_data
 	t_image		Vtex;
 	t_key		key;
 	t_pi		pi;
+	t_image		barel;
+	t_lsprite	*lst;
 	int test;
 }				t_data;
 

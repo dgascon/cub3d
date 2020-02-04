@@ -32,6 +32,10 @@ int init_texture(t_data* data)
 		return (printf("erreur1"));
 	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
 		return (printf("erreur2"));
+	if (!(data->barel.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/baril.xpm", &data->barel.size, &data->barel.size)))
+		return (printf("erreur1"));
+	if (!(data->barel.add_image = mlx_get_data_addr(data->barel.img, &data->barel.bpp, &data->barel.size_line, &data->barel.endian)))
+		return (printf("erreur2"));
 	return (0);
 }
 
