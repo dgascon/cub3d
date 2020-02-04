@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   player.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:27:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 06:49:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:43:18 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,7 @@ typedef struct	s_player
 	float dist_proj_plane;
 	int		CST;
 	int		hdv;
+	enum e_boolean show_minimap;
 }				t_player;
 
 int				key_press(int key, t_data *data);
