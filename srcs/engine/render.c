@@ -13,12 +13,12 @@
 
 #include "cub3d.h"
 
-int	select_sprite_color(t_data *data, int height_proj_plane, int wall_row)
+int	select_sprite_color(t_data *data, float size_div_height, int wall_row)
 {
 	t_f_coord ratio;
 	
-	ratio.y = ((data->Wtex.size  * wall_row) / height_proj_plane) % 64;
-	ratio.x = (data->raycast.face_detect == 'V') ? ((int)(data->raycast.inter.y) % 64) : ((int)(data->raycast.inter.x) % 64);
+	ratio.y = (int)(size_div_height * wall_row) % data->Wtex.size;
+	ratio.x = (data->raycast.face_detect == 'V') ? ((int)(data->raycast.inter.y) % data->Wtex.size) : ((int)(data->raycast.inter.x) % data->Wtex.size);
 	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(ratio.y)) + ((int)ratio.x * sizeof(int))));
 }
 
@@ -30,44 +30,49 @@ int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *v
 	float dist_mur_plafond;
 	float deltaY[2];
 	float deltaX[2];
+	t_f_coord sincos;
 
 	dist_mur_plafond = calc_const[0] - (calc_const[2] / height_proj_plane);
 	dist_mur_sol = calc_const[0] - (calc_const[3] / calc_const[1]);
-
+	sincos.x = 0;
+	sincos.y = 0;
 	if (data->raycast.face_detect == 'H')
 	{
 		if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 		{
 			data->raycast.gamma = data->raycast.alpha - (M_PI_2);
-			deltaY[0] = dist_mur_sol * cosf(data->raycast.gamma);
-			deltaY[1] = dist_mur_plafond * cosf(data->raycast.gamma);
+			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+			deltaY[0] = dist_mur_sol * sincos.y;
+			deltaY[1] = dist_mur_plafond * sincos.y;
 		}
 		else
 		{
 			data->raycast.gamma = (data->pi.tPId) - data->raycast.alpha;
-			deltaY[0] = dist_mur_sol * cosf(data->raycast.gamma) * -1;
-			deltaY[1] = dist_mur_plafond * cosf(data->raycast.gamma) * -1;
+			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+			deltaY[0] = dist_mur_sol * sincos.y * -1;
+			deltaY[1] = dist_mur_plafond * sincos.y * -1;
 		}
-		deltaX[0] = dist_mur_sol * sinf(data->raycast.gamma);
-		deltaX[1] = dist_mur_plafond * sinf(data->raycast.gamma);
+		deltaX[0] = dist_mur_sol * sincos.x;
+		deltaX[1] = dist_mur_plafond * sincos.x;
 	}
 	else
 	{
 		if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < data->pi.tPId)
 		{
-
 			data->raycast.gamma = M_PI - data->raycast.alpha ;
-			deltaX[0] = dist_mur_sol * cosf(data->raycast.gamma);
-			deltaX[1] = dist_mur_plafond * cosf(data->raycast.gamma);
+			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+			deltaX[0] = dist_mur_sol * sincos.y;
+			deltaX[1] = dist_mur_plafond * sincos.y;
 		}
 		else
 		{
 			data->raycast.gamma = data->raycast.alpha - data->pi.dPI;
-			deltaX[0] = dist_mur_sol * cosf(data->raycast.gamma) * -1;
-			deltaX[1] = dist_mur_plafond * cosf(data->raycast.gamma) * -1;
+			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+			deltaX[0] = dist_mur_sol * sincos.y * -1;
+			deltaX[1] = dist_mur_plafond * sincos.y * -1;
 		}
-		deltaY[0] = dist_mur_sol * sinf(data->raycast.gamma);
-		deltaY[1] = dist_mur_plafond * sinf(data->raycast.gamma);
+		deltaY[0] = dist_mur_sol * sincos.x;
+		deltaY[1] = dist_mur_plafond * sincos.x;
 	}
 	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % 64;
 	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % 64;
@@ -75,6 +80,23 @@ int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *v
 	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % 64;
 	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));	
 	return (*(int*)(data->Ftex.add_image + (data->Ftex.size_line * sol.y) + (sol.x * sizeof(int))));
+}
+
+void	print_only_ceil(t_data *data, float val_cst[4], int toto)
+{
+	int val2;
+	char *add_opp;
+	int crow = 0;
+
+	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
+	while (crow < data->screen.size.y)
+	{
+		floor_color(data, val_cst, toto, &val2);
+		*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
+		crow++;
+		val_cst[1]++;
+		toto++;
+	}
 }
 
 int fill_column(t_data *data)
@@ -107,9 +129,10 @@ int fill_column(t_data *data)
 	h_max = data->player.hdv + gnagna;
 	if (h_max > data->screen.size.y)
 		h_max = data->screen.size.y;
+	float racourcis = (float)data->Wtex.size / height_proj_plane;
 	while (row < h_max) //REVIEW Optimisation
 	{
-		*(int*)(add_opp + (row * data->image.size_line)) = select_sprite_color(data, height_proj_plane, wall_row); //RGB
+		*(int*)(add_opp + (row * data->image.size_line)) = select_sprite_color(data, racourcis, wall_row); //RGB
 		row++;
 		wall_row++;
 	}
@@ -152,30 +175,23 @@ int fill_column(t_data *data)
 	{
 		if (crow < 0)
 		{
-			row = data->screen.size.y + 1;
-			toto-= crow;
+			toto -= crow;
 			val_cst[1] -= crow;
-			crow = 0;
+			print_only_ceil(data, val_cst, toto);
+			return (0);
 		}
-		if (row > data->screen.size.y)
-			printf("hellloooo");
 		while (crow < data->screen.size.y)
 		{
 			val1 = floor_color(data, val_cst, toto, &val2);
 			*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 			if (row <= data->screen.size.y)
 			{
-				*(int*)(add_opp + (row * data->image.size_line)) = val1; 
-			}
-			else if (data->raycast.column == 10)
-			{
-				// printf("row > scree size .y \n");
-				// printf("row = %d, crow = %d h_max = %d\n", row, crow, h_max);
+				*(int*)(add_opp + (row * data->image.size_line)) = val1;
+				row++;
 			}
 			crow++;
 			val_cst[1]++;
 			toto++;
-			row++;
 		}
 	}
 	return (0);

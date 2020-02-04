@@ -35,20 +35,18 @@ float linear_intersec_v(t_data *data)
 	{
 		grid.y = floorf(intersec.x / BLOCK_SIZE);
 		grid.x = floorf(intersec.y / BLOCK_SIZE);
-		// if (grid.y < 0)
-		// 	grid.y = 0;
 		if (grid.x < 0)
 			grid.x = 0;
-		// if (grid.y > data->world.size.x - 1)
-		// 	grid.y = data->world.size.x - 1;
 		if (grid.x > data->world.size.y - 1)
 			grid.x = data->world.size.y - 1;
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
-			return(sqrt(pow(data->player.pos.x - intersec.x, 2) +
-						 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
+			// return(sqrt(pow(data->player.pos.x - intersec.x, 2) +
+			// pow(data->player.pos.y - intersec.y, 2)));
+			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
+			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
 		intersec.x += offset.x;
 		intersec.y -= offset.y;
@@ -80,15 +78,15 @@ float linear_intersec_h(t_data *data)
 		grid.y = floorf(intersec.x / BLOCK_SIZE);
 		grid.x = floorf(intersec.y / BLOCK_SIZE);
 		(grid.y < 0) ? grid.y = 0 : 0;
-		// (grid.x < 0) ? grid.x = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
-		// (grid.x > data->world.size.y - 1) ? grid.x = data->world.size.y - 1 : 0;
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.interH.x = intersec.x;
 			data->raycast.interH.y = intersec.y;
-			return (sqrt(pow(data->player.pos.x - intersec.x, 2) +
-						 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
+			// return (sqrt(pow(data->player.pos.x - intersec.x, 2) +
+			// 			 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
+			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
+			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
 		intersec.x += offset.x;
 		intersec.y += offset.y;

@@ -18,7 +18,7 @@ int init_texture(t_data* data)
 {
 	data->Wtex = (t_image) {.bpp = 32,
 	.size_line = data->Wtex.bpp * BLOCK_SIZE, .endian = 0};
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/bricks64.xpm", &data->Wtex.size, &data->Wtex.size)))
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.size, &data->Wtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 		return (printf("erreur2"));

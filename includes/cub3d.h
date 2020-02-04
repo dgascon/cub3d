@@ -30,8 +30,8 @@ typedef struct	s_mlx
 
 typedef struct s_pi
 {
-	double dPI;
-	double tPId;
+	float dPI;
+	float tPId;
 }				t_pi;
 
 typedef	struct 	s_image
@@ -79,6 +79,6 @@ typedef	struct 	s_data
 }				t_data;
 
 int scan(t_data *data);
-int move_up(t_data *data, double dir);
-int move_down(t_data *data, double dir);
+int move_up(t_data *data, float dir);
+int move_down(t_data *data, float dir);
 # endif

@@ -42,6 +42,7 @@ float short_dist(t_data *data)
 }
 int add_params(t_data *data)
 {
+    static int H = 0;
     if (data->key.arrow_left == TRUE)
     {
         data->player.pov += 0.1;
@@ -83,20 +84,28 @@ int add_params(t_data *data)
 		(data->player.speed > 2) ? data->player.speed -= 1 : 0;
     if (data->key.JUMP)
     {
-        if (data->player.height_cam < 48)
-            data->player.height_cam += 10;
+        if (H == 0)
+            H = 1;
     }
-    else if (data->key.SQUAT)
+    if (data->key.SQUAT)
     {
-        if (data->player.height_cam > 16)
-            data->player.height_cam -= 10;
-    }
-    else
-    {
-        if (data->player.height_cam > 32)
+        if (data->player.height_cam > 22 && H == 0)
             data->player.height_cam -= 5;
-        else if (data->player.height_cam < 32)
-            data->player.height_cam +=5;
+    }
+    else if (H == 0)
+        data->player.height_cam = 32;
+    
+    if (H == 1)
+    {
+        data->player.height_cam += 5;
+        if (data->player.height_cam > 48)
+            H = 2;
+    }
+    else if (H == 2)
+    {
+        data->player.height_cam -= 5;
+        if (data->player.height_cam == 32)
+            H = 0;
     }
     return (0);
 }

@@ -25,12 +25,12 @@ typedef struct s_data t_data;
 
 typedef struct	s_player
 {
-	double	fov; //ANCHOR Field of view | Largeur de la vue
-	double	pov; //ANCHOR Point of view | Angle de vue
+	float	fov; //ANCHOR Field of view | Largeur de la vue
+	float	pov; //ANCHOR Point of view | Angle de vue
 	int		height_cam;
 	t_coord	pos;
 	int		speed;
-	double dist_proj_plane;
+	float dist_proj_plane;
 	int		CST;
 	int		hdv;
 }				t_player;
