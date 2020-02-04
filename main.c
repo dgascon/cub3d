@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 19:28:43 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 19:47:14 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 
 int init_texture(t_data* data)
 {
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/banana.xpm", &data->Wtex.size, &data->Wtex.size)))
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.size, &data->Wtex.size)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 		return (printf("erreur2"));
