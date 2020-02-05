@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 19:47:14 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 20:33:35 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ int init_texture(t_data* data)
 		return (EXIT_FAILURE);
 	if (!(data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian)))
 		return (EXIT_FAILURE);
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/banana.xpm", &data->Wtex.sizex, &data->Wtex.sizey)))
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.sizex, &data->Wtex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 		return (printf("erreur2"));
@@ -50,7 +50,7 @@ int main(int ac, char **av)
 	(void)av;
 	if (ac <= 1)
 	{
-		printf("Map manquante !");
+		ft_printf("Map manquante !");
 		return (EXIT_FAILURE);
 	} 
 	data.player = (t_player){.fov = M_PI /3, .height_cam = 32, .speed = 10};
@@ -63,18 +63,15 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
-	data.image = (t_image) {.bpp = 32,
-	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
+	// data.image = (t_image) {.bpp = 32,
+	// .size_line = data.image.bpp * data.screen.size.x, .endian = 0};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
 	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
-	data.key = (t_key){.arrow_left = FALSE, .arrow_right = FALSE, .arrow_up = FALSE, .arrow_down = FALSE,
-	 .incspeed = FALSE, .decspeed = FALSE, .D = FALSE, .A = FALSE, .S = FALSE, .W = FALSE};
-	data.pi = (t_pi){.dPI = 2 * M_PI, .tPId = 3*M_PI/2};
+	data.actions = (t_actions){};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
 	data.lst = lsprite_new((t_coord){.x = 3, .y = 1});
-	printf("before seg?\n");
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
