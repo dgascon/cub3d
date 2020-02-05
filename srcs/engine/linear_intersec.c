@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   linear_intersec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/21 07:48:05 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:39:59 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ float linear_intersec_v(t_data *data)
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
 		offset.x = -(BLOCK_SIZE);
-		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;//REVIEW CHECK FNCT FLOOR
+		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
 	}
 	else
 	{
@@ -50,7 +50,7 @@ float linear_intersec_v(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] == '2')
 		{
-			printf("obj detect\n");
+			// printf("obj detectV\n");
 			set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
@@ -65,7 +65,7 @@ float linear_intersec_h(t_data *data)
 	t_f_coord	offset;
 	t_coord		grid;
 
-	offset.x = BLOCK_SIZE / tanf(data->raycast.alpha); // REVIEW optimisation
+	offset.x = BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
 		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
@@ -92,6 +92,11 @@ float linear_intersec_h(t_data *data)
 			// 			 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
+		}
+		else if (data->world.map[grid.x][grid.y] == '2')
+		{
+			// printf("obj detectH\n");
+			set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
 		intersec.y += offset.y;
