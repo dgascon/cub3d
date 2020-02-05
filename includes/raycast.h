@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycast.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/13 11:52:37 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/20 19:29:02 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 19:02:18 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,8 +30,9 @@ typedef struct  s_raycast
 	t_f_coord	interH;
 	float		delta_ang;
 }               t_raycast;
-float	short_dist(t_data *data);
-int		fill_column(t_data *data);
-float linear_intersec_h(t_data *data);
-float linear_intersec_v(t_data *data);
+
+float			short_dist(t_data *data);
+int				fill_column(t_data *data);
+float			linear_intersec_h(t_data *data);
+float			linear_intersec_v(t_data *data);
 #endif
