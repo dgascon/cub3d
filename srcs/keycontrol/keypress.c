@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 17:18:01 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 19:22:12 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,27 +18,27 @@ int    key_press(int key, t_data *data)
 	if (key == ESC)
 		destroy(data);
 	if (key == ARROW_LEFT || key == Q)
-		data->key.arrow_left = TRUE;
+		data->actions.lookleft = TRUE;
 	else if (key == ARROW_RIGHT || key == E)
-		data->key.arrow_right = TRUE;
+		data->actions.lookright = TRUE;
 	else if (key == ARROW_UP)
-		data->key.arrow_up = TRUE;
+		data->actions.lookup = TRUE;
 	else if (key == ARROW_DOWN)
-		data->key.arrow_down = TRUE;
+		data->actions.lookdown = TRUE;
 	else if (key == LSHIFT)
-		data->key.incspeed = TRUE;
+		data->actions.speed = TRUE;
 	else if (key == D)
-		data->key.D = TRUE;
+		data->actions.rightward = TRUE;
 	else if (key == A)
-		data->key.A = TRUE;
+		data->actions.leftward = TRUE;
 	else if (key == W)
-		data->key.W = TRUE;
+		data->actions.forward = TRUE;
 	else if (key == S)
-		data->key.S = TRUE;
+		data->actions.backward = TRUE;
 	else if (key == SHIFT_D)
-		data->key.JUMP = TRUE;
+		data->actions.jump = TRUE;
 	else if (key == ALT_D)
-		data->key.SQUAT = TRUE;
+		data->actions.crouching = TRUE;
 	else if (key == Z)
 		data->player.show_minimap = !data->player.show_minimap;
 	return (0);
