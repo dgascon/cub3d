@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 19:40:31 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 20:29:30 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,23 +16,19 @@
 # include "../libft/includes/libft.h"
 # include "../libmlx/mlx.h"
 # include <math.h>
-#include <pthread.h>
 # include "screen.h"
 # include "world.h"
 # include "player.h"
 # include "raycast.h"
+
+# define _2PI 2 * M_PI
+# define _3PI_2 3 * M_PI_2
 
 typedef struct	s_mlx
 {
 	void	*ptr;
 	void	*win;
 }				t_mlx;
-
-typedef struct s_pi
-{
-	float dPI;
-	float tPId;
-}				t_pi;
 
 typedef struct s_lsprite
 {
@@ -54,21 +50,20 @@ typedef	struct 	s_image
 	int		sizey;
 }				t_image;
 
-typedef	struct 	s_key
+typedef	struct 	s_actions
 {
-	enum e_boolean arrow_left;
-	enum e_boolean arrow_right;
-	enum e_boolean arrow_up;
-	enum e_boolean arrow_down;
-	enum e_boolean incspeed;
-	enum e_boolean decspeed;
-	enum e_boolean D;
-	enum e_boolean A;
-	enum e_boolean S;
-	enum e_boolean W;
-	enum e_boolean SQUAT;
-	enum e_boolean JUMP;
-}				t_key;
+	enum e_boolean forward;
+	enum e_boolean backward;
+	enum e_boolean leftward;
+	enum e_boolean rightward;
+	enum e_boolean lookleft;
+	enum e_boolean lookright;
+	enum e_boolean lookup;
+	enum e_boolean lookdown;
+	enum e_boolean speed;
+	enum e_boolean crouching;
+	enum e_boolean jump;
+}				t_actions;
 
 typedef	struct 	s_data
 {
@@ -82,21 +77,19 @@ typedef	struct 	s_data
 	t_image		Ftex;
 	t_image		Rtex;
 	t_image		Vtex;
-	t_key		key;
-	t_pi		pi;
+	t_actions	actions;
 	t_image		barel;
 	t_lsprite	*lst;
 	int test;
 }				t_data;
 
-int 	scan(t_data *data);
-int 	move_up(t_data *data, float dir);
-int 	move_down(t_data *data, float dir);
-void	mlx_rect(t_data *data, t_coord pos, t_coord size, int colors);
-void    mlx_line(t_data *data, t_coord start, t_coord end, int colors);
-void	minimap(t_data *data, int width, int height);
-t_lsprite	*lsprite_new(t_coord pos);
-int set_visible(t_lsprite *list, t_coord grid);
-
+void			mlx_rect(t_data *data, t_coord pos, t_coord size, int colors);
+void    		mlx_line(t_data *data, t_coord start, t_coord end, int colors);
+int 			scan(t_data *data);
+void    		actionscontrol(t_data *data);
+void			minimap(t_data *data, int width, int height);
+t_lsprite		*lsprite_new(t_coord pos);
+int				set_visible(t_lsprite *list, t_coord grid);
+void			print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max);
 
 # endif
