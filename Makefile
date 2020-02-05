@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/04 20:07:19 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/05 19:25:57 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,9 +20,11 @@ PATH_INC		=	includes
 PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
-					engine/mlx_geometrical.c										\
+					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
 					parsing/parse.c	parsing/minimap.c								\
-					move.c keycontrol/keypress.c keycontrol/keyreleased.c			\
+					move.c 															\
+					keycontrol/actionscontrol.c keycontrol/keypress.c				\
+					keycontrol/keyreleased.c										\
 					garbage.c lst.c
 
 INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
