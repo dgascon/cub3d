@@ -132,7 +132,7 @@ int	parsefile(t_data *data, char *file)
 	close(gnl.fd);
 	if (data->player.pos.x == 0 && data->player.pos.y == 0)
 	{
-		ft_printf("Aucune joueur sur la carte\n");
+		ft_printf("Aucun joueur sur la carte\n");
 		freemap(data, 0);
 		free(data->world.map);
 		return (-1);

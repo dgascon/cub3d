@@ -21,24 +21,33 @@ t_lsprite	*lsprite_new(t_coord pos)
 		return (0);
 	ptr->pos.x = pos.x;
     ptr->pos.y = pos.y;
+    ptr->printed = 0;
+    ptr->visible = 0;
 	ptr->next = NULL;
 	return (ptr);
 }
 
-int isin_lst(t_lsprite *list, t_coord grid)
+int set_visible(t_lsprite *list, t_coord grid)
 {
     t_lsprite *lst;
 
     lst = list;
     if (lst == NULL)
-        lst = lsprite_new(grid);
+        return (-1);
     while (lst->next != NULL)
     {
         if (lst->pos.x == grid.x && lst->pos.y == grid.y)
+        {
+            lst->visible = 1;
             return (1);
+        }
         lst = lst->next;
     }
     if (lst->pos.x == grid.x && lst->pos.y == grid.y)
-            return (1);
-    return (0);
+    {
+        printf("detected and set\n");
+        lst->visible = 1;
+        return (1);
+    }
+    return (-1);
 }

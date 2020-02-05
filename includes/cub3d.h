@@ -33,11 +33,15 @@ typedef struct s_pi
 	float dPI;
 	float tPId;
 }				t_pi;
+
 typedef struct s_lsprite
 {
 	t_coord pos;
+	int		visible;
+	int		printed;
 	void *next;
 }				t_lsprite;
+
 typedef	struct 	s_image
 {
 	void	*img;
@@ -91,5 +95,8 @@ int 	move_down(t_data *data, float dir);
 void	mlx_rect(t_data *data, t_coord pos, t_coord size, int colors);
 void    mlx_line(t_data *data, t_coord start, t_coord end, int colors);
 void	minimap(t_data *data, int width, int height);
+t_lsprite	*lsprite_new(t_coord pos);
+int set_visible(t_lsprite *list, t_coord grid);
+
 
 # endif

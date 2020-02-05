@@ -116,6 +116,7 @@ int scan(t_data *data)
     mlx_clear_window(data->mlx.ptr, data->mlx.win);
     data->raycast.column = data->screen.size.x;
     data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
+    printf("seg_in_while\n");
     while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
@@ -124,9 +125,11 @@ int scan(t_data *data)
 		if (data->raycast.alpha < 0)
 			data->raycast.alpha += data->pi.dPI; // REVIEW optimiser
 		data->raycast.dist = short_dist(data);
+        printf("seg in fillcilumn\n");
 		fill_column(data);
         data->raycast.column--;
 	}
+    printf("seg_after_while\n");
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
     mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->Vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
     if (data->player.show_minimap)

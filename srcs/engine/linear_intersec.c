@@ -50,7 +50,8 @@ float linear_intersec_v(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] == '2')
 		{
-			isin_lst(data->lst, grid);
+			printf("obj detect\n");
+			set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
 		intersec.y -= offset.y;

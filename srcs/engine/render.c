@@ -13,15 +13,15 @@
 
 #include "cub3d.h"
 
-int	select_sprite_color(t_data *data, float size_div_height, int wall_row)
+int	select_sprite_color(t_data *data, float proprtion, int wall_row)
 {
 	t_coord ratio;
 	
 	float G;
 	G = (float)data->Wtex.sizex / 64;
-	ratio.y = (int)(size_div_height * wall_row) % data->Wtex.sizey;
-	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * G)  % data->Wtex.sizex : (int)(data->raycast.inter.x * G) % data->Wtex.sizex;
-	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(ratio.y)) + ((int)ratio.x * sizeof(int))));
+	ratio.y = (int)(proprtion * wall_row) % data->Wtex.sizey;
+	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * G) % data->Wtex.sizex : (int)(data->raycast.inter.x * G) % data->Wtex.sizex;
+	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * (ratio.y)) + (ratio.x * sizeof(int))));
 }
 
 int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *val2)
@@ -132,12 +132,15 @@ int fill_column(t_data *data)
 	if (h_max > data->screen.size.y)
 		h_max = data->screen.size.y;
 	float racourcis = (float)data->Wtex.sizey / height_proj_plane;
+			printf("seg in wall while\n");
+
 	while (row < h_max) //REVIEW Optimisation
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_sprite_color(data, racourcis, wall_row); //RGB
 		row++;
 		wall_row++;
 	}
+	printf("seg in floor/ceil_csting\n");
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 
 	cosB = cosf(data->raycast.beta); 

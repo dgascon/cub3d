@@ -16,6 +16,10 @@
 
 int init_texture(t_data* data)
 {
+	if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x, data->screen.size.y)))
+		return (EXIT_FAILURE);
+	if (!(data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian)))
+		return (EXIT_FAILURE);
 	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/banana.xpm", &data->Wtex.sizex, &data->Wtex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
@@ -69,11 +73,8 @@ int main(int ac, char **av)
 	data.pi = (t_pi){.dPI = 2 * M_PI, .tPId = 3*M_PI/2};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
-	if (!(data.image.img = mlx_new_image(data.mlx.ptr, data.screen.size.x, data.screen.size.y)))
-		return (EXIT_FAILURE);
-
-	if (!(data.image.add_image = mlx_get_data_addr(data.image.img, &data.image.bpp, &data.image.size_line, &data.image.endian)))
-		return (EXIT_FAILURE);
+	data.lst = lsprite_new((t_coord){.x = 3, .y = 1});
+	printf("before seg?\n");
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
