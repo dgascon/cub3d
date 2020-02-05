@@ -16,23 +16,23 @@
 
 int init_texture(t_data* data)
 {
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.size, &data->Wtex.size)))
+	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/banana.xpm", &data->Wtex.sizex, &data->Wtex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Ftex.size, &data->Ftex.size)))
+	if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Ftex.sizex, &data->Ftex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Rtex.size, &data->Rtex.size)))
+	if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Rtex.sizex, &data->Rtex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.size, &data->Vtex.size)))
+	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.sizex, &data->Vtex.sizey)))
 		return (printf("erreur1"));
 	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->barel.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/baril.xpm", &data->barel.size, &data->barel.size)))
+	if (!(data->barel.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/baril.xpm", &data->barel.sizex, &data->barel.sizey)))
 		return (printf("erreur1"));
 	if (!(data->barel.add_image = mlx_get_data_addr(data->barel.img, &data->barel.bpp, &data->barel.size_line, &data->barel.endian)))
 		return (printf("erreur2"));
@@ -61,8 +61,8 @@ int main(int ac, char **av)
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.image = (t_image) {.bpp = 32,
 	.size_line = data.image.bpp * data.screen.size.x, .endian = 0};
-	data.player.dist_proj_plane = ((double)(data.screen.size.x) / 2) / tan(data.player.fov / 2);
-	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane) ;
+	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
+	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
 	data.key = (t_key){.arrow_left = FALSE, .arrow_right = FALSE, .arrow_up = FALSE, .arrow_down = FALSE,
 	 .incspeed = FALSE, .decspeed = FALSE, .D = FALSE, .A = FALSE, .S = FALSE, .W = FALSE};

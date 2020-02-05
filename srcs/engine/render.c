@@ -15,10 +15,12 @@
 
 int	select_sprite_color(t_data *data, float size_div_height, int wall_row)
 {
-	t_f_coord ratio;
+	t_coord ratio;
 	
-	ratio.y = (int)(size_div_height * wall_row) % data->Wtex.size;
-	ratio.x = (data->raycast.face_detect == 'V') ? ((int)(data->raycast.inter.y) % data->Wtex.size) : ((int)(data->raycast.inter.x) % data->Wtex.size);
+	float G;
+	G = (float)data->Wtex.sizex / 64;
+	ratio.y = (int)(size_div_height * wall_row) % data->Wtex.sizey;
+	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * G)  % data->Wtex.sizex : (int)(data->raycast.inter.x * G) % data->Wtex.sizex;
 	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * (int)(ratio.y)) + ((int)ratio.x * sizeof(int))));
 }
 
@@ -74,10 +76,10 @@ int floor_color(t_data *data, float calc_const[2], int height_proj_plane, int *v
 		deltaY[0] = dist_mur_sol * sincos.x;
 		deltaY[1] = dist_mur_plafond * sincos.x;
 	}
-	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % 64;
-	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % 64;
-	ceil.x = (int)(data->raycast.inter.x + deltaX[1]) % 64;
-	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % 64;
+	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % data->Ftex.sizex;
+	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % data->Ftex.sizey;
+	ceil.x = (int)(data->raycast.inter.x + deltaX[1]) % data->Rtex.sizex;
+	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % data->Rtex.sizey;
 	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));	
 	return (*(int*)(data->Ftex.add_image + (data->Ftex.size_line * sol.y) + (sol.x * sizeof(int))));
 }
@@ -108,7 +110,7 @@ int fill_column(t_data *data)
 	int wall_row = 0;
 	char *add_opp;
 	int gnagna;
-	float coef;
+	float coefcam;
 	int h_max;
 	float cosB;
 	float val_cst[4];
@@ -116,8 +118,8 @@ int fill_column(t_data *data)
 
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = floorf(data->player.CST / data->raycast.dist); //REVIEW Optimisation
-	coef = (float)BLOCK_SIZE / data->player.height_cam; // coef de heigh-proj_plane
-	gnagna = (float)height_proj_plane/coef;
+	coefcam = (float)BLOCK_SIZE / data->player.height_cam; // coefcam de heigh-proj_plane
+	gnagna = (float)height_proj_plane/coefcam;
 	toto = height_proj_plane - gnagna;
 	row = data->player.hdv - toto;//REVIEW Optimisation
 	crow = data->screen.size.y - row;
@@ -129,7 +131,7 @@ int fill_column(t_data *data)
 	h_max = data->player.hdv + gnagna;
 	if (h_max > data->screen.size.y)
 		h_max = data->screen.size.y;
-	float racourcis = (float)data->Wtex.size / height_proj_plane;
+	float racourcis = (float)data->Wtex.sizey / height_proj_plane;
 	while (row < h_max) //REVIEW Optimisation
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_sprite_color(data, racourcis, wall_row); //RGB

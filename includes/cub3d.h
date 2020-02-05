@@ -46,7 +46,8 @@ typedef	struct 	s_image
 	int		size_line;
 	int 	endian;
 	int 	colors;
-	int		size;
+	int		sizex;
+	int		sizey;
 }				t_image;
 
 typedef	struct 	s_key
