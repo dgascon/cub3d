@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:27:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:16:25 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:40:32 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,8 +37,8 @@ typedef struct	s_player
 	enum e_boolean show_minimap;
 }				t_player;
 
-void			key_press(int key, t_data *data);
-void			key_release(int key, t_data *data);
+int				key_press(int key, t_data *data);
+int				key_release(int key, t_data *data);
 int				destroy(t_data *data);
 void			move(t_data *data, float direction);
 #endif
