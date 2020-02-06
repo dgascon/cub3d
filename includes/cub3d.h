@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 20:29:30 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 19:18:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,6 +79,7 @@ typedef	struct 	s_data
 	t_image		Ftex;
 	t_image		Rtex;
 	t_image		Vtex;
+	t_image		minimap;
 	t_actions	actions;
 	t_image		barel;
 	t_lsprite	*lst;
