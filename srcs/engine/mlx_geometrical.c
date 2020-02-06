@@ -6,14 +6,14 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 11:20:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 19:40:38 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 20:08:03 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	mlx_rect(t_data *data, t_coord pos, t_coord size, int colors)
+void	mlx_rect(t_image *image, t_coord pos, t_coord size, int colors)
 {
 	t_coord tmp;
 
@@ -23,7 +23,9 @@ void	mlx_rect(t_data *data, t_coord pos, t_coord size, int colors)
 		tmp.x = 0;
 		while (tmp.x < size.x)
 		{
-			mlx_pixel_put(data->mlx.ptr, data->mlx.win, tmp.x + pos.x, tmp.y + pos.y, colors);
+			// printf("%d\n", tmp.x);
+			*(int*)(image->add_image + (tmp.x + pos.x) * sizeof(int) +
+				((tmp.y + pos.y) * image->size_line)) = colors;
 			tmp.x++;
 		}
 		tmp.y++;
