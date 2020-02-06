@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:16:04 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:19:52 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,5 +41,4 @@ void    key_press(int key, t_data *data)
 		data->actions.crouching = TRUE;
 	else if (key == Z)
 		data->player.show_minimap = !data->player.show_minimap;
-	return (0);
 }
