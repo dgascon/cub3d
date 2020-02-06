@@ -6,19 +6,13 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:26:39 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:56:40 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * @brief  test
- * @note   Prout
- * @param  *data: 
- * @retval None
- */
 void		lookcontrol(t_data *data)
 {
 	if (data->actions.lookleft == TRUE)
@@ -99,7 +93,7 @@ void		actionscontrol(t_data *data)
 	(data->actions.backward) ? move(data, data->player.pov - M_PI) : 0;
 	(data->actions.leftward) ? move(data, data->player.pov + M_PI_2) : 0;
 	(data->actions.rightward) ? move(data, data->player.pov - M_PI_2) : 0;
-	if (data->actions.jump)
+	if (data->actions.jump && !data->actions.crouching)
 		(state_height_cam == 0) ? state_height_cam = 1 : 0;
 	if (data->actions.crouching)
 	{
