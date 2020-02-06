@@ -49,11 +49,13 @@ int scan(t_data *data)
 	data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
 	while (data->raycast.column >= 0)
 	{
+
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
 		if (data->raycast.alpha >= _2PI) // REVIEW optimiser
 			data->raycast.alpha -= _2PI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)
 			data->raycast.alpha += _2PI; // REVIEW optimiser
+
 		data->raycast.dist = short_dist(data);
 		fill_column(data);
 		data->raycast.column--;

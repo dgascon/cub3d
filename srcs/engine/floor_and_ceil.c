@@ -143,7 +143,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 			print_only_ceil(data, val_cst, toto);
 			return ;
 		}
-		while (crow < data->screen.size.y)
+		while (crow <= data->screen.size.y)
 		{
 			val1 = floor_and_ceil_color(data, val_cst, toto, &val2);
 			// printf("5\n");

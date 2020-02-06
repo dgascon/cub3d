@@ -33,8 +33,10 @@ typedef struct	s_mlx
 typedef struct s_lsprite
 {
 	t_coord pos;
+	t_coord grd;
 	int		visible;
 	int		printed;
+	float	dist;
 	void *next;
 }				t_lsprite;
 
@@ -90,6 +92,7 @@ void    		actionscontrol(t_data *data);
 void			minimap(t_data *data, int width, int height);
 t_lsprite		*lsprite_new(t_coord pos);
 int				set_visible(t_lsprite *list, t_coord grid);
+t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 void			print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max);
 
 # endif

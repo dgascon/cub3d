@@ -19,8 +19,10 @@ t_lsprite	*lsprite_new(t_coord pos)
 
 	if (!(ptr = malloc(sizeof(t_lsprite))))
 		return (0);
-	ptr->pos.x = pos.x;
-    ptr->pos.y = pos.y;
+	ptr->grd.x = pos.x;
+    ptr->grd.y = pos.y;
+    ptr->pos.x = (pos.x * 64) + 32;
+    ptr->pos.y = (pos.y * 64) + 32;
     ptr->printed = 0;
     ptr->visible = 0;
 	ptr->next = NULL;
@@ -50,4 +52,26 @@ int set_visible(t_lsprite *list, t_coord grid)
         return (1);
     }
     return (-1);
+}
+
+t_lsprite *pick_object(t_lsprite *list, t_coord grid)
+{
+    t_lsprite *lst;
+
+    lst = list;
+    if (lst == NULL)
+        return (NULL);
+    while (lst->next != NULL)
+    {
+        if (lst->grd.x == grid.y && lst->grd.y == grid.x)
+        {
+            return (lst);
+        }
+        lst = lst->next;
+    }
+    if (lst->grd.x == grid.y && lst->grd.y == grid.x)
+    {
+        return (lst);
+    }
+    return (NULL);
 }

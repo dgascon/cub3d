@@ -24,7 +24,24 @@ int	select_sprite_color(t_data *data, float proprtion, int wall_row)
 	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
 
+void	print_sprite(t_data *data)
+{
+	int row;
 
+	row = data->screen.size.y /2;
+	if (data->lst->visible == 1)
+	{
+					printf("coucou\n");
+
+		while (row < data->screen.size.y + (1/data->lst->dist * 1000))
+		{
+			*(int*)(data->image.add_image + (row * data->image.size_line) + data->raycast.column * sizeof(int)) = 0x000000;
+			row++;
+		}
+		data->lst->visible = 0;
+	}
+	
+}
 
 int fill_column(t_data *data)
 {
@@ -33,13 +50,12 @@ int fill_column(t_data *data)
 	int		wall_row = 0;
 	char	*add_opp;
 	int		gnagna;
-	float	coefcam;
 	int		h_max;
 
+	printf("coucou\n");
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = floorf(data->player.CST / data->raycast.dist); //REVIEW Optimisation
-	coefcam = (float)BLOCK_SIZE / data->player.height_cam; // coefcam de heigh-proj_plane
-	gnagna = (float)height_proj_plane / coefcam;
+	gnagna = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera 
 	row = data->player.hdv - (height_proj_plane - gnagna);//REVIEW Optimisation
 	if (row < 0)
 	{
@@ -49,7 +65,7 @@ int fill_column(t_data *data)
 	h_max = data->player.hdv + gnagna;
 	if (h_max > data->screen.size.y)
 	{
-		h_max = data->screen.size.y - 1;
+		h_max = data->screen.size.y;
 	}
 	float racourcis = (float)data->Wtex.sizey / height_proj_plane;
 	while (row < h_max) //REVIEW Optimisation
@@ -61,6 +77,6 @@ int fill_column(t_data *data)
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 
 	print_floor_and_ceil(data, row, gnagna, height_proj_plane, h_max);
-
+	// print_sprite(data);
 	return (0);
 }

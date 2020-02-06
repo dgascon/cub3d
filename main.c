@@ -53,6 +53,7 @@ int main(int ac, char **av)
 		ft_printf("Map manquante !");
 		return (EXIT_FAILURE);
 	} 
+
 	data.player = (t_player){.fov = M_PI /3, .height_cam = 32, .speed = 10};
 	if (parsefile(&data, av[1]) <= 0)
 		return (EXIT_FAILURE);

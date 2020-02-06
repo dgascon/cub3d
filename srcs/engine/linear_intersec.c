@@ -50,8 +50,16 @@ float linear_intersec_v(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] == '2')
 		{
-			// printf("obj detectV\n");
-			set_visible(data->lst, grid);
+			t_lsprite *obj;
+			obj = pick_object(data->lst, grid);
+			if (obj)
+			{
+				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
+				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
+				obj->visible = 1;
+				printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
+			}
+			// set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
 		intersec.y -= offset.y;
@@ -95,8 +103,16 @@ float linear_intersec_h(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] == '2')
 		{
-			// printf("obj detectH\n");
-			set_visible(data->lst, grid);
+			t_lsprite *obj;
+			obj = pick_object(data->lst, grid);
+			if (obj)
+			{
+				obj->dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
+				+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
+				obj->visible = 1;
+				printf("Hobj at dist = %f\n", obj->dist);
+			}
+			// set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
 		intersec.y += offset.y;
