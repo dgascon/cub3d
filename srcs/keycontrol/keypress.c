@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:48:10 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 19:07:08 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,6 @@
 
 int    key_press(int key, t_data *data)
 {
-	printf("New key : %3d\n", key);
 	if (key == ESC)
 		destroy(data);
 	if (key == ARROW_LEFT || key == Q)
