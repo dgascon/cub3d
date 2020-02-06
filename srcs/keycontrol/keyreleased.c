@@ -6,14 +6,14 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:11:12 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:19:47 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:55:54 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    key_release(int key, t_data *data)
+int    key_release(int key, t_data *data)
 {
 	if (key == ARROW_LEFT || key == Q)
 		data->actions.lookleft = FALSE;
@@ -24,10 +24,7 @@ void    key_release(int key, t_data *data)
 	else if (key == ARROW_DOWN)
 		data->actions.lookdown = FALSE;
 	else if (key == LSHIFT)
-	{
 		data->actions.speed = FALSE;
-		data->player.speed = 10;
-	}
 	else if (key == D)
 		data->actions.rightward = FALSE;
 	else if (key == A)
@@ -36,8 +33,9 @@ void    key_release(int key, t_data *data)
 		data->actions.forward = FALSE;
 	else if (key == S)
 		data->actions.backward = FALSE;
-	else if (key == SHIFT_D)
+	else if (key == SPACE)
 		data->actions.jump = FALSE;
-	else if (key == ALT_D)
+	else if (key == LCTRL)
 		data->actions.crouching = FALSE;
+	return (0);
 }
