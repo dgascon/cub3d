@@ -57,7 +57,7 @@ float linear_intersec_v(t_data *data)
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
 				obj->visible = 1;
-				printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
+				// printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
 			}
 			// set_visible(data->lst, grid);
 		}
@@ -107,8 +107,8 @@ float linear_intersec_h(t_data *data)
 			obj = pick_object(data->lst, grid);
 			if (obj)
 			{
-				obj->dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
-				+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
+				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
+				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
 				obj->visible = 1;
 				printf("Hobj at dist = %f\n", obj->dist);
 			}
