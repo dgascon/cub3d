@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 20:34:21 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:26:39 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 		data->player.height_cam -= 5;
 		(data->player.height_cam == 32) ? *state_height_cam = 0 : 0;
 	}
-	if (data->actions.crouching && *state_height_cam == 0)
+	if (!data->actions.crouching && *state_height_cam == 0)
 		data->player.height_cam = 32;
 }
 
