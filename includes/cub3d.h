@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 19:18:19 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 20:58:55 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,11 +86,11 @@ typedef	struct 	s_data
 	int test;
 }				t_data;
 
-void			mlx_rect(t_data *data, t_coord pos, t_coord size, int colors);
+void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 void    		mlx_line(t_data *data, t_coord start, t_coord end, int colors);
 int 			scan(t_data *data);
 void    		actionscontrol(t_data *data);
-void			minimap(t_data *data, int width, int height);
+void			minimap(t_data *data);
 t_lsprite		*lsprite_new(t_coord pos);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
