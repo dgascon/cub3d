@@ -6,14 +6,14 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:11:12 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 19:59:21 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:16:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int    key_release(int key, t_data *data)
+void    key_release(int key, t_data *data)
 {
 	if (key == ARROW_LEFT || key == Q)
 		data->actions.lookleft = FALSE;

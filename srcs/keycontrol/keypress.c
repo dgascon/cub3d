@@ -6,14 +6,14 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 19:22:12 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:16:04 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int    key_press(int key, t_data *data)
+void    key_press(int key, t_data *data)
 {
 	if (key == ESC)
 		destroy(data);
