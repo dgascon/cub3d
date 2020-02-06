@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftenum.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:56:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 20:34:53 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 18:48:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,12 +41,15 @@ enum	e_keycode
 	Q = 12,
 	Z = 6,
 	E = 14,
+	M = 46,
 	LSHIFT = 257,
-	RSHIFT = 60,
+	RSHIFT = 258,
 	ESC = 53,
 	F1 = 122,
-	ALT_D = 262,
-	SHIFT_D = 258
+	LALT = 261,
+	RALT = 262,
+	SPACE = 49,
+	LCTRL = 256
 };
 
 char	*ft_sbase(enum e_base b);
