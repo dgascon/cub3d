@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   linear_intersec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:39:59 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 21:40:56 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,6 +57,9 @@ float linear_intersec_v(t_data *data)
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
 				obj->visible = 1;
+				obj->detect_position.x = intersec.x;
+				obj->detect_position.y = intersec.y;
+				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
 				// printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
 			}
 			// set_visible(data->lst, grid);
@@ -110,7 +113,10 @@ float linear_intersec_h(t_data *data)
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
 				obj->visible = 1;
-				printf("Hobj at dist = %f\n", obj->dist);
+				obj->detect_position.x = intersec.x;
+				obj->detect_position.y = intersec.y;
+				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
+				// printf("Hobj at dist = %f\n", obj->dist);
 			}
 			// set_visible(data->lst, grid);
 		}

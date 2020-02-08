@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   floor_and_ceil.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 20:30:53 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 13:07:37 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,7 +69,9 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % data->Ftex.sizey;
 	ceil.x = (int)(data->raycast.inter.x + deltaX[1]) % data->Rtex.sizex;
 	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % data->Rtex.sizey;
-	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));	
+	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));
+	// if (data->world.map[(int)data->raycast.inter.x / 64][(int)data->raycast.inter.y / 64] == '2')
+	// 	*val2 = 0x000000;
 	return (*(int*)(data->Ftex.add_image + (data->Ftex.size_line * sol.y) + (sol.x * sizeof(int))));
 }
 void	print_only_ceil(t_data *data, float val_cst[4], int toto)
@@ -113,7 +115,6 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 	if (row < crow)
 	{
 		// quand il y a plus de de sol que de plafond
-
 		if (row < 0) //permet d'avoir 1 condition par colonne plutot que par pixel
 		{
 			toto -= row;
@@ -146,9 +147,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 		while (crow <= data->screen.size.y)
 		{
 			val1 = floor_and_ceil_color(data, val_cst, toto, &val2);
-			// printf("5\n");
 			*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
-				// printf("6\n");
 			if (row <= data->screen.size.y)
 			{
 				*(int*)(add_opp + (row * data->image.size_line)) = val1;
