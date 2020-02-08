@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 19:19:42 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 20:24:30 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ int select_wall_color(t_data *data, float proprtion, int wall_row)
 	return (*(int*)(data->Wtex.add_image + (data->Wtex.size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
 
-int	select_sprite_color(t_data *data, t_f_coord offset, int wall_row, t_image sprite, t_f_coord lim)
+int	select_sprite_color(t_f_coord offset, int wall_row, t_image sprite, t_f_coord lim)
 {
 	t_coord ratio;
 
@@ -33,7 +33,7 @@ int	select_sprite_color(t_data *data, t_f_coord offset, int wall_row, t_image sp
 }
 
 
-void	print_sprite(t_data *data, int rowe)
+void	print_sprite(t_data *data)
 {
 	int row;
 	t_f_coord lim;
@@ -42,31 +42,38 @@ void	print_sprite(t_data *data, int rowe)
 	float angle_raycast_mid_obj;
 	int cmp;
 	cmp = 0;
-	if (data->lst->visible == 1) // TODO mettre le tout dans une boucle qui parcourt la chaine 
+	t_lsprite *list;
+
+	list = data->lst;
+	while (list != NULL)
 	{
-		angle_raycast_mid_obj = data->raycast.alpha - ((M_PI_2 - atanf((float)(data->lst->pos.y - data->player.pos.y) / (data->lst->pos.x - data->player.pos.x ))) + M_PI_2); // acosf(ABAC / two_size_multiplication);
-		offset_mid_object.x = tan(angle_raycast_mid_obj) * data->lst->dist; //sin(angle_raycast_mid_obj) * (data->lst->detect_dist / sin(M_PI_2));
-		offset_mid_object.x *= (data->player.dist_proj_plane / data->lst->dist);
-		lim.x = (data->barel.sizex) * (data->player.dist_proj_plane / data->lst->dist); // taille .x a l'ecraan
-		
-		if (offset_mid_object.x < lim.x / 2 && data->lst->dist < data->raycast.dist && offset_mid_object.x > -(lim.x/2))
+		// lsprite_sort(&data->lst);
+		if (list->visible == 1) // TODO mettre le tout dans une boucle qui parcourt la chaine 
 		{
-			
-			lim.y = 32 * (data->player.dist_proj_plane/data->lst->dist); //taille en y de la texture a l'ecran
-			row = data->player.hdv + ((data->player.height_cam - BLOCK_SIZE/2) / data->lst->dist) * data->player.dist_proj_plane; //- (data->player.hdv/2 - (float)data->player.hdv/2 / ((float)BLOCK_SIZE  / data->player.height_cam));//POSITION DE DEPART
-			unsigned int val;
-			while (cmp < lim.y && row < data->screen.size.y)
-			{
-				val = select_sprite_color(data, offset_mid_object, cmp, data->barel, lim);
-				if (val != 0xff000000 && row > 0)
-					*(int*)(data->image.add_image + (row * data->image.size_line) + data->raycast.column * sizeof(int)) = val;
-				row++;
-				cmp++;
+			angle_raycast_mid_obj = data->raycast.alpha - ((M_PI_2 - atanf((float)(list->pos.y - data->player.pos.y) / (list->pos.x - data->player.pos.x ))) + M_PI_2); // acosf(ABAC / two_size_multiplication);
+			offset_mid_object.x = tan(angle_raycast_mid_obj) * list->dist; //sin(angle_raycast_mid_obj) * (list->detect_dist / sin(M_PI_2));
+			offset_mid_object.x *= (data->player.dist_proj_plane / list->dist);
+			lim.x = (data->barel.sizex) * (data->player.dist_proj_plane / list->dist); // taille .x a l'ecraan
+
+			if (offset_mid_object.x < lim.x / 2 && list->dist < data->raycast.dist && offset_mid_object.x > -(lim.x/2))
+			{	
+				lim.y = 32 * (data->player.dist_proj_plane/list->dist); //taille en y de la texture a l'ecran
+				row = data->player.hdv + ((data->player.height_cam - BLOCK_SIZE/2) / list->dist) * data->player.dist_proj_plane; //- (data->player.hdv/2 - (float)data->player.hdv/2 / ((float)BLOCK_SIZE  / data->player.height_cam));//POSITION DE DEPART
+				unsigned int val;
+				while (cmp < lim.y && row < data->screen.size.y)
+				{
+					val = select_sprite_color(offset_mid_object, cmp, data->barel, lim);
+					if (val != 0xff000000 && row > 0)
+						*(int*)(data->image.add_image + (row * data->image.size_line) + data->raycast.column * sizeof(int)) = val;
+					row++;
+					cmp++;
+				}
 			}
+			cmp = 0;
+			list->visible = 0;
 		}
-		data->lst->visible = 0;
-	}
-	
+		list = list->next;
+	}	
 }
 
 int fill_column(t_data *data)
@@ -102,6 +109,6 @@ int fill_column(t_data *data)
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 
 	print_floor_and_ceil(data, row, gnagna, height_proj_plane, h_max);
-	print_sprite(data, data->player.hdv - (height_proj_plane - gnagna) + height_proj_plane/2);
+	print_sprite(data);
 	return (0);
 }

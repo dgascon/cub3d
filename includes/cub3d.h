@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 20:58:55 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 20:13:53 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,8 @@ typedef struct s_lsprite
 {
 	t_coord pos;
 	t_coord grd;
+	t_coord detect_position;
+	float	detect_dist;
 	int		visible;
 	int		printed;
 	float	dist;
@@ -94,6 +96,7 @@ void			minimap(t_data *data);
 t_lsprite		*lsprite_new(t_coord pos);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
+void    		lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max);
 
 # endif

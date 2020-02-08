@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 21:40:56 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 20:16:34 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,14 +43,13 @@ float linear_intersec_v(t_data *data)
 		{
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
-			// return(sqrt(pow(data->player.pos.x - intersec.x, 2) +
-			// pow(data->player.pos.y - intersec.y, 2)));
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
 		else if (data->world.map[grid.x][grid.y] == '2')
 		{
 			t_lsprite *obj;
+			
 			obj = pick_object(data->lst, grid);
 			if (obj)
 			{
@@ -62,8 +61,10 @@ float linear_intersec_v(t_data *data)
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
 				// printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
 			}
+			
 			// set_visible(data->lst, grid);
 		}
+
 		intersec.x += offset.x;
 		intersec.y -= offset.y;
 	}

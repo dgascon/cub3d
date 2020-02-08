@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 22:52:18 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 20:18:08 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,24 @@ t_lsprite	*lsprite_new(t_coord pos)
     ptr->visible = 0;
 	ptr->next = NULL;
 	return (ptr);
+}
+
+void    lsprite_addback(t_lsprite **lst, t_lsprite *new)
+{
+    t_lsprite *list;
+
+    list = *lst;
+    if (*lst == NULL)
+        *lst = new;
+    else
+    {
+        while (list->next != NULL)
+        {
+            list = list->next;
+        }
+        new->next = NULL;
+        list->next = new;
+    }
 }
 
 int set_visible(t_lsprite *list, t_coord grid)

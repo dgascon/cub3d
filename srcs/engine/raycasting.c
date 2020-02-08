@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 20:59:05 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 20:16:50 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,6 +47,7 @@ int scan(t_data *data)
 	mlx_clear_window(data->mlx.ptr, data->mlx.win);
 	data->raycast.column = data->screen.size.x;
 	data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
+
 	while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser

@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 16:27:39 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 19:48:55 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 		data->player.height_cam = 32;
 }
 
-static void	releasedelay_speed(t_data *data, int *state_speed)
+static void	releasedelay_speed(t_data *data, int *state_speed) // TODO GERER LA DESCELERATION SEULEMENT QUAND ON ARRETE DE COURIR
 {
 	if (*state_speed == 1)
 	{
