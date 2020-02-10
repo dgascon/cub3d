@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 19:48:55 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 14:30:52 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,16 +42,16 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 {
 	if (*state_height_cam == 1)
 	{
-		data->player.height_cam += 5;
-		(data->player.height_cam > 48) ? *state_height_cam = 2 : 0;
+		data->player.height_cam += BLOCK_SIZE/10;
+		(data->player.height_cam > 3*BLOCK_SIZE/4) ? *state_height_cam = 2 : 0;
 	}
 	else if (*state_height_cam == 2)
 	{
-		data->player.height_cam -= 5;
-		(data->player.height_cam == 32) ? *state_height_cam = 0 : 0;
+		data->player.height_cam -= BLOCK_SIZE/10;
+		(data->player.height_cam == BLOCK_SIZE/2) ? *state_height_cam = 0 : 0;
 	}
 	if (!data->actions.crouching && *state_height_cam == 0)
-		data->player.height_cam = 32;
+		data->player.height_cam = BLOCK_SIZE/2;
 }
 
 static void	releasedelay_speed(t_data *data, int *state_speed) // TODO GERER LA DESCELERATION SEULEMENT QUAND ON ARRETE DE COURIR
@@ -64,9 +64,9 @@ static void	releasedelay_speed(t_data *data, int *state_speed) // TODO GERER LA 
 	else if (*state_speed == 2)
 	{
 		data->player.speed -= 1;
-		if (data->player.speed <= 10)
+		if (data->player.speed <= MAX_SPEED/2)
 		{
-			data->player.speed = 10;
+			data->player.speed = MAX_SPEED/2;
 			*state_speed = 0;
 		}
 	}

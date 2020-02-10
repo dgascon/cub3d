@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:23:05 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 14:37:48 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,10 +44,15 @@ int init_texture(t_data* data)
 }
 
 
-//TODO collision aevc les prites
+//TODO collision avec les prites
 //TODO parsing: ajouter automatiquement les sprites a la liste chaine
-//TODO gerer le beugue d'affichage des sprites
+//TODO parsing: rendre les valeurs dependante de la BLOCK_SIZE
+//DONE gerer le beugue d'affichage des sprites
 //TODO regler le probleme de speed quand on court
+//TODO rendre la vitesse dependante de la taille de la map
+//TODO ralentir la monter et la descente du saut
+//DONE gerer le plafond et le avec une block_size differente
+//DONE gerer les sprites avec block_size different
 
 int main(int ac, char **av)
 {
@@ -60,7 +65,7 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	} 
 
-	data.player = (t_player){.fov = M_PI /3, .height_cam = 32, .speed = 10};
+	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]) <= 0)
 		return (EXIT_FAILURE);
 	if (!(data.mlx.ptr = mlx_init()))
@@ -81,6 +86,7 @@ int main(int ac, char **av)
 	data.lst = NULL;
 	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 3, .y = 1}));
 	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 4, .y = 2}));
+	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 8, .y = 4}));
 	
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);

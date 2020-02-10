@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 13:07:37 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 14:35:13 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,13 +65,11 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 		deltaY[0] = dist_mur_sol * sincos.x;
 		deltaY[1] = dist_mur_plafond * sincos.x;
 	}
-	sol.x = (int)(data->raycast.inter.x + deltaX[0]) % data->Ftex.sizex;
-	sol.y = (int)(data->raycast.inter.y + deltaY[0]) % data->Ftex.sizey;
-	ceil.x = (int)(data->raycast.inter.x + deltaX[1]) % data->Rtex.sizex;
-	ceil.y = (int)(data->raycast.inter.y + deltaY[1]) % data->Rtex.sizey;
+	sol.x = (int)(((float)data->Ftex.sizex / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[0])) % data->Ftex.sizex;
+	sol.y = (int)(((float)data->Ftex.sizey / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[0])) % data->Ftex.sizey;
+	ceil.x = (int)(((float)data->Rtex.sizex / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[1])) % data->Rtex.sizex;
+	ceil.y = (int)(((float)data->Rtex.sizey / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[1])) % data->Rtex.sizey;
 	*val2 = *(int*)(data->Rtex.add_image + (data->Rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));
-	// if (data->world.map[(int)data->raycast.inter.x / 64][(int)data->raycast.inter.y / 64] == '2')
-	// 	*val2 = 0x000000;
 	return (*(int*)(data->Ftex.add_image + (data->Ftex.size_line * sol.y) + (sol.x * sizeof(int))));
 }
 void	print_only_ceil(t_data *data, float val_cst[4], int toto)

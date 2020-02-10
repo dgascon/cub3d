@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 12:30:10 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 14:01:59 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,8 +21,8 @@ t_lsprite	*lsprite_new(t_coord pos)
 		return (0);
 	ptr->grd.x = pos.x;
     ptr->grd.y = pos.y;
-    ptr->pos.x = (pos.x * 64) + 32;
-    ptr->pos.y = (pos.y * 64) + 32;
+    ptr->pos.x = (pos.x * BLOCK_SIZE) + BLOCK_SIZE/2;
+    ptr->pos.y = (pos.y * BLOCK_SIZE) + BLOCK_SIZE/2;
     ptr->printed = 0;
     ptr->visible = 0;
 	ptr->next = NULL;

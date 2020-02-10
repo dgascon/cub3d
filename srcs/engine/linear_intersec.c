@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 20:16:34 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 13:46:14 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,7 +55,7 @@ float linear_intersec_v(t_data *data)
 			{
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
-				obj->visible = 1;
+				obj->visible = 1;//!obj->visible;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
