@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 11:49:45 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 13:23:05 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,12 @@ int init_texture(t_data* data)
 		return (printf("erreur2"));
 	return (0);
 }
+
+
+//TODO collision aevc les prites
+//TODO parsing: ajouter automatiquement les sprites a la liste chaine
+//TODO gerer le beugue d'affichage des sprites
+//TODO regler le probleme de speed quand on court
 
 int main(int ac, char **av)
 {
