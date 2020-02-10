@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 13:46:14 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 17:05:11 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ float linear_intersec_v(t_data *data)
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
 		offset.x = -(BLOCK_SIZE);
-		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
+		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.01;
 	}
 	else
 	{
@@ -39,6 +39,7 @@ float linear_intersec_v(t_data *data)
 			grid.x = 0;
 		if (grid.x > data->world.size.y - 1)
 			grid.x = data->world.size.y - 1;
+		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.inter.x = intersec.x;
@@ -80,7 +81,7 @@ float linear_intersec_h(t_data *data)
 	offset.x = BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
-		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
+		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.01;
 		offset.y = -(BLOCK_SIZE);
 	}
 	else
@@ -96,6 +97,7 @@ float linear_intersec_h(t_data *data)
 		grid.x = floorf(intersec.y / BLOCK_SIZE);
 		(grid.y < 0) ? grid.y = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
+		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
 		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.interH.x = intersec.x;
@@ -119,7 +121,6 @@ float linear_intersec_h(t_data *data)
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
 				// printf("Hobj at dist = %f\n", obj->dist);
 			}
-			// set_visible(data->lst, grid);
 		}
 		intersec.x += offset.x;
 		intersec.y += offset.y;
