@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 20:18:08 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 12:30:10 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,46 @@ void    lsprite_addback(t_lsprite **lst, t_lsprite *new)
         }
         new->next = NULL;
         list->next = new;
+    }
+}
+
+t_lsprite *swap(t_lsprite* ptr1, t_lsprite* ptr2) 
+{ 
+    t_lsprite* tmp;
+    
+    tmp = ptr2->next; 
+    ptr2->next = ptr1; 
+    ptr1->next = tmp; 
+    return ptr2; 
+} 
+
+void    lsprite_sort(t_lsprite **lst)
+{
+    t_lsprite **list;
+    t_lsprite *lste;
+    t_lsprite *tmp;
+    int sorted = 0;
+
+    if (lst == NULL || *lst == NULL)
+        return ;
+    else
+    {
+        while (sorted != 1)
+        {
+            sorted = 1;
+            list = lst;
+            while ((*list) != NULL && (*list)->next != NULL)
+            {
+                lste = *list;
+                tmp = lste->next;
+                if (lste->dist < tmp->dist)
+                {
+                    *list = swap(lste, tmp);
+                    sorted = 0;
+                }
+                list = (t_lsprite **)&(*list)->next;
+            }
+        }
     }
 }
 

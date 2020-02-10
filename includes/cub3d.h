@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 20:13:53 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 12:06:01 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,6 +97,7 @@ t_lsprite		*lsprite_new(t_coord pos);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 void    		lsprite_addback(t_lsprite **lst, t_lsprite *new);
+void    		lsprite_sort(t_lsprite **lst);
 void			print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max);
 
 # endif

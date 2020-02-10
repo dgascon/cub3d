@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 20:15:55 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 11:49:45 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,7 +72,6 @@ int main(int ac, char **av)
 	data.actions = (t_actions){};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
-
 	data.lst = NULL;
 	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 3, .y = 1}));
 	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 4, .y = 2}));
