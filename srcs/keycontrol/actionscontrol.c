@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:46:11 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:30:12 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,8 @@ void		actionscontrol(t_data *data)
 	(data->actions.rightward) ? move(data, data->player.pov - M_PI_2) : 0;
 	if (data->actions.jump && !data->actions.crouching)
 		(state_height_cam == 0) ? state_height_cam = 1 : 0;
+	if (data->world.map[data->player.pos.y / BLOCK_SIZE][data->player.pos.x/BLOCK_SIZE] == '*')
+		data->world.locked = 0;
 	if (data->actions.crouching)
 	{
 		if (data->player.height_cam > 22 && state_height_cam == 0)

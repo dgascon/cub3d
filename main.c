@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:24:43 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 14:51:32 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,8 @@ int main(int ac, char **av)
 	data.player.CST = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
 	data.actions = (t_actions){};
+	data.world.locked = 1;
+	data.world.was_lock = 1;
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);

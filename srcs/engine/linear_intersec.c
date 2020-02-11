@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   linear_intersec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:33:05 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:48:16 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,8 +33,8 @@ float linear_intersec_v(t_data *data)
 	intersec.y = data->player.pos.y + ((data->player.pos.x - intersec.x) * tanf(data->raycast.alpha));
 	while (1)
 	{
-		grid.y = floorf(intersec.x / BLOCK_SIZE);
-		grid.x = floorf(intersec.y / BLOCK_SIZE);
+		grid.y = intersec.x / BLOCK_SIZE;
+		grid.x = intersec.y / BLOCK_SIZE;
 		if (grid.x < 0)
 			grid.x = 0;
 		if (grid.x > data->world.size.y - 1)
@@ -93,8 +93,8 @@ float linear_intersec_h(t_data *data)
 	intersec.x = data->player.pos.x + ((data->player.pos.y - intersec.y) / tanf(data->raycast.alpha));
 	while (1)
 	{
-		grid.y = floorf(intersec.x / BLOCK_SIZE);
-		grid.x = floorf(intersec.y / BLOCK_SIZE);
+		grid.y = intersec.x / BLOCK_SIZE;
+		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.y < 0) ? grid.y = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
 		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
