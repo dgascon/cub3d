@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/11 15:08:15 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/11 15:11:58 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -22,12 +22,12 @@ PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
 					parsing/parse.c	parsing/minimap.c								\
-					move.c 															\
+					objects/object.c															\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
-					garbage.c lst.c player.c
+					garbage.c lst.c player.c move.c
 
-INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
+INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h object.h
 
 OBJS			=	$(addprefix $(PATH_OBJ)/, $(SRC_LIST:.c=.o))
 OBJS_BONUS		=	$(addprefix $(PATH_OBJ)/, $(BONUS_LIST:.c=.o))
@@ -48,7 +48,7 @@ INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
-DIRS_LIST	= engine parsing keycontrol
+DIRS_LIST	= engine parsing keycontrol objects
 
 all:	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"

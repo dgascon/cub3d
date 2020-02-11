@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:07:57 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:10:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,18 +63,6 @@ char	**parse_map(t_data *data, char *line)
 		i++;
 	}
 	return (data->world.map);
-}
-
-static int	init_object(t_data *data, char *path, int id)
-{
-	t_image *current_tex;
-
-	current_tex = &data->object[id - 2];
-	if (!(current_tex->img = mlx_xpm_file_to_image(data->mlx.ptr, path, &current_tex->sizex, &current_tex->sizey)))
-		return (EXIT_FAILURE);
-	if (!(current_tex->add_image = mlx_get_data_addr(current_tex->img, &current_tex->bpp, &current_tex->size_line, &current_tex->endian)))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
 }
 
 int	parsefile(t_data *data, char *file)

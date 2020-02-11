@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:20:56 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:11:17 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@
 # include "world.h"
 # include "player.h"
 # include "raycast.h"
+# include "object.h"
 
 # define _2PI 2 * M_PI
 # define _3PI_2 3 * M_PI_2
