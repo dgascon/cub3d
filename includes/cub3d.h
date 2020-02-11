@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 12:06:01 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:20:56 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,18 +30,6 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
-typedef struct s_lsprite
-{
-	t_coord pos;
-	t_coord grd;
-	t_coord detect_position;
-	float	detect_dist;
-	int		visible;
-	int		printed;
-	float	dist;
-	void *next;
-}				t_lsprite;
-
 typedef	struct 	s_image
 {
 	void	*img;
@@ -53,6 +41,19 @@ typedef	struct 	s_image
 	int		sizex;
 	int		sizey;
 }				t_image;
+
+typedef struct s_lsprite
+{
+	t_coord pos;
+	t_coord grd;
+	t_coord detect_position;
+	float	detect_dist;
+	int		visible;
+	int		printed;
+	float	dist;
+	void	*next;
+	t_image texture;
+}				t_lsprite;
 
 typedef	struct 	s_actions
 {
@@ -84,16 +85,18 @@ typedef	struct 	s_data
 	t_image		minimap;
 	t_actions	actions;
 	t_image		barel;
+	t_image		object[3];
 	t_lsprite	*lst;
 	int test;
 }				t_data;
 
+int				init_window(t_data *data);
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 void    		mlx_line(t_data *data, t_coord start, t_coord end, int colors);
 int 			scan(t_data *data);
 void    		actionscontrol(t_data *data);
 void			minimap(t_data *data);
-t_lsprite		*lsprite_new(t_coord pos);
+t_lsprite		*lsprite_new(t_coord pos, t_image texture);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 void    		lsprite_addback(t_lsprite **lst, t_lsprite *new);

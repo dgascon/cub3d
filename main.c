@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 16:44:16 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:24:43 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,11 +36,17 @@ int init_texture(t_data* data)
 		return (printf("erreur1"));
 	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->barel.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/baril.xpm", &data->barel.sizex, &data->barel.sizey)))
-		return (printf("erreur1"));
-	if (!(data->barel.add_image = mlx_get_data_addr(data->barel.img, &data->barel.bpp, &data->barel.size_line, &data->barel.endian)))
-		return (printf("erreur2"));
 	return (0);
+}
+
+int		init_window(t_data *data)
+{
+	if (!(data->mlx.ptr = mlx_init()))
+		return (EXIT_FAILURE);
+	if ((data->mlx.win = mlx_new_window(data->mlx.ptr, data->screen.size.x,
+						data->screen.size.y, "Dgascon && Nlecaill")) == NULL)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 
@@ -54,6 +60,8 @@ int init_texture(t_data* data)
 //DONE gerer le plafond et le avec une block_size differente
 //DONE gerer les sprites avec block_size different
 //TODO tableau de texture 
+//TODO Ajouter une regle makefile debug
+//TODO Corriger la direction de mouvement
 
 int main(int ac, char **av)
 {
@@ -65,16 +73,10 @@ int main(int ac, char **av)
 		ft_printf("Map manquante !");
 		return (EXIT_FAILURE);
 	} 
-
+	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]) <= 0)
 		return (EXIT_FAILURE);
-	if (!(data.mlx.ptr = mlx_init()))
-		return (EXIT_FAILURE);
-	if ((data.mlx.win = mlx_new_window(data.mlx.ptr, data.screen.size.x,
-						data.screen.size.y, "Dgascon && Nlecaill")) == NULL)
-		return (EXIT_FAILURE);
-	
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	// data.image = (t_image) {.bpp = 32,
 	// .size_line = data.image.bpp * data.screen.size.x, .endian = 0};
@@ -84,11 +86,6 @@ int main(int ac, char **av)
 	data.actions = (t_actions){};
 	if (init_texture(&data) != 0)
 		return (EXIT_FAILURE);
-	data.lst = NULL;
-	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 3, .y = 1}));
-	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 4, .y = 2}));
-	lsprite_addback(&data.lst, lsprite_new((t_coord){.x = 8, .y = 4}));
-	
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);

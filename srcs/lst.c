@@ -3,27 +3,27 @@
 /*                                                              /             */
 /*   lst.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 14:01:59 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:18:18 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_lsprite	*lsprite_new(t_coord pos)
+t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 {
 	t_lsprite *ptr;
 
 	if (!(ptr = malloc(sizeof(t_lsprite))))
 		return (0);
+    ptr->texture = texture;
 	ptr->grd.x = pos.x;
     ptr->grd.y = pos.y;
     ptr->pos.x = (pos.x * BLOCK_SIZE) + BLOCK_SIZE/2;
     ptr->pos.y = (pos.y * BLOCK_SIZE) + BLOCK_SIZE/2;
-    ptr->printed = 0;
     ptr->visible = 0;
 	ptr->next = NULL;
 	return (ptr);
