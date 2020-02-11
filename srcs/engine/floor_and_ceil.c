@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:30:36 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:34:30 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,10 +65,10 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 		deltaY[0] = dist_mur_sol * sincos.x;
 		deltaY[1] = dist_mur_plafond * sincos.x;
 	}
-	sol.x = (int)(((float)data->ftex.sizex / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[0])) % data->ftex.sizex;
-	sol.y = (int)(((float)data->ftex.sizey / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[0])) % data->ftex.sizey;
-	ceil.x = (int)(((float)data->rtex.sizex / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[1])) % data->rtex.sizex;
-	ceil.y = (int)(((float)data->rtex.sizey / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[1])) % data->rtex.sizey;
+	sol.x = (int)(((float)data->ftex.size.x / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[0])) % data->ftex.size.x;
+	sol.y = (int)(((float)data->ftex.size.y / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[0])) % data->ftex.size.y;
+	ceil.x = (int)(((float)data->rtex.size.x / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[1])) % data->rtex.size.x;
+	ceil.y = (int)(((float)data->rtex.size.y / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[1])) % data->rtex.size.y;
 	*val2 = *(int*)(data->rtex.add_image + (data->rtex.size_line * ceil.y) + (ceil.x * sizeof(int)));
 	return (*(int*)(data->ftex.add_image + (data->ftex.size_line * sol.y) + (sol.x * sizeof(int))));
 }

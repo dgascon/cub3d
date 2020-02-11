@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:32:10 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:34:32 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,8 +38,7 @@ typedef	struct	s_image
 	int		size_line;
 	int		endian;
 	int		colors;
-	int		sizex;
-	int		sizey;
+	t_coord	size;
 }				t_image;
 
 typedef struct	s_lsprite

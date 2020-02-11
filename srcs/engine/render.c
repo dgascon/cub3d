@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:30:10 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:34:30 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,9 @@ int select_wall_color(t_data *data, float proprtion, int wall_row)
 	t_coord ratio;
 	float proportion;
 
-	proportion = (float) data->wtex.sizex / BLOCK_SIZE;
-	ratio.y = (int)(proprtion * wall_row) % data->wtex.sizey;
-	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * proportion) % data->wtex.sizex : (int)(data->raycast.inter.x * proportion) % data->wtex.sizex;
+	proportion = (float) data->wtex.size.x / BLOCK_SIZE;
+	ratio.y = (int)(proprtion * wall_row) % data->wtex.size.y;
+	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * proportion) % data->wtex.size.x : (int)(data->raycast.inter.x * proportion) % data->wtex.size.x;
 	return (*(int*)(data->wtex.add_image + (data->wtex.size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
 
@@ -27,8 +27,8 @@ int	select_sprite_color(t_f_coord offset, int wall_row, t_image sprite, t_f_coor
 {
 	t_coord ratio;
 
-	ratio.y = (int)(((float)sprite.sizey / lim.y) * wall_row) % sprite.sizey;
-	ratio.x = (int)(((float)sprite.sizex / lim.x) * (lim.x/2 - offset.x )) % sprite.sizex;
+	ratio.y = (int)(((float)sprite.size.y / lim.y) * wall_row) % sprite.size.y;
+	ratio.x = (int)(((float)sprite.size.x / lim.x) * (lim.x/2 - offset.x )) % sprite.size.x;
 	return (*(int*)(sprite.add_image + (sprite.size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
 
@@ -102,7 +102,7 @@ int fill_column(t_data *data)
 	{
 		h_max = data->screen.size.y;
 	}
-	float racourcis = (float)data->wtex.sizey / height_proj_plane;
+	float racourcis = (float)data->wtex.size.y / height_proj_plane;
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row);
