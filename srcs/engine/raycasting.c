@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:30:51 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:57:42 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,5 +89,7 @@ int scan(t_data *data)
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
+	mlx_text(data, (t_coord){50, 50}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80));
+
 	return (1);
 }

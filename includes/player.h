@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:27:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:17:23 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 16:05:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 # include "cub3d.h"
 # include "raycast.h"
 
-# define MAX_SPEED 20
+# define MAX_SPEED 50
 
 typedef struct s_data	t_data;
 

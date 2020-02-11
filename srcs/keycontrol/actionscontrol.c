@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:28:17 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 16:04:31 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,20 +54,20 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 		data->player.height_cam = BLOCK_SIZE/2;
 }
 
-static void	releasedelay_speed(t_data *data, int *state_speed) // TODO GERER LA DESCELERATION SEULEMENT QUAND ON ARRETE DE COURIR
+static void	releasedelay_speed(t_data *data, int *state_speed)
 {
 	if (*state_speed == 1)
 	{
-		data->player.speed += 1;
-		(data->player.speed >= MAX_SPEED) ? *state_speed = 2 : 0;
+		(data->player.speed < MAX_SPEED) ? data->player.speed += 1 : 0;
+		(!data->actions.speed) ? *state_speed = 2 : 0;
 	}
 	else if (*state_speed == 2)
 	{
-		data->player.speed -= 1;
-		if (data->player.speed <= MAX_SPEED/2)
+		data->player.speed -= (BLOCK_SIZE / data->player.speed);
+		if (data->player.speed <= MAX_SPEED / 2)
 		{
-			data->player.speed = MAX_SPEED/2;
 			*state_speed = 0;
+			data->player.speed = MAX_SPEED / 2;
 		}
 	}
 }
@@ -104,8 +104,6 @@ void		actionscontrol(t_data *data)
 	}
 	if (data->actions.speed)
 		(state_speed == 0) ? state_speed = 1 : 0;
-	else
-		(state_speed == 1) ? state_speed = 2 : 0;
 	releasedelay_heightcam(data, &state_height_cam);
 	releasedelay_speed(data, &state_speed);
 }

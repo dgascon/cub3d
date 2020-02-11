@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:34:30 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 16:07:42 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,11 +51,11 @@ int		init_window(t_data *data)
 
 
 //TODO collision avec les sprites
-//TODO parsing: ajouter automatiquement les sprites a la liste chaine
-//TODO parsing: rendre les valeurs dependante de la BLOCK_SIZE
+//DONE parsing: ajouter automatiquement les sprites a la liste chaine
+//DONE parsing: rendre les valeurs dependante de la BLOCK_SIZE
 //DONE gerer le beugue d'affichage des sprites
-//TODO regler le probleme de speed quand on court
-//TODO rendre la vitesse dependante de la taille de la map
+//DONE regler le probleme de speed quand on court
+//DONE rendre la vitesse dependante de la taille de la map
 //TODO ralentir la monter et la descente du saut
 //DONE gerer le plafond et le avec une block_size differente
 //DONE gerer les sprites avec block_size different
