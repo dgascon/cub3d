@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   actionscontrol.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 14:30:12 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:28:17 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,12 @@ void		lookcontrol(t_data *data)
 	if (data->actions.lookleft == TRUE)
 	{
 		data->player.pov += 0.1;
-		(data->player.pov > _2PI) ? data->player.pov -= _2PI : 0;
+		(data->player.pov > 2 * M_PI) ? data->player.pov -= 2 * M_PI : 0;
 	}
 	if (data->actions.lookright == TRUE)
 	{
 		data->player.pov -= 0.1;
-		(data->player.pov < 0) ? data->player.pov += _2PI : 0;
+		(data->player.pov < 0) ? data->player.pov += 2 * M_PI : 0;
 	}
 	if (data->actions.lookup == TRUE)
 	{

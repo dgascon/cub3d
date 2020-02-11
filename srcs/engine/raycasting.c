@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:22:44 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:30:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,16 +75,16 @@ int scan(t_data *data)
 	while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
-		if (data->raycast.alpha >= _2PI) // REVIEW optimiser
-			data->raycast.alpha -= _2PI; // REVIEW optimiser
+		if (data->raycast.alpha >= 2 * M_PI) // REVIEW optimiser
+			data->raycast.alpha -= 2 * M_PI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)
-			data->raycast.alpha += _2PI; // REVIEW optimiser
+			data->raycast.alpha += 2 * M_PI; // REVIEW optimiser
 		data->raycast.dist = short_dist(data);
 		fill_column(data);
 		data->raycast.column--;
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->Vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
+	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
 	
 	if (data->player.show_minimap)
 		minimap(data);

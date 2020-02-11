@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:25:39 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:32:10 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,8 +22,7 @@
 # include "raycast.h"
 # include "object.h"
 
-# define _2PI 2 * M_PI
-# define _3PI_2 3 * M_PI_2
+# define MAX_OBJ 1
 
 typedef struct	s_mlx
 {
@@ -31,19 +30,19 @@ typedef struct	s_mlx
 	void	*win;
 }				t_mlx;
 
-typedef	struct 	s_image
+typedef	struct	s_image
 {
 	void	*img;
 	char	*add_image;
 	int		bpp;
 	int		size_line;
-	int 	endian;
-	int 	colors;
+	int		endian;
+	int		colors;
 	int		sizex;
 	int		sizey;
 }				t_image;
 
-typedef struct s_lsprite
+typedef struct	s_lsprite
 {
 	t_coord pos;
 	t_coord grd;
@@ -56,7 +55,7 @@ typedef struct s_lsprite
 	t_image texture;
 }				t_lsprite;
 
-typedef	struct 	s_data
+typedef	struct	s_data
 {
 	t_mlx		mlx;
 	t_screen	screen;
@@ -64,26 +63,25 @@ typedef	struct 	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		Wtex;
-	t_image		Ftex;
-	t_image		Rtex;
-	t_image		Vtex;
+	t_image		wtex;
+	t_image		ftex;
+	t_image		rtex;
+	t_image		vtex;
 	t_image		minimap;
 	t_actions	actions;
-	t_image		object[1];
+	t_image		object[MAX_OBJ];
 	t_lsprite	*lst;
-	int test;
 }				t_data;
 
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
-void    		mlx_line(t_data *data, t_coord start, t_coord end, int colors);
-int 			scan(t_data *data);
+void			mlx_line(t_data *data, t_coord start, t_coord end, int colors);
+int				scan(t_data *data);
 void			minimap(t_data *data);
 t_lsprite		*lsprite_new(t_coord pos, t_image texture);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
-void    		lsprite_addback(t_lsprite **lst, t_lsprite *new);
-void    		lsprite_sort(t_lsprite **lst);
-void			print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max);
-
-# endif
+void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
+void			lsprite_sort(t_lsprite **lst);
+void			print_floor_and_ceil(t_data *data, int row, int	gnagna,
+					int height_proj_plane, int h_max);
+#endif

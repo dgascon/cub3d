@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:14:50 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:30:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,21 +20,21 @@ int init_texture(t_data* data)
 		return (EXIT_FAILURE);
 	if (!(data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian)))
 		return (EXIT_FAILURE);
-	if (!(data->Wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->Wtex.sizex, &data->Wtex.sizey)))
+	if (!(data->wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->wtex.sizex, &data->wtex.sizey)))
 		return (printf("erreur1"));
-	if (!(data->Wtex.add_image = mlx_get_data_addr(data->Wtex.img, &data->Wtex.bpp, &data->Wtex.size_line, &data->Wtex.endian)))
+	if (!(data->wtex.add_image = mlx_get_data_addr(data->wtex.img, &data->wtex.bpp, &data->wtex.size_line, &data->wtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->Ftex.sizex, &data->Ftex.sizey)))
+	if (!(data->ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->ftex.sizex, &data->ftex.sizey)))
 		return (printf("erreur1"));
-	if (!(data->Ftex.add_image = mlx_get_data_addr(data->Ftex.img, &data->Ftex.bpp, &data->Ftex.size_line, &data->Ftex.endian)))
+	if (!(data->ftex.add_image = mlx_get_data_addr(data->ftex.img, &data->ftex.bpp, &data->ftex.size_line, &data->ftex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->Rtex.sizex, &data->Rtex.sizey)))
+	if (!(data->rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->rtex.sizex, &data->rtex.sizey)))
 		return (printf("erreur1"));
-	if (!(data->Rtex.add_image = mlx_get_data_addr(data->Rtex.img, &data->Rtex.bpp, &data->Rtex.size_line, &data->Rtex.endian)))
+	if (!(data->rtex.add_image = mlx_get_data_addr(data->rtex.img, &data->rtex.bpp, &data->rtex.size_line, &data->rtex.endian)))
 		return (printf("erreur2"));
-	if (!(data->Vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->Vtex.sizex, &data->Vtex.sizey)))
+	if (!(data->vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->vtex.sizex, &data->vtex.sizey)))
 		return (printf("erreur1"));
-	if (!(data->Vtex.add_image = mlx_get_data_addr(data->Vtex.img, &data->Vtex.bpp, &data->Vtex.size_line, &data->Vtex.endian)))
+	if (!(data->vtex.add_image = mlx_get_data_addr(data->vtex.img, &data->vtex.bpp, &data->vtex.size_line, &data->vtex.endian)))
 		return (printf("erreur2"));
 	return (0);
 }

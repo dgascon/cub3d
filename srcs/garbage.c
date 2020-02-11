@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 17:18:07 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:30:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,10 @@
 
 int destroy(t_data *data)
 {
-	mlx_destroy_image(data->mlx.ptr, data->Ftex.img);
-	mlx_destroy_image(data->mlx.ptr, data->Vtex.img);
-	mlx_destroy_image(data->mlx.ptr, data->Wtex.img);
-	mlx_destroy_image(data->mlx.ptr, data->Rtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->ftex.img);
+	mlx_destroy_image(data->mlx.ptr, data->vtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->wtex.img);
+	mlx_destroy_image(data->mlx.ptr, data->rtex.img);
 	mlx_destroy_image(data->mlx.ptr, data->image.img); //TODO destroy toute les textures
 	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
 	exit(1);
