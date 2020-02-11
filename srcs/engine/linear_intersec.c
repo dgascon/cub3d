@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:28:47 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:33:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ float linear_intersec_v(t_data *data)
 		if (grid.x > data->world.size.y - 1)
 			grid.x = data->world.size.y - 1;
 		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
-		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '3')
+		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
 		{
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
@@ -98,7 +98,7 @@ float linear_intersec_h(t_data *data)
 		(grid.y < 0) ? grid.y = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
 		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
-		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '3')
+		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
 		{
 			data->raycast.interH.x = intersec.x;
 			data->raycast.interH.y = intersec.y;
