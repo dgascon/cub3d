@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:11:17 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:17:15 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,21 +56,6 @@ typedef struct s_lsprite
 	t_image texture;
 }				t_lsprite;
 
-typedef	struct 	s_actions
-{
-	enum e_boolean forward;
-	enum e_boolean backward;
-	enum e_boolean leftward;
-	enum e_boolean rightward;
-	enum e_boolean lookleft;
-	enum e_boolean lookright;
-	enum e_boolean lookup;
-	enum e_boolean lookdown;
-	enum e_boolean speed;
-	enum e_boolean crouching;
-	enum e_boolean jump;
-}				t_actions;
-
 typedef	struct 	s_data
 {
 	t_mlx		mlx;
@@ -95,7 +80,6 @@ int				init_window(t_data *data);
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 void    		mlx_line(t_data *data, t_coord start, t_coord end, int colors);
 int 			scan(t_data *data);
-void    		actionscontrol(t_data *data);
 void			minimap(t_data *data);
 t_lsprite		*lsprite_new(t_coord pos, t_image texture);
 int				set_visible(t_lsprite *list, t_coord grid);
