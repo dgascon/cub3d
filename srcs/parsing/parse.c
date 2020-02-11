@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:17:37 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:29:33 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ char	**parse_map(t_data *data, char *line)
 				(t_coord) {.x = i, .y = data->world.size.y}) <= 0)
 				return (NULL);
 		}
-		else if(line[i] > '1')
+		else if(line[i] > '2')
 		{
 			lsprite_addback(&data->lst, lsprite_new((t_coord){.x = i, .y = data->world.size.y - 1}, data->object[line[i] - 50]));
 		}
@@ -140,7 +140,7 @@ int	parsefile(t_data *data, char *file)
 			indexparam = ft_atoi(&gnl.line[1]);
 			if (ft_isdigit(gnl.line[1]))
 			{
-				if (indexparam > 1)
+				if (indexparam > 2)
 				{
 					if (init_object(data, ft_delcharstr(&gnl.line[3], " "), indexparam))
 						return (-1);
