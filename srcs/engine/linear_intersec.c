@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:20:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:28:47 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,7 +47,7 @@ float linear_intersec_v(t_data *data)
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
-		else if (data->world.map[grid.x][grid.y] > '1')
+		else if (data->world.map[grid.x][grid.y] > '2')
 		{
 			t_lsprite *obj;
 			
@@ -107,7 +107,7 @@ float linear_intersec_h(t_data *data)
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
-		else if (data->world.map[grid.x][grid.y] > '1')
+		else if (data->world.map[grid.x][grid.y] > '2')
 		{
 			t_lsprite *obj;
 			obj = pick_object(data->lst, grid);
