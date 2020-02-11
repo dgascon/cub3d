@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/11 15:08:05 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:14:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:38:53 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ int		parse_player(t_data *data, char direction, t_coord position)
 		data->player.pov = 3 * M_PI_2;
 	else if (direction == 'W')
 		data->player.pov = M_PI;
-	data->player.pos.x = (BLOCK_SIZE * position.x) + 32;
-	data->player.pos.y = (BLOCK_SIZE * position.y) - 32;
+	data->player.pos.x = (BLOCK_SIZE * position.x) + BLOCK_SIZE / 2;
+	data->player.pos.y = (BLOCK_SIZE * position.y) - BLOCK_SIZE / 2;
 	return (1);
 }
