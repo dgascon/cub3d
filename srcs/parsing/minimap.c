@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 19:37:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:33:35 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:44:14 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ void	minimap(t_data *data)
 		while (pos.x < sizemap.x)
 		{
 			current_block = data->world.map[pos.y / sizebox.y][pos.x / sizebox.x];
-			if (current_block == '1')
+			if (current_block == '1' || current_block == '2')
 				mlx_rect(&data->minimap, pos, sizebox, rgb_int(100, 100, 100));
 			else if (current_block > '2')
 				mlx_rect(&data->minimap, pos, sizebox, rgb_int(180, 100, 100));
