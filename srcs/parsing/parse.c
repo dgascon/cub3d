@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 19:19:51 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:17:37 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ int		parse_player(t_data *data, char direction, t_coord position)
 		data->player.pov = POV_EAST;
 	else if (direction == 'S')
 		data->player.pov = POV_SOUTH;
-	else
+	else if (direction == 'W')
 		data->player.pov = POV_WEST;
 	data->player.pos.x = (BLOCK_SIZE * position.x) + 32;
 	data->player.pos.y = (BLOCK_SIZE * position.y) - 32;
@@ -78,15 +78,32 @@ char	**parse_map(t_data *data, char *line)
 				(t_coord) {.x = i, .y = data->world.size.y}) <= 0)
 				return (NULL);
 		}
+		else if(line[i] > '1')
+		{
+			lsprite_addback(&data->lst, lsprite_new((t_coord){.x = i, .y = data->world.size.y - 1}, data->object[line[i] - 50]));
+		}
 		i++;
 	}
 	return (data->world.map);
+}
+
+static int	init_object(t_data *data, char *path, int id)
+{
+	t_image *current_tex;
+
+	current_tex = &data->object[id - 2];
+	if (!(current_tex->img = mlx_xpm_file_to_image(data->mlx.ptr, path, &current_tex->sizex, &current_tex->sizey)))
+		return (EXIT_FAILURE);
+	if (!(current_tex->add_image = mlx_get_data_addr(current_tex->img, &current_tex->bpp, &current_tex->size_line, &current_tex->endian)))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	parsefile(t_data *data, char *file)
 {
 	t_gnl	gnl;
 	t_coord	grid;
+	int		indexparam;
 
 	grid = (t_coord) {};
 	data->world = (t_world) {};
@@ -110,6 +127,7 @@ int	parsefile(t_data *data, char *file)
 		    {
 			    data->screen.size.x = ft_atoi(&gnl.line[1]);
 			    data->screen.size.y = ft_atoi(&gnl.line[ft_digit(data->screen.size.x) + 2]);
+				init_window(data);
 		    }
             else
             {
@@ -117,6 +135,18 @@ int	parsefile(t_data *data, char *file)
                 return (-1);
             }
         }
+		else if (gnl.line[0] == 'S')
+		{
+			indexparam = ft_atoi(&gnl.line[1]);
+			if (ft_isdigit(gnl.line[1]))
+			{
+				if (indexparam > 1)
+				{
+					if (init_object(data, ft_delcharstr(&gnl.line[3], " "), indexparam))
+						return (-1);
+				}
+			}
+		}
         else if (ft_isdigit(gnl.line[0]))
         {
     		if (!(parse_map(data, ft_delcharstr(gnl.line, " "))))
@@ -124,8 +154,6 @@ int	parsefile(t_data *data, char *file)
 
         }
 		free(gnl.line);
-		
-		
 		if (gnl.ret <= 0)
 			break ;
 	}

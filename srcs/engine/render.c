@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 17:23:08 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 13:02:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ void	print_sprite(t_data *data)
 				row = data->player.hdv + ((data->player.height_cam - BLOCK_SIZE/2) / list->dist) * data->player.dist_proj_plane; //- (data->player.hdv/2 - (float)data->player.hdv/2 / ((float)BLOCK_SIZE  / data->player.height_cam));//POSITION DE DEPART
 				while (cmp < lim.y && row < data->screen.size.y)
 				{
-					val = select_sprite_color(offset_mid_object, cmp, data->barel, lim);
+					val = select_sprite_color(offset_mid_object, cmp, list->texture, lim);
 					if (val != 0xff000000 && row > 0)
 						*(int*)(data->image.add_image + (row * data->image.size_line) + data->raycast.column * sizeof(int)) = val;
 					row++;
