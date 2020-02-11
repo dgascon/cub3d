@@ -54,7 +54,7 @@ public func mlx_loop_swift(_ mlxptr:UnsafeRawPointer)
 public func mlx_new_window_swift(_ mlxptr:UnsafeRawPointer, Width w:UInt32, Height h:UInt32, Title t:UnsafePointer<CChar>) -> UnsafeRawPointer
 {
 		let mlx:MlxMain = _mlx_bridge(ptr:mlxptr)
-		let mw = MlxWin(device: mlx.device, width: Int(w), height: Int(h), title: String(cString: t))
+		let mw = MlxWin(device: mlx.device, width: Int(w), height: Int(h), title: String(cstring: t))
 		mw.setNotifs()
 		mlx.addWinToList(mw)
 		return (_mlx_bridge_retained(obj:mw))

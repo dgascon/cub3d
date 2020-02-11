@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:02:05 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:14:50 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,7 +89,7 @@ int fill_column(t_data *data)
 	int		h_max;
 
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
-	height_proj_plane = floorf(data->player.CST / data->raycast.dist); //REVIEW Optimisation
+	height_proj_plane = floorf(data->player.cst / data->raycast.dist); //REVIEW Optimisation
 	gnagna = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera 
 	row = data->player.hdv - (height_proj_plane - gnagna);
 	if (row < 0)
