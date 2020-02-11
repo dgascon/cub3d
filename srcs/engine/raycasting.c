@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:02:51 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:22:44 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,8 @@ float short_dist(t_data *data)
 	{
 		correct_dist = dist_h;
 		data->raycast.face_detect = 'H';
-		data->raycast.inter.x = data->raycast.interH.x;
-		data->raycast.inter.y = data->raycast.interH.y;
+		data->raycast.inter.x = data->raycast.inter_h.x;
+		data->raycast.inter.y = data->raycast.inter_h.y;
 	}
 	else
 	{

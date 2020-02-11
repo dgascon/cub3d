@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   linear_intersec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:48:16 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:22:44 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,8 +100,8 @@ float linear_intersec_h(t_data *data)
 		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
 		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
 		{
-			data->raycast.interH.x = intersec.x;
-			data->raycast.interH.y = intersec.y;
+			data->raycast.inter_h.x = intersec.x;
+			data->raycast.inter_h.y = intersec.y;
 			// return (sqrt(pow(data->player.pos.x - intersec.x, 2) +
 			// 			 pow(data->player.pos.y - intersec.y, 2))); //REVIEW Passer par les ABS
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)

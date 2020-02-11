@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:30:10 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:08:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:21:52 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 
 # define BLOCK_SIZE 64
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct	s_world
 {
