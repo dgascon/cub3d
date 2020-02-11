@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:34:32 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:45:45 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,6 +74,7 @@ typedef	struct	s_data
 
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 void			mlx_line(t_data *data, t_coord start, t_coord end, int colors);
+void			mlx_text(t_data *data, t_coord pos, char *text, int colors);
 int				scan(t_data *data);
 void			minimap(t_data *data);
 t_lsprite		*lsprite_new(t_coord pos, t_image texture);

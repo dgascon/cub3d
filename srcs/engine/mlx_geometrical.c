@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 11:20:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 20:08:03 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:45:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,4 +46,9 @@ void    mlx_line(t_data *data, t_coord start, t_coord end, int colors)
 		mlx_pixel_put(data->mlx.ptr, data->mlx.win, draw.x, draw.y, colors);
 		draw.x++;
 	}
+}
+
+void	mlx_text(t_data *data, t_coord pos, char *text, int colors)
+{
+	mlx_string_put(data->mlx.ptr, data->mlx.win, pos.x, pos.y, colors, text);
 }
