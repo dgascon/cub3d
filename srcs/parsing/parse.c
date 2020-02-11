@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:12:30 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:26:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,7 +58,7 @@ char	**parse_map(t_data *data, char *line)
 		}
 		else if(line[i] > '2')
 		{
-			lsprite_addback(&data->lst, lsprite_new((t_coord){.x = i, .y = data->world.size.y - 1}, data->object[line[i] - 50]));
+			lsprite_addback(&data->lst, lsprite_new((t_coord){.x = i, .y = data->world.size.y - 1}, data->object[line[i] - 51]));
 		}
 		i++;
 	}
@@ -103,12 +103,12 @@ int	parsefile(t_data *data, char *file)
         }
 		else if (gnl.line[0] == 'S')
 		{
-			indexparam = ft_atoi(&gnl.line[1]);
 			if (ft_isdigit(gnl.line[1]))
 			{
-				if (indexparam > 2)
+				if ((indexparam = ft_atoi(&gnl.line[1])) > 2)
 				{
-					if (init_object(data, ft_delcharstr(&gnl.line[3], " "), indexparam))
+					if (init_object(data, ft_delcharstr(&gnl.line[3], " "),
+						indexparam))
 						return (-1);
 				}
 			}

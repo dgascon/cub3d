@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/11 15:10:08 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:10:31 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/11 15:25:15 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ int	init_object(t_data *data, char *path, int id)
 {
 	t_image *current_tex;
 
-	current_tex = &data->object[id - 2];
+	current_tex = &data->object[id - 3];
 	if (!(current_tex->img = mlx_xpm_file_to_image(data->mlx.ptr, path,
             &current_tex->sizex, &current_tex->sizey)))
 		return (EXIT_FAILURE);
