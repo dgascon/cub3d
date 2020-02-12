@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   linear_intersec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:22:44 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:12:58 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,7 @@ float linear_intersec_h(t_data *data)
 	t_f_coord	offset;
 	t_coord		grid;
 
-	offset.x = BLOCK_SIZE / tanf(data->raycast.alpha);
+	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
 		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.01;

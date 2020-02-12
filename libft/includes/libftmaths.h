@@ -6,15 +6,15 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 02:52:48 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:25:54 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:28:15 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef LIBFTMATHS_H
 # define LIBFTMATHS_H
-# define _2PI 2*3.14159265359f
-# define _3PI2 3*1.57079632679f
+# define _2PI 6.28318530718f
+# define _3PI2 4.71238898038f
 
 typedef struct	s_coord
 {

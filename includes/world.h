@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   world.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:30:10 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:21:52 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:19:52 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 # define WORLD_H
 # include "cub3d.h"
 
-# define BLOCK_SIZE 64
+# define BLOCK_SIZE 128
 
 typedef struct s_data	t_data;
 
