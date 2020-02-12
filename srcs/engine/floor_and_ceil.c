@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:49:23 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:43:40 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,24 +91,24 @@ void	print_only_ceil(t_data *data, float val_cst[4], int toto)
 
 void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max)
 {
-    float   cosB;
-    float   val_cst[4];
-    int		val2;
+	float   cosB;
+	float   val_cst[4];
+	int		val2;
 	int     val1;
-    int     crow;
-    int     toto;
-    char    *add_opp;
-    
+	int     crow;
+	int     toto;
+	char    *add_opp;
+	
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
-    toto = height_proj_plane - gnagna;
+	toto = height_proj_plane - gnagna;
 	row = data->player.hdv - toto;
 	crow = data->screen.size.y - row;
-    cosB = cosf(data->raycast.beta);
+	cosB = cosf(data->raycast.beta);
 	val_cst[0] = (data->raycast.dist / cosB);
 	val_cst[1] = gnagna;
 	val_cst[2] = (data->player.dist_proj_plane / cosB) * (BLOCK_SIZE - data->player.height_cam);
 	val_cst[3] = (data->player.dist_proj_plane / cosB) * (data->player.height_cam);
-    row = h_max;
+	row = h_max;
 	//TODO faire du cas par cas avec ceil only, floor only
 	if (row < crow)
 	{
