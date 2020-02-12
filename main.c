@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:24:12 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 12:32:45 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,9 +36,9 @@ int init_texture(t_data* data)
 		return (printf("erreur1"));
 	if (!(data->w_tex[3].add_image = mlx_get_data_addr(data->w_tex[3].img, &data->w_tex[3].bpp, &data->w_tex[3].size_line, &data->w_tex[3].endian)))
 		return (printf("erreur2"));
-	if (!(data->vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->vtex.size.x, &data->vtex.size.y)))
+	if (!(data->hud_tex[0].img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->hud_tex[0].size.x, &data->hud_tex[0].size.y)))
 		return (printf("erreur1"));
-	if (!(data->vtex.add_image = mlx_get_data_addr(data->vtex.img, &data->vtex.bpp, &data->vtex.size_line, &data->vtex.endian)))
+	if (!(data->hud_tex[0].add_image = mlx_get_data_addr(data->hud_tex[0].img, &data->hud_tex[0].bpp, &data->hud_tex[0].size_line, &data->hud_tex[0].endian)))
 		return (printf("erreur2"));
 	return (0);
 }

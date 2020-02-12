@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:30:51 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 12:31:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -115,12 +115,12 @@ int	parsefile(t_data *data, char *file)
 		}
 		else if (gnl.line[0] == 'F')
 		{
-			if (!(data->ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->ftex.size.x, &data->ftex.size.y)))
+			if (!(data->w_tex[4].img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->w_tex[4].size.x, &data->w_tex[4].size.y)))
 			{
 				ft_printf("Erreur : image non existante conversion impossible.");
 				return (-1);
 			}
-			if (!(data->ftex.add_image = mlx_get_data_addr(data->ftex.img, &data->ftex.bpp, &data->ftex.size_line, &data->ftex.endian)))
+			if (!(data->w_tex[4].add_image = mlx_get_data_addr(data->w_tex[4].img, &data->w_tex[4].bpp, &data->w_tex[4].size_line, &data->w_tex[4].endian)))
 			{
 				ft_printf("Erreur : récupération de l'adresse de l'image.");
 				return (-1);
@@ -128,12 +128,12 @@ int	parsefile(t_data *data, char *file)
 		}
 		else if (gnl.line[0] == 'C')
 		{
-			if (!(data->rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->rtex.size.x, &data->rtex.size.y)))
+			if (!(data->w_tex[5].img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->w_tex[5].size.x, &data->w_tex[5].size.y)))
 			{
 				ft_printf("Erreur : image non existante conversion impossible.");
 				return (-1);
 			}
-			if (!(data->rtex.add_image = mlx_get_data_addr(data->rtex.img, &data->rtex.bpp, &data->rtex.size_line, &data->rtex.endian)))
+			if (!(data->w_tex[5].add_image = mlx_get_data_addr(data->w_tex[5].img, &data->w_tex[5].bpp, &data->w_tex[5].size_line, &data->w_tex[5].endian)))
 			{
 				ft_printf("Erreur : récupération de l'adresse de l'image.");
 				return (-1);

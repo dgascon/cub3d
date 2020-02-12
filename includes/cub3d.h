@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:19:09 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 12:32:25 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,10 +62,8 @@ typedef	struct	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		w_tex[4];
-	t_image		ftex;
-	t_image		rtex;
-	t_image		vtex;
+	t_image		w_tex[6];
+	t_image		hud_tex[1];
 	t_image		minimap;
 	t_actions	actions;
 	t_image		object[MAX_OBJ];
