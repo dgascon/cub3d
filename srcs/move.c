@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 15:42:01 by nlecaill     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:18:00 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:20:32 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,15 +16,16 @@
 int		move_x(t_data *data, int value)
 {
 	int tmp;
+	int block;
 
 	tmp = data->player.pos.x + value;
 	if (tmp < (data->world.size.x * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (!(data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] >= '1'
-		&& data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] <= '3'))
+		block = data->world.map[data->player.pos.y / BLOCK_SIZE]
+					[tmp / BLOCK_SIZE];
+		if (!(block >= '1' && block <= '3'))
 			data->player.pos.x = tmp;
-		else if (data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] == '2'
-		&& data->world.locked == 0)
+		else if (block == '2' && data->world.locked == 0)
 			data->player.pos.x = tmp;
 	}
 	return (0);
@@ -32,15 +33,17 @@ int		move_x(t_data *data, int value)
 
 int		move_y(t_data *data, float value)
 {
-	float tmp;
+	float	tmp;
+	int		block;
 
 	tmp = data->player.pos.y + value;
 	if (tmp < (data->world.size.y * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (!(data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] >= '1'
-		&& data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] <= '3'))
+		block = data->world.map[(int)(tmp / BLOCK_SIZE)]
+					[data->player.pos.x / BLOCK_SIZE];
+		if (!(block >= '1' && block <= '3'))
 			data->player.pos.y = tmp;
-		else if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] == '2' && data->world.locked == 0)
+		else if (block == '2' && data->world.locked == 0)
 			data->player.pos.y = tmp;
 	}
 	return (0);

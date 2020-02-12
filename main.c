@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:15:42 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:22:11 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,7 @@ int		init_window(t_data *data)
 //TODO plusieurs niveaux avec un appel du main?
 //DONE changer le sens des texture sud et ouest
 //TODO BMP : bitmap
+//TODO Key flottante et tournante
 
 int main(int ac, char **av)
 {
