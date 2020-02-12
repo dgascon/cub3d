@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   move.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 15:42:01 by nlecaill     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:54:23 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:18:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,6 @@ int		move_y(t_data *data, float value)
 
 void	move(t_data *data, float direction)
 {
-	move_x(data, cosf(direction) * data->player.speed); //REVIEW  NANI????? div par 2?
+	move_x(data, cosf(direction) * data->player.speed);
 	move_y(data, sinf(direction) * -data->player.speed);
 }
