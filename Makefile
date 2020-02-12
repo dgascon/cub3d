@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/11 15:11:58 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/12 12:37:59 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,8 +21,9 @@ PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
+					engine/textures.c												\
 					parsing/parse.c	parsing/minimap.c								\
-					objects/object.c															\
+					objects/object.c												\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
 					garbage.c lst.c player.c move.c

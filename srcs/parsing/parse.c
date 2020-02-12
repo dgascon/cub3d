@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:31:19 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:11:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,43 +107,30 @@ int	parsefile(t_data *data, char *file)
 			{
 				if ((indexparam = ft_atoi(&gnl.line[1])) > 2)
 				{
-					if (init_object(data, ft_delcharstr(&gnl.line[3], " "), //TODO FREE
-						indexparam))
+					if (init_texture(data, &data->object[indexparam - 3],
+						ft_delcharstr(&gnl.line[3], " ")))
 						return (-1);
 				}
 			}
+			else if (gnl.line[1] == 'O')
+				init_texture(data, &data->w_tex[2], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
 		}
 		else if (gnl.line[0] == 'F')
-		{
-			if (!(data->w_tex[4].img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->w_tex[4].size.x, &data->w_tex[4].size.y)))
-			{
-				ft_printf("Erreur : image non existante conversion impossible.");
-				return (-1);
-			}
-			if (!(data->w_tex[4].add_image = mlx_get_data_addr(data->w_tex[4].img, &data->w_tex[4].bpp, &data->w_tex[4].size_line, &data->w_tex[4].endian)))
-			{
-				ft_printf("Erreur : récupération de l'adresse de l'image.");
-				return (-1);
-			}
-		}
+			init_texture(data, &data->w_tex[4], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
 		else if (gnl.line[0] == 'C')
-		{
-			if (!(data->w_tex[5].img = mlx_xpm_file_to_image(data->mlx.ptr, ft_delcharstr(&gnl.line[2], " "), &data->w_tex[5].size.x, &data->w_tex[5].size.y)))
-			{
-				ft_printf("Erreur : image non existante conversion impossible.");
-				return (-1);
-			}
-			if (!(data->w_tex[5].add_image = mlx_get_data_addr(data->w_tex[5].img, &data->w_tex[5].bpp, &data->w_tex[5].size_line, &data->w_tex[5].endian)))
-			{
-				ft_printf("Erreur : récupération de l'adresse de l'image.");
-				return (-1);
-			}
-		}
+			init_texture(data, &data->w_tex[5], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
+		else if (gnl.line[0] == 'N' && gnl.line[1] == 'O')
+			init_texture(data, &data->w_tex[0], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+		else if (gnl.line[0] == 'W' && gnl.line[1] == 'E')
+			init_texture(data, &data->w_tex[3], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+		else if (gnl.line[0] == 'E' && gnl.line[1] == 'A')
+			init_texture(data, &data->w_tex[1], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+		else if (gnl.line[0] == 'V')
+			init_texture(data, &data->hud_tex[0], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
         else if (ft_isdigit(gnl.line[0]))
         {
     		if (!(parse_map(data, ft_delcharstr(gnl.line, " "))))
 				return (-1);
-
         }
 		free(gnl.line);
 		if (gnl.ret <= 0)
@@ -157,6 +144,5 @@ int	parsefile(t_data *data, char *file)
 		free(data->world.map);
 		return (-1);
 	}
-	
 	return (1);
 }
