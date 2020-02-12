@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 19:11:53 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 19:25:28 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,6 +69,7 @@ int	parsefile(t_data *data, char *file)
 	t_gnl	gnl;
 	t_coord	grid;
 	int		indexparam;
+	char	*tmp[2];
 
 	grid = (t_coord) {};
 	data->world = (t_world) {};
@@ -85,6 +86,9 @@ int	parsefile(t_data *data, char *file)
 	while (1)
 	{
 		gnl.ret = get_next_line(gnl.fd, &gnl.line);
+		tmp[0] = ft_delcharstr(&gnl.line[2], " ");
+		tmp[1] = ft_delcharstr(&gnl.line[3], " ");
+
 		if (gnl.line[0] == 'R')
         {
             if (data->screen.size.x == 0 && data->screen.size.y == 0)
@@ -107,31 +111,32 @@ int	parsefile(t_data *data, char *file)
 			{
 				if ((indexparam = ft_atoi(&gnl.line[1])) > 2)
 				{
-					if (init_texture(data, &data->object[indexparam - 3],
-						ft_delcharstr(&gnl.line[3], " ")))
+					if (init_texture(data, &data->object[indexparam-3], tmp[1]))
 						return (-1);
 				}
 			}
 			else if (gnl.line[1] == 'O')
-				init_texture(data, &data->w_tex[2], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+				init_texture(data, &data->w_tex[2], tmp[1]); //TODO PROTEGER
 		}
 		else if (gnl.line[0] == 'F')
-			init_texture(data, &data->w_tex[4], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
+			init_texture(data, &data->w_tex[4], tmp[0]); //TODO PROTEGER
 		else if (gnl.line[0] == 'C')
-			init_texture(data, &data->w_tex[5], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
+			init_texture(data, &data->w_tex[5], tmp[0]); //TODO PROTEGER
 		else if (gnl.line[0] == 'N' && gnl.line[1] == 'O')
-			init_texture(data, &data->w_tex[0], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+			init_texture(data, &data->w_tex[0], tmp[1]); //TODO PROTEGER
 		else if (gnl.line[0] == 'W' && gnl.line[1] == 'E')
-			init_texture(data, &data->w_tex[3], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+			init_texture(data, &data->w_tex[3], tmp[1]); //TODO PROTEGER
 		else if (gnl.line[0] == 'E' && gnl.line[1] == 'A')
-			init_texture(data, &data->w_tex[1], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
+			init_texture(data, &data->w_tex[1], tmp[1]); //TODO PROTEGER
 		else if (gnl.line[0] == 'V')
-			init_texture(data, &data->hud_tex[0], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
+			init_texture(data, &data->hud_tex[0], tmp[0]); //TODO PROTEGER
         else if (ft_isdigit(gnl.line[0]))
         {
     		if (!(parse_map(data, ft_delcharstr(gnl.line, " "))))
 				return (-1);
         }
+		wrfree(tmp[0]);
+		wrfree(tmp[1]);
 		wrfree(gnl.line);
 		if (gnl.ret <= 0)
 			break ;

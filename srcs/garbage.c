@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 19:12:39 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 19:29:16 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,5 +28,6 @@ int destroy(t_data *data)
 		mlx_destroy_image(data->mlx.ptr, data->w_tex[i].img);
 	mlx_destroy_image(data->mlx.ptr, data->image.img); //TODO destroy toute les textures
 	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
+	wrdestroy();
 	exit(1);
 }
