@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   player.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/09 17:27:41 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:32:06 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:03:34 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,8 +48,8 @@ typedef	struct		s_actions
 	enum e_boolean	jump;
 }					t_actions;
 
-void				key_press(int key, t_data *data);
-void				key_release(int key, t_data *data);
+int					key_press(int key, t_data *data);
+int					key_release(int key, t_data *data);
 void				actionscontrol(t_data *data);
 int					destroy(t_data *data);
 void				move(t_data *data, float direction);
