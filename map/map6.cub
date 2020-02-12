@@ -1,8 +1,11 @@
 R 2500 1080
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+
+NO ./assets/images/face_north.xpm
+SO ./assets/images/face_south.xpm
+WE ./assets/images/face_west.xpm
+EA ./assets/images/face_east.xpm
+
+V ./assets/images/viseur.xpm
 
 S3 ./assets/images/baril.xpm
 

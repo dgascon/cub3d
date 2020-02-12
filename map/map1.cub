@@ -1,4 +1,17 @@
 R 1920 1080
+
+NO ./assets/images/face_north.xpm
+SO ./assets/images/face_south.xpm
+WE ./assets/images/face_west.xpm
+EA ./assets/images/face_east.xpm
+
+V ./assets/images/viseur.xpm
+
+S3 ./assets/images/baril.xpm
+
+F ./assets/images/vitrail-3.xpm
+C ./assets/images/ice.xpm
+
 111111111111111111111111111111
 110000000000000000000000000011
 100000000000000000000000000001

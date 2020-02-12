@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:28:45 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:32:51 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,7 +76,7 @@ void	print_sprite(t_data *data)
 			list->visible = 0;
 		}
 		list = list->next;
-	}	
+	}
 }
 
 int fill_column(t_data *data, int direction)
@@ -112,11 +112,9 @@ int fill_column(t_data *data, int direction)
 		row++;
 		wall_row++;
 	}
-
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 	// printf("direction\t%d\n", direction);
 	print_floor_and_ceil(data, row, gnagna, height_proj_plane, h_max);
 	print_sprite(data);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:28:05 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:32:50 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,7 +95,7 @@ int scan(t_data *data)
 		data->raycast.column--;
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
+	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->hud_tex[0].img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
