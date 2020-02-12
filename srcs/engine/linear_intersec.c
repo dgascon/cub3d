@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:12:58 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:03:19 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@ float linear_intersec_v(t_data *data)
 	t_coord grid;
 	t_f_coord intersec;
 	t_f_coord offset;
+	t_lsprite *obj;
 
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
@@ -35,11 +36,8 @@ float linear_intersec_v(t_data *data)
 	{
 		grid.y = intersec.x / BLOCK_SIZE;
 		grid.x = intersec.y / BLOCK_SIZE;
-		if (grid.x < 0)
-			grid.x = 0;
-		if (grid.x > data->world.size.y - 1)
-			grid.x = data->world.size.y - 1;
-		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
+		(grid.x < 0) ? grid.x = 0 : 0;
+		(grid.x > data->world.size.y - 1) ? grid.x = data->world.size.y - 1 : 0;
 		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
 		{
 			data->raycast.inter.x = intersec.x;
@@ -49,23 +47,17 @@ float linear_intersec_v(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] > '2')
 		{
-			t_lsprite *obj;
-			
 			obj = pick_object(data->lst, grid);
 			if (obj)
 			{
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
-				obj->visible = 1;//!obj->visible;
+				obj->visible = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
-				// printf("Hobj at dist = %f\t1/lstdist=%f\n", obj->dist, 1/obj->dist);
 			}
-			
-			// set_visible(data->lst, grid);
 		}
-
 		intersec.x += offset.x;
 		intersec.y -= offset.y;
 	}
@@ -77,6 +69,7 @@ float linear_intersec_h(t_data *data)
 	t_f_coord	intersec;
 	t_f_coord	offset;
 	t_coord		grid;
+	t_lsprite	*obj;
 
 	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
@@ -97,7 +90,6 @@ float linear_intersec_h(t_data *data)
 		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.y < 0) ? grid.y = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
-		// printf("case = %c\n", data->world.map[grid.x][grid.y]);
 		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
 		{
 			data->raycast.inter_h.x = intersec.x;
@@ -109,7 +101,6 @@ float linear_intersec_h(t_data *data)
 		}
 		else if (data->world.map[grid.x][grid.y] > '2')
 		{
-			t_lsprite *obj;
 			obj = pick_object(data->lst, grid);
 			if (obj)
 			{

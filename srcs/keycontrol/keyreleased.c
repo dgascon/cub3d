@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   keyreleased.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:11:12 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:55:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:52:12 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int    key_release(int key, t_data *data)
+void	key_release(int key, t_data *data)
 {
 	if (key == ARROW_LEFT || key == Q)
 		data->actions.lookleft = FALSE;
@@ -37,5 +37,4 @@ int    key_release(int key, t_data *data)
 		data->actions.jump = FALSE;
 	else if (key == LCTRL)
 		data->actions.crouching = FALSE;
-	return (0);
 }

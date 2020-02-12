@@ -1,39 +1,47 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   move.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/02/12 15:42:01 by nlecaill     #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/12 15:54:23 by nlecaill    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int move_x(t_data *data, float value)
+int		move_x(t_data *data, int value)
 {
-	float tmp;
+	int tmp;
 
 	tmp = data->player.pos.x + value;
 	if (tmp < (data->world.size.x * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '1' && data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '3' && data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '2')
+		if (!(data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] >= '1'
+		&& data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] <= '3'))
 			data->player.pos.x = tmp;
-		else if (data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] == '2') //&& !((tmp%BLOCK_SIZE > BLOCK_SIZE/48) && (tmp%BLOCK_SIZE < BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
-		{
-			if (data->world.locked == 0)
-			{
-				data->player.pos.x = tmp;
-			}
-		}
+		else if (data->world.map[data->player.pos.y / BLOCK_SIZE][tmp / BLOCK_SIZE] == '2'
+		&& data->world.locked == 0)
+			data->player.pos.x = tmp;
 	}
 	return (0);
 }
 
-int move_y(t_data *data, float value)
+int		move_y(t_data *data, float value)
 {
 	float tmp;
 
 	tmp = data->player.pos.y + value;
 	if (tmp < (data->world.size.y * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '1' && data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '3' && data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '2')
+		if (!(data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] >= '1'
+		&& data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] <= '3'))
 			data->player.pos.y = tmp;
-		else if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] == '2') // && !((tmp%BLOCK_SIZE >= BLOCK_SIZE/48) && (tmp%BLOCK_SIZE <= BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
-		{
-			if (data->world.locked == 0)
-		 		data->player.pos.y = tmp;
-		}
+		else if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] == '2' && data->world.locked == 0)
+			data->player.pos.y = tmp;
 	}
 	return (0);
 }

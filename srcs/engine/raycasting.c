@@ -6,14 +6,14 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:32:50 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:49:39 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float short_dist(t_data *data)
+float	short_dist(t_data *data)
 {
 	float  dist_h;
 	float  dist_v;

@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:32:48 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 15:49:23 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -135,7 +135,6 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 	}
 	else
 	{
-		// printf("Pass [%d]\n", row);
 		if (crow < 0)
 		{
 			toto -= crow;
