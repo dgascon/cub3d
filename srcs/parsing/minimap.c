@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 19:37:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 10:55:12 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:42:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@ void	minimap(t_data *data)
 	char current_block;
 
 	pos = (t_coord) {};
-	sizebox.x = ((float)BLOCK_SIZE * ((float)16 / data->world.size.x)) * RATIO;
-	sizebox.y = ((float)BLOCK_SIZE * ((float)8 / data->world.size.y)) * RATIO;
+	sizebox.x = ((float)64 * ((float)16 / data->world.size.x)) * RATIO;
+	sizebox.y = ((float)64 * ((float)8 / data->world.size.y)) * RATIO;
 	sizemap.x = (data->world.size.x * sizebox.x);
 	sizemap.y = (data->world.size.y * sizebox.y);
 	if (!(data->minimap.img = mlx_new_image(data->mlx.ptr, sizemap.x, sizemap.y)))
