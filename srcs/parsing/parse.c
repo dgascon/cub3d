@@ -6,16 +6,12 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:37:33 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:46:22 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-# ifndef DEBUG
-# define DEBUG 0
-# endif
 
 char	**parse_map(t_data *data, char *line)
 {
@@ -120,12 +116,7 @@ int	parsefile(t_data *data, char *file)
 				init_texture(data, &data->w_tex[2], ft_delcharstr(&gnl.line[3], " ")); //TODO PROTEGER
 		}
 		else if (gnl.line[0] == 'F')
-		{
-			if (DEBUG)
-				init_texture(data, &data->w_tex[4], "assets/images/wood.xpm"); //TODO PROTEGER
-			else
-				init_texture(data, &data->w_tex[4], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
-		}
+			init_texture(data, &data->w_tex[4], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
 		else if (gnl.line[0] == 'C')
 			init_texture(data, &data->w_tex[5], ft_delcharstr(&gnl.line[2], " ")); //TODO PROTEGER
 		else if (gnl.line[0] == 'N' && gnl.line[1] == 'O')
