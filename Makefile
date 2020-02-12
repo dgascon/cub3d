@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/12 12:37:59 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/12 13:40:34 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -23,12 +23,11 @@ SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
 					engine/textures.c												\
 					parsing/parse.c	parsing/minimap.c								\
-					objects/object.c												\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
 					garbage.c lst.c player.c move.c
 
-INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h object.h
+INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
 
 OBJS			=	$(addprefix $(PATH_OBJ)/, $(SRC_LIST:.c=.o))
 OBJS_BONUS		=	$(addprefix $(PATH_OBJ)/, $(BONUS_LIST:.c=.o))
@@ -47,11 +46,11 @@ MINILIBX_NAME	= 	libmlx.a
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
-C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
+C-O				=	$(CC) $(CFLAGS) -D DEBUG=$(DEBUG) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
-DIRS_LIST	= engine parsing keycontrol objects
+DIRS_LIST	= engine parsing keycontrol
 
-all:	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
+all $(DEBUG):	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"
 
 $(NAME): $(OBJS) $(INCS) comp
@@ -75,6 +74,9 @@ clean:
 	@ /bin/rm -rf $(PATH_OBJ)
 	@ make -C $(LIBFT_PATH) clean
 	@ make -C $(MINILIBX_PATH) clean
+
+cleanperso:
+	@ /bin/rm -rf $(PATH_OBJ)
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean

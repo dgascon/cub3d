@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:57:13 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:41:19 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,10 @@
 # include "world.h"
 # include "player.h"
 # include "raycast.h"
-# include "object.h"
+
+# ifndef DEBUG
+# define DEBUG 0
+# endif
 
 # define MAX_OBJ 1
 

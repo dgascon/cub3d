@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:11:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:24:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ int		init_window(t_data *data)
 //DONE ralentir la monter et la descente du saut
 //DONE gerer le plafond et le avec une block_size differente
 //DONE gerer les sprites avec block_size different
-//TODO tableau de texture 
+//DONE tableau de texture 
 //TODO Ajouter une regle makefile debug
 //TODO Corriger la direction de mouvement
 //TODO Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
