@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:49:39 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:30:42 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ float	short_dist(t_data *data)
 	float  dist_h;
 	float  dist_v;
 	float  correct_dist;
-	
+
 	dist_v = linear_intersec_v(data);
 	dist_h = linear_intersec_h(data);
 	if (dist_h < dist_v)
@@ -70,16 +70,15 @@ int scan(t_data *data)
 	int direction;
 	
 	actionscontrol(data);
-	mlx_clear_window(data->mlx.ptr, data->mlx.win);
+	// mlx_clear_window(data->mlx.ptr, data->mlx.win);
 	data->raycast.column = data->screen.size.x;
 	data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
 	while (data->raycast.column >= 0)
 	{
-		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
+		data->raycast.alpha += data->raycast.delta_ang;
 		if (data->raycast.alpha >=  _2PI) // REVIEW optimiser
 			data->raycast.alpha -= _2PI; // REVIEW optimiser
-		if (data->raycast.alpha < 0)
-			data->raycast.alpha += _2PI; // REVIEW optimiser
+		(data->raycast.alpha < 0) ? (data->raycast.alpha += _2PI) : 0;
 		data->raycast.dist = short_dist(data);
 		if (data->raycast.face_detect == 'H')
 		{
@@ -99,6 +98,6 @@ int scan(t_data *data)
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
-	mlx_text(data, (t_coord){50, 100}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80));
+	mlx_text(data, (t_coord){50, 100}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80)); //TODO malloc? voir pour passer au systeme de arthur
 	return (1);
 }

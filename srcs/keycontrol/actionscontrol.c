@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:29:06 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:46:11 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,16 +42,16 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 {
 	if (*state_height_cam == 1)
 	{
-		data->player.height_cam += BLOCK_SIZE/20;
-		(data->player.height_cam > 3*BLOCK_SIZE/4) ? *state_height_cam = 2 : 0;
+		data->player.height_cam += BLOCK_SIZE / 20;
+		(data->player.height_cam > 3*BLOCK_SIZE / 4) ? *state_height_cam = 2 : 0;
 	}
 	else if (*state_height_cam == 2)
 	{
-		data->player.height_cam -= BLOCK_SIZE/20;
-		(data->player.height_cam == BLOCK_SIZE/2) ? *state_height_cam = 0 : 0;
+		data->player.height_cam -= BLOCK_SIZE / 20;
+		(data->player.height_cam == BLOCK_SIZE / 2) ? *state_height_cam = 0 : 0;
 	}
 	if (!data->actions.crouching && *state_height_cam == 0)
-		data->player.height_cam = BLOCK_SIZE/2;
+		data->player.height_cam = BLOCK_SIZE / 2;
 }
 
 static void	releasedelay_speed(t_data *data, int *state_speed)
@@ -63,11 +63,11 @@ static void	releasedelay_speed(t_data *data, int *state_speed)
 	}
 	else if (*state_speed == 2)
 	{
-		data->player.speed -= (BLOCK_SIZE / data->player.speed);
-		if (data->player.speed <= MAX_SPEED / 2)
+		data->player.speed -= (BLOCK_SIZE  /  data->player.speed);
+		if (data->player.speed <= MAX_SPEED  /  2)
 		{
 			*state_speed = 0;
-			data->player.speed = MAX_SPEED / 2;
+			data->player.speed = MAX_SPEED  /  2;
 		}
 	}
 }

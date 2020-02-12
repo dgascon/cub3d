@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:33:30 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:42:50 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 	return (ptr);
 }
 
-void	lsprite_addback(t_lsprite **lst, t_lsprite *new)
+void		lsprite_addback(t_lsprite **lst, t_lsprite *new)
 {
 	t_lsprite *list;
 
@@ -57,7 +57,7 @@ t_lsprite	*swap(t_lsprite *ptr1, t_lsprite *ptr2)
 	return (ptr2);
 }
 
-void	lsprite_sort(t_lsprite **lst)
+void		lsprite_sort(t_lsprite **lst)
 {
 	t_lsprite	**list;
 	t_lsprite	*lste;

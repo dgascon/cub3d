@@ -6,12 +6,29 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:55:40 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:02:45 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	key_press_2(int key, t_data *data)
+{
+	if (key == A)
+		data->actions.leftward = TRUE;
+	else if (key == W)
+		data->actions.forward = TRUE;
+	else if (key == S)
+		data->actions.backward = TRUE;
+	else if (key == SPACE)
+		data->actions.jump = TRUE;
+	else if (key == LCTRL)
+		data->actions.crouching = TRUE;
+	else if (key == M)
+		data->player.show_minimap = !data->player.show_minimap;
+	return (0);
+}
 
 int	key_press(int key, t_data *data)
 {
@@ -29,17 +46,5 @@ int	key_press(int key, t_data *data)
 		data->actions.speed = TRUE;
 	else if (key == D)
 		data->actions.rightward = TRUE;
-	else if (key == A)
-		data->actions.leftward = TRUE;
-	else if (key == W)
-		data->actions.forward = TRUE;
-	else if (key == S)
-		data->actions.backward = TRUE;
-	else if (key == SPACE)
-		data->actions.jump = TRUE;
-	else if (key == LCTRL)
-		data->actions.crouching = TRUE;
-	else if (key == M)
-		data->player.show_minimap = !data->player.show_minimap;
-	return (0);
+	return(key_press_2(key, data));
 }
