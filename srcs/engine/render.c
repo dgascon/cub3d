@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:53:25 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:14:48 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,9 +20,18 @@ int		select_wall_color(t_data *data, float prptn, int wall_row, int dir)
 
 	proportion = (float)data->w_tex[dir].size.x / BLOCK_SIZE;
 	ratio.y = (int)(prptn * wall_row) % data->w_tex[dir].size.y;
-	ratio.x = (data->raycast.face_detect == 'V')
-	? (int)(data->raycast.inter.y * proportion) % data->w_tex[dir].size.x
-	: (int)(data->raycast.inter.x * proportion) % data->w_tex[dir].size.x;
+	if (data->raycast.face_detect == 'V')
+	{
+		ratio.x = (int)(data->raycast.inter.y * proportion)
+			% data->w_tex[dir].size.x;
+	}
+	else
+	{
+		ratio.x = (int)(data->raycast.inter.x * proportion)
+			% data->w_tex[dir].size.x;
+	}
+	if (dir >= 2 && dir <= 3)
+			ratio.x = data->w_tex[dir].size.x - ratio.x;
 	return (*(int*)(data->w_tex[dir].add_image
 	+ (data->w_tex[dir].size_line * ratio.y) + (ratio.x * sizeof(int))));
 }

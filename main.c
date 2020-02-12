@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:42:04 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:15:42 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,12 +41,13 @@ int		init_window(t_data *data)
 //DONE gerer le plafond et le avec une block_size differente
 //DONE gerer les sprites avec block_size different
 //DONE tableau de texture 
-//TODO Ajouter une regle makefile debug
+//DONE Ajouter une regle makefile debug
 //TODO Corriger la direction de mouvement
 //TODO Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
 //TODO rendre la minimap sans relation avec la blocksize
 //TODO plusieurs niveaux avec un appel du main?
-//TODO changer le sens des texture sud et ouest
+//DONE changer le sens des texture sud et ouest
+//TODO BMP : bitmap
 
 int main(int ac, char **av)
 {
