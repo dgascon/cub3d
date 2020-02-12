@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:22:11 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:56:57 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,8 +43,8 @@ int		init_window(t_data *data)
 //DONE tableau de texture 
 //DONE Ajouter une regle makefile debug
 //TODO Corriger la direction de mouvement
-//TODO Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
-//TODO rendre la minimap sans relation avec la blocksize
+//DONE Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
+//DONE rendre la minimap sans relation avec la blocksize
 //TODO plusieurs niveaux avec un appel du main?
 //DONE changer le sens des texture sud et ouest
 //TODO BMP : bitmap

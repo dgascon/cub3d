@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:46:22 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:56:24 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -88,11 +88,12 @@ int	parsefile(t_data *data, char *file)
 		gnl.ret = get_next_line(gnl.fd, &gnl.line);
 		if (gnl.line[0] == 'R')
         {
-            if (data->screen.size.x == 0
-            && data->screen.size.y == 0)
+            if (data->screen.size.x == 0 && data->screen.size.y == 0)
 		    {
 			    data->screen.size.x = ft_atoi(&gnl.line[1]);
 			    data->screen.size.y = ft_atoi(&gnl.line[ft_digit(data->screen.size.x) + 2]);
+				(data->screen.size.x >= 2560) ? data->screen.size.x = 2559 : 0;
+				(data->screen.size.y >= 1440) ? data->screen.size.y = 1439 : 0;
 				init_window(data);
 		    }
             else
