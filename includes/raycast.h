@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/13 11:52:37 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:22:52 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:18:01 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ typedef struct	s_raycast
 }				t_raycast;
 
 float			short_dist(t_data *data);
-int				fill_column(t_data *data);
+int				fill_column(t_data *data, int direction);
 float			linear_intersec_h(t_data *data);
 float			linear_intersec_v(t_data *data);
 #endif

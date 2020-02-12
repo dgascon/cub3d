@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/04 19:37:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 13:44:14 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:55:12 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@ void	minimap(t_data *data)
 	char current_block;
 
 	pos = (t_coord) {};
-	sizebox.x = ((float)64 * ((float)16 / data->world.size.x)) * RATIO;
-	sizebox.y = ((float)64 * ((float)8 / data->world.size.y)) * RATIO;
+	sizebox.x = ((float)BLOCK_SIZE * ((float)16 / data->world.size.x)) * RATIO;
+	sizebox.y = ((float)BLOCK_SIZE * ((float)8 / data->world.size.y)) * RATIO;
 	sizemap.x = (data->world.size.x * sizebox.x);
 	sizemap.y = (data->world.size.y * sizebox.y);
 	if (!(data->minimap.img = mlx_new_image(data->mlx.ptr, sizemap.x, sizemap.y)))
@@ -48,6 +48,6 @@ void	minimap(t_data *data)
 		}
 		pos.y += sizebox.y;
 	}
-	mlx_rect(&data->minimap, (t_coord) {data->player.pos.x / ((float)(data->world.size.x * 64) / (float)sizemap.x), data->player.pos.y / ((float)(data->world.size.y * 64) / (float)sizemap.y)}, (t_coord) {5, 5}, rgb_int(255, 105, 180));	
+	mlx_rect(&data->minimap, (t_coord) {data->player.pos.x / ((float)(data->world.size.x * BLOCK_SIZE) / (float)sizemap.x), data->player.pos.y / ((float)(data->world.size.y * BLOCK_SIZE) / (float)sizemap.y)}, (t_coord) {5, 5}, rgb_int(255, 105, 180));	
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->minimap.img, 10, 10);
 }

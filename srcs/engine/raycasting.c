@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:57:42 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 12:19:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,11 +67,12 @@ void	put_text_to_screen(t_data *data)
 
 int scan(t_data *data)
 {
+	int direction;
+	
 	actionscontrol(data);
 	mlx_clear_window(data->mlx.ptr, data->mlx.win);
 	data->raycast.column = data->screen.size.x;
 	data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
-
 	while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
@@ -80,16 +81,24 @@ int scan(t_data *data)
 		if (data->raycast.alpha < 0)
 			data->raycast.alpha += 2 * M_PI; // REVIEW optimiser
 		data->raycast.dist = short_dist(data);
-		fill_column(data);
+		if (data->raycast.face_detect == 'H')
+		{
+			direction = (int)data->raycast.inter.y % BLOCK_SIZE;
+			direction =  (direction == 0) ? 2 : 0;
+		}
+		else if (data->raycast.face_detect == 'V')
+		{
+			direction = (int)data->raycast.inter.x % 64;
+			direction = (direction == 0) ? 1 : 3;
+		}
+		fill_column(data, direction);
 		data->raycast.column--;
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->vtex.img, data->screen.size.x / 2 - 12, data->screen.size.y / 2 - 12);
-	
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
 	mlx_text(data, (t_coord){50, 50}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80));
-
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:34:30 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:18:09 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -135,6 +135,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 	}
 	else
 	{
+		// printf("Pass [%d]\n", row);
 		if (crow < 0)
 		{
 			toto -= crow;
@@ -142,7 +143,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 			print_only_ceil(data, val_cst, toto);
 			return ;
 		}
-		while (crow <= data->screen.size.y)
+		while (crow < data->screen.size.y)
 		{
 			val1 = floor_and_ceil_color(data, val_cst, toto, &val2);
 			*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;

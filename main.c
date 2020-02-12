@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 09:26:00 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 10:53:10 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,9 +20,21 @@ int init_texture(t_data* data)
 		return (EXIT_FAILURE);
 	if (!(data->image.add_image = mlx_get_data_addr(data->image.img, &data->image.bpp, &data->image.size_line, &data->image.endian)))
 		return (EXIT_FAILURE);
-	if (!(data->wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->wtex.size.x, &data->wtex.size.y)))
+	if (!(data->w_tex[0].img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/face_north.xpm", &data->w_tex[0].size.x, &data->w_tex[0].size.y)))
 		return (printf("erreur1"));
-	if (!(data->wtex.add_image = mlx_get_data_addr(data->wtex.img, &data->wtex.bpp, &data->wtex.size_line, &data->wtex.endian)))
+	if (!(data->w_tex[0].add_image = mlx_get_data_addr(data->w_tex[0].img, &data->w_tex[0].bpp, &data->w_tex[0].size_line, &data->w_tex[0].endian)))
+		return (printf("erreur2"));
+	if (!(data->w_tex[1].img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/face_east.xpm", &data->w_tex[1].size.x, &data->w_tex[1].size.y)))
+		return (printf("erreur1"));
+	if (!(data->w_tex[1].add_image = mlx_get_data_addr(data->w_tex[1].img, &data->w_tex[1].bpp, &data->w_tex[1].size_line, &data->w_tex[1].endian)))
+		return (printf("erreur2"));
+	if (!(data->w_tex[2].img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/face_south.xpm", &data->w_tex[2].size.x, &data->w_tex[2].size.y)))
+		return (printf("erreur2"));
+	if (!(data->w_tex[2].add_image = mlx_get_data_addr(data->w_tex[2].img, &data->w_tex[2].bpp, &data->w_tex[2].size_line, &data->w_tex[2].endian)))
+		return (printf("erreur2"));
+	if (!(data->w_tex[3].img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/face_west.xpm", &data->w_tex[3].size.x, &data->w_tex[3].size.y)))
+		return (printf("erreur1"));
+	if (!(data->w_tex[3].add_image = mlx_get_data_addr(data->w_tex[3].img, &data->w_tex[3].bpp, &data->w_tex[3].size_line, &data->w_tex[3].endian)))
 		return (printf("erreur2"));
 	if (!(data->vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->vtex.size.x, &data->vtex.size.y)))
 		return (printf("erreur1"));

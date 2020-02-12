@@ -6,21 +6,21 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 15:34:30 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 11:13:06 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-int select_wall_color(t_data *data, float proprtion, int wall_row)
+int select_wall_color(t_data *data, float proprtion, int wall_row, int direction)
 {
 	t_coord ratio;
 	float proportion;
 
-	proportion = (float) data->wtex.size.x / BLOCK_SIZE;
-	ratio.y = (int)(proprtion * wall_row) % data->wtex.size.y;
-	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * proportion) % data->wtex.size.x : (int)(data->raycast.inter.x * proportion) % data->wtex.size.x;
-	return (*(int*)(data->wtex.add_image + (data->wtex.size_line * ratio.y) + (ratio.x * sizeof(int))));
+	proportion = (float) data->w_tex[direction].size.x / BLOCK_SIZE;
+	ratio.y = (int)(proprtion * wall_row) % data->w_tex[direction].size.y;
+	ratio.x = (data->raycast.face_detect == 'V') ? (int)(data->raycast.inter.y * proportion) % data->w_tex[direction].size.x : (int)(data->raycast.inter.x * proportion) % data->w_tex[direction].size.x;
+	return (*(int*)(data->w_tex[direction].add_image + (data->w_tex[direction].size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
 
 int	select_sprite_color(t_f_coord offset, int wall_row, t_image sprite, t_f_coord lim)
@@ -79,7 +79,7 @@ void	print_sprite(t_data *data)
 	}	
 }
 
-int fill_column(t_data *data)
+int fill_column(t_data *data, int direction)
 {
 	int		height_proj_plane;
 	int		row;
@@ -87,7 +87,8 @@ int fill_column(t_data *data)
 	char	*add_opp;
 	int		gnagna;
 	int		h_max;
-
+	
+	// printf("direction\t%d\n", direction);
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = floorf(data->player.cst / data->raycast.dist); //REVIEW Optimisation
 	gnagna = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera 
@@ -102,15 +103,18 @@ int fill_column(t_data *data)
 	{
 		h_max = data->screen.size.y;
 	}
-	float racourcis = (float)data->wtex.size.y / height_proj_plane;
+	float racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
 	while (row < h_max)
 	{
-		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row);
+		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
 		row++;
 		wall_row++;
 	}
+
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
+	// printf("direction\t%d\n", direction);
 	print_floor_and_ceil(data, row, gnagna, height_proj_plane, h_max);
 	print_sprite(data);
+
 	return (0);
 }
