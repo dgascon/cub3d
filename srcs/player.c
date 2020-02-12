@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   player.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/11 15:08:05 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 15:30:46 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:59:21 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@ int		parse_player(t_data *data, char direction, t_coord position)
 	{
 		ft_printf("Deux joueurs de placé sur la carte !\n");
 		freemap(data, 0);
-		free(data->world.map);
+		wrfree(data->world.map);
 		return (-1);
 	}
 	if (direction == 'N')

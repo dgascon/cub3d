@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:56:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 19:00:59 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ char	**parse_map(t_data *data, char *line)
 	if (!line)
 		return (NULL);
 	data->world.size.y++;
-	if (!(tmp_map = malloc(sizeof(char *) * (data->world.size.y))))
+	if (!(tmp_map = wrmalloc(sizeof(char *) * (data->world.size.y))))
 	{
 		ft_printf("Malloc en y impossible.\n");
 		return (NULL);
@@ -36,7 +36,7 @@ char	**parse_map(t_data *data, char *line)
 	}
 	tmp_map[i] = line;
 	(data->world.size.y > 1) ? freemap(data, 1) : 0;
-	free(data->world.map);
+	wrfree(data->world.map);
 	data->world.map = tmp_map;
    	if (data->world.size.x == 0)
 		data->world.size.x = ft_strlen(tmp_map[i]);
@@ -44,7 +44,7 @@ char	**parse_map(t_data *data, char *line)
 	{
 		ft_printf("Erreur de map\n");
 		freemap(data, 1);
-		free(data->world.map);
+		wrfree(data->world.map);
 		return (NULL);
 	}
 	i = 0;
@@ -133,7 +133,7 @@ int	parsefile(t_data *data, char *file)
     		if (!(parse_map(data, ft_delcharstr(gnl.line, " "))))
 				return (-1);
         }
-		free(gnl.line);
+		wrfree(gnl.line);
 		if (gnl.ret <= 0)
 			break ;
 	}
@@ -142,7 +142,7 @@ int	parsefile(t_data *data, char *file)
 	{
 		ft_printf("Aucun joueur sur la carte\n");
 		freemap(data, 0);
-		free(data->world.map);
+		wrfree(data->world.map);
 		return (-1);
 	}
 	return (1);

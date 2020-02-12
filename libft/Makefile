@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
+#    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/01/30 18:45:15 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/12 18:36:40 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -38,6 +38,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c				\
 				mem/ft_memcpy.c			mem/ft_memccpy.c				\
 				mem/ft_memmove.c		mem/ft_memchr.c					\
 				mem/ft_memcmp.c			mem/ft_calloc.c					\
+				mem/ft_wrmalloc.c 										\
 				put/ft_putchar_fd.c		put/ft_putcharec_fd.c			\
 				put/ft_putstr_fd.c		put/ft_putendl_fd.c				\
 				put/ft_putnbr_fd.c		put/ft_putnbr_base_fd.c			\

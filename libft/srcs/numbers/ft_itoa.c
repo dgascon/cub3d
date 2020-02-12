@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_itoa.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/25 02:10:50 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 15:46:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:57:40 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ char			*ft_itoa(int n)
 		ntmp /= 10;
 		max++;
 	}
-	if (!(ptr = malloc((max + 1) * sizeof(char))))
+	if (!(ptr = wrmalloc((max + 1) * sizeof(char))))
 		return (0);
 	ptr[max] = '\0';
 	if ((ntmp = n) < 0)

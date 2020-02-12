@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_split.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/23 13:32:33 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 15:46:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:59:06 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,10 +20,10 @@ static char	**splitfree(char **ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		free(ptr[i]);
+		wrfree(ptr[i]);
 		i++;
 	}
-	free(ptr);
+	wrfree(ptr);
 	return (NULL);
 }
 
@@ -71,7 +71,7 @@ char		**ft_split(char const *s, char c)
 		(s[i] != c && (s[i + 1] == c || s[i + 1] == '\0')) ? rows++ : 0;
 		i++;
 	}
-	if (!(ptr = malloc((rows + 1) * sizeof(char *))))
+	if (!(ptr = wrmalloc((rows + 1) * sizeof(char *))))
 		return (0);
 	ptr[rows] = 0;
 	if (!(splitproc(ptr, s, c)))

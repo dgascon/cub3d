@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:32:45 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:59:12 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ void freemap(t_data *data, int offset)
 	i = 0;
 	while (i < data->world.size.y - offset)
 	{
-		free(data->world.map[i]);
+		wrfree(data->world.map[i]);
 		i++;
 	}
 }

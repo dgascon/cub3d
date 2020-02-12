@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   lst.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:42:50 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:57:55 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 {
 	t_lsprite *ptr;
 
-	if (!(ptr = malloc(sizeof(t_lsprite))))
+	if (!(ptr = wrmalloc(sizeof(t_lsprite))))
 		return (0);
 	ptr->texture = texture;
 	ptr->grd.x = pos.x;

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   get_next_line.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/12 15:28:45 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:33:55 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:58:52 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,13 +21,13 @@ static t_gnl_lc	*gnl_new(int fd, char *buffer)
 {
 	t_gnl_lc *current;
 
-	if (!(current = malloc(sizeof(t_gnl_lc))))
+	if (!(current = wrmalloc(sizeof(t_gnl_lc))))
 		return (NULL);
 	if (!buffer)
 	{
 		if (!(current->buffer = ft_substr("", 0, 1)))
 		{
-			free(current);
+			wrfree(current);
 			return (NULL);
 		}
 	}
@@ -66,11 +66,11 @@ static int		gnl_check(int fd, char **buffer)
 	char	*buffer_save;
 
 	state = 1;
-	if (!(str = malloc((BUFFER_SIZE + 1) * sizeof(char))))
+	if (!(str = wrmalloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (ERROR);
 	if ((read_size = read(fd, str, BUFFER_SIZE)) == -1)
 	{
-		free(str);
+		wrfree(str);
 		return (ERROR);
 	}
 	str[read_size] = '\0';
@@ -78,11 +78,11 @@ static int		gnl_check(int fd, char **buffer)
 	buffer_save = *buffer;
 	if (!(*buffer = ft_strjoin(*buffer, str)))
 	{
-		free(str);
+		wrfree(str);
 		return (ERROR);
 	}
-	free(buffer_save);
-	free(str);
+	wrfree(buffer_save);
+	wrfree(str);
 	return (state);
 }
 
@@ -102,7 +102,7 @@ static int		gnl_free_mail(t_gnl_lc **buffer, t_gnl_lc *current, int ret)
 				tmp_prev->next = tmp->next;
 			if (current == (*buffer))
 				(*buffer) = NULL;
-			free(current);
+			wrfree(current);
 			current = NULL;
 			break ;
 		}
@@ -133,7 +133,7 @@ int				get_next_line(int fd, char **line)
 		return (ERROR);
 	if (gnl_line(current->buffer, line, i) == -1)
 		return (ERROR);
-	free(current->buffer);
+	wrfree(current->buffer);
 	current->buffer = n_buff;
 	return ((i == 0) ? gnl_free_mail(&buffer, current, ENDFILE) : SUCCESS);
 }

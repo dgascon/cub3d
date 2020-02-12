@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_calloc.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/13 12:36:38 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 15:46:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:57:37 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*m;
 
-	if (!(m = malloc(count * size)))
+	if (!(m = wrmalloc(count * size)))
 		return (NULL);
 	ft_bzero(m, size * count);
 	return (m);

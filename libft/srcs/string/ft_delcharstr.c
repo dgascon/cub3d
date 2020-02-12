@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_delcharstr.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/27 17:26:06 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:16:03 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:58:55 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,8 +28,8 @@ char	*ft_delcharstr(char *line, char *charset)
 		{
 			linechar = ft_chartostr(line[i]);
 			ret = ft_strjoin(tmp, linechar);
-			free(linechar);
-			free(tmp);
+			wrfree(linechar);
+			wrfree(tmp);
 			tmp = ret;
 		}
 		i++;

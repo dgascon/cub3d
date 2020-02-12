@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_lstdelone.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/29 12:05:27 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 15:46:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:58:54 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,5 +18,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	if (!lst)
 		return ;
 	del(lst->content);
-	free(lst);
+	wrfree(lst);
 }

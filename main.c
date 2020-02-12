@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:56:57 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 17:59:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -73,5 +73,6 @@ int main(int ac, char **av)
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
 	mlx_hook(data.mlx.win, DestroyNotify, NoEventMask, destroy, &data);
 	mlx_loop(data.mlx.ptr);
+
 	return (EXIT_SUCCESS);
 }

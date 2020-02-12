@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_strtrim.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/21 20:15:13 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 15:46:24 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:57:51 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (trimcmp(s1[max - 1], set))
 		max--;
 	(max < min) ? max = min + 1 : 0;
-	if (!(ptr = malloc((max - min + 1) * sizeof(char))))
+	if (!(ptr = wrmalloc((max - min + 1) * sizeof(char))))
 		return (NULL);
 	while (s1[i] && i < max - min)
 	{

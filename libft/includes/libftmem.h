@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftmem.h                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 16:49:47 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 18:36:05 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,4 +23,7 @@ void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
+void			*wrmalloc(unsigned long size);
+int				wrfree(void *ptr);
+void			wrdestroy(void);
 #endif
