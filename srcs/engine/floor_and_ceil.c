@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   floor_and_ceil.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:31:17 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:32:48 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 		}
 		else
 		{
-			data->raycast.gamma = (3 * M_PI_2) - data->raycast.alpha;
+			data->raycast.gamma = (_3PI2) - data->raycast.alpha;
 			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 			deltaY[0] = dist_mur_sol * sincos.y * -1;
 			deltaY[1] = dist_mur_plafond * sincos.y * -1;
@@ -48,7 +48,7 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 	}
 	else
 	{
-		if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
+		if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < _3PI2)
 		{
 			data->raycast.gamma = M_PI - data->raycast.alpha ;
 			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
@@ -57,7 +57,7 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 		}
 		else
 		{
-			data->raycast.gamma = data->raycast.alpha - 2 * M_PI;
+			data->raycast.gamma = data->raycast.alpha - _2PI;
 			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 			deltaX[0] = dist_mur_sol * sincos.y * -1;
 			deltaX[1] = dist_mur_plafond * sincos.y * -1;

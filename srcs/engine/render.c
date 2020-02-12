@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:02:37 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:32:51 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,6 +107,8 @@ int fill_column(t_data *data, int direction)
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
+		if (data->raycast.column == data->screen.size.x/2)
+				*(int*)(add_opp + (row * data->image.size_line)) = 0xff0000;
 		row++;
 		wall_row++;
 	}

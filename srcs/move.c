@@ -1,18 +1,16 @@
 #include "cub3d.h"
 
-int move_x(t_data *data, int value)
+int move_x(t_data *data, float value)
 {
-	int tmp;
+	float tmp;
 
 	tmp = data->player.pos.x + value;
-	// printf("H pos= [%d] [%d]\ttmp = %d \n", data->player.pos.x, data->player.pos.y, tmp%BLOCK_SIZE);
 	if (tmp < (data->world.size.x * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (data->world.map[data->player.pos.y / BLOCK_SIZE][(tmp / BLOCK_SIZE)] != '1' && data->world.map[data->player.pos.y / BLOCK_SIZE][(tmp / BLOCK_SIZE)] != '3' && data->world.map[data->player.pos.y / BLOCK_SIZE][(tmp / BLOCK_SIZE)] != '2')
+		if (data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '1' && data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '3' && data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] != '2')
 			data->player.pos.x = tmp;
-		else if (data->world.map[data->player.pos.y / BLOCK_SIZE][(tmp / BLOCK_SIZE)] == '2') //&& !((tmp%BLOCK_SIZE > BLOCK_SIZE/48) && (tmp%BLOCK_SIZE < BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
+		else if (data->world.map[data->player.pos.y / BLOCK_SIZE][(int)(tmp / BLOCK_SIZE)] == '2') //&& !((tmp%BLOCK_SIZE > BLOCK_SIZE/48) && (tmp%BLOCK_SIZE < BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.y%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
 		{
-			// printf("locked = %d\n", data->world.locked);
 			if (data->world.locked == 0)
 			{
 				data->player.pos.x = tmp;
@@ -22,17 +20,16 @@ int move_x(t_data *data, int value)
 	return (0);
 }
 
-int move_y(t_data *data, int value)
+int move_y(t_data *data, float value)
 {
-	int tmp;
+	float tmp;
 
 	tmp = data->player.pos.y + value;
-	// printf("Y pos= [%d] [%d]\ttmp = %d\n", data->player.pos.x, data->player.pos.y, tmp%BLOCK_SIZE);
 	if (tmp < (data->world.size.y * BLOCK_SIZE) &&	tmp > BLOCK_SIZE)
 	{
-		if (data->world.map[tmp / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] != '1' && data->world.map[tmp / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] != '3' && data->world.map[tmp / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] != '2')
+		if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '1' && data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '3' && data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] != '2')
 			data->player.pos.y = tmp;
-		else if (data->world.map[tmp / BLOCK_SIZE][data->player.pos.x / BLOCK_SIZE] == '2') // && !((tmp%BLOCK_SIZE >= BLOCK_SIZE/48) && (tmp%BLOCK_SIZE <= BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
+		else if (data->world.map[(int)(tmp / BLOCK_SIZE)][data->player.pos.x / BLOCK_SIZE] == '2') // && !((tmp%BLOCK_SIZE >= BLOCK_SIZE/48) && (tmp%BLOCK_SIZE <= BLOCK_SIZE - BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE > BLOCK_SIZE/48) && (data->player.pos.x%BLOCK_SIZE < BLOCK_SIZE-BLOCK_SIZE/48)))
 		{
 			if (data->world.locked == 0)
 		 		data->player.pos.y = tmp;
@@ -43,6 +40,6 @@ int move_y(t_data *data, int value)
 
 void	move(t_data *data, float direction)
 {
-	move_x(data, cosf(direction) * data->player.speed / 2); //REVIEW  NANI????? div par 2?
-	move_y(data, sinf(direction) * -data->player.speed / 2);
+	move_x(data, cosf(direction) * data->player.speed); //REVIEW  NANI????? div par 2?
+	move_y(data, sinf(direction) * -data->player.speed);
 }
