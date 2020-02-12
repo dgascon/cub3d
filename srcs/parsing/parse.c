@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:41:01 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 19:00:59 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 19:11:53 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ char	**parse_map(t_data *data, char *line)
 		i++;
 	}
 	tmp_map[i] = line;
-	(data->world.size.y > 1) ? freemap(data, 1) : 0;
+	(data->world.size.y > 1) ? wrfree(data->world.map[0]) : 0;
 	wrfree(data->world.map);
 	data->world.map = tmp_map;
    	if (data->world.size.x == 0)
@@ -43,8 +43,7 @@ char	**parse_map(t_data *data, char *line)
 	else if (data->world.size.x != (int)ft_strlen(tmp_map[i]))
 	{
 		ft_printf("Erreur de map\n");
-		freemap(data, 1);
-		wrfree(data->world.map);
+		wrdestroy();
 		return (NULL);
 	}
 	i = 0;
@@ -141,8 +140,7 @@ int	parsefile(t_data *data, char *file)
 	if (data->player.pos.x == 0 && data->player.pos.y == 0)
 	{
 		ft_printf("Aucun joueur sur la carte\n");
-		freemap(data, 0);
-		wrfree(data->world.map);
+		wrdestroy();
 		return (-1);
 	}
 	return (1);

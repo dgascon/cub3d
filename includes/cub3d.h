@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 13:46:10 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 19:05:09 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,9 @@
 # include "player.h"
 # include "raycast.h"
 
-# define MAX_OBJ 1
+# define OBJ_TEX 1
+# define W_TEX 6
+# define HUD_TEX 1
 
 typedef struct	s_mlx
 {
@@ -65,7 +67,7 @@ typedef	struct	s_data
 	t_image		hud_tex[1];
 	t_image		minimap;
 	t_actions	actions;
-	t_image		object[MAX_OBJ];
+	t_image		object[OBJ_TEX];
 	t_lsprite	*lst;
 }				t_data;
 
