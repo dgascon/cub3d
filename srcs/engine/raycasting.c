@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 12:19:00 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:28:05 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,10 +76,10 @@ int scan(t_data *data)
 	while (data->raycast.column >= 0)
 	{
 		data->raycast.alpha += data->raycast.delta_ang; // REVIEW optimiser
-		if (data->raycast.alpha >= 2 * M_PI) // REVIEW optimiser
-			data->raycast.alpha -= 2 * M_PI; // REVIEW optimiser
+		if (data->raycast.alpha >=  _2PI) // REVIEW optimiser
+			data->raycast.alpha -= _2PI; // REVIEW optimiser
 		if (data->raycast.alpha < 0)
-			data->raycast.alpha += 2 * M_PI; // REVIEW optimiser
+			data->raycast.alpha += _2PI; // REVIEW optimiser
 		data->raycast.dist = short_dist(data);
 		if (data->raycast.face_detect == 'H')
 		{
@@ -99,6 +99,6 @@ int scan(t_data *data)
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
-	mlx_text(data, (t_coord){50, 50}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80));
+	mlx_text(data, (t_coord){50, 100}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80));
 	return (1);
 }

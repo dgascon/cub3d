@@ -3,16 +3,18 @@
 /*                                                              /             */
 /*   libftmaths.h                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 02:52:48 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:57:28 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 13:25:54 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef LIBFTMATHS_H
 # define LIBFTMATHS_H
+# define _2PI 2*3.14159265359f
+# define _3PI2 3*1.57079632679f
 
 typedef struct	s_coord
 {
