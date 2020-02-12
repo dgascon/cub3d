@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   keypress.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:04:03 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 16:55:40 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	key_press(int key, t_data *data)
+int	key_press(int key, t_data *data)
 {
 	if (key == ESC)
 		destroy(data);
@@ -41,4 +41,5 @@ void	key_press(int key, t_data *data)
 		data->actions.crouching = TRUE;
 	else if (key == M)
 		data->player.show_minimap = !data->player.show_minimap;
+	return (0);
 }
