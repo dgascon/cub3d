@@ -6,8 +6,8 @@ EA ./path_to_the_east_texture
 
 S3 ./assets/images/baril.xpm
 
-F ./path_to_the_floor_texture
-C ./path_to_the_ceil_texture
+F ./assets/images/vitrail-3.xpm
+C ./assets/images/ice.xpm
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1

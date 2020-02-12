@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/11 16:07:42 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 09:26:00 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,14 +23,6 @@ int init_texture(t_data* data)
 	if (!(data->wtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/wood.xpm", &data->wtex.size.x, &data->wtex.size.y)))
 		return (printf("erreur1"));
 	if (!(data->wtex.add_image = mlx_get_data_addr(data->wtex.img, &data->wtex.bpp, &data->wtex.size_line, &data->wtex.endian)))
-		return (printf("erreur2"));
-	if (!(data->ftex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/vitrail-3.xpm", &data->ftex.size.x, &data->ftex.size.y)))
-		return (printf("erreur1"));
-	if (!(data->ftex.add_image = mlx_get_data_addr(data->ftex.img, &data->ftex.bpp, &data->ftex.size_line, &data->ftex.endian)))
-		return (printf("erreur2"));
-	if (!(data->rtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/ice.xpm", &data->rtex.size.x, &data->rtex.size.y)))
-		return (printf("erreur1"));
-	if (!(data->rtex.add_image = mlx_get_data_addr(data->rtex.img, &data->rtex.bpp, &data->rtex.size_line, &data->rtex.endian)))
 		return (printf("erreur2"));
 	if (!(data->vtex.img = mlx_xpm_file_to_image(data->mlx.ptr, "assets/images/viseur.xpm", &data->vtex.size.x, &data->vtex.size.y)))
 		return (printf("erreur1"));
@@ -62,6 +54,7 @@ int		init_window(t_data *data)
 //TODO tableau de texture 
 //TODO Ajouter une regle makefile debug
 //TODO Corriger la direction de mouvement
+//TODO Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
 
 int main(int ac, char **av)
 {
