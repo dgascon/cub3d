@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/13 11:48:59 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:25:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:35:58 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,17 +27,18 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 		if (ft_charstr(line[j], "NSWE"))
 		{
 			if (parse_player(data, line[j],
-				(t_coord) {.x = i, .y = data->world.size.y}) <= 0)
+				(t_coord) {.x = j, .y = data->world.size.y}) <= 0)
 				return (EXIT_FAILURE);
 		}
 		else if (line[j] > '2')
 		{
 			lsprite_addback(&data->lst, lsprite_new(
-				(t_coord){.x = i, .y = data->world.size.y - 1},
+				(t_coord){.x = j, .y = data->world.size.y - 1},
 				data->object[line[j] - 51]));
 		}
 		j++;
 	}
+	return (EXIT_SUCCESS);
 }
 
 int			parse_map(t_data *data, char *line)
@@ -62,7 +63,7 @@ int			parse_map(t_data *data, char *line)
 	(data->world.size.y > 1) ? wrfree(data->world.map[0]) : 0;
 	wrfree(data->world.map);
 	data->world.map = tmp_map;
-	if (parse_map_2(data, line))
+	if (parse_map_2(data, line, tmp_map, i))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
