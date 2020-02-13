@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycast.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/13 11:52:37 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 10:18:01 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 13:29:10 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ typedef struct s_data	t_data;
 typedef struct	s_raycast
 {
 	int			column;
+	int			end;
 	float		alpha;
 	float		beta;
 	float		gamma;

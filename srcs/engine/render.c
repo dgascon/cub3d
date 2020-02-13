@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:14:48 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 15:31:09 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,12 +60,10 @@ void	print_sprite(t_data *data)
 	t_lsprite		*list;
 
 	cmp = 0;
-	lsprite_sort(&data->lst);
 	list = data->lst;
 	while (list != NULL)
 	{
-		
-		if (list->visible == 1)
+		if (list->visible == 1 || list->visible2 == 1)
 		{
 			angle_raycast_mid_obj = data->raycast.alpha - ((M_PI_2 - atanf((float)(list->pos.y - data->player.pos.y) / (list->pos.x - data->player.pos.x ))) + M_PI_2);
 			offset_mid_object.x = tanf(angle_raycast_mid_obj) * list->dist;
@@ -86,7 +84,10 @@ void	print_sprite(t_data *data)
 				}
 			}
 			cmp = 0;
-			list->visible = 0;
+			if (data->raycast.end == 0)
+				list->visible2 = 0;
+			else
+				list->visible = 0;			
 		}
 		list = list->next;
 	}
@@ -101,10 +102,18 @@ int		fill_column(t_data *data, int direction)
 	int		gnagna;
 	int		h_max;
 	
+/*	if (data->raycast.end == 0 && data->raycast.column == data->screen.size.x/2)
+		printf("render by thread\n");
+	else if (data->raycast.column == data->screen.size.x/2)
+	{
+		printf("rendre by main\n");
+	}
+		*/
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = floorf(data->player.cst / data->raycast.dist); //REVIEW Optimisation
 	gnagna = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera 
 	row = data->player.hdv - (height_proj_plane - gnagna);
+
 	if (row < 0)
 	{
 		wall_row = 0 - row;
@@ -119,8 +128,6 @@ int		fill_column(t_data *data, int direction)
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
-		if (data->raycast.column == data->screen.size.x/2)
-				*(int*)(add_opp + (row * data->image.size_line)) = 0xff0000;
 		row++;
 		wall_row++;
 	}

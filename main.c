@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 09:51:01 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 15:27:36 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,7 @@ int		init_window(t_data *data)
 //DONE changer le sens des texture sud et ouest
 //TODO BMP : bitmap
 //TODO Key flottante et tournante
+//TODO liberer les espaces memoire uttilise par les thread
 
 int main(int ac, char **av)
 {
@@ -61,6 +62,7 @@ int main(int ac, char **av)
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]) != 0)
 		return (EXIT_FAILURE);
+
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);

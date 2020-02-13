@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 14:27:18 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 15:52:12 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@
 # include "world.h"
 # include "player.h"
 # include "raycast.h"
+# include <pthread.h>
 
 # define OBJ_TEX 1
 # define W_TEX 6
@@ -49,6 +50,7 @@ typedef struct	s_lsprite
 	t_coord detect_position;
 	float	detect_dist;
 	int		visible;
+	int		visible2;
 	int		printed;
 	float	dist;
 	void	*next;
