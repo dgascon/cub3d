@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:14:15 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:56:58 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,10 +42,9 @@ int		init_window(t_data *data)
 //DONE gerer les sprites avec block_size different
 //DONE tableau de texture 
 //DONE Ajouter une regle makefile debug
-//TODO Corriger la direction de mouvement
+//REVIEW Corriger la direction de mouvement
 //DONE Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran
 //DONE rendre la minimap sans relation avec la blocksize
-//TODO plusieurs niveaux avec un appel du main?
 //DONE changer le sens des texture sud et ouest
 //TODO BMP : bitmap
 //TODO Key flottante et tournante
@@ -63,7 +62,8 @@ int main(int ac, char **av)
 	if (parsefile(&data, av[1]) != 0)
 		return (EXIT_FAILURE);
 
-	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
+	data.raycast = (t_raycast) {.alpha = M_PI / 3,
+		.delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;

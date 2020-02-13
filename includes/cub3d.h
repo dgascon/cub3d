@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:28:13 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:55:48 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@
 # define OBJ_TEX 1
 # define W_TEX 6
 # define HUD_TEX 1
+# define NB_THREAD 5
 
 typedef struct	s_mlx
 {
@@ -49,8 +50,7 @@ typedef struct	s_lsprite
 	t_coord grd;
 	t_coord detect_position;
 	float	detect_dist;
-	int		visible;
-	int		visible2;
+	int		visible[NB_THREAD];
 	int		printed;
 	float	dist;
 	void	*next;
@@ -71,6 +71,7 @@ typedef	struct	s_data
 	t_actions	actions;
 	t_image		object[OBJ_TEX];
 	t_lsprite	*lst;
+	int			th_num;
 }				t_data;
 
 int				init_texture(t_data *data, t_image *image, char *path);

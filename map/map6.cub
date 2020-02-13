@@ -1,4 +1,4 @@
-R 2500 1080
+R 2560 1440
 
 NO ./assets/images/bricks64.xpm
 SO ./assets/images/bricks64.xpm

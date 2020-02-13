@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   actionscontrol.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:16:42 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:56:06 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,24 +17,24 @@ void		lookcontrol(t_data *data)
 {
 	if (data->actions.lookleft == TRUE)
 	{
-		data->player.pov += 0.08;
+		data->player.pov += 0.1;
 		(data->player.pov > 2 * M_PI) ? data->player.pov -= 2 * M_PI : 0;
 	}
 	if (data->actions.lookright == TRUE)
 	{
-		data->player.pov -= 0.08;
+		data->player.pov -= 0.1;
 		(data->player.pov < 0) ? data->player.pov += 2 * M_PI : 0;
 	}
 	if (data->actions.lookup == TRUE)
 	{
 		if (data->player.hdv > -(data->screen.size.y / 7))
-			data->player.hdv -= 25;
+			data->player.hdv -= 40;
 	}
 	if (data->actions.lookdown == TRUE)
 	{
 		if (data->player.hdv <
 			(data->screen.size.y + (data->screen.size.y / 7)))
-			data->player.hdv += 25;
+			data->player.hdv += 40;
 	}
 }
 

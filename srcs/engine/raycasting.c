@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   raycasting.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:39:32 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:55:28 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,29 +99,40 @@ void	*casting(void *param)
 
 int scan(t_data *data)
 {
-	pthread_t thread_id; 
-	t_data data2;
+	pthread_t	thread_id[NB_THREAD - 1];
+	t_data		th_data[NB_THREAD];
+	int i;
 
-	// printf("test\n");
+	i = 0;
 	actionscontrol(data);
-	data2 = *data;
-	// printf("data.hdv = %d, data2.hdv = %d\n", data->player.hdv, data2.player.hdv);
-	data->raycast.column = data->screen.size.x;
-	data2.raycast.column = data->screen.size.x/2;
-	data->raycast.alpha = data->player.pov - (data->player.fov / 2); // REVIEW optimiser
-	data2.raycast.alpha = data->player.pov;
-	data->raycast.end = data->screen.size.x/2;
-	data2.raycast.end = 0;
+	data->raycast.alpha = data->player.pov - (data->player.fov / 2);
+	while (i < NB_THREAD)
+	{
+		th_data[i] = *data;
+		th_data[i].raycast.column = (NB_THREAD - i) * data->screen.size.x / NB_THREAD;
+		th_data[i].raycast.alpha = data->raycast.alpha + (i * data->player.fov / NB_THREAD);
+		th_data[i].raycast.end = data->screen.size.x - (i + 1) * data->screen.size.x / NB_THREAD;
+		th_data[i].th_num = i;
+		i++;
+	}
 	lsprite_sort(&data->lst);
-	pthread_create(&thread_id, NULL, casting, &data2);
-
-	casting(data);
-	pthread_join(thread_id, NULL);
+	i = 0;
+	while (i < NB_THREAD - 1)
+	{
+		pthread_create(&thread_id[i], NULL, casting, &th_data[i + 1]);
+		i++;
+	}
+	casting(&th_data[0]);
+	while (i > 0)
+	{
+		pthread_join(thread_id[i - 1], NULL);
+		i--;
+	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->hud_tex[0].img, data->screen.size.x / 2, data->screen.size.y / 2);
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
-	// printf("thread joined");
+	mlx_text(data, (t_coord){50, 100}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80)); //TODO malloc? voir pour passer au systeme de arthur
 	return (1);
 }

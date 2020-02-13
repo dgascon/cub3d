@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   lst.c                                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 04:37:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 18:57:55 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:50:01 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,9 @@
 t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 {
 	t_lsprite *ptr;
+	int i;
 
+	i = -1;
 	if (!(ptr = wrmalloc(sizeof(t_lsprite))))
 		return (0);
 	ptr->texture = texture;
@@ -24,7 +26,8 @@ t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 	ptr->grd.y = pos.y;
 	ptr->pos.x = (pos.x * BLOCK_SIZE) + BLOCK_SIZE / 2;
 	ptr->pos.y = (pos.y * BLOCK_SIZE) + BLOCK_SIZE / 2;
-	ptr->visible = 0;
+	while (++i < NB_THREAD)
+		ptr->visible[i] = 0;
 	ptr->next = NULL;
 	return (ptr);
 }

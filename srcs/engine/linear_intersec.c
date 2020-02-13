@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 18:13:39 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 15:27:18 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:44:11 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,10 +52,7 @@ float linear_intersec_v(t_data *data)
 			{
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
-				if (data->raycast.end == 0)
-					obj->visible2 = 1;
-				else
-					obj->visible = 1;
+				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
@@ -107,10 +104,7 @@ float linear_intersec_h(t_data *data)
 			{
 				obj->dist = sqrtf((data->player.pos.x - obj->pos.x) * (data->player.pos.x - obj->pos.x)
 				+ (data->player.pos.y - obj->pos.y) * (data->player.pos.y - obj->pos.y));
-				if (data->raycast.end == 0)
-					obj->visible2 = 1;
-				else
-					obj->visible = 1;
+				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));

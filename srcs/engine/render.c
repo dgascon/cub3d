@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:28:13 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:56:19 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ void	print_sprite(t_data *data)
 	list = data->lst;
 	while (list != NULL)
 	{
-		if (list->visible == 1 || list->visible2 == 1)
+		if (list->visible[data->th_num] == 1)
 		{
 			angle_raycast_mid_obj = data->raycast.alpha - ((M_PI_2 - atanf((float)(list->pos.y - data->player.pos.y) / (list->pos.x - data->player.pos.x ))) + M_PI_2);
 			offset_mid_object.x = tanf(angle_raycast_mid_obj) * list->dist;
@@ -84,10 +84,7 @@ void	print_sprite(t_data *data)
 				}
 			}
 			cmp = 0;
-			if (data->raycast.end == 0)
-				list->visible2 = 0;
-			else
-				list->visible = 0;			
+			list->visible[data->th_num] = 0;		
 		}
 		list = list->next;
 	}
