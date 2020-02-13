@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 17:42:09 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 18:04:05 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,8 +26,8 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define THREADS	150
-# define NB_THREAD	((THREADS > 0) ? THREADS : 1)
+# define THREADS	10
+# define NB_THREAD	((THREADS > 0 && THREADS < 401) ? THREADS : 1)
 
 typedef struct	s_mlx
 {
