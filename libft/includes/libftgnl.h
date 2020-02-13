@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftgnl.h                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:59:14 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 14:29:33 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,4 +34,5 @@ typedef struct	s_gnl
 
 int				gnl_line(char *buffer, char **line, int index);
 int				get_next_line(int fd, char **line);
+int				checkformatfile(char *file, t_gnl *gnl, char *ext);
 #endif

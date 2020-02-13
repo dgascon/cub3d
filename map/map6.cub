@@ -1,9 +1,9 @@
 R 2500 1080
 
-NO ./assets/images/face_north.xpm
-SO ./assets/images/face_south.xpm
-WE ./assets/images/face_west.xpm
-EA ./assets/images/face_east.xpm
+NO ./assets/images/bricks64.xpm
+SO ./assets/images/bricks64.xpm
+WE ./assets/images/bricks64.xpm
+EA ./assets/images/bricks64.xpm
 
 V ./assets/images/viseur.xpm
 

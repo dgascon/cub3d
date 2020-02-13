@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 12:34:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 10:42:46 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 14:26:56 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,4 +35,11 @@ int	init_texture(t_data *data, t_image *image, char *path)
 	msg = ft_strjoin(msg, path);
 	msg = ft_strjoin(msg, RESET "'.");
 	return (ft_message(TM_INFO, msg, 0, ""));
+}
+
+int flaginit_tex(t_data *data, int flag, t_image *img, char *path)
+{
+	if (flag)
+		return (init_texture(data, img, path));
+	return (EXIT_SUCCESS);
 }
