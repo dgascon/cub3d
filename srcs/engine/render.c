@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   render.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 15:31:09 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:28:13 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -132,7 +132,7 @@ int		fill_column(t_data *data, int direction)
 		wall_row++;
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
-	print_floor_and_ceil(data, row, gnagna, height_proj_plane, h_max);
+	pt_floor_ceil(data, row, gnagna, height_proj_plane, h_max);
 	print_sprite(data);
 	return (0);
 }

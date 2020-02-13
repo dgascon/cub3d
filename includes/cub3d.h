@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   cub3d.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 15:52:12 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:28:13 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,6 +85,6 @@ int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			lsprite_sort(t_lsprite **lst);
-void			print_floor_and_ceil(t_data *data, int row, int	gnagna,
+void			pt_floor_ceil(t_data *data, int row, int	gnagna,
 					int height_proj_plane, int h_max);
 #endif

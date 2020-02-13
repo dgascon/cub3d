@@ -3,28 +3,28 @@
 /*                                                              /             */
 /*   floor_and_ceil.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:58:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:43:40 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:28:13 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plane, int *val2)
+int floor_ceil_color(t_data *data, float c_const[4], int hproj_plane, int *val2)
 {
-	t_coord sol;
-	t_coord ceil;
-	float dist_mur_sol;
-	float dist_mur_plafond;
-	float deltaY[2];
-	float deltaX[2];
-	t_f_coord sincos;
+	t_coord 	sol;
+	t_coord 	ceil;
+	float 		dist_mur_sol;
+	float 		dist_mur_plafond;
+	float 		deltaY[2];
+	float 		deltaX[2];
+	t_f_coord	sincos;
 
-	dist_mur_plafond = calc_const[0] - (calc_const[2] / height_proj_plane);
-	dist_mur_sol = calc_const[0] - (calc_const[3] / calc_const[1]);
+	dist_mur_plafond = c_const[0] - (c_const[2] / hproj_plane);
+	dist_mur_sol = c_const[0] - (c_const[3] / c_const[1]);
 	sincos.x = 0;
 	sincos.y = 0;
 	if (data->raycast.face_detect == 'H')
@@ -72,6 +72,7 @@ int floor_and_ceil_color(t_data *data, float calc_const[4], int height_proj_plan
 	*val2 = *(int*)(data->w_tex[5].add_image + (data->w_tex[5].size_line * ceil.y) + (ceil.x * sizeof(int)));
 	return (*(int*)(data->w_tex[4].add_image + (data->w_tex[4].size_line * sol.y) + (sol.x * sizeof(int))));
 }
+
 void	print_only_ceil(t_data *data, float val_cst[4], int toto)
 {
 	int val2;
@@ -81,7 +82,7 @@ void	print_only_ceil(t_data *data, float val_cst[4], int toto)
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	while (crow < data->screen.size.y)
 	{
-		floor_and_ceil_color(data, val_cst, toto, &val2);
+		floor_ceil_color(data, val_cst, toto, &val2);
 		*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 		crow++;
 		val_cst[1]++;
@@ -89,7 +90,7 @@ void	print_only_ceil(t_data *data, float val_cst[4], int toto)
 	}
 }
 
-void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max)
+void    pt_floor_ceil(t_data *data, int row, int	gnagna, int height_proj_plane, int h_max)
 {
 	float   cosB;
 	float   val_cst[4];
@@ -122,7 +123,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 		}
 		while (row < data->screen.size.y)
 		{
-			*(int*)(add_opp + (row * data->image.size_line)) = floor_and_ceil_color(data, val_cst, toto, &val2);
+			*(int*)(add_opp + (row * data->image.size_line)) = floor_ceil_color(data, val_cst, toto, &val2);
 			if (crow <= data->screen.size.y)
 			{
 				*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
@@ -144,7 +145,7 @@ void    print_floor_and_ceil(t_data *data, int row, int	gnagna, int height_proj_
 		}
 		while (crow < data->screen.size.y)
 		{
-			val1 = floor_and_ceil_color(data, val_cst, toto, &val2);
+			val1 = floor_ceil_color(data, val_cst, toto, &val2);
 			*(int*)(add_opp + (data->image.size_line * (data->screen.size.y - crow))) = val2;
 			if (row <= data->screen.size.y)
 			{
