@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:55:28 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 17:40:30 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,7 +91,7 @@ void	*casting(void *param)
 		fill_column(data, direction);
 		data->raycast.column--;
 	}
-	if (data->raycast.end == 0)
+	if (data->th_num > 0)
 		pthread_exit(NULL);
 	else
 	return (NULL);
@@ -99,7 +99,7 @@ void	*casting(void *param)
 
 int scan(t_data *data)
 {
-	pthread_t	thread_id[NB_THREAD - 1];
+	pthread_t	thread_id[NB_THREAD];
 	t_data		th_data[NB_THREAD];
 	int i;
 
