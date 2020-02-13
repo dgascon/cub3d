@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/12 13:40:34 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/13 11:49:14 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -25,7 +25,7 @@ SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					parsing/parse.c	parsing/minimap.c								\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
-					garbage.c lst.c player.c move.c
+					garbage.c lst.c player.c move.c world.c
 
 INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
 

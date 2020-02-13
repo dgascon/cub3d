@@ -6,14 +6,14 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/23 13:32:33 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 18:59:06 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 10:17:46 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**splitfree(char **ptr)
+void		splitfree(char **ptr)
 {
 	int i;
 
@@ -24,7 +24,6 @@ static char	**splitfree(char **ptr)
 		i++;
 	}
 	wrfree(ptr);
-	return (NULL);
 }
 
 static int	splitproc(char **ptr, char const *s, char c)
@@ -46,14 +45,14 @@ static int	splitproc(char **ptr, char const *s, char c)
 			if (s[i + 1] == c || s[i + 1] == '\0')
 			{
 				if (!(ptr[row++] = ft_substr(s, start, end)))
-					return (0);
+					return (1);
 				start = -1;
 				end = 0;
 			}
 			end++;
 		}
 	}
-	return (1);
+	return (0);
 }
 
 char		**ft_split(char const *s, char c)
@@ -74,7 +73,10 @@ char		**ft_split(char const *s, char c)
 	if (!(ptr = wrmalloc((rows + 1) * sizeof(char *))))
 		return (0);
 	ptr[rows] = 0;
-	if (!(splitproc(ptr, s, c)))
-		return (splitfree(ptr));
+	if ((splitproc(ptr, s, c)) != 0)
+	{
+		splitfree(ptr);
+		return (NULL);
+	}
 	return (ptr);
 }

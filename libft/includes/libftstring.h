@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftstring.h                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/10/20 18:32:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:34:33 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 10:18:11 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,6 +43,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_charjoin(char const *s1, char const s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
+void			splitfree(char **ptr);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_delcharstr(char *line, char *charset);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 18:32:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 18:38:15 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 09:21:43 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@
 **	-wrdestroy : free all malloc created by wrmalloc
 */
 
-static t_list   **wrgetter(void)
+static t_list	**wrgetter(void)
 {
 	static t_list *wrm;
 

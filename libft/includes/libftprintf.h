@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   libftprintf.h                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/20 05:36:15 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 02:39:40 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 09:38:28 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,8 @@
 # define MAGENTA		"\033[35m"
 # define CYAN			"\033[36m"
 # define WHITE			"\033[37m"
+# define ORANGE			"\033[38;5;214m"
+# define BOLDORANGE		"\033[1m\033[38;5;214m"
 # define BOLDBLACK		"\033[1m\033[30m"
 # define BOLDRED		"\033[1m\033[31m"
 # define BOLDGREEN		"\033[1m\033[32m"

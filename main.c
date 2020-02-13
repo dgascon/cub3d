@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 19:26:25 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 09:51:01 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,11 +55,11 @@ int main(int ac, char **av)
 	t_data data;
 
 	(void)av;
-	if (ac <= 1 && ft_printf("Map manquante !"))
-		return (EXIT_FAILURE);
+	if (ac <= 1)
+		return (ft_message(TM_ERROR, "Il manque un argument !", 1, RED));
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
-	if (parsefile(&data, av[1]) <= 0)
+	if (parsefile(&data, av[1]) != 0)
 		return (EXIT_FAILURE);
 	data.raycast = (t_raycast) {.alpha = M_PI / 3, .delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);

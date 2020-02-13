@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 15:56:07 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:48:00 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 09:33:14 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,14 @@ enum	e_keycode
 	LCTRL = 256
 };
 
+enum	e_type_message
+{
+	TM_INFO,
+	TM_ERROR,
+	TM_WARNING
+};
+
 char	*ft_sbase(enum e_base b);
 int		rgb_int(int red, int green, int blue);
+int		ft_message(enum e_type_message e, char *message, int ret, char *colors);
 #endif
