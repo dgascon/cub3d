@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/07 15:11:52 by dgascon      #+#   ##    ##    #+#        #
-#    Updated: 2020/02/13 09:17:56 by dgascon     ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/13 16:14:15 by dgascon     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -44,7 +44,7 @@ SRC_LIST	= 	string/ft_strlen.c		string/ft_toupper.c				\
 				put/ft_putnbr_fd.c		put/ft_putnbr_base_fd.c			\
 				put/ft_putnstr_fd.c		put/ft_putnbr_ui_base_fd.c		\
 				put/ft_putnbr_format_fd.c								\
-				put/ft_message.c										\
+				put/ft_msg.c										\
 				lists/ft_lstnew.c		lists/ft_lstadd_front.c			\
 				lists/ft_lstsize.c		lists/ft_lstlast.c				\
 				lists/ft_lstadd_back.c	lists/ft_lstdelone.c			\

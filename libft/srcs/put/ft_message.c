@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_message.c                                     .::    .:/ .      .::   */
+/*   ft_msg.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
@@ -23,7 +23,7 @@ static char	*ft_type_message(enum e_type_message e)
 	return (typemsg[e]);
 }
 
-int		ft_message(enum e_type_message e, char *message, int ret, char *colors)
+int		ft_msg(enum e_type_message e, char *message, int ret, char *colors)
 {
 	char *typemsg;
 

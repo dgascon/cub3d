@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   actionscontrol.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 16:46:11 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:16:42 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,8 @@ static void	releasedelay_heightcam(t_data *data, int *state_height_cam)
 	if (*state_height_cam == 1)
 	{
 		data->player.height_cam += BLOCK_SIZE / 20;
-		(data->player.height_cam > 3*BLOCK_SIZE / 4) ? *state_height_cam = 2 : 0;
+		(data->player.height_cam > 3 * BLOCK_SIZE / 4) ?
+			*state_height_cam = 2 : 0;
 	}
 	else if (*state_height_cam == 2)
 	{
@@ -63,11 +64,11 @@ static void	releasedelay_speed(t_data *data, int *state_speed)
 	}
 	else if (*state_speed == 2)
 	{
-		data->player.speed -= (BLOCK_SIZE  /  data->player.speed);
-		if (data->player.speed <= MAX_SPEED  /  2)
+		data->player.speed -= (BLOCK_SIZE / data->player.speed);
+		if (data->player.speed <= MAX_SPEED / 2)
 		{
 			*state_speed = 0;
-			data->player.speed = MAX_SPEED  /  2;
+			data->player.speed = MAX_SPEED / 2;
 		}
 	}
 }
@@ -95,7 +96,8 @@ void		actionscontrol(t_data *data)
 	(data->actions.rightward) ? move(data, data->player.pov - M_PI_2) : 0;
 	if (data->actions.jump && !data->actions.crouching)
 		(state_height_cam == 0) ? state_height_cam = 1 : 0;
-	if (data->world.map[data->player.pos.y / BLOCK_SIZE][data->player.pos.x/BLOCK_SIZE] == '*')
+	if (data->world.map[data->player.pos.y / BLOCK_SIZE]
+						[data->player.pos.x / BLOCK_SIZE] == '*')
 		data->world.locked = 0;
 	if (data->actions.crouching)
 	{

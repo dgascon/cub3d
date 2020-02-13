@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/31 05:10:46 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 17:02:45 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:15:44 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ static int	key_press_2(int key, t_data *data)
 	return (0);
 }
 
-int	key_press(int key, t_data *data)
+int			key_press(int key, t_data *data)
 {
 	if (key == ESC)
 		destroy(data);
@@ -46,5 +46,5 @@ int	key_press(int key, t_data *data)
 		data->actions.speed = TRUE;
 	else if (key == D)
 		data->actions.rightward = TRUE;
-	return(key_press_2(key, data));
+	return (key_press_2(key, data));
 }

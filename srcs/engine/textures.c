@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 12:34:25 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 14:26:56 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 16:14:15 by dgascon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,17 +24,17 @@ int	init_texture(t_data *data, t_image *image, char *path)
 		msg = "L'image n'existe pas. ('";
 		msg = ft_strjoin(msg, path);
 		msg = ft_strjoin(msg, "').");
-		ft_message(TM_ERROR, msg, 1, RED);
+		ft_msg(TM_ERROR, msg, 1, RED);
 		wrfree(msg);
 		return (EXIT_FAILURE);
 	}
 	if (!(image->add_image = mlx_get_data_addr(image->img,
 			&image->bpp, &image->size_line, &image->endian)))
-		return (ft_message(TM_ERROR, "Recuperation de l'image", 1, RED));
+		return (ft_msg(TM_ERROR, "Recuperation de l'image", 1, RED));
 	msg = "Chargement de '" CYAN;
 	msg = ft_strjoin(msg, path);
 	msg = ft_strjoin(msg, RESET "'.");
-	return (ft_message(TM_INFO, msg, 0, ""));
+	return (ft_msg(TM_INFO, msg, 0, ""));
 }
 
 int flaginit_tex(t_data *data, int flag, t_image *img, char *path)
