@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 17:36:53 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/13 18:08:11 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,7 @@ int		init_window(t_data *data)
 //TODO BMP : bitmap
 //TODO Key flottante et tournante
 //TODO liberer les espaces memoire uttilise par les thread
+//TODO rendre case "porte ouverte" transparente 
 
 int main(int ac, char **av)
 {
@@ -70,7 +71,7 @@ int main(int ac, char **av)
 	data.actions = (t_actions){};
 	data.world.locked = 1;
 	data.world.was_lock = 1;
-	printf("%d\n", NB_THREAD);
+	printf("NB_THREAD = %d\n", NB_THREAD);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
