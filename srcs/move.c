@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/12 15:42:01 by nlecaill     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 16:56:35 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 11:25:36 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ int		move_x(t_data *data, int value)
 					[tmp / BLOCK_SIZE];
 		if (!(block >= '1' && block <= '3'))
 			data->player.pos.x = tmp;
-		else if (block == '2' && data->world.locked == 0)
+		else if (block == '2' && data->world.door.locked == 0)
 			data->player.pos.x = tmp;
 	}
 	return (0);
@@ -43,7 +43,7 @@ int		move_y(t_data *data, float value)
 					[data->player.pos.x / BLOCK_SIZE];
 		if (!(block >= '1' && block <= '3'))
 			data->player.pos.y = tmp;
-		else if (block == '2' && data->world.locked == 0)
+		else if (block == '2' && data->world.door.locked == 0)
 			data->player.pos.y = tmp;
 	}
 	return (0);

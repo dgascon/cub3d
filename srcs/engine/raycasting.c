@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 17:40:30 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 11:22:36 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,14 +47,15 @@ void	put_text_to_screen(t_data *data)
 	static int a = 0;
 
 	char text[2][50] = {" ", "doors unlocked"};
-	if (data->world.locked == 0 && data->world.was_lock == 1 && a ==0)
+	if (data->world.door.locked == 0 && data->world.door.was_lock == 1 && a ==0)
 	{
 		a = 1;
-		data->world.was_lock = 0;
+		data->world.door.was_lock = 0;
 		timer++;
 	}
 	if (timer != -1)
 	{
+		data->world.map[data->world.door.pos.y][data->world.door.pos.x] = '0';
 		mlx_string_put(data->mlx.ptr, data->mlx.win, 50, 50, 0xff0000, text[a]);
 		timer++;
 		if (timer > 50)

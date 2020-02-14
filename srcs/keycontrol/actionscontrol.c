@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   actionscontrol.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 17:55:22 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 17:12:54 by dgascon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 11:25:14 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,7 +98,7 @@ void		actionscontrol(t_data *data)
 		(state_height_cam == 0) ? state_height_cam = 1 : 0;
 	if (data->world.map[data->player.pos.y / BLOCK_SIZE]
 						[data->player.pos.x / BLOCK_SIZE] == '*')
-		data->world.locked = 0;
+		data->world.door.locked = 0;
 	if (data->actions.crouching)
 	{
 		if (data->player.height_cam > 22 && state_height_cam == 0)

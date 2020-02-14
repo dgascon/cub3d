@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 18:08:11 by nlecaill    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/14 11:27:06 by nlecaill    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,8 @@ int		init_window(t_data *data)
 //TODO Key flottante et tournante
 //TODO liberer les espaces memoire uttilise par les thread
 //TODO rendre case "porte ouverte" transparente 
+//TODO les 2 sont des portes
+//TODO les * sont des cles (peut etre 1clef 1porte?)
 
 int main(int ac, char **av)
 {
@@ -69,8 +71,10 @@ int main(int ac, char **av)
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
 	data.actions = (t_actions){};
-	data.world.locked = 1;
-	data.world.was_lock = 1;
+	data.world.door.locked = 1;
+	data.world.door.was_lock = 1;
+	data.world.door.pos.x = 20;
+	data.world.door.pos.y = 5;
 	printf("NB_THREAD = %d\n", NB_THREAD);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
