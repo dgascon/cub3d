@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   cub3d.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/26 18:56:02 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 18:04:05 by nlecaill    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/26 18:56:02 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/14 16:42:52 by nlecaill         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -90,4 +90,8 @@ void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			lsprite_sort(t_lsprite **lst);
 void			pt_floor_ceil(t_data *data, int row, int	gnagna,
 					int height_proj_plane, int h_max);
+char			get_index_byte(void *adresse, int nb_byte, int index);
+void			*get_index_adresse(void *adresse, int nb_byte, int index);
+int				save_bmp(t_data *data);
+
 #endif

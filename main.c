@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/20 17:47:53 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/14 11:27:06 by nlecaill    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/14 15:49:22 by nlecaill         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "includes/cub3d.h"
 #include <Tk/X11/x.h>
@@ -60,6 +60,8 @@ int main(int ac, char **av)
 	(void)av;
 	if (ac <= 1)
 		return (ft_msg(TM_ERROR, "Il manque un argument !", 1, RED));
+	else if (ac > 3)
+		return (ft_msg(TM_ERROR, "Too much argument !!", 1, RED));
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]) != 0)

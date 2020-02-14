@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   raycasting.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/20 17:37:04 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/14 11:22:36 by nlecaill    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/14 17:37:38 by nlecaill         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -128,6 +128,12 @@ int scan(t_data *data)
 	{
 		pthread_join(thread_id[i - 1], NULL);
 		i--;
+	}
+	
+	if (0) //if --save option
+	{
+		save_bmp(data);
+		destroy(data);
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->hud_tex[0].img, data->screen.size.x / 2, data->screen.size.y / 2);
