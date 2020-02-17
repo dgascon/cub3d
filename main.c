@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 10:10:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 10:18:22 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int		init_window(t_data *data)
 
 int main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
+	char	*tmp;
 
 	(void)av;
 	if (ac <= 1)
@@ -72,8 +73,9 @@ int main(int ac, char **av)
 	data.player.hdv = data.screen.size.y / 2;
 	data.actions = (t_actions) {};
 	data.world.door = (t_door) {.locked = 1, .was_lock = 1, .pos.x = 20, .pos.y = 5};
-	ft_msg(TM_INFO, ft_strmjoin("sds", "Ajustement du nombre de thread à ",
-		NB_THREAD, "."), 0, RESET);
+	ft_msg(TM_INFO, tmp = ft_strmjoin("sds", "Nombre de thread à " ORANGE,
+		NB_THREAD, RESET "."), 0, RESET);
+	wrfree(tmp);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
