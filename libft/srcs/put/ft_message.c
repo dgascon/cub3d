@@ -10,7 +10,6 @@
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 static char	*ft_type_message(enum e_type_message e)

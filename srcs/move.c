@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:42:01 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/02/14 15:49:06 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 09:16:52 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/14 15:49:22 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 09:17:04 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "includes/cub3d.h"
 #include <Tk/X11/x.h>

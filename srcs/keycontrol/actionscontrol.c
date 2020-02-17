@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   actionscontrol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:55:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/14 15:49:14 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 09:17:16 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
