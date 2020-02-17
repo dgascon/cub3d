@@ -6,12 +6,11 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 13:32:58 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/02/17 09:19:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 09:21:18 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdlib.h>#include "libft.h"
+#include "libft.h"
 
 static int		ft_length(int n, int base)
 {
