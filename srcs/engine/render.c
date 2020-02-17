@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 13:02:24 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 17:10:00 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,15 @@ int		fill_column(t_data *data, int direction)
 	}
 	float racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
 	if (!data->screen.CF_textured)
+	{
+		data->screen.floor_color[0] = 255;  
+		data->screen.floor_color[1] = 56;  
+		data->screen.floor_color[2] = 89;
+		data->screen.sky_color[0] = 56;  
+		data->screen.sky_color[1] = 102;  
+		data->screen.sky_color[2] = 255;
 		fill_background(data);
+	}
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
@@ -130,7 +138,7 @@ int		fill_column(t_data *data, int direction)
 		wall_row++;
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
-	if (data->screen.CF_textured || 1)
+	if (data->screen.CF_textured)
 		pt_floor_ceil(data, row, gnagna, height_proj_plane, h_max);
 	print_sprite(data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 11:52:37 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:53 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:49:42 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ float			short_dist(t_data *data);
 int				fill_column(t_data *data, int direction);
 float			linear_intersec_h(t_data *data);
 float			linear_intersec_v(t_data *data);
+void			fill_background(t_data *data);
 #endif

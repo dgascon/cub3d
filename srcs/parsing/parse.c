@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:26:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 13:52:52 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:50:28 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	parseparam(t_data *data, char **line, t_gnl gnl)
 			1, RED));
 	else if (parse_set_object(data, line))
 		return (EXIT_FAILURE);
-	else if (parse_set_tex(data, line, gnl))
+	else if (parse_set_tex(data, line))
 		return (EXIT_FAILURE);
 	else if (ft_isdigit(gnl.line[0])
 	&& parse_map(data, ft_delcharstr(gnl.line, " ")))

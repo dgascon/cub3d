@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 11:38:37 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:50:13 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_world
 
 char			**filter(char *line);
 int				parse_set_object(t_data *data, char **line);
-int				parse_set_tex(t_data *data, char **line, t_gnl gnl);
+int				parse_set_tex(t_data *data, char **line);
 int				parse_set_resolu(t_data *data, char **line);
 int				parsefile(t_data *data, char *file);
 int				parse_player(t_data *data, char direction, t_coord position);

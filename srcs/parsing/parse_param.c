@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:28:15 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:49:56 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parse_set_resolu(t_data *data, char **line)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_set_tex(t_data *data, char **line, t_gnl gnl)
+int	parse_set_tex(t_data *data, char **line)
 {
 	if (flaginit_tex(data, !ft_strcmp(line[0], "F"), &data->w_tex[4], line[1]))
 		return (EXIT_FAILURE);

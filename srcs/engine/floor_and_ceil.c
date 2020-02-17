@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 11:49:02 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 17:09:54 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void fill_background(t_data *data)
 	int i;
 
 	i = 0;
-	while (i < data->screen.size.y / 2)
+	while (i < data->player.hdv)
 	{
-		*(data->image.add_image + (i * data->image.size_line) + (data->raycast.column * sizeof(int))) = rgb_int(data->screen.sky_color[0], data->screen.sky_color[1], data->screen.sky_color[2]);
+		*(int*)(data->image.add_image + (i * data->image.size_line) + (data->raycast.column * sizeof(int))) = rgb_int(data->screen.sky_color[0], data->screen.sky_color[1], data->screen.sky_color[2]);
 		i++;
 	}
 	while (i < data->screen.size.y)
 	{
-		*(data->image.add_image + (i * data->image.size_line) + (data->raycast.column * sizeof(int))) = rgb_int(data->screen.floor_color[0], data->screen.floor_color[1], data->screen.floor_color[2]);
+		*(int*)(data->image.add_image + (i * data->image.size_line) + (data->raycast.column * sizeof(int))) = rgb_int(data->screen.floor_color[0], data->screen.floor_color[1], data->screen.floor_color[2]);
 		i++;
 	}
 }

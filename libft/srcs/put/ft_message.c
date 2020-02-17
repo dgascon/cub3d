@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_msg.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: dgascon <dgascon@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/13 09:08:35 by dgascon      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/13 09:39:32 by dgascon     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_message.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:53:22 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/17 16:48:18 by dgascon          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static char	*ft_type_message(enum e_type_message e)
@@ -22,7 +22,7 @@ static char	*ft_type_message(enum e_type_message e)
 	return (typemsg[e]);
 }
 
-int		ft_msg(enum e_type_message e, char *message, int ret, char *colors)
+int			ft_msg(enum e_type_message e, char *message, int ret, char *colors)
 {
 	char *typemsg;
 
