@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 17:10:00 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 19:39:34 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ void	print_sprite(t_data *data)
 
 int		fill_column(t_data *data, int direction)
 {
-	int		height_proj_plane;
+	float	height_proj_plane;
 	int		row;
 	int		wall_row = 0;
 	char	*add_opp;
-	int		gnagna;
-	int		h_max;
+	float	qte_mur_sous_hdv;
+	float		h_max;
 	
 /*	if (data->raycast.end == 0 && data->raycast.column == data->screen.size.x/2)
 		printf("render by thread\n");
@@ -106,19 +106,19 @@ int		fill_column(t_data *data, int direction)
 	}
 		*/
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
-	height_proj_plane = floorf(data->player.cst / data->raycast.dist); //REVIEW Optimisation
-	gnagna = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera 
-	row = data->player.hdv - (height_proj_plane - gnagna);
+	height_proj_plane = (float)data->player.cst / data->raycast.dist; //REVIEW Optimisation
+	qte_mur_sous_hdv = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera
+	row = data->player.hdv - (height_proj_plane - qte_mur_sous_hdv);
 
 	if (row < 0)
 	{
 		wall_row = 0 - row;
 		row = 0;
 	}
-	h_max = data->player.hdv + gnagna;
-	if (h_max > data->screen.size.y)
+	h_max = data->player.hdv + qte_mur_sous_hdv;
+	if (h_max > data->screen.size.y - 1)
 	{
-		h_max = data->screen.size.y;
+		h_max = data->screen.size.y - 1;
 	}
 	float racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
 	if (!data->screen.CF_textured)
@@ -139,7 +139,8 @@ int		fill_column(t_data *data, int direction)
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 	if (data->screen.CF_textured)
-		pt_floor_ceil(data, row, gnagna, height_proj_plane, h_max);
+		pt_floor_ceil(data, row, qte_mur_sous_hdv, height_proj_plane, h_max);
+	// printf("apres\n");
 	print_sprite(data);
 	return (0);
 }

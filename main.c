@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 17:10:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 19:46:43 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int		init_window(t_data *data)
 //TODO rendre case "porte ouverte" transparente 
 //TODO les 2 sont des portes
 //TODO les * sont des cles (peut etre 1clef 1porte?)
-//TODO mettre une condition sur la creation de la fenetre pour --save
+//TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
+//TODO remettre les variables en int et ajouter les limites necessaires a la securite 
 
 int main(int ac, char **av)
 {
