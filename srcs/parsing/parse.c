@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:26:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:22:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 13:52:52 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,10 @@ int			parsefile(t_data *data, char *file)
 	close(gnl.fd);
 	if (data->player.pos.x == 0 && data->player.pos.y == 0)
 		return (ft_msg(TM_ERROR, "No player in map.", 1, RED));
+	if (checkmapwall(data))
+	{
+		destroy(data);
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
