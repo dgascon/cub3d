@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 10:27:25 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:39:31 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,9 @@ int scan(t_data *data)
 		i--;
 	}
 	
-	if (0) //if --save option
+	if (data->bmp_save) //if --save option
 	{
+		// printf("in save_bmp\n");
 		save_bmp(data);
 		destroy(data);
 	}

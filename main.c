@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:26:57 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:39:48 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		init_window(t_data *data)
 //TODO rendre case "porte ouverte" transparente 
 //TODO les 2 sont des portes
 //TODO les * sont des cles (peut etre 1clef 1porte?)
+//TODO mettre une condition sur la creation de la fenetre pour --save
 
 int main(int ac, char **av)
 {
@@ -62,6 +63,11 @@ int main(int ac, char **av)
 		return (ft_msg(TM_ERROR, "Argument is missing !", 1, RED));
 	else if (ac > 3)
 		return (ft_msg(TM_ERROR, "Too much argument", 1, RED));
+	if (ac == 3 && !ft_strcmp("--save", av[2]))
+		data.bmp_save = 1;
+	else
+		data.bmp_save = 0;
+	
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]))
@@ -69,6 +75,7 @@ int main(int ac, char **av)
 		destroy(&data);
 		return (EXIT_FAILURE);
 	}
+	// printf("parses_past\n");
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,
 		.delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
@@ -78,7 +85,7 @@ int main(int ac, char **av)
 	data.world.door = (t_door) {.locked = 1, .was_lock = 1, .pos.x = 20, .pos.y = 5};
 	ft_msg(TM_INFO, tmp = ft_strmjoin("sds", "Number of threads at " ORANGE,
 		NB_THREAD, RESET "."), 0, RESET);
-	wrfree(tmp);
+	wrfree(tmp); //REVIEW why here?
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);

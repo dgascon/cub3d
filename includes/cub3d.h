@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 18:56:02 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 11:44:00 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:17:32 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef	struct	s_data
 	t_image		object[OBJ_TEX];
 	t_lsprite	*lst;
 	int			th_num;
+	int			bmp_save;
 }				t_data;
 
 int				init_texture(t_data *data, t_image *image, char *path);
