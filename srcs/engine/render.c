@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:34 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 11:44:30 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int		fill_column(t_data *data, int direction)
 		h_max = data->screen.size.y;
 	}
 	float racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
+	if (!data->screen.CF_textured)
+		fill_background(data);
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
@@ -128,7 +130,8 @@ int		fill_column(t_data *data, int direction)
 		wall_row++;
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
-	pt_floor_ceil(data, row, gnagna, height_proj_plane, h_max);
+	if (data->screen.CF_textured)
+		pt_floor_ceil(data, row, gnagna, height_proj_plane, h_max);
 	print_sprite(data);
 	return (0);
 }
