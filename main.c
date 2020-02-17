@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:04 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 10:10:22 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,24 @@ int main(int ac, char **av)
 	if (ac <= 1)
 		return (ft_msg(TM_ERROR, "Il manque un argument !", 1, RED));
 	else if (ac > 3)
-		return (ft_msg(TM_ERROR, "Too much argument !!", 1, RED));
+		return (ft_msg(TM_ERROR, "Il y a trop d'argument !", 1, RED));
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	if (parsefile(&data, av[1]) != 0)
 		return (EXIT_FAILURE);
-
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,
 		.delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
-	data.actions = (t_actions){};
-	data.world.door.locked = 1;
-	data.world.door.was_lock = 1;
-	data.world.door.pos.x = 20;
-	data.world.door.pos.y = 5;
-	printf("NB_THREAD = %d\n", NB_THREAD);
+	data.actions = (t_actions) {};
+	data.world.door = (t_door) {.locked = 1, .was_lock = 1, .pos.x = 20, .pos.y = 5};
+	ft_msg(TM_INFO, ft_strmjoin("sds", "Ajustement du nombre de thread à ",
+		NB_THREAD, "."), 0, RESET);
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);
 	mlx_hook(data.mlx.win, DestroyNotify, NoEventMask, destroy, &data);
 	mlx_loop(data.mlx.ptr);
-
 	return (EXIT_SUCCESS);
 }
