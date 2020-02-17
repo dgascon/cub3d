@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:24:09 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 13:59:13 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,26 @@ int			parse_map(t_data *data, char *line)
 
 int			checkmapwall(t_data *data)
 {
+	int y;
+	int x;
+
+	y = -1;
+	x = -1;
+	while (++y < data->world.size.y)
+	{
+		x = -1;
+		while (++x < data->world.size.x)
+		{
+			if (y == 0 || y == data->world.size.y - 1
+			|| x == 0 || x == data->world.size.x - 1)
+			{
+				if (data->world.map[y][x] != '1')
+				{
+					return (ft_msg(TM_ERROR,
+						"The map is not surrounded by walls !", 1, RED));
+				}
+			}
+		}
+	}
 	return (EXIT_SUCCESS);
 }
