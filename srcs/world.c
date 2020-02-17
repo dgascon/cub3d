@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:00 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 12:24:09 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 	if (data->world.size.x == 0)
 		data->world.size.x = ft_strlen(tmp_map[i]);
 	else if (data->world.size.x != (int)ft_strlen(tmp_map[i]))
-		return (ft_msg(ERROR, "Map non conforme.", 1, RED));
+		return (ft_msg(TM_ERROR, "Map not compliant !", 1, RED));
 	while (line[j])
 	{
 		if (ft_charstr(line[j], "NSWE"))
@@ -50,12 +50,12 @@ int			parse_map(t_data *data, char *line)
 		return (EXIT_FAILURE);
 	data->world.size.y++;
 	if (!(tmp_map = wrmalloc(sizeof(char *) * (data->world.size.y))))
-		return (ft_msg(ERROR, "Malloc impossible", 1, YELLOW));
+		return (ft_msg(TM_ERROR, "Malloc is not possible", 1, YELLOW));
 	while (i < data->world.size.y - 1)
 	{
 		if (!(tmp_map[i] = ft_substr(data->world.map[i], 0,
 								ft_strlen(data->world.map[i]))))
-			return (EXIT_FAILURE);
+			return (ft_msg(TM_ERROR, "Parsing failed", EXIT_FAILURE, RED));
 		i++;
 	}
 	tmp_map[i] = line;
@@ -64,5 +64,10 @@ int			parse_map(t_data *data, char *line)
 	data->world.map = tmp_map;
 	if (parse_map_2(data, line, tmp_map, i))
 		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+int			checkmapwall(t_data *data)
+{
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:08:05 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:16:55 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 12:24:44 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		parse_player(t_data *data, char direction, t_coord position)
 {
 	if (data->player.pos.x != 0 && data->player.pos.y != 0)
 	{
-		ft_printf("Deux joueurs de placé sur la carte !\n");
+		ft_printf("Two player placed on the map\n");
 		wrdestroy();
 		return (-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:59 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 11:38:37 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ int				parse_set_resolu(t_data *data, char **line);
 int				parsefile(t_data *data, char *file);
 int				parse_player(t_data *data, char direction, t_coord position);
 int				parse_map(t_data *data, char *line);
+int				checkmapwall(t_data *data);
 #endif
