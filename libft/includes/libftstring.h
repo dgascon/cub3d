@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 18:32:02 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:18:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 10:06:50 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ char			**ft_split(char const *s, char c);
 void			splitfree(char **ptr);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_delcharstr(char *line, char *charset);
+char			*ft_strmjoin(char *format, ...);
 #endif
