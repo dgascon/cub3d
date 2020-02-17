@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:32 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 10:27:25 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,10 @@ int scan(t_data *data)
 		destroy(data);
 	}
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img, 0, 0);
-	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->hud_tex[0].img, data->screen.size.x / 2, data->screen.size.y / 2);
+	if (data->hud_tex[0].img)
+		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->hud_tex[0].img, data->screen.size.x / 2, data->screen.size.y / 2);
 	if (data->player.show_minimap)
 		minimap(data);
 	put_text_to_screen(data);
-	mlx_text(data, (t_coord){50, 100}, ft_strjoin("Speed ", ft_itoa(data->player.speed)), rgb_int(150, 25, 80)); //TODO malloc? voir pour passer au systeme de arthur
 	return (1);
 }
