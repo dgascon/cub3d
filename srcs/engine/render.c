@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:52:07 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:52:40 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 17:00:38 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,8 @@ int		fill_column(t_data *data, int direction)
 		wall_row++;
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
-
 	if (data->screen.ceil_tex && data->screen.floor_tex)
-		pt_floor_ceil(data, h_max, qte_mur_sous_hdv, height_proj_plane);
+		pt_floor_ceil(data, h_max - 1, qte_mur_sous_hdv, height_proj_plane);
 	print_sprite(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:24:09 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:57:57 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int		init_window(t_data *data)
 //TODO les 2 sont des sprites et les 3 sont des portes <=(les 2 sont des portes)
 //TODO les * sont des cles (peut etre 1clef 1porte?)
 //TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
-//TODO remettre les variables en int et ajouter les limites necessaires a la securite 
+//TODO remettre les variables en int et ajouter les limites necessaires a la securite
+//REVIEW Fillbackground le -1 avec les y
 
 int main(int ac, char **av)
 {
@@ -82,9 +83,8 @@ int main(int ac, char **av)
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
 	data.actions = (t_actions) {};
-	ft_msg(TM_INFO, tmp = ft_strmjoin("sds", "Number of threads at " ORANGE,
+	ft_msg(TM_INFO, ft_strmjoin("sds", "Number of threads at " ORANGE,
 		NB_THREAD, RESET "."), 0, RESET);
-	wrfree(tmp); //REVIEW why here?
 	mlx_loop_hook(data.mlx.ptr, scan, &data);
 	mlx_hook(data.mlx.win, KeyPress, NoEventMask, key_press, &data);
 	mlx_hook(data.mlx.win, KeyRelease, NoEventMask, key_release, &data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:26:24 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:56:12 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		fill_background(t_data *data)
 	int i;
 
 	i = 0;
-	while (i < data->player.hdv && i < data->screen.size.y)
+	while (i < data->player.hdv && i < data->screen.size.y - 1)
 	{
 		*(int*)(data->image.add_image + (i * data->image.size_line)
 		+ (data->raycast.column * sizeof(int))) =
@@ -25,7 +25,7 @@ void		fill_background(t_data *data)
 		data->screen.sky_color[1], data->screen.sky_color[2]);
 		i++;
 	}
-	while (i < data->screen.size.y)
+	while (i < data->screen.size.y - 1)
 	{
 		*(int*)(data->image.add_image
 		+ (i * data->image.size_line) + (data->raycast.column * sizeof(int))) =
