@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 15:42:01 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/02/18 10:09:36 by nlecaill         ###   ########lyon.fr   */
+/*   Created: 2020/02/18 10:39:59 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/18 10:41:22 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ int		move_x(t_data *data, int value)
 	{
 		block = data->world.map[data->player.pos.y / BLOCK_SIZE]
 					[tmp / BLOCK_SIZE];
+		if (block > '2')
+		{
+			if (!data->object[block - '3'].valid)
+			{
+				data->world.map[data->player.pos.y / BLOCK_SIZE]
+					[tmp / BLOCK_SIZE] = '0';
+			}
+		}
 		if (!(block >= '1' && block <= '2'))
 			data->player.pos.x = tmp;
 	}
@@ -38,7 +46,15 @@ int		move_y(t_data *data, float value)
 	{
 		block = data->world.map[(int)(tmp / BLOCK_SIZE)]
 					[data->player.pos.x / BLOCK_SIZE];
-		if ((block >= '1' && block <= '2'))
+		if (block > '2')
+		{
+			if (!data->object[block - '3'].valid)
+			{
+				data->world.map[(int)(tmp / BLOCK_SIZE)]
+					[data->player.pos.x / BLOCK_SIZE] = '0';
+			}
+		}
+		if (!(block >= '1' && block <= '2'))
 			data->player.pos.y = tmp;
 	}
 	return (0);

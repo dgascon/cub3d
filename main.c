@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:12:31 by nlecaill         ###   ########lyon.fr   */
+/*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/18 10:39:50 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int main(int ac, char **av)
 		data.bmp_save = 1;
 	else
 		data.bmp_save = 0;
-	
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	data.screen = (t_screen) {.CF_textured = 1};

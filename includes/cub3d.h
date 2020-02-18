@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/26 18:56:02 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 09:49:58 by nlecaill         ###   ########lyon.fr   */
+/*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/18 10:39:36 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "raycast.h"
 # include <pthread.h>
 
-# define OBJ_TEX 1
+# define OBJ_TEX 7
 # define W_TEX 6
 # define HUD_TEX 1
 
@@ -43,6 +43,7 @@ typedef	struct	s_image
 	int		endian;
 	int		colors;
 	t_coord	size;
+	int		valid;
 }				t_image;
 
 typedef struct	s_lsprite

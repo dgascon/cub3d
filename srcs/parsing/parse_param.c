@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 17:20:55 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 17:45:13 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,20 @@ int	parse_set_object(t_data *data, char **line)
 			if (flaginit_tex(data, indexparam > 2,
 				&data->object[indexparam - 3], line[1]))
 				return (EXIT_FAILURE);
+			data->object[indexparam - 3].valid = 1;
 		}
-		else if (flaginit_tex(data, line[0][1] == 'O',
-					&data->w_tex[2], line[1]))
-			return (EXIT_FAILURE);
+		else if (line[0][1] == 'O')
+		{
+			if (flaginit_tex(data, line[0][1] == 'O', &data->w_tex[2], line[1]))
+				return (EXIT_FAILURE);
+			data->w_tex[2].valid = 1;
+		}
+		else
+		{
+			if (init_texture(data, &data->object[0], line[1]))
+				return (EXIT_FAILURE);
+			data->object[0].valid = 1;
+		}
 	}
 	return (EXIT_SUCCESS);
 }

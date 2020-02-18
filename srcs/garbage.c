@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:37:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:17:08 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 17:52:49 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	destroy(t_data *data)
 	}
 	i = 0;
 	while (++i < OBJ_TEX)
-		if (data->object[i].img)
-			mlx_destroy_image(data->mlx.ptr, data->object[i].img);
+		if (data->object[i].img && data->object[i].valid)
+			mlx_destroy_image(data->mlx.ptr, data->object[i].img);		
 	i = 0;
 	while (++i < W_TEX)
-		if (data->w_tex[i].img)
-			mlx_destroy_image(data->mlx.ptr, data->w_tex[i].img);
+		if (data->w_tex[i].img && data->w_tex[i].valid)
+			mlx_destroy_image(data->mlx.ptr, data->w_tex[i].img);	
 	mlx_destroy_image(data->mlx.ptr, data->image.img);
 	mlx_destroy_window(data->mlx.ptr, data->mlx.win);
 	wrdestroy();
