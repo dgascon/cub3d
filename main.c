@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:57:57 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 20:23:15 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int		init_window(t_data *data)
 int main(int ac, char **av)
 {
 	t_data	data;
-	char	*tmp;
 
-	(void)av;
 	if (ac <= 1)
 		return (ft_msg(TM_ERROR, "Argument is missing !", 1, RED));
 	else if (ac > 3)
