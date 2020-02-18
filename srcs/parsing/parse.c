@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:26:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 16:50:28 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 11:33:53 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int			parsefile(t_data *data, char *file)
 	char	**cur_line;
 
 	gnl = (t_gnl) {.fd = -1, .line = NULL, .ret = -1};
+	data->world.size = (t_coord) {};
 	if (checkformatfile(file, &gnl, ".cub"))
 		return (EXIT_FAILURE);
 	while (1)

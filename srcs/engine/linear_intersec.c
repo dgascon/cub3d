@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:30:14 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 14:41:20 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ float	linear_intersec_v(t_data *data)
 		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.x < 0) ? grid.x = 0 : 0;
 		(grid.x > data->world.size.y - 1) ? grid.x = data->world.size.y - 1 : 0;
-		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
+		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
-		else if (data->world.map[grid.x][grid.y] > '2')
+		else if (data->world.map[grid.x][grid.y] > '1')
 		{
 			obj = pick_object(data->lst, grid);
 			if (obj)

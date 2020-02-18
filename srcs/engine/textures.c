@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:34:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 12:30:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 11:47:51 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	init_texture(t_data *data, t_image *image, char *path)
 {
 	char *tmp;
 	
+	if ((*image).valid == 1)
+		return (ft_msg(TM_ERROR, "Double argument to parsing !", 1, RED));
 	if (!(image->img = mlx_xpm_file_to_image(data->mlx.ptr, path,
 			&image->size.x, &image->size.y)))
 	{
@@ -30,6 +32,7 @@ int	init_texture(t_data *data, t_image *image, char *path)
 	tmp = ft_strmjoin("sss", "Loading of '" CYAN, path, RESET "'.");
 	ft_msg(TM_INFO, tmp, 0, "");
 	wrfree(tmp);
+	(*image).valid = 1;
 	return (EXIT_SUCCESS);
 }
 
