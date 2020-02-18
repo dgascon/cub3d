@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:39:36 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 10:47:16 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct	s_lsprite
 	t_coord pos;
 	t_coord grd;
 	t_coord detect_position;
-	float	detect_dist;
 	int		visible[NB_THREAD];
 	int		printed;
 	float	dist;

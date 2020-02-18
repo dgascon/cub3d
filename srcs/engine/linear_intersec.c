@@ -6,18 +6,18 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:24:44 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 10:30:14 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float linear_intersec_v(t_data *data)
+float	linear_intersec_v(t_data *data)
 {
-	t_coord grid;
-	t_f_coord intersec;
-	t_f_coord offset;
-	t_lsprite *obj;
+	t_coord		grid;
+	t_f_coord	intersec;
+	t_f_coord	offset;
+	t_lsprite	*obj;
 
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
@@ -54,7 +54,6 @@ float linear_intersec_v(t_data *data)
 				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
-				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
 			}
 		}
 		intersec.x += offset.x;
@@ -112,7 +111,6 @@ float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset, t_coord grid)
 				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
-				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
 			}
 		}
 		intersec.x += offset.x;
