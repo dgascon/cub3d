@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:39:36 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 11:35:11 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "raycast.h"
 # include <pthread.h>
 
-# define OBJ_TEX 7
+# define OBJ_TEX 11
 # define W_TEX 6
 # define HUD_TEX 1
 

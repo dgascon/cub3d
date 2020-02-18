@@ -7,7 +7,15 @@ EA ./assets/images/face_east.xpm
 
 V ./assets/images/viseur.xpm
 
+S ./assets/images/baril.xpm
 S3 ./assets/images/baril.xpm
+S4 ./assets/images/baril.xpm
+S5 ./assets/images/baril.xpm
+S6 ./assets/images/baril.xpm
+S7 ./assets/images/baril.xpm
+S8 ./assets/images/baril.xpm
+S9 ./assets/images/baril.xpm
+
 
 F ./assets/images/vitrail-3.xpm
 C ./assets/images/SSKY.xpm
@@ -24,10 +32,6 @@ C ./assets/images/SSKY.xpm
 10001
 10001
 10001
-10301
-10301
-10301
-10301
 10001
 10001
 10001
@@ -39,18 +43,22 @@ C ./assets/images/SSKY.xpm
 10001
 10001
 10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
-10001
+10091
+10091
+18001
+18001
+10071
+10071
+16001
+16001
+10051
+10051
+14001
+14001
+10031
+10031
+12001
+12001
 10001
 10N01
 11111

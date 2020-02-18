@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 19:37:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:16:32 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 11:12:01 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	render_mmap(t_data *data, t_coord *pos, t_coord smap, t_coord sbox)
 		{
 			current_block =
 				data->world.map[(*pos).y / sbox.y][(*pos).x / sbox.x];
-			if (current_block == '1' || current_block == '2')
+			if (current_block == '1')
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(100, 100, 100));
-			else if (current_block > '2')
+			else if (current_block >= '2')
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(180, 100, 100));
 			else
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(135, 135, 135));

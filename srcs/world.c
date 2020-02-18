@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 18:19:25 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 11:34:02 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,14 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 				(t_coord) {.x = j, .y = data->world.size.y}) <= 0)
 				return (EXIT_FAILURE);
 		}
-		else if (line[j] > '2')
+		else if (line[j] >= '2')
 		{
-			if (data->object[line[j] - 51].valid)
+			if (data->object[line[j] - '2'].valid)
 			{
 				lsprite_addback(&data->lst, lsprite_new(
 				(t_coord){.x = j, .y = data->world.size.y - 1},
-				data->object[line[j] - 51]));
+				data->object[line[j] - '2']));
 			}
-			else
-			{
-			 	printf("Pass\n");
-
-			}		
 		}
 		j++;
 	}
