@@ -6,7 +6,7 @@
 #    By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 15:11:52 by dgascon           #+#    #+#              #
-#    Updated: 2020/02/14 16:18:53 by nlecaill         ###   ########lyon.fr    #
+#    Updated: 2020/02/18 16:25:08 by nlecaill         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
-					engine/textures.c 												\
+					engine/textures.c engine/floor_and_ceil2.c												\
 					parsing/parse.c	parsing/minimap.c parsing/parse_param.c			\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\

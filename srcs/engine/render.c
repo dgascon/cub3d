@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 09:53:24 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:27:04 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,7 @@ int		fill_column(t_data *data, int direction)
 	char	*add_opp;
 	int		qte_mur_sous_hdv;
 	int		h_max;
-	
-/*	if (data->raycast.end == 0 && data->raycast.column == data->screen.size.x/2)
-		printf("render by thread\n");
-	else if (data->raycast.column == data->screen.size.x/2)
-	{
-		printf("rendre by main\n");
-	}
-		*/
+
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = (float)data->player.cst / data->raycast.dist; //REVIEW Optimisation
 	qte_mur_sous_hdv = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera
@@ -139,7 +132,7 @@ int		fill_column(t_data *data, int direction)
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 	if (data->screen.CF_textured)
-		pt_floor_ceil(data, row, qte_mur_sous_hdv, height_proj_plane, h_max);
+		pt_floor_ceil(data, h_max, qte_mur_sous_hdv, height_proj_plane);
 	print_sprite(data);
 	return (0);
 }

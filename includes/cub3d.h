@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 15:01:21 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:26:53 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			lsprite_sort(t_lsprite **lst);
 void			pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
-					int height_proj_plane, int h_max);
+					int height_proj_plane);
 char			get_index_byte(void *adresse, int nb_byte, int index);
 void			*get_index_adresse(void *adresse, int nb_byte, int index);
 int				save_bmp(t_data *data);
-
+int				floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
+						, int *val2);
 #endif
