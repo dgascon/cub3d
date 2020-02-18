@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:26:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 11:33:53 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:54:14 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,32 @@ char		**filter(char *line)
 
 static int	parseparam(t_data *data, char **line, t_gnl gnl)
 {
-	if (parse_set_resolu(data, line))
-		return (EXIT_FAILURE);
+	if (!ft_strcmp(line[0], "R"))
+		return (parse_set_resolu(data, line));
 	else if (data->screen.size.x == 0 && data->screen.size.y == 0)
-		return (ft_msg(TM_ERROR, "Resolution is not defined !",
-			1, RED));
-	else if (parse_set_object(data, line))
-		return (EXIT_FAILURE);
+		return (ft_msg(TM_ERROR, "Resolution is not defined !", 1, RED));
+	else if (!ft_strcmp(&line[0][0], "S"))
+		return (parse_set_object(data, line));
+	else if (ft_isdigit(gnl.line[0]))
+		return (parse_map(data, ft_delcharstr(gnl.line, " ")));
 	else if (parse_set_tex(data, line))
 		return (EXIT_FAILURE);
-	else if (ft_isdigit(gnl.line[0])
-	&& parse_map(data, ft_delcharstr(gnl.line, " ")))
+	return (EXIT_SUCCESS);
+}
+
+static int	checkerror(t_data *data)
+{
+	if (data->player.pos.x == 0 && data->player.pos.y == 0)
+		return (ft_msg(TM_ERROR, "No player in map.", 1, RED));
+	if (!data->screen.flag_ceil || !data->screen.flag_floor)
+		return (ft_msg(TM_ERROR, "Floor or/and Ceil not defined.", 1, RED));
+	if (data->screen.floor_tex != data->screen.ceil_tex)
+		return (ft_msg(TM_ERROR, "Floor or/and Ceil is different !", 1, RED));
+	if (checkmapwall(data))
+	{
+		destroy(data);
 		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -52,7 +66,9 @@ int			parsefile(t_data *data, char *file)
 	char	**cur_line;
 
 	gnl = (t_gnl) {.fd = -1, .line = NULL, .ret = -1};
-	data->world.size = (t_coord) {};
+	data->world.size = (t_coord) {.x = 0, .y = 0};
+	data->screen.floor_tex = 1;
+	data->screen.ceil_tex = 1;
 	if (checkformatfile(file, &gnl, ".cub"))
 		return (EXIT_FAILURE);
 	while (1)
@@ -70,12 +86,5 @@ int			parsefile(t_data *data, char *file)
 			break ;
 	}
 	close(gnl.fd);
-	if (data->player.pos.x == 0 && data->player.pos.y == 0)
-		return (ft_msg(TM_ERROR, "No player in map.", 1, RED));
-	if (checkmapwall(data))
-	{
-		destroy(data);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (checkerror(data));
 }

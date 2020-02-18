@@ -6,80 +6,98 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 11:45:33 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:23:17 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_set_resolu(t_data *data, char **line)
+static char	**parse_color(char **line)
 {
-	if (!ft_strcmp(line[0], "R"))
+	char	**tmp;
+	char	*tmpline;
+	int		i;
+
+	i = 1;
+	while (line[++i])
 	{
-		if (data->screen.size.x == 0 && data->screen.size.y == 0)
+		if (!(tmpline = ft_strjoin(line[1], line[i])))
+			return (NULL);
+		wrfree(line[1]);
+		line[1] = tmpline;
+	}
+	if (!(tmp = ft_split(line[1], ',')))
+		return (NULL);
+	return (tmp);
+}
+
+static int	parse_floor_ceil3(t_data *data, char **tmp, char state)
+{
+	int		i;
+	int		val;
+
+	i = 0;
+	while (*tmp)
+	{
+		val = ft_atoi(*tmp);
+		if (val >= 0 && val <= 255)
 		{
-			if (!line[2])
-				return (ft_msg(TM_ERROR, "Resolution x, y is missing", 1, RED));
-			data->screen.size.x = ft_atoi(line[1]);
-			data->screen.size.y = ft_atoi(line[2]);
-			if (data->screen.size.x <= 0 || data->screen.size.y <= 0)
-				return (ft_msg(TM_ERROR, "Resolution too small", 1, RED));
-			(data->screen.size.x >= 2560) ? data->screen.size.x = 2559 : 0;
-			(data->screen.size.y >= 1440) ? data->screen.size.y = 1439 : 0;
-			if (init_window(data))
-				return (EXIT_FAILURE);
+			if (state == 'F')
+			{
+				data->screen.floor_color[i] = val;
+				data->screen.floor_tex = 0;
+			}
+			if (state == 'C')
+			{
+				data->screen.sky_color[i] = val;
+				data->screen.ceil_tex = 0;
+			}
 		}
 		else
-			return (ft_msg(TM_ERROR, "Double argument to parsing", 1, RED));
+			return (ft_msg(TM_ERROR, "Bad format colors !", 1, RED));
+		tmp++;
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	parse_set_tex(t_data *data, char **line)
+static int	parse_floor_ceil2(t_data *data, char **line, char state)
 {
-	if (flaginit_tex(data, !ft_strcmp(line[0], "F"), &data->w_tex[4], line[1]))
-		return (EXIT_FAILURE);
-	else if (flaginit_tex(data, !ft_strcmp(line[0], "C"), &data->w_tex[5],
-				line[1]))
-		return (EXIT_FAILURE);
-	else if (flaginit_tex(data, !ft_strcmp(line[0], "NO"), &data->w_tex[0],
-				line[1]))
-		return (EXIT_FAILURE);
-	else if (flaginit_tex(data, !ft_strcmp(line[0], "WE"), &data->w_tex[3],
-				line[1]))
-		return (EXIT_FAILURE);
-	else if (flaginit_tex(data, !ft_strcmp(line[0], "EA"), &data->w_tex[1],
-				line[1]))
-		return (EXIT_FAILURE);
-	else if (flaginit_tex(data, !ft_strcmp(line[0], "V"), &data->hud_tex[0],
-				line[1]))
-		return (EXIT_FAILURE);
+	int		i;
+	char	**tmp;
+
+	i = (state == 'F') ? 4 : 5;
+	if (ft_isdigit(line[1][0]))
+	{
+		if (!(tmp = parse_color(line)))
+			return (ft_msg(TM_ERROR, "Malloc is not possible", 1, YELLOW));
+		return (parse_floor_ceil3(data, tmp, state));
+	}
+	else
+	{
+		if (init_texture(data, &data->w_tex[i], line[1]))
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	parse_set_object(t_data *data, char **line)
+int			parse_floor_ceil(t_data *data, char **line)
 {
-	int indexparam;
-
-	if (!ft_strcmp(&line[0][0], "S"))
+	if (!(ft_strcmp(line[0], "F")))
 	{
-		indexparam = ft_atoi(&line[0][1]);
-		if (ft_digit(indexparam) == 1 && ft_isdigit(line[0][1]))
-		{
-			if (flaginit_tex(data, indexparam > 2,
-				&data->object[indexparam - 2], line[1]))
-				return (EXIT_FAILURE);
-		}
-		else if (line[0][1] == 'O')
-		{
-			if (flaginit_tex(data, line[0][1] == 'O', &data->w_tex[2], line[1]))
-				return (EXIT_FAILURE);
-		}
-		else
-		{
-			if (init_texture(data, &data->object[0], line[1]))
-				return (EXIT_FAILURE);
-		}
+		if (data->screen.flag_floor)
+			return (ft_msg(TM_ERROR, "Double argument to floor", 1, RED));
+		data->screen.flag_floor = 1;
+		if (parse_floor_ceil2(data, line, 'F'))
+			return (EXIT_FAILURE);
+	}
+	else if (!(ft_strcmp(line[0], "C")))
+	{
+		if (data->screen.flag_ceil)
+			return (ft_msg(TM_ERROR, "Double argument to ceil", 1, RED));
+		data->screen.flag_ceil = 1;
+		if (parse_floor_ceil2(data, line, 'C'))
+			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

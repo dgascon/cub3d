@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:34:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 11:47:51 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:04:07 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,26 @@ int flaginit_tex(t_data *data, int flag, t_image *img, char *path)
 {
 	if (flag)
 		return (init_texture(data, img, path));
+	return (EXIT_SUCCESS);
+}
+
+int			parse_set_tex(t_data *data, char **line)
+{
+	if (data->world.map)
+		return (ft_msg(TM_ERROR, "The map must be defined last.", 1, RED));
+	else if (ft_charstr(line[0][0], "FC"))
+		return (parse_floor_ceil(data, line));
+	else if (flaginit_tex(data, !ft_strcmp(line[0], "NO"), &data->w_tex[0],
+				line[1]))
+		return (EXIT_FAILURE);
+	else if (flaginit_tex(data, !ft_strcmp(line[0], "WE"), &data->w_tex[3],
+				line[1]))
+		return (EXIT_FAILURE);
+	else if (flaginit_tex(data, !ft_strcmp(line[0], "EA"), &data->w_tex[1],
+				line[1]))
+		return (EXIT_FAILURE);
+	else if (flaginit_tex(data, !ft_strcmp(line[0], "V"), &data->hud_tex[0],
+				line[1]))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

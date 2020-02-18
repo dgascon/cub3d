@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:27:04 by nlecaill         ###   ########lyon.fr   */
+/*   Created: 2020/02/18 16:52:07 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/18 16:52:40 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,20 +110,10 @@ int		fill_column(t_data *data, int direction)
 	}
 	h_max = data->player.hdv + qte_mur_sous_hdv;
 	if (h_max > data->screen.size.y - 1)
-	{
 		h_max = data->screen.size.y - 1;
-	}
 	float racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
-	if (!data->screen.CF_textured)
-	{
-		data->screen.floor_color[0] = 255;  
-		data->screen.floor_color[1] = 56;  
-		data->screen.floor_color[2] = 89;
-		data->screen.sky_color[0] = 56;  
-		data->screen.sky_color[1] = 102;  
-		data->screen.sky_color[2] = 255;
+	if (!data->screen.ceil_tex && !data->screen.floor_tex)
 		fill_background(data);
-	}
 	while (row < h_max)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) = select_wall_color(data, racourcis, wall_row, direction);
@@ -131,7 +121,8 @@ int		fill_column(t_data *data, int direction)
 		wall_row++;
 	}
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
-	if (data->screen.CF_textured)
+
+	if (data->screen.ceil_tex && data->screen.floor_tex)
 		pt_floor_ceil(data, h_max, qte_mur_sous_hdv, height_proj_plane);
 	print_sprite(data);
 	return (0);

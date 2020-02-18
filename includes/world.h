@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:12:15 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:03:54 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_world
 
 
 char			**filter(char *line);
+int				parse_floor_ceil(t_data *data, char **line);
 int				parse_set_object(t_data *data, char **line);
 int				parse_set_tex(t_data *data, char **line);
 int				parse_set_resolu(t_data *data, char **line);

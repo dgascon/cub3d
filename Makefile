@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+         #
+#    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/07 15:11:52 by dgascon           #+#    #+#              #
-#    Updated: 2020/02/18 16:25:08 by nlecaill         ###   ########lyon.fr    #
+#    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
+#    Updated: 2020/02/18 16:51:48 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,13 @@ PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
-					engine/textures.c engine/floor_and_ceil2.c												\
+					engine/textures.c engine/floor_and_ceil2.c						\
 					parsing/parse.c	parsing/minimap.c parsing/parse_param.c			\
+					parsing/parse_object.c											\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
-					garbage.c lst.c													\
-					player.c move.c	world.c save_as_bmp.c get_index_byte.c
+					entities/player.c entities/move.c								\
+					garbage.c lst.c	screen.c world.c save_as_bmp.c get_index_byte.c \
 
 INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
 
@@ -48,7 +49,7 @@ INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
 C-O				=	$(CC) $(CFLAGS) -D DEBUG=$(DEBUG) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
-DIRS_LIST	= engine parsing keycontrol
+DIRS_LIST	= engine parsing keycontrol entities
 
 all $(DEBUG):	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"

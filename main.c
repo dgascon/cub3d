@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 11:48:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 16:24:09 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int main(int ac, char **av)
 		data.bmp_save = 0;
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
-	data.screen = (t_screen) {.CF_textured = 1};
+	data.screen = (t_screen) {};
 	if (parsefile(&data, av[1]))
 	{
 		destroy(&data);

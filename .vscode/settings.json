@@ -33,6 +33,7 @@
         "libftmaths.h": "c",
         "libftput.h": "c",
         "libftmem.h": "c",
-        "libftstring.h": "c"
+        "libftstring.h": "c",
+        "cub3d.h": "c"
     }
 }
