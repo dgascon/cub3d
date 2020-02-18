@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 19:39:34 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 09:53:24 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ void	print_sprite(t_data *data)
 
 int		fill_column(t_data *data, int direction)
 {
-	float	height_proj_plane;
+	int		height_proj_plane;
 	int		row;
 	int		wall_row = 0;
 	char	*add_opp;
-	float	qte_mur_sous_hdv;
-	float		h_max;
+	int		qte_mur_sous_hdv;
+	int		h_max;
 	
 /*	if (data->raycast.end == 0 && data->raycast.column == data->screen.size.x/2)
 		printf("render by thread\n");
@@ -140,7 +140,6 @@ int		fill_column(t_data *data, int direction)
 	//TODO faire un recap de toute les variable (surtout les alpha beta gamma)
 	if (data->screen.CF_textured)
 		pt_floor_ceil(data, row, qte_mur_sous_hdv, height_proj_plane, h_max);
-	// printf("apres\n");
 	print_sprite(data);
 	return (0);
 }

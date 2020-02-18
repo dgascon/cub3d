@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 19:46:50 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 19:50:50 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*casting(void *param)
 	{
 		data->raycast.alpha += data->raycast.delta_ang;
 		if (data->raycast.alpha >=  _2PI)
-			data->raycast.alpha -= _2PI; // REVIEW optimiser
+			data->raycast.alpha -= _2PI;
 		(data->raycast.alpha < 0) ? (data->raycast.alpha += _2PI) : 0;
 		data->raycast.dist = short_dist(data);
 		if (data->raycast.face_detect == 'H')
