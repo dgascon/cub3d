@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linear_intersec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:27 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 10:24:44 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ float linear_intersec_h(t_data *data)
 	t_f_coord	intersec;
 	t_f_coord	offset;
 	t_coord		grid;
-	t_lsprite	*obj;
 
 	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
@@ -83,20 +82,27 @@ float linear_intersec_h(t_data *data)
 		offset.x *= -1;
 	}
 	intersec.x = data->player.pos.x + ((data->player.pos.y - intersec.y) / tanf(data->raycast.alpha));
+	return (browse_h(data, intersec, offset, grid));
+}
+
+float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset, t_coord grid)
+{
+	t_lsprite	*obj;
+
 	while (1)
 	{
 		grid.y = intersec.x / BLOCK_SIZE;
 		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.y < 0) ? grid.y = 0 : 0;
 		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
-		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == '2')
+		if (data->world.map[grid.x][grid.y] == '1')
 		{
 			data->raycast.inter_h.x = intersec.x;
 			data->raycast.inter_h.y = intersec.y;
 			return (sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x)
 			+ (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y)));
 		}
-		else if (data->world.map[grid.x][grid.y] > '2')
+		else if (data->world.map[grid.x][grid.y] > '1')
 		{
 			obj = pick_object(data->lst, grid);
 			if (obj)
@@ -107,7 +113,6 @@ float linear_intersec_h(t_data *data)
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
 				obj->detect_dist = sqrtf((data->player.pos.x - intersec.x) * (data->player.pos.x - intersec.x) + (data->player.pos.y - intersec.y) * (data->player.pos.y - intersec.y));
-				// printf("Hobj at dist = %f\n", obj->dist);
 			}
 		}
 		intersec.x += offset.x;

@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:47:53 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 19:49:48 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 10:12:31 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int main(int ac, char **av)
 	data.player.cst = (BLOCK_SIZE * data.player.dist_proj_plane);
 	data.player.hdv = data.screen.size.y / 2;
 	data.actions = (t_actions) {};
-	data.world.door = (t_door) {.locked = 1, .was_lock = 1, .pos.x = 20, .pos.y = 5};
 	ft_msg(TM_INFO, tmp = ft_strmjoin("sds", "Number of threads at " ORANGE,
 		NB_THREAD, RESET "."), 0, RESET);
 	wrfree(tmp); //REVIEW why here?

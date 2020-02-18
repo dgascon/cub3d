@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 16:50:13 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 10:12:15 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,10 @@
 
 typedef struct s_data	t_data;
 
-typedef struct s_door
-{
-	t_coord		pos;
-	int			locked;
-	int			was_lock;
-}				t_door;
-
 typedef struct	s_world
 {
 	char		**map;
 	t_coord		size;
-	t_door      door;
 }				t_world;
 
 
