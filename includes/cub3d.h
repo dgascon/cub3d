@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 14:41:09 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 15:01:21 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ typedef struct	s_lsprite
 	void	*next;
 	t_image texture;
 }				t_lsprite;
+
+typedef struct	s_floor
+{
+	float		dist;
+	t_coord		pos;
+	t_f_coord	delta;
+}				t_floor;
 
 typedef	struct	s_data
 {

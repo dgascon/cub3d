@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 14:41:20 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 15:17:16 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ float linear_intersec_h(t_data *data)
 {
 	t_f_coord	intersec;
 	t_f_coord	offset;
-	t_coord		grid;
 
 	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
@@ -81,12 +80,13 @@ float linear_intersec_h(t_data *data)
 		offset.x *= -1;
 	}
 	intersec.x = data->player.pos.x + ((data->player.pos.y - intersec.y) / tanf(data->raycast.alpha));
-	return (browse_h(data, intersec, offset, grid));
+	return (browse_h(data, intersec, offset));
 }
 
-float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset, t_coord grid)
+float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset)
 {
 	t_lsprite	*obj;
+	t_coord		grid;
 
 	while (1)
 	{

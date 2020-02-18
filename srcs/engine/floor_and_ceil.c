@@ -6,18 +6,18 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:03:30 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 15:18:49 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void fill_background(t_data *data)
+void	fill_background(t_data *data)
 {
 	int i;
 
 	i = 0;
-	while (i < data->player.hdv)
+	while (i < data->player.hdv && i < data->screen.size.y)
 	{
 		*(int*)(data->image.add_image + (i * data->image.size_line) + (data->raycast.column * sizeof(int))) =
 		rgb_int(data->screen.sky_color[0], data->screen.sky_color[1], data->screen.sky_color[2]);
@@ -31,81 +31,86 @@ void fill_background(t_data *data)
 	}
 }
 
-int floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv, int *val2)
+void	floor_ceil_v(t_data *data, t_floor *floor, t_floor *ceil)
 {
-	t_coord 	sol;
-	t_coord 	ceil;
-	float 		dist_mur_sol;
-	float 		dist_mur_plafond;
-	float 		deltaY[2];
-	float 		deltaX[2];
 	t_f_coord	sincos;
 
-	// printf("sur = %d, cst2 = %f\n", qte_mur_sur_hdv, c_const[2]);
-	dist_mur_plafond = c_const[0] - (c_const[2] / qte_mur_sur_hdv);
-	if (dist_mur_plafond < 1)
-		dist_mur_plafond = 1;
-	// printf("dist_mur_plafond = %f\n", dist_mur_plafond);
-	dist_mur_sol = c_const[0] - (c_const[3] / c_const[1]);
-	if (dist_mur_sol < 1)
-		dist_mur_sol = 1;
 	sincos.x = 0;
 	sincos.y = 0;
-	if (data->raycast.face_detect == 'H')
+	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < _3PI2)
 	{
-		if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
+		data->raycast.gamma = M_PI - data->raycast.alpha ;
+		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		floor->delta.x = floor->dist * sincos.y;
+		ceil->delta.x = ceil->dist * sincos.y;
+	}
+	else
+	{
+		data->raycast.gamma = data->raycast.alpha - _2PI;
+		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		floor->delta.x = floor->dist * sincos.y * -1;
+		ceil->delta.x = ceil->dist * sincos.y * -1;
+	}
+	floor->delta.y = floor->dist * sincos.x;
+	ceil->delta.y = ceil->dist * sincos.x;
+}
+
+void	floor_ceil_h(t_data *data, t_floor *floor, t_floor *ceil)
+{
+	t_f_coord	sincos;
+
+	sincos.x = 0;
+	sincos.y = 0;
+	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 		{
 			data->raycast.gamma = data->raycast.alpha - (M_PI_2);
 			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
-			deltaY[0] = dist_mur_sol * sincos.y;
-			deltaY[1] = dist_mur_plafond * sincos.y;
+			floor->delta.y = floor->dist * sincos.y;
+			ceil->delta.y = ceil->dist * sincos.y;
 		}
 		else
 		{
 			data->raycast.gamma = (_3PI2) - data->raycast.alpha;
 			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
-			deltaY[0] = dist_mur_sol * sincos.y * -1;
-			deltaY[1] = dist_mur_plafond * sincos.y * -1;
+			floor->delta.y = floor->dist * sincos.y * -1;
+			ceil->delta.y = ceil->dist * sincos.y * -1;
 		}
-		deltaX[0] = dist_mur_sol * sincos.x;
-		deltaX[1] = dist_mur_plafond * sincos.x;
-	}
+		floor->delta.x = floor->dist * sincos.x;
+		ceil->delta.x = ceil->dist * sincos.x;
+}
+
+int		floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv, int *val2)
+{
+	t_floor		floor;
+	t_floor		ceil;
+	t_f_coord	sincos;
+
+	ceil.dist = c_const[0] - (c_const[2] / qte_mur_sur_hdv);
+	floor.dist = c_const[0] - (c_const[3] / c_const[1]);
+	(floor.dist < 1) ? floor.dist = 1 : 0;
+	if (ceil.dist < 1)
+		ceil.dist = 1;
+	sincos.x = 0;
+	sincos.y = 0;
+	if (data->raycast.face_detect == 'H')
+		floor_ceil_h(data, &floor, &ceil);
 	else
-	{
-		if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < _3PI2)
-		{
-			data->raycast.gamma = M_PI - data->raycast.alpha ;
-			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
-			deltaX[0] = dist_mur_sol * sincos.y;
-			deltaX[1] = dist_mur_plafond * sincos.y;
-		}
-		else
-		{
-			data->raycast.gamma = data->raycast.alpha - _2PI;
-			__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
-			deltaX[0] = dist_mur_sol * sincos.y * -1;
-			deltaX[1] = dist_mur_plafond * sincos.y * -1;
-		}
-		deltaY[0] = dist_mur_sol * sincos.x;
-		deltaY[1] = dist_mur_plafond * sincos.x;
-	}
-	sol.x = (int)(((float)data->w_tex[4].size.x / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[0])) % (data->w_tex[4].size.x);
-	sol.y = (int)(((float)data->w_tex[4].size.y / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[0])) % (data->w_tex[4].size.y);
-	ceil.x = (int)(((float)data->w_tex[5].size.x / BLOCK_SIZE) * (data->raycast.inter.x + deltaX[1])) % (data->w_tex[5].size.x);
-	ceil.y = (int)(((float)data->w_tex[5].size.y / BLOCK_SIZE) * (data->raycast.inter.y + deltaY[1])) % (data->w_tex[5].size.y);
-	// printf("challenge\n%f\n", deltaY[1]);// (data->raycast.inter.y + deltaY[1]));
-	*val2 = *(int*)(data->w_tex[5].add_image + (data->w_tex[5].size_line * ceil.y) + (ceil.x * sizeof(int)));
-	// printf("out\n");
-	return (*(int*)(data->w_tex[4].add_image + (data->w_tex[4].size_line * sol.y) + (sol.x * sizeof(int))));
+		floor_ceil_v(data, &floor, &ceil);
+	floor.pos.x = (int)(((float)data->w_tex[4].size.x / BLOCK_SIZE) * (data->raycast.inter.x + floor.delta.x)) % (data->w_tex[4].size.x);
+	floor.pos.y = (int)(((float)data->w_tex[4].size.y / BLOCK_SIZE) * (data->raycast.inter.y + floor.delta.y)) % (data->w_tex[4].size.y);
+	ceil.pos.x = (int)(((float)data->w_tex[5].size.x / BLOCK_SIZE) * (data->raycast.inter.x + ceil.delta.x)) % (data->w_tex[5].size.x);
+	ceil.pos.y = (int)(((float)data->w_tex[5].size.y / BLOCK_SIZE) * (data->raycast.inter.y + ceil.delta.y)) % (data->w_tex[5].size.y);
+	*val2 = *(int*)(data->w_tex[5].add_image + (data->w_tex[5].size_line * ceil.pos.y) + (ceil.pos.x * sizeof(int)));
+	return (*(int*)(data->w_tex[4].add_image + (data->w_tex[4].size_line * floor.pos.y) + (floor.pos.x * sizeof(int))));
 }
 
 void	print_only_ceil(t_data *data, float val_cst[4], int qte_mur_sur_hdv)
 {
-	int val2;
-	char *add_opp;
-	int crow = data->screen.size.y - 1;
-
-	// printf("only\n");
+	int		val2;
+	char	*add_opp;
+	int		crow;
+	
+	crow = data->screen.size.y - 1;
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	while (crow >= 0)
 	{
@@ -117,7 +122,7 @@ void	print_only_ceil(t_data *data, float val_cst[4], int qte_mur_sur_hdv)
 	}
 }
 
-void    pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv, int height_proj_plane, int h_max)
+void	pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv, int height_proj_plane, int h_max)
 {
 	float   cosB;
 	float   val_cst[4];
@@ -127,10 +132,8 @@ void    pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv, int height_pr
 	int     qte_mur_sur_hdv;
 	char    *add_opp;
 	
-	// printf("come in floor&&ceil\n");
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	qte_mur_sur_hdv = height_proj_plane - qte_mur_sous_hdv;
-	// printf("sou : %d, sur : %d height : %d\n", qte_mur_sous_hdv, qte_mur_sur_hdv, height_proj_plane);
 	if (qte_mur_sur_hdv < 1)
 		qte_mur_sur_hdv = 1;
 	crow = (data->player.hdv - qte_mur_sur_hdv);
@@ -143,7 +146,6 @@ void    pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv, int height_pr
 	//TODO faire du cas par cas avec ceil only, floor only
 	if (data->player.hdv < data->screen.size.y / 2)
 	{
-		// printf("heeeey\n");
 		// quand il y a plus de de sol que de plafond
 		if (row < 0) //permet d'avoir 1 condition par colonne plutot que par pixel
 		{
@@ -189,5 +191,4 @@ void    pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv, int height_pr
 			qte_mur_sur_hdv++;
 		}
 	}
-	// printf("out\n");
 }

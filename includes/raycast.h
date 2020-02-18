@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 11:52:37 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 10:42:45 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/18 15:17:43 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int				fill_column(t_data *data, int direction);
 float			linear_intersec_h(t_data *data);
 float			linear_intersec_v(t_data *data);
 void			fill_background(t_data *data);
-float			browse_h(t_data *data, t_f_coord intersec, t_f_coord offset,
-					t_coord grid);
+float			browse_h(t_data *data, t_f_coord intersec, t_f_coord offset);
 #endif
