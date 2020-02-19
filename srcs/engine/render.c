@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 16:52:07 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 17:00:38 by dgascon          ###   ########lyon.fr   */
+/*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
+/*   Updated: 2020/02/19 14:05:47 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int		fill_column(t_data *data, int direction)
 	height_proj_plane = (float)data->player.cst / data->raycast.dist; //REVIEW Optimisation
 	qte_mur_sous_hdv = (float)height_proj_plane / ((float)BLOCK_SIZE / data->player.height_cam); //hauteur sur ratio de la hauteur de la camera
 	row = data->player.hdv - (height_proj_plane - qte_mur_sous_hdv);
-
 	if (row < 0)
 	{
 		wall_row = 0 - row;
