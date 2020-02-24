@@ -7,7 +7,7 @@ EA ./assets/images/face_east.xpm
 
 V ./assets/images/viseur.xpm
 
-S3 ./assets/images/baril.xpm
+S ./assets/images/baril.xpm
 
 F ./assets/images/vitrail-3.xpm
 C ./assets/images/ice.xpm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:33:24 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 17:07:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define THREADS	1
+# define THREADS 10
 # define NB_THREAD	((THREADS > 0 && THREADS < 401) ? THREADS : 1)
 
 typedef struct	s_mlx
@@ -73,8 +73,8 @@ typedef	struct	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		w_tex[6];
-	t_image		hud_tex[1];
+	t_image		w_tex[W_TEX];
+	t_image		hud_tex[HUD_TEX];
 	t_image		minimap;
 	t_actions	actions;
 	t_image		object[OBJ_TEX];
@@ -102,4 +102,5 @@ void			*get_index_adresse(void *adresse, int nb_byte, int index);
 int				save_bmp(t_data *data);
 int				floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
 						, int *val2);
+int			destroy(t_data *data);
 #endif

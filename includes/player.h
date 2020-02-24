@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:27:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 19:44:07 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 16:27:04 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ typedef	struct		s_actions
 int					key_press(int key, t_data *data);
 int					key_release(int key, t_data *data);
 void				actionscontrol(t_data *data);
-int					destroy(t_data *data);
 void				move(t_data *data, float direction);
 #endif

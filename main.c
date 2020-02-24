@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/19 14:05:09 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 16:26:53 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,7 @@ int main(int ac, char **av)
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	data.screen = (t_screen) {};
-	if (parsefile(&data, av[1]))
-	{
-		destroy(&data);
-		return (EXIT_FAILURE);
-	}
+	(parsefile(&data, av[1])) ? destroy(&data) : 0;
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,
 		.delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);

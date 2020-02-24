@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 11:20:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 16:26:29 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	mlx_rect(t_image *image, t_coord pos, t_coord size, int colors)
 		tmp.x = 0;
 		while (tmp.x < size.x)
 		{
-			// printf("%d\n", tmp.x);
 			*(int*)(image->add_image + (tmp.x + pos.x) * sizeof(int) +
 				((tmp.y + pos.y) * image->size_line)) = colors;
 			tmp.x++;
@@ -31,13 +30,13 @@ void	mlx_rect(t_image *image, t_coord pos, t_coord size, int colors)
 	}
 }
 
-void    mlx_line(t_data *data, t_coord start, t_coord end, int colors)
+void	mlx_line(t_data *data, t_coord start, t_coord end, int colors)
 {
 	t_coord	d;
 	t_coord draw;
-	
+
 	d.x = end.x - start.x;
-	d.y = end.y - start.y;	
+	d.y = end.y - start.y;
 	draw.x = start.x;
 	while (draw.x < end.x)
 	{

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 11:38:59 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 14:22:04 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int		move_y(t_data *data, float value)
 
 void	move(t_data *data, float direction)
 {
-	move_x(data, cosf(direction) * data->player.speed/2);
-	move_y(data, sinf(direction) * -data->player.speed/2);
+	move_x(data, cosf(direction) * data->player.speed / 2);
+	move_y(data, sinf(direction) * -data->player.speed / 2);
 }

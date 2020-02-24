@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/18 16:23:17 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 17:07:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,18 @@ static int	parse_floor_ceil3(t_data *data, char **tmp, char state)
 		{
 			if (state == 'F')
 			{
-				data->screen.floor_color[i] = val;
+				data->screen.floor_color[i++] = val;
 				data->screen.floor_tex = 0;
 			}
-			if (state == 'C')
+			else if (state == 'C')
 			{
-				data->screen.sky_color[i] = val;
+				data->screen.sky_color[i++] = val;
 				data->screen.ceil_tex = 0;
 			}
 		}
 		else
 			return (ft_msg(TM_ERROR, "Bad format colors !", 1, RED));
 		tmp++;
-		i++;
 	}
 	return (EXIT_SUCCESS);
 }

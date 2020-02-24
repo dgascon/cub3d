@@ -8,13 +8,6 @@ EA ./assets/images/face_east.xpm
 V ./assets/images/viseur.xpm
 
 S ./assets/images/baril.xpm
-S3 ./assets/images/baril.xpm
-S4 ./assets/images/baril.xpm
-S5 ./assets/images/baril.xpm
-S6 ./assets/images/baril.xpm
-S7 ./assets/images/baril.xpm
-S8 ./assets/images/baril.xpm
-S9 ./assets/images/tux.xpm
 
 F 220,100,0
 C 225,30,0

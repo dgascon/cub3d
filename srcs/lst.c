@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:37:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:16:50 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 14:24:42 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_lsprite	*lsprite_new(t_coord pos, t_image texture)
 {
-	t_lsprite *ptr;
-	int i;
+	t_lsprite	*ptr;
+	int			i;
 
 	i = -1;
 	if (!(ptr = wrmalloc(sizeof(t_lsprite))))
