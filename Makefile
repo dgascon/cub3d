@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/02/24 17:06:39 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/02/24 17:15:08 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ $(LIBFT_NAME):
 	@ make -C $(LIBFT_PATH)
 	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
 
-$(MINILIBX_NAME):
+minilibx_load:
 	@ printf "\033[0m"
 	@ make -C $(MINILIBX_PATH)
 	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
@@ -93,7 +93,7 @@ fclean: clean
 	@ printf "\r                                                                                          \r\033[0m"
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
-comp:
-	@ $(CC) $(CFLAGS) -O2 -o $(NAME) $(MINILIBX_NAME) $(LIBFT_PATH)/$(LIBFT_NAME) $(OBJS) -framework OpenGL -framework AppKit main.c
+comp: minilibx_load
+	@ $(CC) $(CFLAGS) -O2 -o $(NAME) ./$(MINILIBX_PATH)/$(MINILIBX_NAME) $(LIBFT_PATH)/$(LIBFT_NAME) $(OBJS) -framework OpenGL -framework AppKit main.c
 
 re: fclean all
