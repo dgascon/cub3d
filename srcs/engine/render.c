@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 16:52:10 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:55:10 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,24 @@ void	print_sprite(t_data *data)
 	{
 		if (list->visible[data->th_num] == 1)
 		{
+		/*	static int i = 0;
+			static int J = 1;
+			static int Y = 1;
+			if (i % 300 == 0)
+			{
+				if (list->pos.x % 64 == 63)
+					J = -1;
+				else if (list->pos.x % 64 == 0)
+					J = 1;
+				list->pos.x += J;
+				if (list->pos.y % 64 == 63)
+					Y = -1;
+				else if (list->pos.y % 64 == 0)
+					Y = 1;
+				list->pos.y += Y;
+				printf("pos = %d %d\n", list->pos.x, list->pos.y);
+			}
+			i++;*/
 			angle_raycast_mid_obj = data->raycast.alpha -
 				((M_PI_2 - atanf((float)(list->pos.y - data->player.pos.y)
 				/ (list->pos.x - data->player.pos.x))) + M_PI_2);

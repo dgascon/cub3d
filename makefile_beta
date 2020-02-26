@@ -6,13 +6,14 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/02/26 13:38:59 by nlecaill         ###   ########lyon.fr    #
+#    Updated: 2020/02/24 17:15:08 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY:	all clean fclean re
 
 NAME			=	Cub3d
+NAME2			=	Cub3d
 
 PATH_INC		=	includes
 
@@ -42,7 +43,7 @@ LIBFT_INC		=	$(addprefix $(LIBFT_PATH)/, $(PATH_INC))
 LIBFT			=	$(addprefix $(LIBFT_PATH)/, $(LIBFT_NAME))
 
 MINILIBX_PATH	= 	libmlx
-MINILIBX_NAME	= 	libmlx.a
+MINILIBX_NAME	= 	libmlx.dylib
 
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
@@ -51,7 +52,9 @@ C-O				=	$(CC) $(CFLAGS) -D DEBUG=$(DEBUG) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 DIRS_LIST	= engine parsing keycontrol entities
 
-all $(DEBUG):	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
+$(NAME2): all
+
+all $(DEBUG):	$(LIBFT_NAME) $(MINILIBX_NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"
 
 $(NAME): $(OBJS) $(INCS) comp
@@ -66,7 +69,7 @@ $(LIBFT_NAME):
 	@ make -C $(LIBFT_PATH)
 	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
 
-$(MINILIBX_NAME):
+minilibx_load:
 	@ printf "\033[0m"
 	@ make -C $(MINILIBX_PATH)
 	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
@@ -90,7 +93,7 @@ fclean: clean
 	@ printf "\r                                                                                          \r\033[0m"
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
-comp:
-	@ $(CC) $(CFLAGS) -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
+comp: minilibx_load
+	@ $(CC) $(CFLAGS) -O2 -o $(NAME) ./$(MINILIBX_PATH)/$(MINILIBX_NAME) $(LIBFT_PATH)/$(LIBFT_NAME) $(OBJS) -framework OpenGL -framework AppKit main.c
 
 re: fclean all
