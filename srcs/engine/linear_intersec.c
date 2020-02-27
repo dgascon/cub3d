@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/26 08:31:36 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 16:12:32 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ float	linear_intersec_v(t_data *data)
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
 		offset.x = -(BLOCK_SIZE);
-		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.01;
+		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.0001;
 	}
 	else
 	{
@@ -70,7 +70,7 @@ float linear_intersec_h(t_data *data)
 	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
-		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.01;
+		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.0001;
 		offset.y = -(BLOCK_SIZE);
 	}
 	else

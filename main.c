@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 16:26:53 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 12:07:52 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		init_window(t_data *data)
 //TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
 //TODO remettre les variables en int et ajouter les limites necessaires a la securite
 //REVIEW Fillbackground le -1 avec les y
-
+//TODO REPARER CROUCHING
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -70,6 +70,7 @@ int main(int ac, char **av)
 	data.lst = NULL;
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 	data.screen = (t_screen) {};
+	data.world = (t_world){};
 	(parsefile(&data, av[1])) ? destroy(&data) : 0;
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,
 		.delta_ang = (data.player.fov / data.screen.size.x)};
