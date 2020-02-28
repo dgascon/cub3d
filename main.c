@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/27 12:07:52 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 12:37:29 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ int		init_window(t_data *data)
 //DONE rendre la minimap sans relation avec la blocksize
 //DONE changer le sens des texture sud et ouest
 //DONE BMP : bitmap
-//TODO Key flottante et tournante
 //TODO liberer les espaces memoire uttilise par les thread
-//TODO rendre case "porte ouverte" transparente 
-//TODO les 2 sont des sprites et les 3 sont des portes <=(les 2 sont des portes)
-//TODO les * sont des cles (peut etre 1clef 1porte?)
+//TODO les 2 sont des sprites et les 3 sont des portes <=(les 2 sont des portes)ls
+
 //TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
 //TODO remettre les variables en int et ajouter les limites necessaires a la securite
 //REVIEW Fillbackground le -1 avec les y

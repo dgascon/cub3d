@@ -1,34 +1,43 @@
+#
+#
 
+NOM=libmlx.a
+SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c
+SRC+= mlx_png.c mlx_mouse.m
+OBJ1=$(SRC:.c=.o)
+OBJ=$(OBJ1:.m=.o)
+CFLAGS+=-O2
 
+# add to match string put with X11 in size and position
+CFLAGS+= -DSTRINGPUTX11
 
-MODULE_SRC= mlx_image.swift mlx_window.swift mlx_init.swift
-MODULE_OBJ=$(MODULE_SRC:.swift=.swiftmodule)
+all: $(NOM)
+	@ printf "\r                                                                                          \r"
 
-SRC= interface.swift $(MODULE_SRC)
-OBJ=$(SRC:.swift=.o)
+$(NOM):	$(OBJ)
+	@ ar -rc $(NOM) $(OBJ)
+	@ ranlib $(NOM)
 
-C_SRC= mlx_xpm.c mlx_png.c mlx_string_put.c
-C_OBJ=$(C_SRC:.c=.o)
-CFLAGS=-O3
+%.o: %.m
+	@ cc $(CFLAGS) -c $< -o $@
 
-NAME=libmlx.dylib
-
-INC=-I.
-#OPTI=-Ounchecked
-
-all: $(NAME)
-
-$(NAME): $(MODULE_OBJ) $(OBJ) $(C_OBJ)
-	swiftc $(OPTI) $(INC) -o $(NAME) -emit-library $(OBJ) $(C_OBJ) -lz
-
-
-
-%.o: %.swift
-	swiftc $(OPTI) $(INC) -parse-as-library -c $< -o $@
-
-%.swiftmodule: %.swift
-	swiftc $(OPTI) $(INC) -parse-as-library -c $< -o $@ -emit-module -module-name $(patsubst %.swift,%,$<) -module-link-name $(patsubst %.swift,%,$<)
+%.o: %.c
+	@ printf "\033[0;38;5;198mCompilation de \033[1m$< ..."
+	@ cc $(CFLAGS) -c $< -o $@
+	@ printf "\r                                                                                          \r"
 
 clean:
-	rm -f $(NAME) $(OBJ) $(MODULE_OBJ) $(C_OBJ) *.swiftdoc *~
+	@ rm -f $(NOM) $(OBJ) *~
+	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NOM) ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                          \r"
+	@ rm -f mlx_app
+	@ printf "\033[0;38;5;160mSuppression des \033[1mobjets ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                          \r"
+	@ printf "\033[0;38;5;160mSuppression de \033[1m*~ ..."
+	@ sleep 0.2
+	@ printf "\r                                                                                                                                                                                 \r"
+	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour la \033[1mlibmlx.\n"
 
+re: clean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:17:42 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/02/24 16:26:32 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 13:47:28 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int			floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
 {
 	t_floor		floor;
 	t_floor		ceil;
-	t_f_coord	sincos;
+	//t_f_coord	sincos;
 
 	ceil.dist = c_const[0] - (c_const[2] / qte_mur_sur_hdv);
 	floor.dist = c_const[0] - (c_const[3] / c_const[1]);
 	(floor.dist < 1) ? floor.dist = 1 : 0;
 	(ceil.dist < 1) ? ceil.dist = 1 : 0;
-	sincos = (t_f_coord){0.0, 0.0};
+	//sincos = (t_f_coord){0.0, 0.0};
 	if (data->raycast.face_detect == 'H')
 		floor_ceil_h(data, &floor, &ceil);
 	else

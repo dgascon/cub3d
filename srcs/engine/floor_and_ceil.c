@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 14:37:06 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 15:13:11 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ static void	more_floor(t_data *data, float clc_cst[4], int wall_up_hdv, int row)
 	{
 		*(int*)(add_opp + (row * data->image.size_line)) =
 		floor_ceil_color(data, clc_cst, wall_up_hdv, &val2);
+		if (data->raycast.column == data->screen.size.y / 2)
+		{
+			*(int*)(add_opp + (row * data->image.size_line)) = 0xFF0000;
+
+		}
 		if (crow >= 0)
 			*(int*)(add_opp + (data->image.size_line * (crow--))) = val2;
 		row++;
@@ -97,12 +102,22 @@ static void	more_ceil(t_data *data, float calc_cst[4], int wall_up_hdv, int row)
 		print_only_ceil(data, calc_cst, wall_up_hdv);
 		return ;
 	}
-	while (crow >= 0)
+	while (crow >= 0 || row < data->screen.size.y)
 	{
 		val1 = floor_ceil_color(data, calc_cst, wall_up_hdv, &val2);
-		*(int*)(add_opp + (data->image.size_line * crow--)) = val2;
+		if (crow >= 0)
+		{
+			*(int*)(add_opp + (data->image.size_line * crow--)) = val2;
+		}
 		if (row < data->screen.size.y)
-			*(int*)(add_opp + (row++ * data->image.size_line)) = val1;
+		{
+			*(int*)(add_opp + (row * data->image.size_line)) = val1;
+			if (data->raycast.column == data->screen.size.y / 2)
+			{
+				*(int*)(add_opp + (row * data->image.size_line)) = 0x00FF00;
+			}
+			row++;
+		}
 		calc_cst[1]++;
 		wall_up_hdv++;
 	}
@@ -127,8 +142,8 @@ void		pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
 		* (BLOCK_SIZE - data->player.height_cam);
 	calc_cst[3] = (data->player.dist_proj_plane / cosb)
 		* (data->player.height_cam);
-	if (data->player.hdv < data->screen.size.y / 2)
-		more_floor(data, calc_cst, qte_mur_sur_hdv, row);
-	else
+	// if (data->player.hdv < data->screen.size.y / 2)
+	// 	more_floor(data, calc_cst, qte_mur_sur_hdv, row);
+	// else
 		more_ceil(data, calc_cst, qte_mur_sur_hdv, row);
 }

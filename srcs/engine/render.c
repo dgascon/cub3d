@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/26 14:55:10 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 15:15:02 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		select_wall_color(t_data *data, float prptn, int wall_row, int dir)
 		ratio.x = (int)(data->raycast.inter.x * proportion)
 			% data->w_tex[dir].size.x;
 	}
-	if (dir >= 2 && dir <= 3)
-		ratio.x = data->w_tex[dir].size.x - ratio.x;
+	// if (dir == 2 || dir == 3)
+	// 	ratio.x = data->w_tex[dir].size.x - ratio.x;
 	return (*(int*)(data->w_tex[dir].add_image
 	+ (data->w_tex[dir].size_line * ratio.y) + (ratio.x * sizeof(int))));
 }
@@ -64,24 +64,6 @@ void	print_sprite(t_data *data)
 	{
 		if (list->visible[data->th_num] == 1)
 		{
-		/*	static int i = 0;
-			static int J = 1;
-			static int Y = 1;
-			if (i % 300 == 0)
-			{
-				if (list->pos.x % 64 == 63)
-					J = -1;
-				else if (list->pos.x % 64 == 0)
-					J = 1;
-				list->pos.x += J;
-				if (list->pos.y % 64 == 63)
-					Y = -1;
-				else if (list->pos.y % 64 == 0)
-					Y = 1;
-				list->pos.y += Y;
-				printf("pos = %d %d\n", list->pos.x, list->pos.y);
-			}
-			i++;*/
 			angle_raycast_mid_obj = data->raycast.alpha -
 				((M_PI_2 - atanf((float)(list->pos.y - data->player.pos.y)
 				/ (list->pos.x - data->player.pos.x))) + M_PI_2);
@@ -127,7 +109,6 @@ int		fill_column(t_data *data, int direction)
 	int		h_max;
 	float	racourcis;
 
-	// printf("rendeer-%d\n", data->th_num);
 	wall_row = 0;
 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
 	height_proj_plane = (float)data->player.cst / data->raycast.dist;
