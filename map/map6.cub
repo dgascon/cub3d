@@ -1,27 +1,28 @@
 R 2500 1400
 
-NO ./assets/images/floor.xpm
-SO ./assets/images/floor.xpm
-WE ./assets/images/floor.xpm
-EA ./assets/images/floor.xpm
+NO ./assets/images/solv2.xpm
+SO ./assets/images/solv2.xpm
+WE ./assets/images/solv2.xpm
+EA ./assets/images/solv2.xpm
 
 V ./assets/images/viseur.xpm
 
 S ./assets/images/tux.xpm
-S3 ./assets/images/banana.xpm
-F ./assets/images/shinning.xpm
-C ./assets/images/beton.xpm
+S3 ./assets/images/baril.xpm
+S4 ./assets/images/clown.xpm
+F ./assets/images/solv2.xpm
+C ./assets/images/solv2.xpm
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
-1 0 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 3 0 0 0 0 0 1 0 0 0 1
+1 0 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 3 0 0 0 0 4 1 0 0 0 1
 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1
 1 0 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1
-1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 1 1 2 1 1 1 1 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 1 1 1 2 1 1 1 1 4 0 0 1
 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 1 0 0 0 1
 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 0 1 0 0 1 0 1 0 1
 1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 1 1 1 0 0 0 0 0 0 1 0 3 0 1
-1 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 2 2 1
+1 0 0 0 3 0 0 4 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 2 2 1
 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 1 0 0 1 0 0 0 1
 1 1 0 0 0 0 0 0 1 1 0 1 0 1 0 1 1 1 1 1 0 0 0 0 0 0 N 0 1
 1 1 1 1 0 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 0 1 1 1 1 0 0 0 1

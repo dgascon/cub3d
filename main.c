@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/27 12:37:29 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/28 17:08:18 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int		init_window(t_data *data)
 //DONE BMP : bitmap
 //TODO liberer les espaces memoire uttilise par les thread
 //TODO les 2 sont des sprites et les 3 sont des portes <=(les 2 sont des portes)ls
-
+//TODO gerer les deux types d'images
 //TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
-//TODO remettre les variables en int et ajouter les limites necessaires a la securite
+//DONE remettre les variables en int et ajouter les limites necessaires a la securite
 //REVIEW Fillbackground le -1 avec les y
-//TODO REPARER CROUCHING
+//DONE REPARER CROUCHING
 int main(int ac, char **av)
 {
 	t_data	data;

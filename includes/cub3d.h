@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/26 14:02:23 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/02/28 16:33:23 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define THREADS 6
+# define THREADS 10
 # define NB_THREAD	((THREADS > 0 && THREADS < 401) ? THREADS : 1)
 
 typedef struct	s_mlx
@@ -102,5 +102,7 @@ void			*get_index_adresse(void *adresse, int nb_byte, int index);
 int				save_bmp(t_data *data);
 int				floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
 						, int *val2);
+int				darken_wall(t_data *data, float dist, int val);
+
 int			destroy(t_data *data);
 #endif
