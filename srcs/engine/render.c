@@ -108,7 +108,7 @@ void	print_sprite(t_data *data)
 				row = data->player.hdv +
 					((data->player.height_cam - BLOCK_SIZE / 2)
 					/ list->dist) * data->player.dist_proj_plane;
-				while (cmp < lim.y && row < data->screen.size.y)
+				while (cmp < lim.y && row < data->screen.size.y - 1)
 				{
 					val = darken_wall(data, list->dist, select_sprite_color(offset_mid_object, cmp,
 						list->texture, lim));

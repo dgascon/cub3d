@@ -97,18 +97,21 @@ static void	more_ceil(t_data *data, float calc_cst[4], int wall_up_hdv, int row)
 		print_only_ceil(data, calc_cst, wall_up_hdv);
 		return ;
 	}
-	while (crow >= 0 || row < data->screen.size.y)
+	if (crow >= data->screen.size.y - 1)
+		crow = data->screen.size.y - 1;
+
+	while (crow >= 0 || row < data->screen.size.y - 1)
 	{
 		val1 = floor_ceil_color(data, calc_cst, wall_up_hdv, &val2);
 		if (crow >= 0)
 		{
 			*(int*)(add_opp + (data->image.size_line * crow--)) = val2;
 		}
-		if (row < data->screen.size.y)
+		if (row < data->screen.size.y - 1 && row >= 0)
 		{
 			*(int*)(add_opp + (row * data->image.size_line)) = val1;
-			row++;
 		}
+		row++;
 		calc_cst[1]++;
 		wall_up_hdv++;
 	}

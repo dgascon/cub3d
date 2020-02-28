@@ -1,17 +1,17 @@
-R 2500 1400
+R 1200 750
 
 NO ./assets/images/solv2.xpm
-SO ./assets/images/solv2.xpm
-WE ./assets/images/solv2.xpm
-EA ./assets/images/solv2.xpm
+SO ./assets/images/floor.xpm
+WE ./assets/images/bricks64.xpm
+EA ./assets/images/banana.xpm
 
 V ./assets/images/viseur.xpm
 
 S ./assets/images/tux.xpm
 S3 ./assets/images/baril.xpm
 S4 ./assets/images/clown.xpm
-F ./assets/images/solv2.xpm
-C ./assets/images/solv2.xpm
+F ./assets/images/shinning.xpm
+C ./assets/images/beton.xpm
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
