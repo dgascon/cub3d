@@ -40,7 +40,6 @@ int		flaginit_tex(t_data *data, int flag, t_image *img, char *path)
 {
 	if (flag)
 		return (init_texture(data, img, path));
-
 	return (EXIT_SUCCESS);
 }
 

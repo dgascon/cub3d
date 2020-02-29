@@ -24,12 +24,17 @@ int	destroy(t_data *data)
 	}
 	i = -1;
 	while (++i < OBJ_TEX)
+	{
 		if (data->object[i].img && data->object[i].valid)
+		{
 			mlx_destroy_image(data->mlx.ptr, data->object[i].img);
+		}
+	}
 	i = -1;
 	while (++i < W_TEX)
 		if (data->w_tex[i].img && data->w_tex[i].valid)
 			mlx_destroy_image(data->mlx.ptr, data->w_tex[i].img);
+	
 	if (data->image.img)
 	{
 		mlx_destroy_image(data->mlx.ptr, data->image.img);

@@ -57,6 +57,7 @@ int main(int ac, char **av)
 {
 	t_data	data;
 
+	data = (t_data){};
 	if (ac <= 1)
 		return (ft_msg(TM_ERROR, "Argument is missing !", 1, RED));
 	else if (ac > 3)
