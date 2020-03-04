@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 10:09:59 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 11:47:00 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,13 @@ static int	parse_floor_ceil2(t_data *data, char **line, char state)
 		return (parse_floor_ceil3(data, tmp, state));
 	}
 	else
-		if (dup_path(&data->w_tex[i], line[1]))
-			return (EXIT_FAILURE);
+		return (dup_path(&data->w_tex[i], line[1]));
 	return (EXIT_SUCCESS);
 }
 
 int			parse_floor_ceil(t_data *data, char **line)
 {
-	if (line[0][0] == 'F')
+	if (!(ft_strcmp(line[0], "F")))
 	{
 		if (data->screen.flag_floor)
 			return (ft_msg(TM_ERROR, "Double argument to floor", 1, RED));
@@ -88,7 +87,7 @@ int			parse_floor_ceil(t_data *data, char **line)
 		if (parse_floor_ceil2(data, line, 'F'))
 			return (EXIT_FAILURE);
 	}
-	else if (line[0][0] == 'C')
+	else if (!(ft_strcmp(line[0], "C")))
 	{
 		if (data->screen.flag_ceil)
 			return (ft_msg(TM_ERROR, "Double argument to ceil", 1, RED));

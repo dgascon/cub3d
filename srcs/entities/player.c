@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:08:05 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 16:26:39 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 18:00:00 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		parse_player(t_data *data, char direction, t_coord position)
 	{
 		ft_printf("Two player placed on the map\n");
 		wrdestroy();
-		return (-1);
+		return (EXIT_FAILURE);
 	}
 	if (direction == 'N')
 		data->player.pov = M_PI / 2;
@@ -30,5 +30,5 @@ int		parse_player(t_data *data, char direction, t_coord position)
 		data->player.pov = M_PI;
 	data->player.pos.x = (BLOCK_SIZE * position.x) + BLOCK_SIZE / 2;
 	data->player.pos.y = (BLOCK_SIZE * position.y) - BLOCK_SIZE / 2;
-	return (1);
+	return (EXIT_SUCCESS);
 }

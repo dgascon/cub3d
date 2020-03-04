@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/02/26 13:38:59 by nlecaill         ###   ########lyon.fr    #
+#    Updated: 2020/03/04 22:12:26 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,6 @@ fclean: clean
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
-	@ $(CC) $(CFLAGS) -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
+	@ $(CC) $(CFLAGS) -g3 -fsanitize=address -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
 
 re: fclean all

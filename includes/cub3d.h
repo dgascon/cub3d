@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/28 16:33:23 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 18:45:21 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include "raycast.h"
 # include <pthread.h>
 
-# define OBJ_TEX 11
+# define OBJ_TEX 10
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define THREADS 1
+# define THREADS 10
 # define NB_THREAD	((THREADS > 0 && THREADS < 401) ? THREADS : 1)
 
 typedef struct	s_mlx
@@ -44,6 +44,7 @@ typedef	struct	s_image
 	int		colors;
 	t_coord	size;
 	int		valid;
+	char	*path;
 }				t_image;
 
 typedef struct	s_lsprite
@@ -73,18 +74,19 @@ typedef	struct	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		w_tex[W_TEX];
-	t_image		hud_tex[HUD_TEX];
 	t_image		minimap;
 	t_actions	actions;
-	t_image		object[OBJ_TEX];
 	t_lsprite	*lst;
+	t_image		w_tex[W_TEX];
+	t_image		hud_tex[HUD_TEX];
+	t_image		obj_tex[OBJ_TEX];
 	int			th_num;
 	int			bmp_save;
 }				t_data;
 
-int				init_texture(t_data *data, t_image *image, char *path);
-int				flaginit_tex(t_data *data, int flag, t_image *img, char *path);
+int				init_texture(t_data *data, t_image *image);
+int				dup_path(t_image *image, char *line);
+int				fillmap(t_data *data);
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 void			mlx_line(t_data *data, t_coord start, t_coord end, int colors);
 void			mlx_text(t_data *data, t_coord pos, char *text, int colors);

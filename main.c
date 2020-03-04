@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/28 17:08:18 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/04 21:16:31 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 int		init_window(t_data *data)
 {
-		if (!(data->mlx.ptr = mlx_init()))
-			return (EXIT_FAILURE);
-		if ((data->mlx.win = mlx_new_window(data->mlx.ptr, data->screen.size.x,
-				data->screen.size.y, "Dgascon && Nlecaill")) == NULL)
-			return (EXIT_FAILURE);
-		if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x,
-				data->screen.size.y)))
-			return (EXIT_FAILURE);
-		if (!(data->image.add_image = mlx_get_data_addr(data->image.img,
-				&data->image.bpp, &data->image.size_line, &data->image.endian)))
-			return (EXIT_FAILURE);
+	if (!(data->mlx.ptr = mlx_init()))
+		return (EXIT_FAILURE);
+	if ((data->mlx.win = mlx_new_window(data->mlx.ptr, data->screen.size.x,
+			data->screen.size.y, "Dgascon && Nlecaill")) == NULL)
+		return (EXIT_FAILURE);
+	if (!(data->image.img = mlx_new_image(data->mlx.ptr, data->screen.size.x,
+			data->screen.size.y)))
+		return (EXIT_FAILURE);
+	if (!(data->image.add_image = mlx_get_data_addr(data->image.img,
+			&data->image.bpp, &data->image.size_line, &data->image.endian)))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -47,7 +47,6 @@ int		init_window(t_data *data)
 //DONE changer le sens des texture sud et ouest
 //DONE BMP : bitmap
 //TODO liberer les espaces memoire uttilise par les thread
-//TODO les 2 sont des sprites et les 3 sont des portes <=(les 2 sont des portes)ls
 //TODO gerer les deux types d'images
 //TODO mettre une condition sur la creation de la fenetre pour --save voir flag data.bmp_save
 //DONE remettre les variables en int et ajouter les limites necessaires a la securite
@@ -73,6 +72,8 @@ int main(int ac, char **av)
 //	data.screen = (t_screen) {};
 //	data.world = (t_world){};
 	(parsefile(&data, av[1])) ? destroy(&data) : 0;
+	if (init_window(&data))
+			return (EXIT_FAILURE);
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,
 		.delta_ang = (data.player.fov / data.screen.size.x)};
 	data.player.dist_proj_plane = ((float)data.screen.size.x / 2) / tan(data.player.fov / 2);

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:37:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 16:26:56 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 16:12:53 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	destroy(t_data *data)
 	i = -1;
 	while (++i < OBJ_TEX)
 	{
-		if (data->object[i].img && data->object[i].valid)
+		if (data->obj_tex[i].img && data->obj_tex[i].valid)
 		{
-			mlx_destroy_image(data->mlx.ptr, data->object[i].img);
+			mlx_destroy_image(data->mlx.ptr, data->obj_tex[i].img);
 		}
 	}
 	i = -1;
