@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 22:22:52 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 15:39:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ int			checkmapwall(t_data *data)
 			if (checkwall(&data->world, csize, y, x))
 				return (EXIT_FAILURE);
 		}
+		if (checkwalls(&data->world, csize, y))
+			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

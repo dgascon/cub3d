@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 22:24:09 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 15:34:40 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ float	linear_intersec_v(t_data *data)
 		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.x < 0) ? grid.x = 0 : 0;
 		(grid.x > data->world.size.y - 1) ? grid.x = data->world.size.y - 1 : 0;
-		if (data->world.map[grid.x][grid.y] == '1')
+		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == ' ')
 		{
 			data->raycast.inter.x = intersec.x;
 			data->raycast.inter.y = intersec.y;
@@ -87,14 +87,16 @@ float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset)
 {
 	t_lsprite	*obj;
 	t_coord		grid;
+	int			size;
 
 	while (1)
 	{
 		grid.y = intersec.x / BLOCK_SIZE;
 		grid.x = intersec.y / BLOCK_SIZE;
 		(grid.y < 0) ? grid.y = 0 : 0;
-		(grid.y > data->world.size.x - 1) ? grid.y = data->world.size.x - 1 : 0;
-		if (data->world.map[grid.x][grid.y] == '1')
+		size = ft_strlen(data->world.map[grid.x]);
+		(grid.y > size - 1) ? grid.y = size - 1 : 0;
+		if (data->world.map[grid.x][grid.y] == '1' || data->world.map[grid.x][grid.y] == ' ')
 		{
 			data->raycast.inter_h.x = intersec.x;
 			data->raycast.inter_h.y = intersec.y;

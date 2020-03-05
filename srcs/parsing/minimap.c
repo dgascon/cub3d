@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 19:37:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/28 16:16:36 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 15:44:26 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	render_mmap(t_data *data, t_coord *pos, t_coord smap, t_coord sbox)
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 100, 100, 100));
 			else if (current_block >= '2')
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 180, 100, 100));
+			else if (current_block == ' ')
+				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 170, 170, 170));
 			else
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 135, 135, 135));
 			(*pos).x += sbox.x;
@@ -46,7 +48,7 @@ void		minimap(t_data *data)
 	pos = (t_coord) {0, 0};
 	sbox.x = ((float)64 * ((float)16 / data->world.size.x)) * RATIO;
 	sbox.y = ((float)64 * ((float)8 / data->world.size.y)) * RATIO;
-	smap.x = (data->world.size.x * sbox.x);
+	smap.x = (ft_strlen(data->world.map[sbox.y]) * sbox.x);
 	smap.y = (data->world.size.y * sbox.y);
 	if (!(data->minimap.img = mlx_new_image(data->mlx.ptr, smap.x, smap.y)))
 		printf("BITCH\n");

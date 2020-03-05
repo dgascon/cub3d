@@ -1,23 +1,23 @@
 R 1460 1300
 
-NO ./assets/images/face_north.xpm
-SO ./assets/images/face_south.xpm
-WE ./assets/images/face_west.xpm
-EA ./assets/images/face_east.xpm
+NO ./assets/images/large_dgascon.xpm
+SO ./assets/images/large_nlecaill.xpm
+WE ./assets/images/large_musoufi.xpm
+EA ./assets/images/large_ageraud.xpm
 
 V ./assets/images/viseur.xpm
 
 
-F ./assets/images/vitrail-3.xpm
-C ./assets/images/ice.xpm
+F ./assets/images/large_aducas.xpm
+C ./assets/images/large_lumeyer.xpm
 
 1111111111111111111111111
 1000000000110000000000001
 1000000000110000000000001
-1000000000110000000000001
-1000000000110000000000001
-1000000000000000000000001
-10000000000000111000000011
+100000000011000000000000111111111
+1000000000110000000000000000000001
+100000000000000000000000111111111
+100000000000001110000001
 10000000000001   10000001
 10000000000000111000000011
 1000000000000000000000001
