@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/03/04 22:12:26 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/03/05 23:15:33 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ LIBFT_NAME		=	libft.a
 LIBFT_FLAG 		=	-Llibft -lft
 LIBFT_LIB 		= 	$(FLAG_FT)
 LIBFT_INC		=	$(addprefix $(LIBFT_PATH)/, $(PATH_INC))
-LIBFT			=	$(addprefix $(LIBFT_PATH)/, $(LIBFT_NAME))
 
 MINILIBX_PATH	= 	libmlx
 MINILIBX_NAME	= 	libmlx.a

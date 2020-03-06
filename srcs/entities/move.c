@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/03 16:12:53 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/06 05:41:10 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int		move_x(t_data *data, int value)
 {
 	int tmp;
 	int block;
+	int	lenx;
 
 	tmp = data->player.pos.x + value;
-	if (tmp < (data->world.size.x * BLOCK_SIZE) && tmp > BLOCK_SIZE)
+	lenx = ft_strlen(data->world.map[data->player.pos.y / BLOCK_SIZE]);
+	if (tmp < (lenx * BLOCK_SIZE) && tmp > BLOCK_SIZE)
 	{
 		block = data->world.map[data->player.pos.y / BLOCK_SIZE]
 					[tmp / BLOCK_SIZE];

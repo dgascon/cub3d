@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 19:37:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/05 15:44:26 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/05 23:25:10 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	render_mmap(t_data *data, t_coord *pos, t_coord smap, t_coord sbox)
 				data->world.map[(*pos).y / sbox.y][(*pos).x / sbox.x];
 			if (current_block == '1')
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 100, 100, 100));
-			else if (current_block >= '2')
+			else if (current_block >= '2' && current_block <= '9')
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 180, 100, 100));
-			else if (current_block == ' ')
-				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 170, 170, 170));
-			else
+			else if (ft_charstr(current_block, "NWES0"))
 				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(0, 135, 135, 135));
+			else
+				mlx_rect(&data->minimap, (*pos), sbox, rgb_int(255, 0, 0, 0));
 			(*pos).x += sbox.x;
 		}
 		(*pos).y += sbox.y;
@@ -44,11 +44,13 @@ void		minimap(t_data *data)
 	t_coord pos;
 	t_coord	smap;
 	t_coord sbox;
+	int		lenx;
 
 	pos = (t_coord) {0, 0};
-	sbox.x = ((float)64 * ((float)16 / data->world.size.x)) * RATIO;
 	sbox.y = ((float)64 * ((float)8 / data->world.size.y)) * RATIO;
-	smap.x = (ft_strlen(data->world.map[sbox.y]) * sbox.x);
+	lenx = ft_strlen(data->world.map[sbox.y]);
+	sbox.x = ((float)64 * ((float)16 / lenx)) * RATIO;
+	smap.x = (lenx * sbox.x);
 	smap.y = (data->world.size.y * sbox.y);
 	if (!(data->minimap.img = mlx_new_image(data->mlx.ptr, smap.x, smap.y)))
 		printf("BITCH\n");
@@ -57,10 +59,10 @@ void		minimap(t_data *data)
 		printf("BITCH 2\n");
 	mlx_rect(&data->minimap, (t_coord) {0, 0}, smap, rgb_int(0, 255, 255, 255));
 	render_mmap(data, &pos, smap, sbox);
-	mlx_rect(&data->minimap, (t_coord) {data->player.pos.x /
-	((float)(data->world.size.x * BLOCK_SIZE) / (float)smap.x),
-	data->player.pos.y / ((float)(data->world.size.y * BLOCK_SIZE)
-	/ (float)smap.y)}, (t_coord) {5, 5}, rgb_int(0, 255, 105, 180));
+	// mlx_rect(&data->minimap, (t_coord) {data->player.pos.x /
+	// ((float)(data->world.size.x * BLOCK_SIZE) / (float)smap.x),
+	// data->player.pos.y / ((float)(data->world.size.y * BLOCK_SIZE)
+	// / (float)smap.y)}, (t_coord) {5, 5}, rgb_int(0, 255, 105, 180));
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->minimap.img,
 			10, 10);
 }
