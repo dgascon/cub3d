@@ -58,7 +58,7 @@ int		select_wall_color(t_data *data, float prptn, int wall_row, int dir)
 			% data->w_tex[dir].size.x;
 	}
 	if (dir == 2 || dir == 3)
-		ratio.x = data->w_tex[dir].size.x - ratio.x;
+		ratio.x = data->w_tex[dir].size.x - (ratio.x + 1);
 	return (darken_wall(data,data->raycast.dist, *(int*)(data->w_tex[dir].add_image
 	+ (data->w_tex[dir].size_line * ratio.y) + (ratio.x * sizeof(int)))));
 }
