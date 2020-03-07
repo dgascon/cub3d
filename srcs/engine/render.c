@@ -97,13 +97,13 @@ void	print_sprite(t_data *data)
 				/ (list->pos.x - data->player.pos.x))) + M_PI_2);
 			offset_mid_object.x = tanf(angle_raycast_mid_obj) * list->dist;
 			offset_mid_object.x *= (data->player.dist_proj_plane / list->dist);
-			lim.x = BLOCK_SIZE / 2 *
+			lim.x = (BLOCK_SIZE / 2) *
 					(data->player.dist_proj_plane / list->dist);
 			if (offset_mid_object.x < lim.x / 2
 				&& (list->dist * cosf(data->raycast.beta)) < data->raycast.dist
 				&& offset_mid_object.x > -(lim.x / 2))
 			{
-				lim.y = BLOCK_SIZE / 2 *
+				lim.y = (BLOCK_SIZE / 2) *
 					(data->player.dist_proj_plane / list->dist);
 				row = data->player.hdv +
 					((data->player.height_cam - BLOCK_SIZE / 2)

@@ -52,6 +52,9 @@ int		init_window(t_data *data)
 //DONE remettre les variables en int et ajouter les limites necessaires a la securite
 //REVIEW Fillbackground le -1 avec les y
 //DONE REPARER CROUCHING
+//TODO la minimap ne s'affiche pas
+//TODO gerer laes parametre de collision avec les sprites
+
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -71,7 +74,9 @@ int main(int ac, char **av)
 	data.player = (t_player){.fov = M_PI /3, .height_cam = BLOCK_SIZE/2, .speed = MAX_SPEED/2};
 //	data.screen = (t_screen) {};
 //	data.world = (t_world){};
+
 	(parsefile(&data, av[1])) ? destroy(&data) : 0;
+
 	if (init_window(&data))
 			return (EXIT_FAILURE);
 	data.raycast = (t_raycast) {.alpha = M_PI / 3,

@@ -179,7 +179,6 @@ void		*casting(void *param)
 	t_data	*data;
 
 	data = (t_data*)param;
-	printf("%d\n", data->th_num);
 	while (data->raycast.column >= data->raycast.end)
 	{
 		data->raycast.alpha += data->raycast.delta_ang;

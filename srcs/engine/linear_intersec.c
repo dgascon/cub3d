@@ -54,6 +54,7 @@ float	linear_intersec_v(t_data *data)
 				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
+				obj->texture = data->obj_tex[data->world.map[grid.x][grid.y] - '2'];
 			}
 		}
 		intersec.x += offset.x;
@@ -113,6 +114,7 @@ float browse_h(t_data *data, t_f_coord intersec, t_f_coord offset)
 				obj->visible[data->th_num] = 1;
 				obj->detect_position.x = intersec.x;
 				obj->detect_position.y = intersec.y;
+				obj->texture = data->obj_tex[data->world.map[grid.x][grid.y] - '2'];
 			}
 		}
 		intersec.x += offset.x;
