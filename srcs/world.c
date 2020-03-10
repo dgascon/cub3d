@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:42:56 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 10:13:57 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 				(t_coord){.x = j, .y = data->world.size.y - 1},
 				data->obj_tex[line[j] - '2']));
 			}
+			else
+				return (ft_msg(TM_ERROR, "Texture not assigned !", 1, RED));
 		}
+		if (!ft_charstr(line[j], "0123456789NSEW "))
+			return (ft_msg(TM_ERROR, "Map not compliant.", 1, RED));
 	}
 	return (EXIT_SUCCESS);
 }
@@ -82,7 +86,7 @@ static int	checkwall(t_world *world, int csize, int y, int x)
 		around[2] = world->map[y][x - 1];
 	if (x < csize - 1)
 		around[3] = world->map[y][x + 1];
-	if (ft_charstr(world->map[y][x], "0NSEW"))
+	if (ft_charstr(world->map[y][x], "0NSEW23456789"))
 	{
 		while (++i < 4)
 		{
@@ -136,6 +140,8 @@ int			checkmapwall(t_data *data)
 		csize = ft_strlen(data->world.map[y]);
 		while (++x < csize)
 		{
+			if (y == 0 && !ft_charstr(data->world.map[y][x], "1 "))
+				return (ft_msg(TM_ERROR, "Map not compliant.", 1, RED));
 			if (checkwall(&data->world, csize, y, x))
 				return (EXIT_FAILURE);
 		}

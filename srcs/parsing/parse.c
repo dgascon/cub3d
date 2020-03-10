@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:14:03 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:32:55 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 09:57:41 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char		**filter(char *line)
 
 static int	parseparam(t_data *data, char **line, t_gnl gnl)
 {
-	if (!ft_strcmp(line[0], "R"))
+	if (line[0][0] == 'R')
 		return (parse_set_resolu(data, line));
 	else if (line[0][0] == 'S')
 		return (parse_set_object(data, line));
@@ -114,8 +114,10 @@ int			parsefile(t_data *data, char *file)
 		if (!(cur_line = filter(gnl.line)))
 			return (EXIT_FAILURE);
 		if (cur_line[0])
+		{
 			if (parseparam(data, cur_line, gnl))
 				return (EXIT_FAILURE);
+		}
 		wrfree(gnl.line);
 		splitfree(cur_line);
 		if (gnl.ret <= 0)
