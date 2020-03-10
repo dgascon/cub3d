@@ -12,9 +12,9 @@ S3 ./assets/images/baril.xpm
 F ./assets/images/vitrail-3.xpm
 C ./assets/images/ice.xpm
 
-1 1 1 1 1
-1 0 0 0 1
-1 0 0 0 1
-1 N 0 0 1
-1 0 0 0 1
-1 1 1 1 1
+11111
+10001
+10001
+1N001
+10001
+11111

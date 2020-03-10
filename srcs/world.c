@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/05 15:39:20 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 05:57:47 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static int checkwall(t_world *world, int csize, int y, int x)
 		around[2] = world->map[y][x - 1];
 	if (x < csize - 1)
 		around[3] = world->map[y][x + 1];
-	if (world->map[y][x] == '0')
+	if (ft_charstr(world->map[y][x], "0NSEW"))
 	{
 		while (++i < 4)
 		{
@@ -142,15 +142,15 @@ static	int	checkwalls(t_world *world, int csize, int y)
 	{
 		onsize.x = ft_strlen(world->map[y - 1]);
 		onsize.y = ft_strlen(world->map[y + 1]);
+		if (onsize.y < csize || onsize.x > csize)
+			return (EXIT_SUCCESS);
 		while (world->map[y][csize - i - 1] == '1')
 			i++;
 		ondiff.x = (csize - i) - onsize.x + 1;
 		ondiff.y = (csize - i) - onsize.y + 1;
-		if (ondiff.x > 1 || ondiff.y > 1)
-		{
+		if (ondiff.x > 1 || ondiff.y > 1 )
 			return (ft_msg(TM_ERROR,
 				"The map is not surrounded by walls (2)!", 1, RED));
-		}
 	}
 	return (EXIT_SUCCESS);
 }
