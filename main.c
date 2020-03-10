@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 09:56:37 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 15:12:30 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,15 @@ int		init_window(t_data *data)
 //DONE remettre les variables en int et ajouter les limites necessaires a la securite
 //REVIEW Fillbackground le -1 avec les y
 //DONE REPARER CROUCHING
-//TODO la minimap ne s'affiche pas
+//REVIEW la minimap ne s'affiche pas
 //TODO gerer laes parametre de collision avec les sprites
-
+//TODO On voit a travers le block, sur l'arrete
+//TODO Il ya un leger decalage, si deux block sons adacent dans la diagonal
+//TODO If, player is outside, change message error.
+//TODO If object in void, set viable
+//TODO If, player on border map
+//TODO If, object on border map [map.size.x check, only]
+//TODO Add param for speed scrolling
 int main(int ac, char **av)
 {
 	t_data	data;
