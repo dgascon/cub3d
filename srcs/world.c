@@ -6,50 +6,21 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 05:57:47 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:42:56 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int fillmap(t_data *data)
-{
-	int		x;
-	int		y;
-	int		size;
-	char	*tmp;
-
-	x = -1;
-	y = -1;
-	while (++y < data->world.size.y)
-	{
-		size = ft_strlen(data->world.map[y]);
-		x = -1;
-		if (size != data->world.size.x)
-		{
-			x += ft_strlen(data->world.map[y]);
-			while (++x < data->world.size.x)
-			{
-				tmp = NULL;
-				if (!(tmp = ft_strjoin(data->world.map[y], " ")))
-					return (ft_msg(TM_ERROR, "Bad Malloc !", 1, RED));
-				wrfree(data->world.map[y]);
-				data->world.map[y] = tmp;
-			}
-		}
-	}
-	return (EXIT_SUCCESS);
-}
 
 static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 {
 	int j;
 	int	tmp;
 
-	j = 0;
+	j = -1;
 	tmp = ft_strlen(tmp_map[i]);
 	(data->world.size.x < tmp) ? data->world.size.x = tmp : 0;
-	while (line[j])
+	while (line[++j])
 	{
 		if (ft_charstr(line[j], "NSWE"))
 		{
@@ -66,7 +37,6 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 				data->obj_tex[line[j] - '2']));
 			}
 		}
-		j++;
 	}
 	return (EXIT_SUCCESS);
 }
@@ -84,8 +54,7 @@ int			parse_map(t_data *data, char *line)
 		return (ft_msg(TM_ERROR, "Malloc is not possible", 1, YELLOW));
 	while (i < data->world.size.y - 1)
 	{
-		if (!(tmp_map[i] = ft_substr(data->world.map[i], 0, //REVIEW strdup ?
-								ft_strlen(data->world.map[i]))))
+		if (!(tmp_map[i] = ft_strdup(data->world.map[i])))
 			return (ft_msg(TM_ERROR, "Parsing failed", EXIT_FAILURE, RED));
 		i++;
 	}
@@ -98,17 +67,13 @@ int			parse_map(t_data *data, char *line)
 	return (EXIT_SUCCESS);
 }
 
-static int checkwall(t_world *world, int csize, int y, int x)
+static int	checkwall(t_world *world, int csize, int y, int x)
 {
-	char around[4]; //REVIEW UP 0, DOWN 1, LEFT 2, RIGHT 3
-	int i;
+	char	around[4];
+	int		i;
 
 	i = -1;
-	around[0] = '\0';
-	around[1] = '\0';
-	around[2] = '\0';
-	around[3] = '\0';
-
+	ft_bzero(around, 4);
 	if (y > 0 && world->map[y - 1][x])
 		around[0] = world->map[y - 1][x];
 	if (y < world->size.y - 1 && world->map[y + 1][x])
@@ -126,16 +91,16 @@ static int checkwall(t_world *world, int csize, int y, int x)
 				return (ft_msg(TM_ERROR,
 				"The map is not surrounded by walls (1)!", 1, RED));
 			}
-		}	
+		}
 	}
 	return (EXIT_SUCCESS);
 }
 
 static	int	checkwalls(t_world *world, int csize, int y)
 {
-	t_coord onsize;
-	t_coord ondiff;
-	int i;
+	t_coord	onsize;
+	t_coord	ondiff;
+	int		i;
 
 	i = 0;
 	if (y > 0 && y < world->size.y - 1)
@@ -148,7 +113,7 @@ static	int	checkwalls(t_world *world, int csize, int y)
 			i++;
 		ondiff.x = (csize - i) - onsize.x + 1;
 		ondiff.y = (csize - i) - onsize.y + 1;
-		if (ondiff.x > 1 || ondiff.y > 1 )
+		if (ondiff.x > 1 || ondiff.y > 1)
 			return (ft_msg(TM_ERROR,
 				"The map is not surrounded by walls (2)!", 1, RED));
 	}

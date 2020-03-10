@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:34:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 10:18:08 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:27:10 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ int		parse_set_tex(t_data *data, char **line)
 	else if (ft_charstr(line[0][0], "FC"))
 		return (parse_floor_ceil(data, line));
 	else if (!ft_strcmp(line[0], "NO") && dup_path(&data->w_tex[0], line[1]))
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	else if (!ft_strcmp(line[0], "WE") && dup_path(&data->w_tex[3], line[1]))
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	else if (!ft_strcmp(line[0], "EA") && dup_path(&data->w_tex[1], line[1]))
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	else if (!ft_strcmp(line[0], "V") && dup_path(&data->hud_tex[0], line[1]))
-			return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	dup_path(t_image *image, char *line)
+int		dup_path(t_image *image, char *line)
 {
 	if ((image)->valid == 1)
 		return (ft_msg(TM_ERROR, "Double argument to parsing !", 1, RED));

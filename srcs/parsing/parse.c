@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:14:03 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/06 06:07:11 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:32:55 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,10 @@ static int	checkerror(t_data *data)
 	}
 	if (checkmapwall(data))
 		return (EXIT_FAILURE);
-	// else
-		// fillmap(data);
 	return (EXIT_SUCCESS);
 }
 
-static int load_tex(t_data *data)
+static int	load_tex(t_data *data)
 {
 	int i;
 	int max;

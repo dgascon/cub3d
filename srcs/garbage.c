@@ -6,35 +6,29 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:37:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/03 16:12:53 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:45:50 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	destroy(t_data *data)
+static void	whilefree(int max, t_data *data, t_image *img)
 {
 	int i;
 
 	i = -1;
-	while (++i < HUD_TEX)
+	while (++i < max)
 	{
-		if (data->hud_tex[i].img)
-			mlx_destroy_image(data->mlx.ptr, data->hud_tex[i].img);
+		if (img[i].img && img[i].valid)
+			mlx_destroy_image(data->mlx.ptr, img[i].img);
 	}
-	i = -1;
-	while (++i < OBJ_TEX)
-	{
-		if (data->obj_tex[i].img && data->obj_tex[i].valid)
-		{
-			mlx_destroy_image(data->mlx.ptr, data->obj_tex[i].img);
-		}
-	}
-	i = -1;
-	while (++i < W_TEX)
-		if (data->w_tex[i].img && data->w_tex[i].valid)
-			mlx_destroy_image(data->mlx.ptr, data->w_tex[i].img);
-	
+}
+
+int			destroy(t_data *data)
+{
+	whilefree(HUD_TEX, data, data->hud_tex);
+	whilefree(OBJ_TEX, data, data->obj_tex);
+	whilefree(W_TEX, data, data->w_tex);
 	if (data->image.img)
 	{
 		mlx_destroy_image(data->mlx.ptr, data->image.img);

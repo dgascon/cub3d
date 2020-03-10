@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 18:45:21 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:43:55 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,33 @@
 
 typedef struct	s_mlx
 {
-	void	*ptr;
-	void	*win;
+	void		*ptr;
+	void		*win;
 }				t_mlx;
 
 typedef	struct	s_image
 {
-	void	*img;
-	char	*add_image;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		colors;
-	t_coord	size;
-	int		valid;
-	char	*path;
+	void		*img;
+	char		*add_image;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			colors;
+	t_coord		size;
+	int			valid;
+	char		*path;
 }				t_image;
 
 typedef struct	s_lsprite
 {
-	t_coord pos;
-	t_coord grd;
-	t_coord detect_position;
-	int		visible[NB_THREAD];
-	int		printed;
-	float	dist;
-	void	*next;
-	t_image texture;
+	t_coord		pos;
+	t_coord		grd;
+	t_coord		detect_position;
+	int			visible[NB_THREAD];
+	int			printed;
+	float		dist;
+	void		*next;
+	t_image		texture;
 }				t_lsprite;
 
 typedef struct	s_floor
@@ -86,15 +86,12 @@ typedef	struct	s_data
 
 int				init_texture(t_data *data, t_image *image);
 int				dup_path(t_image *image, char *line);
-int				fillmap(t_data *data);
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
-void			mlx_line(t_data *data, t_coord start, t_coord end, int colors);
-void			mlx_text(t_data *data, t_coord pos, char *text, int colors);
 int				scan(t_data *data);
 void			minimap(t_data *data);
-t_lsprite		*lsprite_new(t_coord pos, t_image texture);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
+t_lsprite		*lsprite_new(t_coord pos, t_image texture);
 void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			lsprite_sort(t_lsprite **lst);
 void			pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
@@ -102,9 +99,8 @@ void			pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
 char			get_index_byte(void *adresse, int nb_byte, int index);
 void			*get_index_adresse(void *adresse, int nb_byte, int index);
 int				save_bmp(t_data *data);
-int				floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
-						, int *val2);
-int				darken_wall(t_data *data, float dist, int val);
-
-int			destroy(t_data *data);
+int				floor_ceil_color(t_data *data, float c_const[4],
+					int qte_mur_sur_hdv, int *val2);
+int				darken_wall(float dist, int val);
+int				destroy(t_data *data);
 #endif

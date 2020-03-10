@@ -6,37 +6,39 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/06 05:44:01 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:29:45 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int darken_wall(t_data *data, float dist, int val)
+int		darken_wall(float dist, int val)
 {
-	int R;
-	int G;
-	int B;
-	int alpha;
-	float coef;
+	int		R;
+	int		G;
+	int		B;
+	int		alpha;
+	float	coef;
 	alpha = (val >> 24) & 0xFF;
 	R = (val >> 16) & 0xFF;
 	G = (val >> 8) & 0xFF;
 	B = val & 0xFF;
 	if (dist >= 256)
-	{ 
+	{
 		coef = (dist / 256) * (dist / 256);
 		B /= coef;
 		R /= coef;
 		G /= coef;
 	}
-	/*
-	(R < 0) ? R = 0 : 0;
-	(G < 0) ? G = 0 : 0;
-	(B < 0) ? B = 0 : 0;
-	(R > 256) ? R = 256 : 0;
-	(G > 256) ? G = 256 : 0;
-	(B > 256) ? B = 256 : 0;*/
+/*
+** 	REVIEW
+** 	(R < 0) ? R = 0 : 0;
+** 	(G < 0) ? G = 0 : 0;
+** 	(B < 0) ? B = 0 : 0;
+** 	(R > 256) ? R = 256 : 0;
+** 	(G > 256) ? G = 256 : 0;
+** 	(B > 256) ? B = 256 : 0;
+*/
 	return (rgb_int(alpha, R, G, B));
 }
 
@@ -59,7 +61,7 @@ int		select_wall_color(t_data *data, float prptn, int wall_row, int dir)
 	}
 	if (dir == 2 || dir == 3)
 		ratio.x = data->w_tex[dir].size.x - (ratio.x + 1);
-	return (darken_wall(data,data->raycast.dist, *(int*)(data->w_tex[dir].add_image
+	return (darken_wall(data->raycast.dist, *(int*)(data->w_tex[dir].add_image
 	+ (data->w_tex[dir].size_line * ratio.y) + (ratio.x * sizeof(int)))));
 }
 
@@ -110,7 +112,7 @@ void	print_sprite(t_data *data)
 					/ list->dist) * data->player.dist_proj_plane;
 				while (cmp < lim.y && row < data->screen.size.y - 1)
 				{
-					val = darken_wall(data, list->dist, select_sprite_color(offset_mid_object, cmp,
+					val = darken_wall(list->dist, select_sprite_color(offset_mid_object, cmp,
 						list->texture, lim));
 					if (val != 0xff000000 && row > 0)
 						*(int*)(data->image.add_image +

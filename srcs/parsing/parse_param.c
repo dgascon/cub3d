@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:32:18 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/04 10:09:59 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:32:07 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ static int	parse_floor_ceil2(t_data *data, char **line, char state)
 		return (parse_floor_ceil3(data, tmp, state));
 	}
 	else
+	{
 		if (dup_path(&data->w_tex[i], line[1]))
 			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 

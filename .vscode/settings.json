@@ -37,7 +37,8 @@
         "cub3d.h": "c",
         "__bit_reference": "c",
         "algorithm": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "pthread.h": "c"
     },
     "editor.rulers": [80],
 }

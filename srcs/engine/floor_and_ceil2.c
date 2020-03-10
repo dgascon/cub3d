@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:17:42 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/02/28 16:53:26 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 06:44:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,11 @@ int			floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
 		* (data->raycast.inter.x + ceil.delta.x)) % (data->w_tex[5].size.x);
 	ceil.pos.y = (int)(((float)data->w_tex[5].size.y / BLOCK_SIZE)
 		* (data->raycast.inter.y + ceil.delta.y)) % (data->w_tex[5].size.y);
-	*val2 = darken_wall(data, (data->raycast.dist / cosf(data->raycast.beta)) - ceil.dist, *(int*)(data->w_tex[5].add_image
-		+ (data->w_tex[5].size_line * ceil.pos.y) + (ceil.pos.x * sizeof(int))));
-	return (darken_wall(data, (data->raycast.dist / cosf(data->raycast.beta))- floor.dist , *(int*)(data->w_tex[4].add_image
-	+ (data->w_tex[4].size_line * floor.pos.y) + (floor.pos.x * sizeof(int)))));
+	*val2 = darken_wall((data->raycast.dist / cosf(data->raycast.beta)) -
+		ceil.dist, *(int*)(data->w_tex[5].add_image + (data->w_tex[5].size_line
+		* ceil.pos.y) + (ceil.pos.x * sizeof(int))));
+	return (darken_wall((data->raycast.dist / cosf(data->raycast.beta)) -
+		floor.dist, *(int*)(data->w_tex[4].add_image +
+		(data->w_tex[4].size_line * floor.pos.y) + (floor.pos.x *
+		sizeof(int)))));
 }
