@@ -1,7 +1,6 @@
 *.DS_Store
 *.o
 Cub3D
-*.m
 *.a
 *.bmp
 *.dylib
