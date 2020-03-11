@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/03/11 18:26:40 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/03/11 19:12:20 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,11 @@ MINILIBX_NAME	= 	libmlx.a
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
 CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
-C-O				=	$(CC) $(CFLAGS) -D DEBUG=$(DEBUG) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
+C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 DIRS_LIST	= engine parsing keycontrol entities
 
-all $(DEBUG):	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
+all:	$(LIBFT_NAME) $(MINILIBX_NAME) $(NAME)
 	@ printf "\033[0;38;5;82mCompilation de \033[1mCub3D \033[0;38;5;82mreussis.\n\033[0m"
 
 $(NAME): $(OBJS) $(INCS) comp
@@ -70,6 +70,8 @@ $(MINILIBX_NAME):
 	@ make -C $(MINILIBX_PATH)
 	@ printf "\033[0;38;5;82mCompilation de la \033[1m$@ \033[0;38;5;82mreussis.\n\033[0m"
 
+bonus: all
+
 clean:
 	@ /bin/rm -rf $(PATH_OBJ)
 	@ make -C $(LIBFT_PATH) clean
@@ -87,6 +89,6 @@ fclean: clean
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
-	@ $(CC) $(CFLAGS) -g3 -fsanitize=address -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
+	@ $(CC) $(CFLAGS) -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
 
 re: fclean all

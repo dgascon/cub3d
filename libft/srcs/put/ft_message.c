@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:53:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 16:48:18 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 19:07:55 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ int			ft_msg(enum e_type_message e, char *message, int ret, char *colors)
 
 	typemsg = ft_type_message(e);
 	ft_printf(WHITE "[");
-	if (!ft_strcmp(typemsg, "INFO"))
+	if (e == TM_INFO)
 		ft_printf(BOLDORANGE "");
-	else if (!ft_strcmp(typemsg, "ERROR"))
+	else if (e == TM_ERROR)
 		ft_printf(BOLDRED "");
-	else if (!ft_strcmp(typemsg, "WARNING"))
+	else if (e == TM_WARNING)
 		ft_printf(BOLDYELLOW "");
 	ft_printf("%s", typemsg);
 	ft_printf(RESET "] ");
+	if (e == TM_ERROR)
+		ft_printf("\n");
 	ft_printf("%s%s\n" RESET, colors, message);
 	return (ret);
 }
