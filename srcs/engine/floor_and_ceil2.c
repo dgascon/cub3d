@@ -6,11 +6,30 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:17:42 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/10 06:44:20 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 17:44:49 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int			darken_wall(float dist, int val)
+{
+	int		argb[4];
+	float	coef;
+
+	argb[0] = (val >> 24) & 0xFF;
+	argb[1] = (val >> 16) & 0xFF;
+	argb[2] = (val >> 8) & 0xFF;
+	argb[3] = val & 0xFF;
+	if (dist >= 256)
+	{
+		coef = (dist / 256) * (dist / 256);
+		argb[1] /= coef;
+		argb[2] /= coef;
+		argb[3] /= coef;
+	}
+	return (rgb_int(argb[0], argb[1], argb[2], argb[3]));
+}
 
 static void	floor_ceil_v(t_data *data, t_floor *floor, t_floor *ceil)
 {
@@ -87,6 +106,5 @@ int			floor_ceil_color(t_data *data, float c_const[4], int qte_mur_sur_hdv
 		* ceil.pos.y) + (ceil.pos.x * sizeof(int))));
 	return (darken_wall((data->raycast.dist / cosf(data->raycast.beta)) -
 		floor.dist, *(int*)(data->w_tex[4].add_image +
-		(data->w_tex[4].size_line * floor.pos.y) + (floor.pos.x *
-		sizeof(int)))));
+		(data->w_tex[4].size_line * floor.pos.y) + floor.pos.x * sizeof(int))));
 }

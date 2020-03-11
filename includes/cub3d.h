@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:43:55 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 18:22:52 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define THREADS 10
-# define NB_THREAD	((THREADS > 0 && THREADS < 401) ? THREADS : 1)
+# define NB_THREAD 1
 
 typedef struct	s_mlx
 {
@@ -88,7 +87,7 @@ int				init_texture(t_data *data, t_image *image);
 int				dup_path(t_image *image, char *line);
 void			mlx_rect(t_image *image, t_coord pos, t_coord size, int colors);
 int				scan(t_data *data);
-void			minimap(t_data *data);
+int				minimap(t_data *data);
 int				set_visible(t_lsprite *list, t_coord grid);
 t_lsprite		*pick_object(t_lsprite *list, t_coord grid);
 t_lsprite		*lsprite_new(t_coord pos, t_image texture);
@@ -96,7 +95,7 @@ void			lsprite_addback(t_lsprite **lst, t_lsprite *new);
 void			lsprite_sort(t_lsprite **lst);
 void			pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
 					int height_proj_plane);
-int				save_bmp(t_data *data);
+void			save_bmp(t_data *data);
 int				floor_ceil_color(t_data *data, float c_const[4],
 					int qte_mur_sur_hdv, int *val2);
 int				darken_wall(float dist, int val);

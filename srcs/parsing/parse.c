@@ -6,13 +6,13 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:14:03 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 09:57:41 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 17:05:06 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char		**filter(char *line)
+static char	**filter(t_data *data, char *line)
 {
 	char	**tab;
 	char	*current;
@@ -28,7 +28,7 @@ char		**filter(char *line)
 		current = ft_delcharstr(tab[i], " ");
 		wrfree(tab[i]);
 		tab[i] = current;
-		if (flag && ft_isalpha(tab[0][0]))
+		if (flag && (ft_isalpha(tab[0][0]) && !data->world.map))
 		{
 			ft_msg(TM_ERROR, "Bad param format", 1, RED);
 			return (NULL);
@@ -43,7 +43,7 @@ static int	parseparam(t_data *data, char **line, t_gnl gnl)
 		return (parse_set_resolu(data, line));
 	else if (line[0][0] == 'S')
 		return (parse_set_object(data, line));
-	else if (ft_isdigit(line[0][0]))
+	else if (data->world.map || ft_isdigit(line[0][0]))
 		return (parse_map(data, ft_strdup(gnl.line)));
 	else if (parse_set_tex(data, line))
 		return (EXIT_FAILURE);
@@ -111,13 +111,10 @@ int			parsefile(t_data *data, char *file)
 	while (1)
 	{
 		gnl.ret = get_next_line(gnl.fd, &gnl.line);
-		if (!(cur_line = filter(gnl.line)))
+		if (!(cur_line = filter(data, gnl.line)))
 			return (EXIT_FAILURE);
-		if (cur_line[0])
-		{
-			if (parseparam(data, cur_line, gnl))
-				return (EXIT_FAILURE);
-		}
+		if (cur_line[0] && parseparam(data, cur_line, gnl))
+			return (EXIT_FAILURE);
 		wrfree(gnl.line);
 		splitfree(cur_line);
 		if (gnl.ret <= 0)

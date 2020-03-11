@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 05:10:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/17 09:17:18 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 17:26:48 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,14 @@ static int	key_press_2(int key, t_data *data)
 	else if (key == LCTRL)
 		data->actions.crouching = TRUE;
 	else if (key == M)
+	{
 		data->player.show_minimap = !data->player.show_minimap;
+		if (!data->player.show_minimap && data->minimap.img)
+		{
+			mlx_destroy_image(data->mlx.ptr, data->minimap.img);
+			data->minimap.img = NULL;
+		}
+	}
 	return (0);
 }
 

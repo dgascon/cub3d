@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/03/11 13:10:17 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/03/11 18:26:40 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ PATH_SRC		=	srcs
 PATH_OBJ		=	objs
 SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					engine/mlx_geometrical.c	engine/floor_and_ceil.c				\
-					engine/textures.c engine/floor_and_ceil2.c						\
+					engine/textures.c engine/floor_and_ceil2.c	engine/sprites.c	\
 					parsing/parse.c	parsing/minimap.c parsing/parse_param.c			\
-					parsing/parse_object.c											\
+					parsing/parse_object.c parsing/checkwalls.c						\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
 					entities/player.c entities/move.c								\
@@ -77,7 +77,7 @@ clean:
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean
-	@ /bin/rm -rf $(NAME) ./$(NAME)*
+	@ /bin/rm -rf $(NAME) ./$(NAME)* ./*bmp
 	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
 	@ sleep 0.5
 	@ printf "\r                                                                                          \r\033[0m"

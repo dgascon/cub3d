@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:13:14 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 16:40:29 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_world
 	t_coord		size;
 }				t_world;
 
-char			**filter(char *line);
 int				parse_floor_ceil(t_data *data, char **line);
 int				parse_set_object(t_data *data, char **line);
 int				parse_set_tex(t_data *data, char **line);

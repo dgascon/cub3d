@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:20:01 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/11 15:36:22 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,41 +53,10 @@ static void	print_only_ceil(t_data *data, float val_cst[4], int qte_mur_sur_hdv)
 	}
 }
 
-/*
-** REVIEW
-** static void	more_floor(t_data *data, float clc_cst[4], int wall_up_hdv, int row)
-** {
-** 	char	*add_opp;
-** 	int		val2;
-** 	int		crow;
-** 
-** 	add_opp = data->image.add_image + (data->raycast.column * sizeof(int));
-** 	crow = (data->player.hdv - wall_up_hdv);
-** 	if (row < 0)
-** 	{
-** 		wall_up_hdv -= row;
-** 		clc_cst[1] -= row;
-** 		row = 0;
-** 		crow = -1;
-** 	}
-** 	while (row < data->screen.size.y)
-** 	{
-** 		*(int*)(add_opp + (row * data->image.size_line)) =
-** 		floor_ceil_color(data, clc_cst, wall_up_hdv, &val2);
-** 		if (crow >= 0)
-** 			*(int*)(add_opp + (data->image.size_line * (crow--))) = val2;
-** 		row++;
-** 		clc_cst[1]++;
-** 		wall_up_hdv++;
-** 	}
-** }
-*/
-
 static void	more_ceil(t_data *data, float calc_cst[4], int wall_up_hdv, int row)
 {
 	char	*add_opp;
-	int		val2;
-	int		val1;
+	int		val[2];
 	int		crow;
 
 	crow = (data->player.hdv - wall_up_hdv);
@@ -96,18 +65,17 @@ static void	more_ceil(t_data *data, float calc_cst[4], int wall_up_hdv, int row)
 	{
 		wall_up_hdv += crow - (data->screen.size.y - 1);
 		calc_cst[1] += crow - (data->screen.size.y - 1);
-		crow = data->screen.size.y - 1;
 		print_only_ceil(data, calc_cst, wall_up_hdv);
 		return ;
 	}
 	(crow >= data->screen.size.y - 1) ? crow = data->screen.size.y - 1 : 0;
 	while (crow >= 0 || row < data->screen.size.y - 1)
 	{
-		val1 = floor_ceil_color(data, calc_cst, wall_up_hdv, &val2);
+		val[0] = floor_ceil_color(data, calc_cst, wall_up_hdv, &val[1]);
 		if (crow >= 0)
-			*(int*)(add_opp + (data->image.size_line * crow--)) = val2;
+			*(int*)(add_opp + (data->image.size_line * crow--)) = val[1];
 		if (row < data->screen.size.y - 1 && row >= 0)
-			*(int*)(add_opp + (row * data->image.size_line)) = val1;
+			*(int*)(add_opp + (row * data->image.size_line)) = val[0];
 		row++;
 		calc_cst[1]++;
 		wall_up_hdv++;
