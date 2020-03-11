@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/03/05 23:15:33 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/03/11 13:10:17 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_LIST		= 	engine/raycasting.c engine/render.c engine/linear_intersec.c 	\
 					keycontrol/actionscontrol.c keycontrol/keypress.c				\
 					keycontrol/keyreleased.c										\
 					entities/player.c entities/move.c								\
-					garbage.c lst.c	screen.c world.c save_as_bmp.c get_index_byte.c \
+					garbage.c lst.c	screen.c world.c save_as_bmp.c					\
 
 INCS_LIST		=	cub3d.h player.h world.h raycast.h screen.h
 
@@ -74,9 +74,6 @@ clean:
 	@ /bin/rm -rf $(PATH_OBJ)
 	@ make -C $(LIBFT_PATH) clean
 	@ make -C $(MINILIBX_PATH) clean
-
-cleanperso:
-	@ /bin/rm -rf $(PATH_OBJ)
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean
