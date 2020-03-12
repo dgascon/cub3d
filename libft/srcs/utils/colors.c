@@ -6,14 +6,14 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:33:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 17:14:30 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:55:10 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	rgb_int(unsigned char alpha, unsigned char red, unsigned char green,
-				 unsigned char blue)
+		unsigned char blue)
 {
 	int	rgb;
 
