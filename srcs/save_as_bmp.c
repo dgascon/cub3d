@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:21:51 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/12 16:05:09 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:57:31 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void		save_bmp(t_data *data)
 		i[3] += write(i[1], &uval[i[0]++], 2);
 	while (i[0] < 14)
 		i[3] += write(i[1], &uval[i[0]++], 4);
-	ft_printf("i3 = %d\n", i[3]);
 	fill_img_bmp(data, uval, &i[3], i[1]);
 	close(i[1]);
 	ft_msg(TM_INFO, ft_strmjoin("sdsds", "Writing of ", i[3],
