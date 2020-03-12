@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actionscontrol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:55:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 10:00:52 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:53:32 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

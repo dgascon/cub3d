@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 18:24:28 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:11:04 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 #include <Tk/X11/x.h>
+
+
+//TODO map: enlever le rapport avec la taille des blocs
+//TODO ajouter un ratio avec la taille des bloc pour les deplacement
+//TODO ombrage : ajouter ratio bock
+//TODO floor and ceil can exist independantly
 
 int			init_window(t_data *data)
 {

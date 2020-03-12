@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:35 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 17:50:33 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:10:35 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	int		draw_wall(t_data *data, int height_proj_plane,
 		row = 0;
 	}
 	racourcis = (float)data->w_tex[direction].size.y / height_proj_plane;
-	if (!data->screen.ceil_tex && !data->screen.floor_tex)
+	if (!data->screen.ceil_tex || !data->screen.floor_tex)
 		fill_background(data);
 	h_max = data->player.hdv + qte_mur_sous_hdv;
 	if (h_max > data->screen.size.y - 1)

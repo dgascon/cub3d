@@ -6,19 +6,20 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:33:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/28 15:51:45 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:14:30 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	rgb_int(int alpha, int red, int green, int blue)
+int	rgb_int(unsigned char alpha, unsigned char red, unsigned char green,
+				 unsigned char blue)
 {
 	int	rgb;
 
-	rgb = alpha;
-	rgb = (rgb << 8) + red;
-	rgb = (rgb << 8) + green;
-	rgb = (rgb << 8) + blue;
+	rgb = (int)alpha;
+	rgb = (rgb << 8) + (int)red;
+	rgb = (rgb << 8) + (int)green;
+	rgb = (rgb << 8) + (int)blue;
 	return (rgb);
 }

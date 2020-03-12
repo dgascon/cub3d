@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:17:42 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/11 17:44:49 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:29:26 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int			darken_wall(float dist, int val)
 	argb[1] = (val >> 16) & 0xFF;
 	argb[2] = (val >> 8) & 0xFF;
 	argb[3] = val & 0xFF;
-	if (dist >= 256)
+	if (dist >= (4 * BLOCK_SIZE))
 	{
-		coef = (dist / 256) * (dist / 256);
+		coef = (dist / (4 * BLOCK_SIZE)) * (dist / (4 * BLOCK_SIZE));
 		argb[1] /= coef;
 		argb[2] /= coef;
 		argb[3] /= coef;

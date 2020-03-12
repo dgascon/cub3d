@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:56:07 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/28 15:52:16 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 17:15:46 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ enum	e_type_message
 };
 
 char	*ft_sbase(enum e_base b);
-int		rgb_int(int alpha, int red, int green, int blue);
+int		rgb_int(unsigned char alpha, unsigned char red, unsigned char green,
+				unsigned char blue);
 int		ft_msg(enum e_type_message e, char *message, int ret, char *colors);
 #endif
