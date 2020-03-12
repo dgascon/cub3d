@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 18:49:52 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:36:23 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define NB_THREAD 12
+# define NB_THREAD 10
 
 typedef struct	s_mlx
 {

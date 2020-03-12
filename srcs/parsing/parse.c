@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:14:03 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 19:05:23 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:36:07 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,18 @@ int			parsefile(t_data *data, char *file)
 
 	gnl = (t_gnl) {.fd = -1, .line = NULL, .ret = -1};
 	data->world.size = (t_coord) {.x = 0, .y = 0};
-	data->screen.floor_tex = 1;
-	data->screen.ceil_tex = 1;
+	data->screen = (t_screen) {.floor_tex = 1, .ceil_tex = 1};
 	if (checkformatfile(file, &gnl, ".cub"))
 		return (EXIT_FAILURE);
 	while (1)
 	{
 		gnl.ret = get_next_line(gnl.fd, &gnl.line);
+		if (!gnl.line)
+			return (ft_msg(TM_ERROR, "Line Null", 1, RED));
 		if (data->world.map && gnl.line[0] == '\0')
 			return (ft_msg(TM_ERROR, "Blank in map", 1, RED));
-		if (!(cur_line = filter(data, gnl.line)))
-			return (EXIT_FAILURE);
-		if (cur_line[0] && parseparam(data, cur_line, gnl))
+		if ((!(cur_line = filter(data, gnl.line)))
+		|| (cur_line[0] && parseparam(data, cur_line, gnl)))
 			return (EXIT_FAILURE);
 		wrfree(gnl.line);
 		splitfree(cur_line);

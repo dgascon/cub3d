@@ -9,8 +9,8 @@ V ./assets/images/viseur.xpm
 
 S ./assets/images/baril.xpm
    
-F  ./assets/images/vitrail-3.xpm
-C ./assets/images/ice.xpm
+F 50, 80, 90
+C 125, 157, 20
 
         11111111111111111111111111
         1000000000110000000000001  

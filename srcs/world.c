@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 09:54:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:34:19 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ static int	parseplayer_obj(t_data *data, int j, char c)
 
 static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 {
-	int j;
-	int	tmp;
+	int		j;
+	t_world	*world;
+	int		*tmpleny;
 
 	j = -1;
-	tmp = ft_strlen(tmp_map[i]);
-	(data->world.size.x < tmp) ? data->world.size.x = tmp : 0;
+	world = &data->world;
+	if (!(tmpleny = wrmalloc(sizeof(int *) * (world->size.y))))
+		return (ft_msg(TM_ERROR, "Malloc is not possible", 1, YELLOW));
+	while (++j < world->size.y - 1)
+		tmpleny[j] = world->leny[j];
+	tmpleny[j] = (int)ft_strlen(tmp_map[i]);
+	(world->size.x < tmpleny[j]) ? world->size.x = tmpleny[j] : 0;
+	wrfree(world->leny);
+	world->leny = tmpleny;
+	j = -1;
 	while (line[++j])
 	{
 		if (!ft_charstr(line[j], "0123456789NSEW "))
@@ -57,17 +66,14 @@ int			parse_map(t_data *data, char *line)
 	char	**tmp_map;
 	int		i;
 
-	i = 0;
-	if (!line)
-		return (EXIT_FAILURE);
+	i = -1;
 	data->world.size.y++;
 	if (!(tmp_map = wrmalloc(sizeof(char *) * (data->world.size.y))))
 		return (ft_msg(TM_ERROR, "Malloc is not possible", 1, YELLOW));
-	while (i < data->world.size.y - 1)
+	while (++i < data->world.size.y - 1)
 	{
 		if (!(tmp_map[i] = ft_strdup(data->world.map[i])))
 			return (ft_msg(TM_ERROR, "Parsing failed", EXIT_FAILURE, RED));
-		i++;
 	}
 	tmp_map[i] = line;
 	(data->world.size.y > 1) ? wrfree(data->world.map[0]) : 0;

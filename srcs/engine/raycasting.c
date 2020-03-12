@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 17:26:42 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:33:44 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int			scan(t_data *data)
 	while (i > 0)
 		pthread_join(thread_id[i-- - 1], NULL);
 	(data->bmp_save) ? save_bmp(data) : 0;
-	mlx_put_image_to_window(data->mlx.ptr,
-		data->mlx.win, data->image.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->image.img,
+		0, 0);
 	if (data->hud_tex[0].img)
 		mlx_put_image_to_window(data->mlx.ptr, data->mlx.win,
 		data->hud_tex[0].img, data->screen.size.x / 2, data->screen.size.y / 2);

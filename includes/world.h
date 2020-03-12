@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 16:40:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:08:38 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_data	t_data;
 typedef struct	s_world
 {
 	char		**map;
+	int			*leny;
 	t_coord		size;
 }				t_world;
 

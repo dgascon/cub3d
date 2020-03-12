@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:01:08 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 18:04:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:13:49 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static	int	checkwalls(t_world *world, int csize, int y)
 	i = 0;
 	if (y > 0 && y < world->size.y - 1)
 	{
-		onsize.x = ft_strlen(world->map[y - 1]);
-		onsize.y = ft_strlen(world->map[y + 1]);
+		onsize.x = world->leny[y - 1];
+		onsize.y = world->leny[y + 1];
 		if (onsize.y < csize || onsize.x > csize)
 			return (EXIT_SUCCESS);
 		while (world->map[y][csize - i - 1] == '1')
@@ -75,7 +75,7 @@ int			checkmapwall(t_data *data)
 	while (++ind.y < data->world.size.y)
 	{
 		ind.x = -1;
-		csize = ft_strlen(data->world.map[ind.y]);
+		csize = data->world.leny[ind.y];
 		while (++ind.x < csize)
 		{
 			block = data->world.map[ind.y][ind.x];

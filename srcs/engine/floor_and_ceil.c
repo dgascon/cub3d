@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 15:36:22 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 11:23:23 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,19 @@
 void		fill_background(t_data *data)
 {
 	int i;
+	int rgb;
 
 	i = 0;
-	while (i < data->player.hdv && i < data->screen.size.y - 1)
+	while (++i < data->screen.size.y - 1)
 	{
+		if (i < data->player.hdv)
+			rgb = rgb_int(0, data->screen.sky_color[0],
+			data->screen.sky_color[1], data->screen.sky_color[2]);
+		else
+			rgb = rgb_int(0, data->screen.floor_color[0],
+			data->screen.floor_color[1], data->screen.floor_color[2]);
 		*(int*)(data->image.add_image + (i * data->image.size_line)
-		+ (data->raycast.column * sizeof(int))) =
-		rgb_int(0, data->screen.sky_color[0],
-		data->screen.sky_color[1], data->screen.sky_color[2]);
-		i++;
-	}
-	while (i < data->screen.size.y - 1)
-	{
-		*(int*)(data->image.add_image
-		+ (i * data->image.size_line) + (data->raycast.column * sizeof(int))) =
-		rgb_int(0, data->screen.floor_color[0],
-		data->screen.floor_color[1], data->screen.floor_color[2]);
-		i++;
+		+ (data->raycast.column * sizeof(int))) = rgb;
 	}
 }
 
@@ -91,8 +87,7 @@ void		pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
 	int		qte_mur_sur_hdv;
 
 	qte_mur_sur_hdv = height_proj_plane - qte_mur_sous_hdv;
-	if (qte_mur_sur_hdv < 1)
-		qte_mur_sur_hdv = 1;
+	(qte_mur_sur_hdv < 1) ? qte_mur_sur_hdv = 1 : 0;
 	crow = (data->player.hdv - qte_mur_sur_hdv);
 	cosb = cosf(data->raycast.beta);
 	calc_cst[0] = (data->raycast.dist / cosb);
