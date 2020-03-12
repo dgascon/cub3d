@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:55:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 17:40:54 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 10:00:52 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void		lookcontrol(t_data *data)
 {
 	if (data->actions.lookleft == TRUE)
 	{
-		data->player.pov += 0.1;
+		data->player.pov += 0.05;
 		(data->player.pov > 2 * M_PI) ? data->player.pov = 0 : 0;
 	}
 	if (data->actions.lookright == TRUE)
 	{
-		data->player.pov -= 0.1;
+		data->player.pov -= 0.05;
 		(data->player.pov < 0) ? data->player.pov = 2 * M_PI : 0;
 	}
 	if (data->actions.lookup == TRUE)

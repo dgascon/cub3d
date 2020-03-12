@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:48:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 18:03:46 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 09:54:22 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static int	parse_map_2(t_data *data, char *line, char **tmp_map, int i)
 	(data->world.size.x < tmp) ? data->world.size.x = tmp : 0;
 	while (line[++j])
 	{
-		if (parseplayer_obj(data, j, line[j]))
-			return (EXIT_FAILURE);
 		if (!ft_charstr(line[j], "0123456789NSEW "))
 			return (ft_msg(TM_ERROR, "Map not compliant.", 1, RED));
+		if (parseplayer_obj(data, j, line[j]))
+			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

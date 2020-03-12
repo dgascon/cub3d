@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 17:09:56 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 10:00:57 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ int		move_x(t_data *data, int value)
 	{
 		block = data->world.map[data->player.pos.y / BLOCK_SIZE]
 					[tmp / BLOCK_SIZE];
-		if (block >= '2' && !data->obj_tex[block - '2'].valid)
-		{
-			data->world.map[data->player.pos.y / BLOCK_SIZE]
-				[tmp / BLOCK_SIZE] = '0';
-		}
 		if (!(block >= '1' && block <= '9'))
 			data->player.pos.x = tmp;
 	}
@@ -45,11 +40,6 @@ int		move_y(t_data *data, float value)
 	{
 		block = data->world.map[(int)(tmp / BLOCK_SIZE)]
 					[data->player.pos.x / BLOCK_SIZE];
-		if (block >= '2' && !data->obj_tex[block - '2'].valid)
-		{
-			data->world.map[(int)(tmp / BLOCK_SIZE)]
-				[data->player.pos.x / BLOCK_SIZE] = '0';
-		}
 		if (!(block >= '1' && block <= '9'))
 			data->player.pos.y = tmp;
 	}
@@ -58,6 +48,6 @@ int		move_y(t_data *data, float value)
 
 void	move(t_data *data, float direction)
 {
-	move_x(data, cosf(direction) * data->player.speed / 2);
-	move_y(data, sinf(direction) * -data->player.speed / 2);
+	move_x(data, cosf(direction) * (data->player.speed));
+	move_y(data, sinf(direction) * (-data->player.speed));
 }
