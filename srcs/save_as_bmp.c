@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_as_bmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:21:51 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/11 16:23:51 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 16:05:09 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static void	init_bmp_params(t_data *data, unsigned int uval[15])
 {
 	uval[0] = (54) + (data->screen.size.x * data->screen.size.y * 3);
-	uval[1] = 0x00;
+	uval[1] = 0x0000;
 	uval[2] = 54;
 	uval[3] = 40;
 	uval[4] = data->screen.size.x;
 	uval[5] = data->screen.size.y;
-	uval[6] = 1;
-	uval[7] = 24;
-	uval[8] = 0;
+	uval[6] = 0x00000001;
+	uval[7] = 0x0018;
+	uval[8] = 0x0000;
 	uval[9] = data->screen.size.x * data->screen.size.y * 3;
 	uval[10] = 0xEC4;
 	uval[11] = 0xEC4;
-	uval[12] = 0;
-	uval[13] = 0;
+	uval[12] = 0x00;
+	uval[13] = 0x00;
 }
 
 static void	complete_line(int fd, int i, int *nb_octet)
@@ -86,13 +86,14 @@ void		save_bmp(t_data *data)
 	i[0] = -1;
 	while (++i[0] < 6)
 		i[3] += write(i[1], &uval[i[0]], 4);
-	while (++i[0] < 8)
-		i[3] += write(i[1], &uval[i[0]], 2);
-	while (++i[0] < 14)
-		i[3] += write(i[1], &uval[i[0]], 4);
+	while (i[0] < 8)
+		i[3] += write(i[1], &uval[i[0]++], 2);
+	while (i[0] < 14)
+		i[3] += write(i[1], &uval[i[0]++], 4);
+	ft_printf("i3 = %d\n", i[3]);
 	fill_img_bmp(data, uval, &i[3], i[1]);
 	close(i[1]);
-	ft_msg(TM_INFO, ft_strmjoin("sdsds", "Writing of", i[3],
+	ft_msg(TM_INFO, ft_strmjoin("sdsds", "Writing of ", i[3],
 	" bytes in the save file", i[2], ".bmp finished."), 1, GREEN);
 	destroy(data);
 }
