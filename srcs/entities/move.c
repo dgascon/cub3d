@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:59 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 11:12:57 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 10:44:47 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		move_x(t_data *data, int value)
+int		move_x(t_data *data, float value)
 {
-	int tmp;
-	int block;
+	float tmp;
+	char block;
 	int	lenx;
 
 	tmp = data->player.pos.x + value;
@@ -23,7 +23,7 @@ int		move_x(t_data *data, int value)
 	if (tmp < (lenx * BLOCK_SIZE) && tmp > BLOCK_SIZE)
 	{
 		block = data->world.map[data->player.pos.y / BLOCK_SIZE]
-					[tmp / BLOCK_SIZE];
+					[(int)(tmp / BLOCK_SIZE)];
 		if (!(block >= '1' && block <= '9'))
 			data->player.pos.x = tmp;
 	}
@@ -33,7 +33,7 @@ int		move_x(t_data *data, int value)
 int		move_y(t_data *data, float value)
 {
 	float	tmp;
-	int		block;
+	char		block;
 
 	tmp = data->player.pos.y + value;
 	if (tmp < (data->world.size.y * BLOCK_SIZE) && tmp > BLOCK_SIZE)

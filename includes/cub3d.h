@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 11:36:23 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 10:46:19 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define NB_THREAD 10
+# define NB_THREAD 20
 
 typedef struct	s_mlx
 {

@@ -1,6 +1,6 @@
-R 320 200
+R 1921 1081
 
-NO ./assets/images/face_north.xpm
+NO ./assets/images/floor.xpm
 SO ./assets/images/face_south.xpm
 WE ./assets/images/face_west.xpm
 EA ./assets/images/face_east.xpm
@@ -12,9 +12,7 @@ S3 ./assets/images/baril.xpm
 F ./assets/images/vitrail-3.xpm
 C ./assets/images/ice.xpm
 
-11111
-10001
-10001
-1N001
-10001
-11111
+ 11111111   111111111
+ 10000001111000000001
+ 100000N0000000001001
+ 11111111111111111111

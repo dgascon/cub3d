@@ -6,7 +6,7 @@
 /*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 17:11:04 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 10:58:22 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 //TODO map: enlever le rapport avec la taille des blocs
 //TODO ajouter un ratio avec la taille des bloc pour les deplacement
 //TODO ombrage : ajouter ratio bock
-//TODO floor and ceil can exist independantly
+//TODO rescale de l'ecran en dimension natives
+//TODO parsing : autoriser lignes vide en dessous de la map
 
 int			init_window(t_data *data)
 {
