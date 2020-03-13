@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:27:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/02/24 16:27:04 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 11:39:25 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_player
 	float			fov;
 	float			pov;
 	int				height_cam;
-	t_coord			pos;
+	t_f_coord		pos;
 	int				speed;
 	float			dist_proj_plane;
 	int				cst;

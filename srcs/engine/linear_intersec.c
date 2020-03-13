@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linear_intersec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 11:12:36 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 11:41:08 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ float	linear_intersec_v(t_data *data)
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < 3 * M_PI_2)
 	{
 		offset.x = -(BLOCK_SIZE);
-		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
+		intersec.x = (int)(data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE)
+					- 0.001;
 	}
 	else
 	{
-		intersec.x = (data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE)
+		intersec.x = (int)(data->player.pos.x / BLOCK_SIZE) * (BLOCK_SIZE)
 		+ BLOCK_SIZE;
 		offset.x = BLOCK_SIZE;
 	}
@@ -87,12 +88,13 @@ float	linear_intersec_h(t_data *data)
 	offset.x = (float)BLOCK_SIZE / tanf(data->raycast.alpha);
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
-		intersec.y = (data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE) - 0.001;
+		intersec.y = (int)(data->player.pos.y / BLOCK_SIZE) * (BLOCK_SIZE)
+					- 0.001;
 		offset.y = -(BLOCK_SIZE);
 	}
 	else
 	{
-		intersec.y = (data->player.pos.y / BLOCK_SIZE) * BLOCK_SIZE
+		intersec.y = (int)(data->player.pos.y / BLOCK_SIZE) * BLOCK_SIZE
 		+ BLOCK_SIZE;
 		offset.y = BLOCK_SIZE;
 		offset.x *= -1;

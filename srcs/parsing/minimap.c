@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 19:37:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 17:53:41 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/03/13 11:43:08 by nlecaill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int			minimap(t_data *data)
 		&data->minimap.bpp, &data->minimap.size_line, &data->minimap.endian)))
 			return (ft_msg(TM_ERROR, "Recover image", 1, RED));
 	}
-	mlx_rect(&data->minimap, (t_coord) {0, 0}, smap, rgb_int(255, 255,
+	mlx_rect(&data->minimap, (t_coord){0, 0}, smap, rgb_int(255, 255,
 		255, 255));
 	render_mmap(data, scale);
-	mlx_rect(&data->minimap, (t_coord) {.y = (data->player.pos.y / BLOCK_SIZE) *
-	scale.y, .x = (data->player.pos.x / BLOCK_SIZE) * scale.x}, scale,
-	rgb_int(0, 255, 105, 180));
+	mlx_rect(&data->minimap, (t_coord){.y = (int)(data->player.pos.y /
+		BLOCK_SIZE) * scale.y, .x = (int)(data->player.pos.x /
+		BLOCK_SIZE) * scale.x}, scale, rgb_int(0, 255, 105, 180));
 	mlx_put_image_to_window(data->mlx.ptr, data->mlx.win, data->minimap.img, 10,
 		10);
 	return (EXIT_SUCCESS);
