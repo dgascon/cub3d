@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:58:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/12 11:23:23 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:36 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,10 @@ void		pt_floor_ceil(t_data *data, int row, int qte_mur_sous_hdv,
 {
 	float	cosb;
 	float	calc_cst[4];
-	int		crow;
 	int		qte_mur_sur_hdv;
 
 	qte_mur_sur_hdv = height_proj_plane - qte_mur_sous_hdv;
 	(qte_mur_sur_hdv < 1) ? qte_mur_sur_hdv = 1 : 0;
-	crow = (data->player.hdv - qte_mur_sur_hdv);
 	cosb = cosf(data->raycast.beta);
 	calc_cst[0] = (data->raycast.dist / cosb);
 	calc_cst[1] = qte_mur_sous_hdv;

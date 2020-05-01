@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 15:30:11 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/13 10:56:02 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:53 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		print_sprite2(t_data *data, t_f_coord lim, t_f_coord offset,
 		{
 			val = darken_wall(list->dist,
 			select_sprite_color(offset, cmp, list->texture, lim));
-			if (val != 0xff000000 && row > 0)
+			if (val != 0 && row > 0)
 				*(int*)(data->image.add_image + (row * data->image.size_line) +
 				data->raycast.column * sizeof(int)) = val;
 			row++;

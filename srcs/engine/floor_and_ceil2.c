@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceil2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:17:42 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/12 17:29:26 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:39 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _GNU_SOURCE
 #include "cub3d.h"
 
 int			darken_wall(float dist, int val)
@@ -40,14 +41,14 @@ static void	floor_ceil_v(t_data *data, t_floor *floor, t_floor *ceil)
 	if (data->raycast.alpha > M_PI_2 && data->raycast.alpha < _3PI2)
 	{
 		data->raycast.gamma = M_PI - data->raycast.alpha;
-		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 		floor->delta.x = floor->dist * sincos.y;
 		ceil->delta.x = ceil->dist * sincos.y;
 	}
 	else
 	{
 		data->raycast.gamma = data->raycast.alpha - _2PI;
-		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 		floor->delta.x = floor->dist * sincos.y * -1;
 		ceil->delta.x = ceil->dist * sincos.y * -1;
 	}
@@ -64,14 +65,14 @@ static void	floor_ceil_h(t_data *data, t_floor *floor, t_floor *ceil)
 	if (data->raycast.alpha > 0 && data->raycast.alpha < M_PI)
 	{
 		data->raycast.gamma = data->raycast.alpha - (M_PI_2);
-		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 		floor->delta.y = floor->dist * sincos.y;
 		ceil->delta.y = ceil->dist * sincos.y;
 	}
 	else
 	{
 		data->raycast.gamma = (_3PI2) - data->raycast.alpha;
-		__sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
+		sincosf(data->raycast.gamma, &sincos.x, &sincos.y);
 		floor->delta.y = floor->dist * sincos.y * -1;
 		ceil->delta.y = ceil->dist * sincos.y * -1;
 	}

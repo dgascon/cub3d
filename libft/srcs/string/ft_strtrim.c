@@ -14,9 +14,6 @@
 
 static	int	trimcmp(char const c1, char const *s2)
 {
-	int i;
-
-	i = 0;
 	while (*s2)
 		if (c1 == *s2++)
 			return (1);

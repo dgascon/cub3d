@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+         #
+#    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/03/11 19:12:20 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/05/01 10:55:04 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,12 @@ LIBFT_LIB 		= 	$(FLAG_FT)
 LIBFT_INC		=	$(addprefix $(LIBFT_PATH)/, $(PATH_INC))
 
 MINILIBX_PATH	= 	libmlx
-MINILIBX_NAME	= 	libmlx.a
+MINILIBX_NAME	= 	libmlx_Linux.a
+MINILIBX_LIB	=	-Llibmlx -lmlx_Linux
 
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra # REVIEW Add -Werror
+CFLAGS			=	-Wall -Wextra -Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 DIRS_LIST	= engine parsing keycontrol entities
@@ -89,6 +90,7 @@ fclean: clean
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
-	@ $(CC) $(CFLAGS) -O2 -o $(NAME) libmlx/libmlx.a libft/libft.a $(OBJS) -framework OpenGL -framework AppKit main.c
+	@#@ $(CC) $(CFLAGS) -o $(NAME) main.c libft/libft.a libmlx/libmlx_Linux.a $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) main.c $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
 
 re: fclean all

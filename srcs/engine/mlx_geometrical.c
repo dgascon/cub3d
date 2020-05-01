@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_geometrical.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 11:20:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/10 06:33:39 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:44 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

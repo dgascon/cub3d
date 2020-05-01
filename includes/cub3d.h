@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/13 10:46:19 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:37:40 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define NB_THREAD 20
+# define NB_THREAD 100
 
 typedef struct	s_mlx
 {
@@ -73,7 +73,6 @@ typedef	struct	s_data
 	t_player	player;
 	t_raycast	raycast;
 	t_image		image;
-	t_image		minimap;
 	t_actions	actions;
 	t_lsprite	*lst;
 	t_image		w_tex[W_TEX];

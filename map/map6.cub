@@ -1,4 +1,4 @@
-R 320000 200000
+R 1000 600
 
 NO ./assets/images/solv2.xpm
 SO ./assets/images/floor.xpm

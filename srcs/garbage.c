@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 04:37:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 16:23:47 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:22:26 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			destroy(t_data *data)
 	{
 		mlx_destroy_image(data->mlx.ptr, data->image.img);
 		mlx_destroy_window(data->mlx.ptr, data->mlx.win);
+		free(data->mlx.ptr);
 	}
 	wrdestroy();
 	exit(0);

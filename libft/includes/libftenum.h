@@ -29,26 +29,26 @@ enum	e_base
 
 enum	e_keycode
 {
-	ARROW_DOWN = 125,
-	ARROW_UP = 126,
-	ARROW_RIGHT = 124,
-	ARROW_LEFT = 123,
-	S = 1,
-	W = 13,
-	D = 2,
-	A = 0,
-	Q = 12,
-	Z = 6,
-	E = 14,
-	M = 46,
-	LSHIFT = 257,
-	RSHIFT = 258,
-	ESC = 53,
-	F1 = 122,
-	LALT = 261,
-	RALT = 262,
-	SPACE = 49,
-	LCTRL = 256
+	ARROW_DOWN = 65364,
+	ARROW_UP = 65362,
+	ARROW_RIGHT = 65363,
+	ARROW_LEFT = 65361,
+	S = 115,
+	W = 119,
+	D = 100,
+	A = 97,
+	Q = 113,
+	Z = 122,
+	E = 101,
+	M = 109,
+	LSHIFT = 65505,
+	RSHIFT = 65506,
+	ESC = 65307,
+	F1 = 65470,
+	LALT = 65513,
+	RALT = 65027,
+	SPACE = 32,
+	LCTRL = 65507
 };
 
 enum	e_type_message

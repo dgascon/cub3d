@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/13 10:58:22 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:49:28 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-#include <Tk/X11/x.h>
+#include <X11/X.h>
 
+void		resol_max(t_data *data)
+{
+	int max_x;
+	int max_y;
 
-//TODO map: enlever le rapport avec la taille des blocs
-//TODO ajouter un ratio avec la taille des bloc pour les deplacement
-//TODO ombrage : ajouter ratio bock
-//TODO rescale de l'ecran en dimension natives
-//TODO parsing : autoriser lignes vide en dessous de la map
+	mlx_get_screen_size(data->mlx.ptr, &max_x, &max_y);
+	if (data->screen.size.x > max_x || data->screen.size.y > max_y)
+	{
+		data->screen.size.x = max_x;
+		data->screen.size.y = max_y;
+	}
+}
 
 int			init_window(t_data *data)
 {
 	if (!(data->mlx.ptr = mlx_init()))
 		return (ft_msg(TM_ERROR, "MLX", 1, RED));
+	resol_max(data);
 	if ((data->mlx.win = mlx_new_window(data->mlx.ptr, data->screen.size.x,
 			data->screen.size.y, "Dgascon && Nlecaill")) == NULL)
 		return (ft_msg(TM_ERROR, "MLX", 1, RED));
@@ -39,9 +46,9 @@ int			init_window(t_data *data)
 static void	myloop(t_data *data)
 {
 	mlx_loop_hook(data->mlx.ptr, scan, data);
-	mlx_hook(data->mlx.win, KeyPress, NoEventMask, key_press, data);
-	mlx_hook(data->mlx.win, KeyRelease, NoEventMask, key_release, data);
-	mlx_hook(data->mlx.win, DestroyNotify, NoEventMask, destroy, data);
+	mlx_hook(data->mlx.win, 02, 1L << 0, key_press, data);
+	mlx_hook(data->mlx.win, 03, 1L << 1, key_release, data);
+	mlx_hook(data->mlx.win, 33, 1L << 17, destroy, data);
 	mlx_loop(data->mlx.ptr);
 }
 

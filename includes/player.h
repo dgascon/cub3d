@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:27:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/13 11:39:25 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "cub3d.h"
 # include "raycast.h"
 
-# define MAX_SPEED 25
+# define MAX_SPEED 15
 
 typedef struct s_data	t_data;
 

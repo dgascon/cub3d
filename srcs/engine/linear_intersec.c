@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linear_intersec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 18:13:39 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/13 11:41:08 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:21:41 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

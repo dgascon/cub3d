@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_as_bmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 14:21:51 by nlecaill          #+#    #+#             */
-/*   Updated: 2020/03/12 17:57:31 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:48:33 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ static int	fill_img_bmp(t_data *data, unsigned int uval[15],
 	return (0);
 }
 
+static void	save_bmp_2(int *i, unsigned int *uval)
+{
+	i[0] = -1;
+	while (++i[0] < 6)
+		i[3] += write(i[1], &uval[i[0]], 4);
+	while (i[0] < 8)
+		i[3] += write(i[1], &uval[i[0]++], 2);
+	while (i[0] < 14)
+		i[3] += write(i[1], &uval[i[0]++], 4);
+}
+
 void		save_bmp(t_data *data)
 {
 	int				i[4];
@@ -82,14 +93,11 @@ void		save_bmp(t_data *data)
 	init_bmp_params(data, uval);
 	i[3] = write(i[1], "BM", 2);
 	if (i[3] < 2)
-		ft_msg(TM_ERROR, "Writing file\n", -1, RED) && destroy(data);
-	i[0] = -1;
-	while (++i[0] < 6)
-		i[3] += write(i[1], &uval[i[0]], 4);
-	while (i[0] < 8)
-		i[3] += write(i[1], &uval[i[0]++], 2);
-	while (i[0] < 14)
-		i[3] += write(i[1], &uval[i[0]++], 4);
+	{
+		ft_msg(TM_ERROR, "Writing file\n", -1, RED);
+		destroy(data);
+	}
+	save_bmp_2(i, uval);
 	fill_img_bmp(data, uval, &i[3], i[1]);
 	close(i[1]);
 	ft_msg(TM_INFO, ft_strmjoin("sdsds", "Writing of ", i[3],

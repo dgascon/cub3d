@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.le-101.fr>        +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 16:00:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/11 16:53:31 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:22:32 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int			parse_set_resolu(t_data *data, char **line)
 		data->screen.size.y = ft_atoi(line[2]);
 		if (data->screen.size.x <= 0 || data->screen.size.y <= 0)
 			return (ft_msg(TM_ERROR, "Resolution too small", 1, RED));
-		(data->screen.size.x >= 2560) ? data->screen.size.x = 2559 : 0;
-		(data->screen.size.y >= 1440) ? data->screen.size.y = 1439 : 0;
 	}
 	else
 		return (ft_msg(TM_ERROR, "Double argument to parsing", 1, RED));

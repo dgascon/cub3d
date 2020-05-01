@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actionscontrol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlecaill <nlecaill@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 17:55:22 by dgascon           #+#    #+#             */
-/*   Updated: 2020/03/13 10:56:12 by nlecaill         ###   ########lyon.fr   */
+/*   Updated: 2020/05/01 10:22:07 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void		lookcontrol(t_data *data)
 	if (data->actions.lookup == TRUE)
 	{
 		if (data->player.hdv > -(data->screen.size.y / 7))
-			data->player.hdv -= 60;
+			data->player.hdv -= 10;
 	}
 	if (data->actions.lookdown == TRUE)
 	{
 		if (data->player.hdv <
 			(data->screen.size.y + (data->screen.size.y / 7)))
-			data->player.hdv += 60;
+			data->player.hdv += 10;
 	}
 }
 
