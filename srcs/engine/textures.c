@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:34:25 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:21:55 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/03 15:46:20 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,19 @@ int		parse_set_tex(t_data *data, char **line)
 	if (data->world.map)
 		return (ft_msg(TM_ERROR, "The map must be defined last.", 1, RED));
 	if (!line[1] || !line[0])
-		return (ft_msg(TM_ERROR, "Bad param format.", 1, RED));
-	else if (ft_charstr(line[0][0], "FC"))
+		return (ft_msg(TM_ERROR, "Bad param format. (2)", 1, RED));
+	else if (!ft_strcmp(*line, "F") || !ft_strcmp(*line, "C"))
 		return (parse_floor_ceil(data, line));
-	else if ((line[0][0] == 'N' && line[0][1] == 'O') &&
-		dup_path(&data->w_tex[0], line[1]))
-		return (EXIT_FAILURE);
-	else if ((line[0][0] == 'W' && line[0][1] == 'E') &&
-		dup_path(&data->w_tex[3], line[1]))
-		return (EXIT_FAILURE);
-	else if ((line[0][0] == 'E' && line[0][1] == 'A') &&
-		dup_path(&data->w_tex[1], line[1]))
-		return (EXIT_FAILURE);
-	else if (line[0][0] == 'V' && dup_path(&data->hud_tex[0], line[1]))
-		return (EXIT_FAILURE);
+	else if (!ft_strcmp(*line, "NO"))
+		return (dup_path(&data->w_tex[0], line[1]));
+	else if (!ft_strcmp(*line, "WE"))
+		return (dup_path(&data->w_tex[3], line[1]));
+	else if (!ft_strcmp(*line, "EA"))
+		return (dup_path(&data->w_tex[1], line[1]));
+	else if (!ft_strcmp(*line, "V"))
+		return (dup_path(&data->hud_tex[0], line[1]));
+	else
+		return (ft_msg(TM_ERROR, "Bad param format (3)", 1, RED));
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:46 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:49:28 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/03 15:52:50 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ void		resol_max(t_data *data)
 {
 	int max_x;
 	int max_y;
+	int state;
 
+	state = 0;
 	mlx_get_screen_size(data->mlx.ptr, &max_x, &max_y);
-	if (data->screen.size.x > max_x || data->screen.size.y > max_y)
+	if (data->screen.size.x > max_x)
 	{
 		data->screen.size.x = max_x;
-		data->screen.size.y = max_y;
+		state = 1;
 	}
+	if (data->screen.size.y > max_y)
+	{
+		data->screen.size.y = max_y;
+		state = 1;
+	}
+	if (state == 1)
+		ft_msg(TM_INFO, "Resizing resolution", 0, YELLOW);
+	ft_msg(TM_INFO, "Resolution set.", 0, GREEN);
 }
 
 int			init_window(t_data *data)

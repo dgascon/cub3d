@@ -5,15 +5,13 @@ SO ./assets/images/face_south.xpm
 WE ./assets/images/face_west.xpm
 EA ./assets/images/face_east.xpm
 
-V ./assets/images/viseur.xpm
+S2 ./assets/images/baril.xpm
 
-S ./assets/images/baril.xpm
-
-F ./assets/images/vitrail-3.xpm
-C ./assets/images/ice.xpm
+F 145, 65, 98
+C 24, 89, 150
 
 111111111111111111111111111111
-110000000000000000000000000011
+10000000000000000000000000011
 100000000000000000000000000001
 100000000000000000000000000001
 100000000000000000000000000001

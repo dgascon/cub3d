@@ -12,7 +12,7 @@
 
 .PHONY:	all clean fclean re
 
-NAME			=	Cub3d
+NAME			=	Cub3D
 
 PATH_INC		=	includes
 
