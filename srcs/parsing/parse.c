@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:14:03 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/03 15:44:25 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/05 18:05:16 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,11 @@ int			parsefile(t_data *data, char *file)
 		gnl.ret = get_next_line(gnl.fd, &gnl.line);
 		if (!gnl.line)
 			return (ft_msg(TM_ERROR, "Line Null", 1, RED));
-		if (data->world.map && gnl.line[0] == '\0')
+		if (data->world.map && ft_strcmp(gnl.line, "") == 0)
+		{
+			printf("'%s'\n", gnl.line);
 			return (ft_msg(TM_ERROR, "Blank in map", 1, RED));
+		}
 		if ((!(cur_line = filter(data, gnl.line)))
 		|| (cur_line[0] && parseparam(data, cur_line, gnl)))
 			return (EXIT_FAILURE);

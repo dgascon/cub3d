@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/05/01 10:55:04 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/05/04 16:24:36 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,6 @@ fclean: clean
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
-	@#@ $(CC) $(CFLAGS) -o $(NAME) main.c libft/libft.a libmlx/libmlx_Linux.a $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) main.c $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
 
 re: fclean all
