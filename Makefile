@@ -6,7 +6,7 @@
 #    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/05/04 16:24:36 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2020/05/05 18:27:35 by dgascon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ MINILIBX_LIB	=	-Llibmlx -lmlx_Linux
 
 CC				=	gcc
 INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra #-Werror
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 DIRS_LIST	= engine parsing keycontrol entities

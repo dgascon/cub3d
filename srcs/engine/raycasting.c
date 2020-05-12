@@ -6,7 +6,7 @@
 /*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:37:04 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:21:46 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2020/05/12 17:40:58 by dgascon          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		*casting(void *param)
 		}
 		else if (data->raycast.face_detect == 'V')
 		{
-			direction = (int)data->raycast.inter.x % 64;
+			direction = (int)data->raycast.inter.x % BLOCK_SIZE;
 			direction = (direction == 0) ? 1 : 3;
 		}
 		fill_column(data, direction);
@@ -113,5 +113,6 @@ int			scan(t_data *data)
 	if (data->player.show_minimap)
 		if (minimap(data))
 			destroy(data);
+	mlx_do_sync(data->mlx.ptr);
 	return (EXIT_SUCCESS);
 }
