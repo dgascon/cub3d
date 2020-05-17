@@ -31,22 +31,22 @@ static void		print_sprite2(t_data *data, t_f_coord lim, t_f_coord offset,
 	int				row;
 	unsigned int	val;
 	int				cmp;
+	unsigned int	tmp;
 
 	cmp = 0;
 	if (offset.x < lim.x / 2
 		&& (list->dist * cosf(data->raycast.beta)) < data->raycast.dist
 		&& offset.x > -(lim.x / 2))
 	{
-		lim.y = (BLOCK_SIZE / 2) *
-		(data->player.dist_proj_plane / list->dist);
+		lim.y = (BLOCK_SIZE / 2) * (data->player.dist_proj_plane / list->dist);
 		row = data->player.hdv +
 			((data->player.height_cam - BLOCK_SIZE / 2)
 			/ list->dist) * data->player.dist_proj_plane;
 		while (cmp < lim.y && row < data->screen.size.y - 1)
 		{
-			val = darken_wall(list->dist,
-			select_sprite_color(offset, cmp, list->texture, lim));
-			if (val != 0 && row > 0)
+			tmp = select_sprite_color(offset, cmp, list->texture, lim);
+			val = darken_wall(list->dist, tmp);
+			if (tmp != 0x00000000 && row > 0)
 				*(int*)(data->image.add_image + (row * data->image.size_line) +
 				data->raycast.column * sizeof(int)) = val;
 			row++;
