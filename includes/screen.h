@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: sebastienlecaille <sebastienlecaille@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 18:05:35 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:21:26 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2022/02/11 17:04:17 by sebastienle      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SCREEN_H
 # include "cub3d.h"
 
-typedef struct s_data	t_data;
 typedef	struct			s_screen
 {
 	t_coord				size;

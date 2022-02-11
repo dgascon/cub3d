@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: sebastienlecaille <sebastienlecaille@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:30:10 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:21:29 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2022/02/11 17:04:10 by sebastienle      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 # define BLOCK_SIZE 64
 
-typedef struct s_data	t_data;
 
 typedef struct	s_world
 {

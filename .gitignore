@@ -1,0 +1,9 @@
+Cub3d
+objs/
+libmlx/*.o
+libft.a
+.vscode/
+libmlx.a
+libmlx_x86_64.a
+Makefile.gen
+libmlx/Makefile.gen

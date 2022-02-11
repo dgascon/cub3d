@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: sebastienlecaille <sebastienlecaille@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 17:27:41 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/01 10:21:20 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2022/02/11 16:22:52 by sebastienle      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "raycast.h"
 
 # define MAX_SPEED 15
-
-typedef struct s_data	t_data;
 
 typedef struct		s_player
 {

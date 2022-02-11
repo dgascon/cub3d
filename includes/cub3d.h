@@ -3,29 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: sebastienlecaille <sebastienlecaille@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 10:39:33 by dgascon           #+#    #+#             */
-/*   Updated: 2020/05/05 18:15:45 by dgascon          ###   ########lyon.fr   */
+/*   Updated: 2022/02/11 17:05:05 by sebastienle      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
 # include "../libft/includes/libft.h"
 # include "../libmlx/mlx.h"
 # include <math.h>
+# include <pthread.h>
+
+struct s_data;
+
+typedef struct s_data t_data;
+
 # include "screen.h"
 # include "world.h"
 # include "player.h"
 # include "raycast.h"
-# include <pthread.h>
 
 # define OBJ_TEX 10
 # define W_TEX 6
 # define HUD_TEX 1
 
-# define NB_THREAD 100
+# define NB_THREAD 10
 
 typedef struct	s_mlx
 {
@@ -65,7 +71,7 @@ typedef struct	s_floor
 	t_f_coord	delta;
 }				t_floor;
 
-typedef	struct	s_data
+struct	s_data
 {
 	t_mlx		mlx;
 	t_screen	screen;
@@ -80,7 +86,7 @@ typedef	struct	s_data
 	t_image		obj_tex[OBJ_TEX];
 	int			th_num;
 	int			bmp_save;
-}				t_data;
+};
 
 int				init_texture(t_data *data, t_image *image);
 int				dup_path(t_image *image, char *line);
@@ -99,4 +105,5 @@ int				floor_ceil_color(t_data *data, float c_const[4],
 					int qte_mur_sur_hdv, int *val2);
 int				darken_wall(float dist, int val);
 int				destroy(t_data *data);
+
 #endif

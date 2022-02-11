@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgascon <dgascon@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: sebastienlecaille <sebastienlecaille@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:51:32 by dgascon           #+#    #+#              #
-#    Updated: 2020/05/05 18:27:35 by dgascon          ###   ########lyon.fr    #
+#    Updated: 2022/02/11 17:02:20 by sebastienle      ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,11 @@ MINILIBX_PATH	= 	libmlx
 MINILIBX_NAME	= 	libmlx_Linux.a
 MINILIBX_LIB	=	-Llibmlx -lmlx_Linux
 
+X11_PATH		=	/usr/X11
+
 CC				=	gcc
-INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC)
-CFLAGS			=	-Wall -Wextra -Werror
+INCLUDES		=	-I$(LIBFT_INC) -I$(MINILIBX_PATH) -I$(PATH_INC) -I$(X11_PATH)/include
+CFLAGS			=	-Wall -Wextra -Werror -std=c99
 C-O				=	$(CC) $(CFLAGS) $(LIBFT_LIB) $(INCLUDES) -c $< -o $@
 
 DIRS_LIST	= engine parsing keycontrol entities
@@ -80,6 +82,7 @@ clean:
 
 fclean: clean
 	@ make -C $(LIBFT_PATH) fclean
+	@ make -C $(MINILIBX_PATH) clean
 	@ /bin/rm -rf $(NAME) ./$(NAME)* ./*bmp
 	@ printf "\033[0;38;5;160mSuppression de \033[1m$(NAME)/$(PATH_OBJ) ..."
 	@ sleep 0.5
@@ -90,6 +93,6 @@ fclean: clean
 	@ printf "\033[0;38;5;82mSuppression des fichiers de compilation reussis pour \033[1mCub3D.\n"
 
 comp:
-	$(CC) $(CFLAGS) -o $(NAME) main.c $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lpthread -lXext
+	$(CC) $(CFLAGS) -o $(NAME) main.c $(OBJS) $(INCLUDES) -L$(X11_PATH)/lib -Llibft -lft -Llibmlx -lmlx -lX11  -lm -lpthread -lXext
 
 re: fclean all
